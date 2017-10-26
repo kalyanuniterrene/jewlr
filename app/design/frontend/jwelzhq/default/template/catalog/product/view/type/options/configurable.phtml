@@ -61,7 +61,44 @@ $_renderers = $this->getChild('attr_renderers')->getSortedChildren();
     <?php endforeach; ?>
     </dl>
     <script type="text/javascript">
+
         var spConfig = new Product.Config(<?php echo $_jsonConfig ?>);
+        //we create new function
+    spConfig.setInitialState = function (dropdown_id)
+    {
+        //select dropdown
+        var dropdown = $(dropdown_id);
+        //remove empty option from dropdown so it is not selectable after initial selection
+        // dropdown[0].remove();
+        //alert(dropdown.length);
+        if (dropdown.length == 2) {
+            dropdown[0].remove();// for the removing choose an option
+           }
+        //change selections in dropdowns
+        for (index = 0; index < dropdown.length; index++)
+        {
+            if (dropdown[index].value != "")
+            {
+                dropdown.selectedIndex = index;
+                var element = dropdown;
+                var event = 'change';
+                //fire events
+                if (document.createEventObject)
+                {
+                    var evt = document.createEventObject();
+                    return element.fireEvent('on' + event, evt)
+                } else
+                {
+                    var evt = document.createEvent("HTMLEvents");
+                    evt.initEvent(event, true, true);
+                    return !element.dispatchEvent(evt);
+                }
+            }
+        }
+    };
+<?php foreach ($_attributes as $_attribute): ?>
+        spConfig.setInitialState("attribute<?php echo $_attribute->getAttributeId() ?>")
+<?php endforeach; ?>
     </script>
     <?php echo $this->getChildHtml('after') ?>
 <?php endif;?>
