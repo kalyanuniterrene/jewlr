@@ -1,0 +1,13 @@
+[26-Oct-2017 09:49:00 UTC] PHP Fatal error:  Call to a member function getSortedChildren() on a non-object in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 142
+[26-Oct-2017 10:15:19 UTC] PHP Fatal error:  Call to undefined method Mage::baseUrl() in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 134
+[26-Oct-2017 11:32:16 UTC] PHP Fatal error:  Class 'Canvassignages_Liveeditor_Block_Monblock' not found in /home/web/public_sc/jewlr/app/code/core/Mage/Core/Model/Layout.php on line 590
+[26-Oct-2017 13:21:08 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'File '/home/web/public_sc/jewlr/media/catalog/product/' does not exists.' in /home/web/public_sc/jewlr/lib/Varien/File/Transfer/Adapter/Http.php:96
+Stack trace:
+#0 /home/web/public_sc/jewlr/get.php(205): Varien_File_Transfer_Adapter_Http->send('/home/web/publi...')
+#1 /home/web/public_sc/jewlr/get.php(165): sendFile('/home/web/publi...')
+#2 {main}
+  thrown in /home/web/public_sc/jewlr/lib/Varien/File/Transfer/Adapter/Http.php on line 96
+[27-Oct-2017 05:41:22 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 158 bytes) in /home/web/public_sc/jewlr/app/code/core/Mage/Core/functions.php on line 182
+[27-Oct-2017 05:44:09 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/web/public_sc/jewlr/app/code/local/Canvassignages/Liveeditor/controllers/IndexController.php on line 42
+[27-Oct-2017 08:04:58 UTC] PHP Fatal error:  Call to a member function resize() on a non-object in /home/web/public_sc/jewlr/app/code/local/Canvassignages/Liveeditor/controllers/IndexController.php on line 44
+[27-Oct-2017 08:05:08 UTC] PHP Fatal error:  Call to a member function resize() on a non-object in /home/web/public_sc/jewlr/app/code/local/Canvassignages/Liveeditor/controllers/IndexController.php on line 44

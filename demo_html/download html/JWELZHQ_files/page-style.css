@@ -1,0 +1,293 @@
+.slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent
+}
+.slick-list {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	padding: 0
+}
+.slick-list:focus {
+	outline: none
+}
+.slick-list.dragging {
+	cursor: pointer;
+	cursor: hand
+}
+.slick-slider .slick-track, .slick-slider .slick-list {
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0)
+}
+.slick-track {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block
+}
+.slick-track:before, .slick-track:after {
+	display: table;
+	content: ''
+}
+.slick-track:after {
+	clear: both
+}
+.slick-loading .slick-track {
+	visibility: hidden
+}
+.slick-slide {
+	display: none;
+	float: left;
+	height: 100%;
+	min-height: 1px
+}
+[dir='rtl'] .slick-slide {
+	float: right
+}
+.slick-slide img {
+	display: block
+}
+.slick-slide.slick-loading img {
+	display: none
+}
+.slick-slide.dragging img {
+	pointer-events: none
+}
+.slick-initialized .slick-slide {
+	display: block
+}
+.slick-loading .slick-slide {
+	visibility: hidden
+}
+.slick-vertical .slick-slide {
+	display: block;
+	height: auto;
+	border: 1px solid transparent
+}
+.slick-arrow.slick-hidden {
+	display: none
+}
+.carousel {
+	margin-top: -1px;
+	margin-bottom: 40px
+}
+
+.new-saving-box {}
+.new-saving-box .price_fields { font-size:35px!important; font-weight:bold!important; font-family: "TradeGothicNext", sans-serif!important; display:inline-block; vertical-align:middle; }
+.new-saving-box .jewlr-affirm { display:inline-block; font-size:18px;}
+.new-saving-box .jewlr-save-tag { font-size:18px!important; font-weight:bold!important; font-family: "TradeGothicNext", sans-serif!important;}
+
+.new-saving-box .shipment-box { margin-top:20px; }
+.new-saving-box .shipment-price { font-size:15px; font-weight:bold; color:#772bef; font-family: "TradeGothicNext", sans-serif;}
+.need-sooner {font-size:14px; font-weight:bold; color:#a8a8a8; font-family: "TradeGothicNext", sans-serif;}
+.color-blue-icons {font-weight:bold; color:#772bef; font-family: "TradeGothicNext", sans-serif; }
+.footer-country__current img { width: 20px; height: 20px; border-radius: 50%;}
+
+@media (min-width: 1024px) {
+.carousel {
+	margin-bottom: 80px;
+	width: 100%;
+	height: 418px;
+	background-color: #f5f5f7;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover
+}
+}
+.carousel__link {
+	display: block;
+	height: 100%
+}
+.best-seller__slider {
+	position: relative;
+	padding: 0 8px
+}
+.best-seller__slider:after, .best-seller__slider:before {
+	display: block;
+	content: ' ';
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 8%;
+	background: #fff
+}
+.best-seller__slider:after {
+	right: 4px;
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 95%);
+	background: -moz-linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 95%);
+	background: -o-linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 95%);
+	background: -webkit-linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 95%)
+}
+.best-seller__slider:before {
+	left: 4px;
+	background: linear-gradient(to left, rgba(255,255,255,0) 0%, #fff 95%);
+	background: -moz-linear-gradient(to left, rgba(255,255,255,0) 0%, #fff 95%);
+	background: -o-linear-gradient(to left, rgba(255,255,255,0) 0%, #fff 95%);
+	background: -webkit-linear-gradient(to left, rgba(255,255,255,0) 0%, #fff 95%)
+}
+.slider {
+	width: 100%;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap
+}
+.slider__item {
+	display: inline-block;
+	width: 30%;
+	margin: 0 5px;
+	padding: 0;
+	text-align: center
+}
+@media (min-width: 768px) {
+.slider__item {
+	width: 25%
+}
+}
+.slider__arrow {
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+	height: 30px;
+	cursor: pointer
+}
+.slider__arrow--left {
+	left: -24px
+}
+.slider__arrow--right {
+	right: -24px
+}
+html.touch .slider__arrow {
+	display: none
+}
+.homepage__block {
+	position: relative;
+	margin-bottom: 5px;
+	background-color: #f5f5f7;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	cursor: pointer
+}
+@media (min-width: 768px) {
+.homepage__block {
+	height: 100% !important
+}
+}
+.homepage__block a:hover {
+	text-decoration: none
+}
+.col {
+	height: 100%
+}
+.homepage__text {
+	position: absolute;
+	text-align: center;
+	opacity: 0
+}
+.homepage__title {
+	margin: 0;
+	font-family: "TradeGothicCondensed", sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	letter-spacing: 1px;
+	text-transform: uppercase
+}
+@media (min-width: 1024px) {
+.homepage__title {
+	font-size: 18px
+}
+}
+.homepage__link {
+	display: block;
+	margin: 15px 0;
+	font-family: "TradeGothicNext", sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	letter-spacing: 1px;
+	text-transform: uppercase
+}
+@media (min-width: 768px) {
+.homepage__link {
+	font-size: 12px
+}
+}
+.homepage__header {
+	margin-bottom: 35px;
+	font-family: "TradeGothicCondensed", sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	letter-spacing: 1px;
+	font-size: 18px;
+	font-weight: normal;
+	text-align: center;
+	text-transform: uppercase
+}
+.homepage__header:after {
+	display: block;
+	content: ' ';
+	position: relative;
+	top: 10px;
+	left: calc(50% - 20px);
+	width: 40px;
+	border-bottom: 1px solid #191919
+}
+@media (min-width: 768px) {
+.row--mothers {
+	height: 260px
+}
+}
+@media (min-width: 768px) and (min-width: 1024px) {
+.row--mothers {
+	height: 350px
+}
+}
+.b--mothers {
+	height: 150px
+}
+.t--mothers {
+	top: 47%;
+	left: 5%
+}
+@media (min-width: 768px) {
+.t--mothers {
+	left: 20%
+}
+}
+.b--promise {
+	height: 132px
+}
+.t--promise {
+	top: 50%;
+	transform: translateY(-50%);
+	left: 5%
+}
+@media (min-width: 768px) {
+.t--promise {
+	width: 100%;
+	top: 10%;
+	left: auto;
+	transform: none
+}
+}
+@media (min-width: 768px) {
+.l--promise {
+	display: inline-block;
+	width: 45%
+}
+}
