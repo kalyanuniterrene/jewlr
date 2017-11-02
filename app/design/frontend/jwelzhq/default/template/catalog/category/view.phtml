@@ -41,7 +41,7 @@
 	}
 ?>
 <!-- collection-actions-mobile -->
-<div class="js-collection-title collection-actions-mobile pure-static-zoom pure_container experiment__variation-0">
+<!--<div class="js-collection-title collection-actions-mobile pure-static-zoom pure_container experiment__variation-0">
 	<div class="">
 		<div class="collection-results-mobile">
 			<div class="c-title">
@@ -54,7 +54,7 @@
 			</li>
 		</ul>
 	</div>
-</div>
+</div>-->
 <!-- end collection-actions-mobile -->				
 <!--<div class="page-title category-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
@@ -78,7 +78,7 @@
 	<div class="pure-hidden-sm-down pure-u-6-24 pure-u-lg-6-24 bar-123__block bar-123__block--first">
 		<h1 class="bar-123__heading"><?php echo $_category->getName();?></h1>
 	</div>					
-	<div class="pure-u-1-3 pure-u-md-4-24 pure-u-lg-5-24 bar-123__block">						
+	<!--<div class="pure-u-1-3 pure-u-md-4-24 pure-u-lg-5-24 bar-123__block">						
 		<span class="bar-123__span bar-123__span--1">Select a style</span>						
 	</div>					
 	<div class="pure-u-1-3 pure-u-md-5-24 pure-u-lg-5-24 bar-123__block">						
@@ -87,9 +87,13 @@
 	<!--<div class="pure-u-1-3 bar-123__block bar-123__block--mobile">						
 		<span class="bar-123__span bar-123__span--3">Made For You</span>						
 	</div>	-->				
-	<div class="pure-hidden-sm-down pure-u-9-24 pure-u-lg-8-24 bar-123__block">						
+	<!--<div class="pure-hidden-sm-down pure-u-9-24 pure-u-lg-8-24 bar-123__block">						
 		<span class="bar-123__span bar-123__span--3">Custom-Made For You In Days</span>						
-	</div>					
+	</div>	-->
+	<?php 
+		$_description=$this->getCurrentCategory()->getDescription();
+		echo $_helper->categoryAttribute($_category, $_description, 'description');
+		?>
 </div>
 
 <?php //if($_description=$this->getCurrentCategory()->getDescription()): ?>
