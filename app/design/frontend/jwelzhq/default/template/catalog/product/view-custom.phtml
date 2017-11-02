@@ -927,7 +927,9 @@ jQuery('.metal_type_stone2').click(function(){
 
   var sku = jQuery(this).find('img').attr('data-sku');
 
-  jQuery(this).addClass('selected-item selected-item-stone2').siblings().removeClass('selected-item');
+  jQuery(this).addClass('selected-item selected-item-stone1');
+  jQuery(this).parent().parent().siblings('.stone-option-category').find('li').removeClass('selected-item');
+
 
   var img = jQuery(this).find('img').attr('src');
 
@@ -992,7 +994,8 @@ jQuery('.metal_type_stone1').click(function(){
 
   var sku = jQuery(this).find('img').attr('data-sku');
 
-  jQuery(this).addClass('selected-item selected-item-stone1').siblings().removeClass('selected-item');
+  jQuery(this).addClass('selected-item selected-item-stone1');
+  jQuery(this).parent().parent().siblings('.stone-option-category').find('li').removeClass('selected-item');
 
   var img = jQuery(this).find('img').attr('src');
 
