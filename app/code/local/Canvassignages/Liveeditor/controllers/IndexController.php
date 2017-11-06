@@ -77,6 +77,14 @@ class Canvassignages_Liveeditor_IndexController extends Mage_Core_Controller_Fro
      
    }
    
+   public function filterAction()
+   {
+    
+      $metal = $this->getRequest()->getParam('metal');
+    // echo $path = realpath(Mage::getBaseDir().'/media/fancy-images/'.$default_sku.'/'.$sku.'/');
+	echo $metal;
+     
+   }
     
     
 }
