@@ -77,6 +77,7 @@
                 <action method="addItem"><type>skin_js</type><name>js/homepage.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/page-scroll.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/products.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/fancy-diamond.js</name></action>
 				<!-- Adding Custom Js End -->
 
                 <!-- Add stylesheets with no media queries for use in IE 8 and below -->

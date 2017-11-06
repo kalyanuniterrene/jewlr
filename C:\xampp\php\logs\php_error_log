@@ -1,0 +1,8 @@
+[06-Nov-2017 06:39:10 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 101
+[06-Nov-2017 08:26:04 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 106
+[06-Nov-2017 08:27:48 UTC] PHP Parse error:  syntax error, unexpected '$params' (T_VARIABLE) in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 108
+[06-Nov-2017 08:30:34 UTC] PHP Fatal error:  Call to a member function getData() on a non-object in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 108
+[06-Nov-2017 12:28:46 UTC] PHP Parse error:  syntax error, unexpected '++' (T_INC), expecting variable (T_VARIABLE) or '$' in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 167
+[06-Nov-2017 12:36:02 UTC] PHP Fatal error:  Call to a member function getDefaultTitle() on a non-object in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 132
+[06-Nov-2017 12:36:46 UTC] PHP Fatal error:  Call to a member function getDefaultTitle() on a non-object in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 132
+[06-Nov-2017 12:38:21 UTC] PHP Parse error:  syntax error, unexpected '++' (T_INC), expecting variable (T_VARIABLE) or '$' in /home/web/public_sc/jewlr/app/design/frontend/jwelzhq/default/template/catalog/product/view-custom.phtml on line 194
