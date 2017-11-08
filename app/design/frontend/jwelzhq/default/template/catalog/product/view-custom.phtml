@@ -146,10 +146,10 @@ i { position:absolute;
                         $side_1 = array();
                         $side_1['name'] = 'Side 1 Stone 1';
                         foreach ($product_data as $product_data) {
-                            $side_1[$l]['price'] = ($product_data['price']);
-                            $side_1[$l]['image'] = ($product_data['img_url']);
-                            $side_1[$l]['sku'] = ($product_data['sku']);
-                            $side_1[$l]['paneltype'] = ($product_data['panel_type']);                           
+                            $side_1['details'][$l]['price'] = ($product_data['price']);
+                            $side_1['details'][$l]['image'] = ($product_data['img_url']);
+                            $side_1['details'][$l]['sku'] = ($product_data['sku']);
+                            $side_1['details'][$l]['paneltype'] = ($product_data['panel_type']);                           
                          /*$params[$i]['style'][$k]['side 1 stone 1'][$l]['name'] = ($product_data['default_title']);
                          $params[$i]['style'][$k]['side 1 stone 1'][$l]['price'] = ($product_data['price']);
                          $params[$i]['style'][$k]['side 1 stone 1'][$l]['image'] = ($product_data['img_url']);
@@ -171,10 +171,10 @@ i { position:absolute;
                         $side_2 = array();  
                         $side_2['name'] = 'Side 1 Stone 2';
                         foreach ($product_data as $product_data) {
-                            $side_2[$q]['price'] = ($product_data['price']);
-                            $side_2[$q]['image'] = ($product_data['img_url']);
-                            $side_2[$q]['sku'] = ($product_data['sku']);
-                            $side_2[$q]['paneltype'] = ($product_data['panel_type']);
+                            $side_2['details'][$q]['price'] = ($product_data['price']);
+                            $side_2['details'][$q]['image'] = ($product_data['img_url']);
+                            $side_2['details'][$q]['sku'] = ($product_data['sku']);
+                            $side_2['details'][$q]['paneltype'] = ($product_data['panel_type']);
 
                          /*$params[$i]['style'][$k]['side 1 stone 2'][$q]['name'] = ($product_data['default_title']);
                          $params[$i]['style'][$k]['side 1 stone 2'][$q]['price'] = ($product_data['price']);
@@ -197,10 +197,10 @@ i { position:absolute;
                         $side_3 = array();
                         $side_3['name'] = 'side 2 Stone 1';
                         foreach ($product_data as $product_data) {
-                            $side_3[$b]['price'] = ($product_data['price']);
-                            $side_3[$b]['image'] = ($product_data['img_url']);
-                            $side_3[$b]['sku'] = ($product_data['sku']);
-                            $side_3[$b]['paneltype'] = ($product_data['panel_type']);
+                            $side_3['details'][$b]['price'] = ($product_data['price']);
+                            $side_3['details'][$b]['image'] = ($product_data['img_url']);
+                            $side_3['details'][$b]['sku'] = ($product_data['sku']);
+                            $side_3['details'][$b]['paneltype'] = ($product_data['panel_type']);
 
                         /* $params[$i]['style'][$k]['side 2 Stone 1'][$b]['name'] = ($product_data['default_title']);
                          $params[$i]['style'][$k]['side 2 Stone 1'][$b]['price'] = ($product_data['price']);
@@ -223,10 +223,10 @@ i { position:absolute;
                         $side_4 = array();
                         $side_4['name'] = 'side 2 Stone 2';
                         foreach ($product_data as $product_data) {
-                            $side_4[$a]['price'] = ($product_data['price']);
-                            $side_4[$a]['image'] = ($product_data['img_url']);
-                            $side_4[$a]['sku'] = ($product_data['sku']);
-                            $side_4[$a]['paneltype'] = ($product_data['panel_type']);
+                            $side_4['details'][$a]['price'] = ($product_data['price']);
+                            $side_4['details'][$a]['image'] = ($product_data['img_url']);
+                            $side_4['details'][$a]['sku'] = ($product_data['sku']);
+                            $side_4['details'][$a]['paneltype'] = ($product_data['panel_type']);
 
                         /* $params[$i]['style'][$k]['side 2 Stone 2'][$a]['name'] = ($product_data['default_title']);
                          $params[$i]['style'][$k]['side 2 Stone 2'][$a]['price'] = ($product_data['price']);
@@ -465,7 +465,7 @@ i { position:absolute;
                                         <!-- End Metal Pane Body -->
                                     
                                     <!-- ***** End Metal Pane ***** -->
-										 <div class="panel panel-default">
+										 <div class="panel panel-default stylePanel">
 										   <div class="panel-heading clearfix" data-toggle="collapse" data-parent="" href=".facesCollapse">
 										      <div class="mw-thumb">
 										         <img width="40" height="40" class="summary_thumb faces_thumb" src="https://ps-j4-assets-jewlr.netdna-ssl.com/ps_scene7/is/image/Jewlr/xFACE_02,q,24product_small,24,afmt=png-alpha.pagespeed.ic.ATX-LUkHYt.webp" alt="Jewlr" data-pagespeed-url-hash="120461313" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">

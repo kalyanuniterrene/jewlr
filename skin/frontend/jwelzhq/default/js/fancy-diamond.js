@@ -81,6 +81,7 @@ jQuery(document).ready(function(){
 							' <img width="50"'+ 'height="50"'+ 'alt="" title="" class="extimage"'+
 							' src="http://localhost/public_sc/jewlr/media/'+data.image+'">'+  
 							' <p>'+data.name+'<br></p>'+
+							'<div id="data-style-items" style="display:none;">'+JSON.stringify(data.item)  +'</div>'+
 							'</li>';
 
 			jQuery('.panel .panel-body.styles_panel ul').append(style_item);
@@ -88,6 +89,71 @@ jQuery(document).ready(function(){
 		});
 
 	});
+
+
+	jQuery(document).on('click','.panel .panel-body.styles_panel .pane-content ul li',function(){
+		jQuery(this).addClass('selected-item').siblings().removeClass('selected-item');
+
+		let size_style_item = JSON.parse(jQuery(this).find('#data-style-items').html());
+		jQuery(document).find('.filteredItems').remove();
+		jQuery(document).find('.filtered').slideUp();
+		size_style_item.forEach(function(data, index) {
+			var styleEachItem = '<div class="panel panel-default filteredItems stones_pane s1_pane">'+
+                '<!-- Stone 1 Pane Header -->'+
+                '<div class="panel-heading clearfix " data-toggle="collapse" data-parent="" href=".gem1Collapse'+ index +'">'+
+                    '<div class="mw-thumb mw-thumb-stone1"> '+
+                          '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> '+
+                    '</div>'+
+                  '<div class="mw-desc-stone1"> ' +
+                    '<div class="mw-desc">'+
+                        '<h4>'+ data.name +'</h4>'+
+                        '<span class="gem1_description">Garnet (Simulated) - January</span> </div>'+
+                    '<div class="mw-chevron"> <span class="fa fa-angle-right"></span> </div>'+
+                    '<div class="mw-price"> <span class="gem1_price">$0</span> </div>'+
+                    '</div>'+
+               ' </div>'+
+               ' <!-- End Stone 1 Pane Header -->'+
+               ' <!-- Stone 1 Pane Body -->'+
+                '<div class="panel-collapse collapse gem1Collapse'+ index +'">'+
+                    '<div class="panel-body">'+
+                        '<div class="wizard-pane s1_pane item" data-maparea="gem1" data-summary-field="gem1" data-pref="s1" data-hashid="s1" data-label="Stone 1">'+                                                    
+                            '<div class="pane-content">'+
+                               ' <div class="option-description option-description-org">'+
+                                    '<h3 class="option-item-description1">Garnet (Simulated) - $0</h3>'+
+                                    '<span class="option-item-stone-size">Stone Size: 4mm x 2mm Baguette Cut Stone</span>'+
+                                    '<br>'+
+                                    '<div class="option-item-description2">Birthmonth: January'+
+                                    '<br><span class="stone_attributes">Attributes: Leadership, Truth, Creativity</span></div>'+
+                                '</div>'+
+                                 '<div class="option-description2 option-description" style="display: none;">'+                                                            
+                               ' </div>'+
+                               ' <h4>Genuine Stones<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>'+
+                                ' <div class="wizard-option-category stone-option-category">'+
+                                   ' <ul class="thumbnails stone_thumbnails list-unstyled list-inline row ranitul-'+index+'">'+   
+                                                                                    
+                                	'</ul>'+
+                               ' </div>'+
+                                '<h4>Simulated Stones<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>'+
+                                '<div class="wizard-option-category stone-option-category">'+
+                                    '<ul class="thumbnails stone_thumbnails list-unstyled list-inline row">'+                                                                
+                                    '</ul>'+
+                               ' </div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                '<!-- End Stone 1 Pane Body -->'+
+            '</div>';
+			jQuery(styleEachItem).insertAfter('.panel.panel-default.stylePanel');
+
+		});
+		
+		
+
+
+	});
+
+
 
 
 
