@@ -125,6 +125,7 @@ i { position:absolute;
 					 	$params[$i]['style'][$k]['name'] = ($product_data['default_title']);
 					 	$params[$i]['style'][$k]['price'] = ($product_data['price']);
 					 	$params[$i]['style'][$k]['image'] = ($product_data['img_url']);
+					 	$params[$i]['style'][$k]['item'] = array();
 
 
 					 	//For adding data of side 1 stone 1
@@ -142,19 +143,24 @@ i { position:absolute;
  						$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
 
  						$l=0;
-
+ 						$side_1 = array();
+ 						$side_1['name'] = 'Side 1 Stone 1';
  						foreach ($product_data as $product_data) {
-
- 						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['name'] = ($product_data['default_title']);
+ 							$side_1[$l]['price'] = ($product_data['price']);
+ 							$side_1[$l]['image'] = ($product_data['img_url']);
+ 							$side_1[$l]['sku'] = ($product_data['sku']);
+ 							$side_1[$l]['paneltype'] = ($product_data['panel_type']);							
+ 						 /*$params[$i]['style'][$k]['side 1 stone 1'][$l]['name'] = ($product_data['default_title']);
  						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['price'] = ($product_data['price']);
  						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['image'] = ($product_data['img_url']);
  						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['sku'] = ($product_data['sku']);
  						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['paneltype'] = ($product_data['panel_type']);
- 						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['description'] = ($product_data['description']);
+ 						 $params[$i]['style'][$k]['side 1 stone 1'][$l]['description'] = ($product_data['description']);*/
  							
  						  $l++;
  						}
-
+ 							//echo "<pre>";print_r($side_1);
+ 						$params[$i]['style'][$k]['item'][0] = $side_1; 	
  						//For adding data of side 1 stone 2
 
  						
@@ -162,20 +168,25 @@ i { position:absolute;
  						$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title2);
 
  						$q=0;
-
+ 						$side_2 = array();	
+ 						$side_2['name'] = 'Side 1 Stone 2';
  						foreach ($product_data as $product_data) {
+ 							$side_2[$q]['price'] = ($product_data['price']);
+ 							$side_2[$q]['image'] = ($product_data['img_url']);
+ 							$side_2[$q]['sku'] = ($product_data['sku']);
+ 							$side_2[$q]['paneltype'] = ($product_data['panel_type']);
 
- 						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['name'] = ($product_data['default_title']);
+ 						 /*$params[$i]['style'][$k]['side 1 stone 2'][$q]['name'] = ($product_data['default_title']);
  						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['price'] = ($product_data['price']);
  						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['image'] = ($product_data['img_url']);
  						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['sku'] = ($product_data['sku']);
  						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['paneltype'] = ($product_data['panel_type']);
- 						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['description'] = ($product_data['description']);
+ 						 $params[$i]['style'][$k]['side 1 stone 2'][$q]['description'] = ($product_data['description']); */
  							
  						  $q++;
  						}
 
-
+ 						$params[$i]['style'][$k]['item']['1'] = $side_2; 	
  						//For adding data of side 2 stone 1
 
  						
@@ -183,19 +194,24 @@ i { position:absolute;
  						$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title3);
 
  						$b=0;
-
+ 						$side_3 = array();
+ 						$side_3['name'] = 'side 2 Stone 1';
  						foreach ($product_data as $product_data) {
+ 							$side_3[$b]['price'] = ($product_data['price']);
+ 							$side_3[$b]['image'] = ($product_data['img_url']);
+ 							$side_3[$b]['sku'] = ($product_data['sku']);
+ 							$side_3[$b]['paneltype'] = ($product_data['panel_type']);
 
- 						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['name'] = ($product_data['default_title']);
+ 						/* $params[$i]['style'][$k]['side 2 Stone 1'][$b]['name'] = ($product_data['default_title']);
  						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['price'] = ($product_data['price']);
  						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['image'] = ($product_data['img_url']);
  						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['sku'] = ($product_data['sku']);
  						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['paneltype'] = ($product_data['panel_type']);
- 						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['description'] = ($product_data['description']);
+ 						 $params[$i]['style'][$k]['side 2 Stone 1'][$b]['description'] = ($product_data['description']); */
  							
  						  $b++;
  						}
-
+ 						$params[$i]['style'][$k]['item'][2] = $side_3; 
 
  						//For adding data of side 2 stone 2
 
@@ -204,19 +220,24 @@ i { position:absolute;
  						$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title4);
 
  						$a=0;
-
+ 						$side_4 = array();
+ 						$side_4['name'] = 'side 2 Stone 2';
  						foreach ($product_data as $product_data) {
+ 							$side_4[$a]['price'] = ($product_data['price']);
+ 							$side_4[$a]['image'] = ($product_data['img_url']);
+ 							$side_4[$a]['sku'] = ($product_data['sku']);
+ 							$side_4[$a]['paneltype'] = ($product_data['panel_type']);
 
- 						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['name'] = ($product_data['default_title']);
+ 						/* $params[$i]['style'][$k]['side 2 Stone 2'][$a]['name'] = ($product_data['default_title']);
  						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['price'] = ($product_data['price']);
  						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['image'] = ($product_data['img_url']);
  						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['sku'] = ($product_data['sku']);
  						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['paneltype'] = ($product_data['panel_type']);
- 						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['description'] = ($product_data['description']);
+ 						 $params[$i]['style'][$k]['side 2 Stone 2'][$a]['description'] = ($product_data['description']); */
  							
  						  $a++;
  						}
-
+ 						$params[$i]['style'][$k]['item'][3] = $side_4;
 
 
 
@@ -226,7 +247,7 @@ i { position:absolute;
 					 
 					$i++;					
 				}
-				echo "<pre>";
+				
 				//print_r($params);
 
 				$json_parr =  json_encode($params);
@@ -235,9 +256,7 @@ i { position:absolute;
 
 		}	
 
-		echo "</pre>";
-		//print_r($params);
-
+		
 
 ?>
 
