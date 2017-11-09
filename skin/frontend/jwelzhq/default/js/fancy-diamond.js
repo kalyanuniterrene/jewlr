@@ -97,13 +97,19 @@ jQuery(document).ready(function(){
 		let size_style_item = JSON.parse(jQuery(this).find('#data-style-items').html());
 		jQuery(document).find('.filteredItems').remove();
 		jQuery(document).find('.filtered').slideUp();
+		
 		size_style_item.forEach(function(data, index) {
+			
+			//alert(data.details[0]['price']);
+			
+
 			var styleEachItem = '<div class="panel panel-default filteredItems stones_pane s1_pane">'+
                 '<!-- Stone 1 Pane Header -->'+
                 '<div class="panel-heading clearfix " data-toggle="collapse" data-parent="" href=".gem1Collapse'+ index +'">'+
                     '<div class="mw-thumb mw-thumb-stone1"> '+
                           '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> '+
                     '</div>'+
+                    '<div id="takdumdum" style="display:none">'+ JSON.stringify(data.details) +'</div>'+
                   '<div class="mw-desc-stone1"> ' +
                     '<div class="mw-desc">'+
                         '<h4>'+ data.name +'</h4>'+

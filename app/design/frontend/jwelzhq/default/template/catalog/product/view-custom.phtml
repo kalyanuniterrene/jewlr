@@ -72,10 +72,6 @@ i { position:absolute;
 </style>
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
-
-
-<!--Creating The Json object-->
-
 <?php
 
     $product_arr = array();
@@ -259,6 +255,11 @@ i { position:absolute;
         
 
 ?>
+
+
+<!--Creating The Json object-->
+
+
 
 
 <script type="text/javascript">
@@ -465,58 +466,8 @@ i { position:absolute;
                                         <!-- End Metal Pane Body -->
                                     
                                     <!-- ***** End Metal Pane ***** -->
-										 <div class="panel panel-default stylePanel">
-										   <div class="panel-heading clearfix" data-toggle="collapse" data-parent="" href=".facesCollapse">
-										      <div class="mw-thumb">
-										         <img width="40" height="40" class="summary_thumb faces_thumb" src="https://ps-j4-assets-jewlr.netdna-ssl.com/ps_scene7/is/image/Jewlr/xFACE_02,q,24product_small,24,afmt=png-alpha.pagespeed.ic.ATX-LUkHYt.webp" alt="Jewlr" data-pagespeed-url-hash="120461313" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-										      </div>
-										      <div class="mw-desc">
-										         <h4>Style</h4>
-										         <span class="faces_description">Gemstone Side W/ Halo Accents</span>
-										      </div>
-										      <div class="mw-chevron">
-										         <span class="fa fa-angle-right"></span>
-										      </div>
-										      <div class="mw-price">
-										         <span class="faces_price">$78</span>
-										      </div>
-										   </div>
-										   <div class="panel-collapse facesCollapse collapse" aria-expanded="false">
-										      <div class="panel-body styles_panel">
-										         <div class="wizard-pane face_pane faces_pane item" data-summary-field="faces" data-pref="faces" data-hashid="faces" data-label="Side 2">
-										            <div class="pane-content clearfix">
-										               <div class="option-description">
-										                  <h3 class="option-item-description1">Gemstone Side W/ Halo Accents - $78</h3>
-										                  <div class="option-item-description2">A round 4mm gemstone surrounded by a halo of accent stones</div>
-										               </div>
-										               <div class="wizard-option-category">
-										                  <ul class="thumbnails list-unstyled list-inline">
-										                    
-										                     <li data-title="Gemstone Filigree Side" data-price="0" data-value="01" data-filter="14K Gold" data-summary-field="faces" data-description="Gemstone Filigree Side - $0" data-description2="A round 4mm gemstone surrounded by decorative detailing" data-specs="Main Stone: One 4mm Round Stone" class="wizard-option face-option">
-										                        <img width="50" height="50" alt="" title="" class="extimage" src="https://ps-j4-assets-jewlr.netdna-ssl.com/ps_scene7/is/image/Jewlr/xFACE_01,q,24product_small,24,afmt=png-alpha.pagespeed.ic.f0zHrX_4t-.webp" data-pagespeed-url-hash="708250024" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"> 
-										                        <p>
-										                           Gemstone Filigree Side<br>
-										                        </p>
-										                     </li>
-										                    
-										                     <li data-title="Birthstone Infinity Side" data-price="0" data-value="07" data-filter="14K Gold" data-summary-field="faces" data-description="Birthstone Infinity Side - $0" data-description2="An infinity symbol with two 2mm round birthstone accents" data-specs="Main Stones: Two 2mm Round Stones;Main Stones: Two 2mm Round Stones" class="wizard-option face-option">
-										                        <img width="50" height="50" alt="" title="" class="extimage" src="https://ps-j4-assets-jewlr.netdna-ssl.com/ps_scene7/is/image/Jewlr/xFACE_07,q,24product_small,24,afmt=png-alpha.pagespeed.ic.snP8PxLfFB.webp" data-pagespeed-url-hash="3531607038" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"> 
-										                        <p>
-										                           Birthstone Infinity Side<br>
-										                        </p>
-										                     </li>
-										                    
-										                    
-										                     
-										                     
-										                  </ul>
-										               </div>
-										            </div>
-										         </div>
-										      </div>
-										   </div>
-										</div>
-
+										 
+                                     <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/fancy-editor/style.phtml')->toHtml(); ?>
 
                                      <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/fancy-editor/side1_stone1.phtml')->toHtml(); ?>
                                         <!-- End Metal Pane Body -->
