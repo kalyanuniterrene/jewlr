@@ -47,7 +47,7 @@ class Edge_CustomOptionImage_Model_Observer_Product
 
                         try {
                             $uploader = new Mage_Core_Model_File_Uploader($imageName);
-                            $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
+                            $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png','svg'));
                             $uploader->setAllowRenameFiles(true);
                             $uploader->setFilesDispersion(false);
 
@@ -55,6 +55,7 @@ class Edge_CustomOptionImage_Model_Observer_Product
                             $result = $uploader->save($dirPath, $_FILES[$imageName]['name']);
 
                         } catch (Exception $e) {
+					
                             Mage::log($e->getMessage());
                         }
 

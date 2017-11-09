@@ -40,7 +40,7 @@
 <div  class="">
 	<div id="filter_form">
 		<form id="js-filter_form" class="pure-g" action="" accept-charset="UTF-8" method="get">
-		<input name="utf8" type="hidden" value="&#x2713;" />
+			<input name="utf8" type="hidden" value="&#x2713;" />
 			<div class="filter-block pure-u-1-1 pure-u-md-1-5">
 				<div class="filter-heading">Metal</div>
 				<ul class="list-inline-for-real filter-list-metal filter-lists">
@@ -69,7 +69,6 @@
 							<img width="40" height="40" class="filter-metal" title="Yellow Gold" alt="Yellow Gold" src="<?php echo $this->getSkinUrl( 'images/yellow-gold.png');?>" />
 						</a>
 					</li>
-					
 				</ul>
 			</div>
 			<div class="filter-block pure-u-1-1 pure-u-md-1-5">
@@ -375,47 +374,38 @@
 <div class="toolbar">
     <?php if( $this->isExpanded() ): ?>
 	<div class="sorter">
-		
 		<div class="sort-by">
-		<label><?php echo $this->__('Sort By') ?></label>
-		<select onchange="setLocation(this.value)" title="<?php echo $this->__('Sort By') ?>">
-					<?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
-					<option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
-				<?php echo $this->__($_order) ?>
-			</option>
-			<?php endforeach; ?>
-		</select>
-		<!--<?php if($this->getCurrentDirection() == 'desc'): ?>
-		<a href="<?php echo $this->getOrderUrl(null, 'asc') ?>" class="sort-by-switcher sort-by-switcher--desc" title="<?php echo $this->__('Set Ascending Direction') ?>"><?php echo $this->__('Set Ascending Direction') ?></a>
-		<?php else: ?>
-		<a href="<?php echo $this->getOrderUrl(null, 'desc') ?>" class="sort-by-switcher sort-by-switcher--asc" title="<?php echo $this->__('Set Descending Direction') ?>"><?php echo $this->__('Set Descending Direction') ?></a>
-		<?php endif; ?>-->
+			<label><?php echo $this->__('Sort By') ?></label>
+			<select onchange="setLocation(this.value)" title="<?php echo $this->__('Sort By') ?>">
+				<?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+				<option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+					<?php echo $this->__($_order) ?>
+				</option>
+				<?php endforeach; ?>
+			</select>
+			<!--<?php if($this->getCurrentDirection() == 'desc'): ?>
+				<a href="<?php echo $this->getOrderUrl(null, 'asc') ?>" class="sort-by-switcher sort-by-switcher--desc" title="<?php echo $this->__('Set Ascending Direction') ?>"><?php echo $this->__('Set Ascending Direction') ?></a>
+				<?php else: ?>
+				<a href="<?php echo $this->getOrderUrl(null, 'desc') ?>" class="sort-by-switcher sort-by-switcher--asc" title="<?php echo $this->__('Set Descending Direction') ?>"><?php echo $this->__('Set Descending Direction') ?></a>
+			<?php endif; ?>-->
+		</div>
 	</div>
-</div>
-<?php endif; ?>
+	<?php endif; ?>
 </div>
 <?php endif ?>
 <script type="text/javascript">
-jQuery('.filter-links').click(function(){
-
-var metal = jQuery(this).attr("data-filter"); 
-            alert(metal); 
-  var url = '<?php echo  Mage::getUrl('liveeditor/index/filter')?>';
-
-   jQuery.ajax({
-              url: url,
-              data: {metal:metal},
-              type: "POST",
-              success: function(response)
-              {
-                 
-                 alert(response);
-                  
-               }
-              });
-
-  
-
-});
-
+	jQuery('.filter-links').click(function(){
+		var metal = jQuery(this).attr("data-filter"); 
+		alert(metal); 
+		var url = '<?php echo  Mage::getUrl('liveeditor/index/filter')?>';
+		jQuery.ajax({
+			url: url,
+			data: {metal:metal},
+			type: "POST",
+			success: function(response)
+			{
+				alert(response);
+			}
+		});
+	});
 </script>
