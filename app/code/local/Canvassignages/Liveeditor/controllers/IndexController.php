@@ -12,18 +12,21 @@ class Canvassignages_Liveeditor_IndexController extends Mage_Core_Controller_Fro
    public function imageAction()
    {
     
-     $sku = $this->getRequest()->getParam('sku');
-     $default_sku = $this->getRequest()->getParam('default_sku');
+      $sku = $this->getRequest()->getParam('sku');
+      $default_sku = $this->getRequest()->getParam('default_sku');
 
      $dir = "/home/web/public_sc/jewlr/media/fancy-halo-flip-ring/metal-10k-yellow-gold/";
    
 
 
 
-  $path = realpath(Mage::getBaseDir().'/media/fancy-images/'.$default_sku.'/'.$sku.'/');
+   $path = realpath(Mage::getBaseDir().'/media/fancy-images/'.$default_sku.'/'.$sku.'/');
 
       if($path !="") // check if the path is blank or not
       {
+
+
+
           // getting the url of the folder not real path
         $path_url = Mage::getBaseUrl().'/canvas_uploader/uploads/'.$SID.'/';
 
