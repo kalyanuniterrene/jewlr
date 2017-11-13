@@ -32,7 +32,7 @@ jQuery(document).ready(function() {
                 ' title="14K Rose Gold"' +
                 ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
                 ' data-sizes="auto"' +
-                ' src="http://localhost/public_sc/jewlr/media/' + data.image + '"' +
+                ' src="http://jewelzhq.com/media/' + data.image + '"' +
                 ' sizes="40px"' +
                 ' srcset=""' +
                 ' data-sku="' + data.sku + '"' +
@@ -79,7 +79,7 @@ jQuery(document).ready(function() {
                 ' data-price="' + data.price + '"' +
                 ' class="wizard-option face-option">' +
                 ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
-                ' src="http://localhost/public_sc/jewlr/media/' + data.image + '">' +
+                ' src="http://jewelzhq.com/media/' + data.image + '">' +
                 ' <p>' + data.name + '<br></p>' +
                 '<div id="data-style-items" style="display:none;">' + JSON.stringify(data.item) + '</div>' +
                 '</li>';
@@ -103,8 +103,8 @@ jQuery(document).ready(function() {
                 '<div class="panel-heading clearfix item_itm" data-toggle="collapse" data-parent="" href=".gem1Collapse' + index + '">' +
                 '<div class="eachItm" style="display:none;">' + JSON.stringify(data.details) + '</div>' +
                 '<div class="mw-thumb mw-thumb-stone1"> ' +
-                '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" 
-                src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
+                '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" '+
+                'src="http://jewelzhq.com/media/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
                 '</div>' +
                 '<div class="mw-desc-stone1"> ' +
                 '<div class="mw-desc">' +
@@ -118,8 +118,8 @@ jQuery(document).ready(function() {
                 ' <!-- Stone 1 Pane Body -->' +
                 '<div class="panel-collapse collapse gem1Collapse' + index + '">' +
                 '<div class="panel-body">' +
-                '<div class="wizard-pane s1_pane item" data-maparea="gem1" 
-                data-summary-field="gem1" data-pref="s1" data-hashid="s1" data-label="Stone 1">' +
+                '<div class="wizard-pane s1_pane item" data-maparea="gem1" '+
+                'data-summary-field="gem1" data-pref="s1" data-hashid="s1" data-label="Stone 1">' +
                 '<div class="pane-content">' +
                 ' <div class="option-description option-description-org">' +
                 '<h3 class="option-item-description1">Garnet (Simulated) - $0</h3>' +
@@ -159,18 +159,29 @@ jQuery(document).ready(function() {
 // click on each items
 
 jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
-	var eachItmJson = JSON.parse(jQuery(this).find('.eachItm').html());
-	jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
+    var eachItmJson = JSON.parse(jQuery(this).find('.eachItm').html());
+    jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
 
-	for(let i=0; i<eachItmJson.length;i++){
+    for(let i=0; i<eachItmJson.length;i++){
 
-	var li = '<li data-title="'+eachItmJson[i].paneltype+'" data-description="Blue Topaz - $12" data-price="12" data-rgb="102,204,255" class="wizard-option stone-option">'+
-	'<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://localhost/public_sc/jewlr/media/'+ eachItmJson[i].image +'">'+
+    var li = '<li data-category="'+eachItmJson[i].category+'" data-title="'+eachItmJson[i].paneltype+'" data-description="Blue Topaz - $12" data-price="12" data-rgb="102,204,255" class="wizard-option stone-option">'+
+    '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
     '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
-	'</li>';
-		
-		jQuery(this).parent().find('.pane-content .stone-option-category ul').append(li)
-	}
+    '</li>';
+
+        if(eachItmJson[i].category == 'Genuine Stones'){
+
+            jQuery(this).parent().find('.pane-content .stone-option-category').eq(0).find('ul').append(li)
+
+        }else if(eachItmJson[i].category == 'Simulated Stones'){
+
+            jQuery(this).parent().find('.pane-content .stone-option-category').eq(1).find('ul').append(li)
+
+        }else{
+
+        }
+        
+    }
 
 
 
