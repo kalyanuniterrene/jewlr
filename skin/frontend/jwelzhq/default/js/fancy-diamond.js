@@ -20,29 +20,60 @@ jQuery(document).ready(function() {
         jQuery('.panel.sku_pane .panel-body .pane-content ul').html('');
 
         obj.forEach(function(data) {
-            var matal_item = '<li' +
-                ' data-title="' + data.default_title + '"' +
-                ' data-description=""' +
-                ' data-price="329"' +
-                ' class="wizard-option metal-item metal_type">' +
-                '<img' +
-                ' height="40"' +
-                ' width="40"' +
-                ' alt="14K Rose Gold"' +
-                ' title="14K Rose Gold"' +
-                ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
-                ' data-sizes="auto"' +
-                ' src="http://jewelzhq.com/media/' + data.image + '"' +
-                ' sizes="40px"' +
-                ' srcset=""' +
-                ' data-sku="' + data.sku + '"' +
-                ' data-default-sku="fancy-halo-flip-ring"' +
-                ' data-default-name="' + data.default_title + '">' +
-                '<div id="data-size" style="display:none;">' + JSON.stringify(data.size) + '</div>' +
-                '<div id="data-style" style="display:none;">' + JSON.stringify(data.style) + '</div>' +
-                '<p><small>' + data.default_title + '</small></p>' +
-                '<p> ' + data.default_price + ' </p>' +
-                '</li>';
+
+             if(data.class == 'default'){
+
+                var matal_item = '<li' +
+                    ' data-title="' + data.default_title + '"' +
+                    ' data-description=""' +
+                    ' data-price="329"' +
+                    ' class="wizard-option metal-item metal_type selected-item">' +
+                    '<img' +
+                    ' height="40"' +
+                    ' width="40"' +
+                    ' alt="14K Rose Gold"' +
+                    ' title="14K Rose Gold"' +
+                    ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
+                    ' data-sizes="auto"' +
+                    ' src="http://jewelzhq.com/media/' + data.image + '"' +
+                    ' sizes="40px"' +
+                    ' srcset=""' +
+                    ' data-sku="' + data.sku + '"' +
+                    ' data-default-sku="fancy-halo-flip-ring"' +
+                    ' data-default-name="' + data.default_title + '">' +
+                    '<div id="data-size" style="display:none;">' + JSON.stringify(data.size) + '</div>' +
+                    '<div id="data-style" style="display:none;">' + JSON.stringify(data.style) + '</div>' +
+                    '<p><small>' + data.default_title + '</small></p>' +
+                    '<p> ' + data.default_price + ' </p>' +
+                    '</li>';               
+
+                }else{
+
+                     var matal_item = '<li' +
+                    ' data-title="' + data.default_title + '"' +
+                    ' data-description=""' +
+                    ' data-price="329"' +
+                    ' class="wizard-option metal-item metal_type">' +
+                    '<img' +
+                    ' height="40"' +
+                    ' width="40"' +
+                    ' alt="14K Rose Gold"' +
+                    ' title="14K Rose Gold"' +
+                    ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
+                    ' data-sizes="auto"' +
+                    ' src="http://jewelzhq.com/media/' + data.image + '"' +
+                    ' sizes="40px"' +
+                    ' srcset=""' +
+                    ' data-sku="' + data.sku + '"' +
+                    ' data-default-sku="fancy-halo-flip-ring"' +
+                    ' data-default-name="' + data.default_title + '">' +
+                    '<div id="data-size" style="display:none;">' + JSON.stringify(data.size) + '</div>' +
+                    '<div id="data-style" style="display:none;">' + JSON.stringify(data.style) + '</div>' +
+                    '<p><small>' + data.default_title + '</small></p>' +
+                    '<p> ' + data.default_price + ' </p>' +
+                    '</li>'; 
+                }
+
             jQuery('.panel.sku_pane .panel-body .pane-content ul').append(matal_item);
         });
 
@@ -74,16 +105,30 @@ jQuery(document).ready(function() {
         });
 
         style_json.forEach(function(data) {
+            if(data.default == 'default'){
 
-            var style_item = '<li data-title="' + data.name + '"' +
-                ' data-price="' + data.price + '"' +
-                ' data-description="' + data.description + '"' +
-                ' class="wizard-option face-option">' +
-                ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
-                ' src="http://jewelzhq.com/media/' + data.image + '">' +
-                ' <p>' + data.name + '<br></p>' +
-                '<div id="data-style-items" style="display:none;">' + JSON.stringify(data.item) + '</div>' +
-                '</li>';
+                var style_item = '<li data-title="' + data.name + '"' +
+                    ' data-price="' + data.price + '"' +
+                    ' data-description="' + data.description + '"' +
+                    ' class="wizard-option face-option selected-item">' +
+                    ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
+                    ' src="http://jewelzhq.com/media/' + data.image + '">' +
+                    ' <p>' + data.name + '<br></p>' +
+                    '<div id="data-style-items" style="display:none;">' + JSON.stringify(data.item) + '</div>' +
+                    '</li>';                
+
+                }else{
+
+                var style_item = '<li data-title="' + data.name + '"' +
+                    ' data-price="' + data.price + '"' +
+                    ' data-description="' + data.description + '"' +
+                    ' class="wizard-option face-option">' +
+                    ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
+                    ' src="http://jewelzhq.com/media/' + data.image + '">' +
+                    ' <p>' + data.name + '<br></p>' +
+                    '<div id="data-style-items" style="display:none;">' + JSON.stringify(data.item) + '</div>' +
+                    '</li>';
+                }
 
             jQuery('.panel .panel-body.styles_panel ul').append(style_item);
 
@@ -201,6 +246,27 @@ jQuery(document).on('mouseenter','.panel.sku_pane .panel-body .pane-content ul l
     var title = jQuery(this).data('title');
 
     jQuery('.panel.panel-default.sku_pane .panel-heading span.sku_description.sku_description_metal').text(title);
+
+});
+
+
+
+jQuery(document).on('mouseenter','.panel.stylePanel .panel-body .pane-content ul li',function (argument) {
+   
+    var title = jQuery(this).data('title');
+    var price = parseFloat(jQuery(this).attr('data-price')).toFixed(2);
+    var desc = jQuery(this).attr('data-description');
+
+    jQuery('.panel.stylePanel .panel-heading span.faces_description').text(title);
+    jQuery('.panel.stylePanel .option-description .option-item-description1').text(title+' - $'+price);
+    jQuery('.panel.stylePanel .option-description .option-item-description2').text(desc);
+
+});
+
+jQuery(document).on('click','.panel.stylePanel .panel-body .pane-content ul li',function (argument) {
+   
+    var img = jQuery(this).find('img').attr('src');
+    jQuery('.panel.stylePanel .panel-heading .mw-thumb img').attr('src',img);
 
 });
 
