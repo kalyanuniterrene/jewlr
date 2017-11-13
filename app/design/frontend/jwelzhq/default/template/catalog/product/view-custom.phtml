@@ -255,6 +255,12 @@ i { position:absolute;
                 //print_r($params);
 
                 $json_parr =  json_encode($params);
+
+
+                $myfile = fopen("jsonfile.txt", "w") or die("Unable to open file!");
+				$txt = $json_parr;
+				fwrite($myfile, $txt);
+				fclose($myfile);
             }
 
 
@@ -1063,7 +1069,7 @@ jQuery(document).on('click','.metal_type',function(){
 
 
 jQuery(document).on('click','.face-option',function(){
-	var sku = "metal-str-sliver-gemstone-filigree-side"; 
+	var sku = jQuery(this).attr('data-sku'); 
 
 	
 
