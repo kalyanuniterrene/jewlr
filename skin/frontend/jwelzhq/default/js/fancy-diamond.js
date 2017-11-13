@@ -103,7 +103,8 @@ jQuery(document).ready(function() {
                 '<div class="panel-heading clearfix item_itm" data-toggle="collapse" data-parent="" href=".gem1Collapse' + index + '">' +
                 '<div class="eachItm" style="display:none;">' + JSON.stringify(data.details) + '</div>' +
                 '<div class="mw-thumb mw-thumb-stone1"> ' +
-                '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
+                '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" 
+                src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
                 '</div>' +
                 '<div class="mw-desc-stone1"> ' +
                 '<div class="mw-desc">' +
@@ -117,7 +118,8 @@ jQuery(document).ready(function() {
                 ' <!-- Stone 1 Pane Body -->' +
                 '<div class="panel-collapse collapse gem1Collapse' + index + '">' +
                 '<div class="panel-body">' +
-                '<div class="wizard-pane s1_pane item" data-maparea="gem1" data-summary-field="gem1" data-pref="s1" data-hashid="s1" data-label="Stone 1">' +
+                '<div class="wizard-pane s1_pane item" data-maparea="gem1" 
+                data-summary-field="gem1" data-pref="s1" data-hashid="s1" data-label="Stone 1">' +
                 '<div class="pane-content">' +
                 ' <div class="option-description option-description-org">' +
                 '<h3 class="option-item-description1">Garnet (Simulated) - $0</h3>' +

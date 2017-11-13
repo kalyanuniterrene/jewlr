@@ -22,21 +22,36 @@
 
  ?>
 
+  <?php 
+ $sku = "fancy-halo-flip-ring";
+ $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$style_title);
+foreach ($product_data as $product_data) {
+
+	if($product_data['default']=="default")
+	{
+		$default_img_url = Mage::getBaseurl().'media/'.$product_data['img_url']; 
+		$default_style_title = $product_data['default_title'];
+		$default_style_price = $product_data['price'];
+		$default_style_price = number_format((float)$default_style_price, 2, '.', ''); 
+	}
+}
+?>														 	
+
 
 					 <div class="panel panel-default stylePanel">
 										   <div class="panel-heading clearfix" data-toggle="collapse" data-parent="" href=".facesCollapse">
 										      <div class="mw-thumb">
-										         <img width="40" height="40" class="summary_thumb faces_thumb" src="https://ps-j4-assets-jewlr.netdna-ssl.com/ps_scene7/is/image/Jewlr/xFACE_02,q,24product_small,24,afmt=png-alpha.pagespeed.ic.ATX-LUkHYt.webp" alt="Jewlr" data-pagespeed-url-hash="120461313">
+										         <img width="40" height="40" class="summary_thumb faces_thumb" src="<?php echo $default_img_url?>" alt="Jewlr" data-pagespeed-url-hash="120461313">
 										      </div>
 										      <div class="mw-desc">
 										         <h4>Style</h4>
-										         <span class="faces_description">Gemstone Side W/ Halo Accents</span>
+										         <span class="faces_description"><?php echo $default_style_title;?></span>
 										      </div>
 										      <div class="mw-chevron">
 										         <span class="fa fa-angle-right"></span>
 										      </div>
 										      <div class="mw-price">
-										         <span class="faces_price">$78</span>
+										         <span class="faces_price">$<?php echo $default_style_price;?></span>
 										      </div>
 										   </div>
 										   <div class="panel-collapse facesCollapse collapse" aria-expanded="false">
@@ -44,7 +59,7 @@
 										         <div class="wizard-pane face_pane faces_pane item" data-summary-field="faces" data-pref="faces" data-hashid="faces" data-label="Side 2">
 										            <div class="pane-content clearfix">
 										               <div class="option-description">
-										                  <h3 class="option-item-description1">Gemstone Side W/ Halo Accents - $78</h3>
+										                  <h3 class="option-item-description1"><?php echo $default_style_title;?> - $<?php echo $default_style_price;?></h3>
 										                  <div class="option-item-description2">A round 4mm gemstone surrounded by a halo of accent stones</div>
 										               </div>
 										               <div class="wizard-option-category">
