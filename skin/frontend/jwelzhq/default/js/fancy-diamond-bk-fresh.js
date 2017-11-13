@@ -77,7 +77,6 @@ jQuery(document).ready(function() {
 
             var style_item = '<li data-title="' + data.name + '"' +
                 ' data-price="' + data.price + '"' +
-                ' data-description="' + data.description + '"' +
                 ' class="wizard-option face-option">' +
                 ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
                 ' src="http://jewelzhq.com/media/' + data.image + '">' +
@@ -160,15 +159,15 @@ jQuery(document).ready(function() {
 // click on each items
 
 jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
-    var eachItmJson = JSON.parse(jQuery(this).find('.eachItm').html());
-    jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
+	var eachItmJson = JSON.parse(jQuery(this).find('.eachItm').html());
+	jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
 
-    for(let i=0; i<eachItmJson.length;i++){
+	for(let i=0; i<eachItmJson.length;i++){
 
-    var li = '<li data-category="'+eachItmJson[i].category+'" data-title="'+eachItmJson[i].paneltype+'" data-description="Blue Topaz - $12" data-price="12" data-rgb="102,204,255" class="wizard-option stone-option">'+
-    '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
+	var li = '<li data-category="'+eachItmJson[i].category+'" data-title="'+eachItmJson[i].paneltype+'" data-description="Blue Topaz - $12" data-price="12" data-rgb="102,204,255" class="wizard-option stone-option">'+
+	'<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
     '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
-    '</li>';
+	'</li>';
 
         if(eachItmJson[i].category == 'Genuine Stones'){
 
@@ -181,44 +180,12 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
         }else{
 
         }
-        
-    }
+		
+	}
 
 
 
 });
-
-
-
-
-// =============================================================
-// ==============================================================
-
-// MOUSE-ENTER EVENTS
-
-jQuery(document).on('mouseenter','.panel.sku_pane .panel-body .pane-content ul li',function (argument) {
-   
-    var title = jQuery(this).data('title');
-
-    jQuery('.panel.panel-default.sku_pane .panel-heading span.sku_description.sku_description_metal').text(title);
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

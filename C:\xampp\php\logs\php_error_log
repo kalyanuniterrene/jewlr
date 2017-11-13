@@ -1,6 +1,0 @@
-[09-Nov-2017 09:51:25 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'File '/home/web/public_sc/jewlr/media/custom_option_image/' does not exists.' in /home/web/public_sc/jewlr/lib/Varien/File/Transfer/Adapter/Http.php:96
-Stack trace:
-#0 /home/web/public_sc/jewlr/get.php(205): Varien_File_Transfer_Adapter_Http->send('/home/web/publi...')
-#1 /home/web/public_sc/jewlr/get.php(165): sendFile('/home/web/publi...')
-#2 {main}
-  thrown in /home/web/public_sc/jewlr/lib/Varien/File/Transfer/Adapter/Http.php on line 96
