@@ -110,6 +110,7 @@ jQuery(document).ready(function() {
                 var style_item = '<li data-title="' + data.name + '"' +
                     ' data-price="' + data.price + '"' +
                     ' data-description="' + data.description + '"' +
+                    ' data-sku="' + data.sku + '"' +
                     ' class="wizard-option face-option selected-item">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
                     ' src="http://jewelzhq.com/media/' + data.image + '">' +
@@ -122,6 +123,7 @@ jQuery(document).ready(function() {
                 var style_item = '<li data-title="' + data.name + '"' +
                     ' data-price="' + data.price + '"' +
                     ' data-description="' + data.description + '"' +
+                    ' data-sku="' + data.sku + '"' +
                     ' class="wizard-option face-option">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
                     ' src="http://jewelzhq.com/media/' + data.image + '">' +
