@@ -992,7 +992,8 @@ $( ".collapse-button" ).click(function() {
 
 
 <script type="text/javascript">
-jQuery('.metal_type').click(function(){
+
+jQuery(document).on('click','.metal_type',function(){
 
 	var sku = jQuery(this).find('img').attr('data-sku');
 
@@ -1044,6 +1045,12 @@ jQuery('.metal_type').click(function(){
 	                
 	             }
               });
+
+} );
+
+jQuery('.metal_type').click(function(){
+
+	
 
 	
 
