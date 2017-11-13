@@ -212,10 +212,12 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
 
     for(let i=0; i<eachItmJson.length;i++){
 
-    var li = '<li data-category="'+eachItmJson[i].category+'" data-title="'+eachItmJson[i].paneltype+'" data-description="Blue Topaz - $12" data-price="12" data-rgb="102,204,255" class="wizard-option stone-option">'+
-    '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
-    '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
-    '</li>';
+    var li = '<li data-category="'+eachItmJson[i].category+
+            '" data-title="'+eachItmJson[i].paneltype+
+            '" data-description="'+eachItmJson[i].decsription+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="wizard-option stone-option">'+
+            '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
+            '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
+            '</li>';
 
         if(eachItmJson[i].category == 'Genuine Stones'){
 
