@@ -1030,7 +1030,48 @@ $( ".collapse-button" ).click(function() {
 
 jQuery(document).on('click','.metal_type',function(){
 
+
+	var metal_data = jQuery('#metal_data').val();
+
+	var style_data = jQuery('#style_data').val();
+
+	var side1_stone1_data = jQuery('#side1_stone1_data').val();
+
+	var side1_stone2_data = jQuery('#side1_stone2_data').val();
+
+	var side2_stone1_data = jQuery('#side2_stone1_data').val();
+
+	var side2_stone2_data = jQuery('#side2_stone2_data').val();
+
+
 	var sku = jQuery(this).find('img').attr('data-sku');
+
+	if((style_data) !="")
+	{
+		sku+= sku+'-'+style_data;
+	}
+
+	if((side1_stone1_data) !="")
+	{
+		sku+= sku+'-'+side1_stone1_data;
+	}
+
+	if((side1_stone2_data) !="")
+	{
+		sku+= sku+'-'+side1_stone2_data;
+	}
+
+	if((side2_stone1_data) !="")
+	{
+		sku+= sku+'-'+side2_stone1_data;
+	}
+
+	 if((side2_stone2_data) !="")
+	{
+		sku+= sku+'-'+side2_stone2_data;
+	}
+
+	alert(sku);
 
 	jQuery(this).addClass('selected-item').siblings().removeClass('selected-item');
 

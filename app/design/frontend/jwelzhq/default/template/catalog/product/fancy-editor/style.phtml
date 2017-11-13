@@ -73,7 +73,7 @@ foreach ($product_data as $product_data) {
 														 foreach ($product_data as $product_data) {
 														 	$img_url = Mage::getBaseurl().'media/'.$product_data['img_url']; ?>
 														
-										                     <li data-title="Gemstone Filigree Side" data-price="0" data-value="01" data-filter="14K Gold" data-summary-field="faces" data-description="Gemstone Filigree Side - $0" data-description2="A round 4mm gemstone surrounded by decorative detailing" data-specs="Main Stone: One 4mm Round Stone" class="wizard-option face-option">
+										                     <li data-sku="<?php echo $product_data['sku']; ?>" data-title="Gemstone Filigree Side" data-price="0" data-value="01" data-filter="14K Gold" data-summary-field="faces" data-description="Gemstone Filigree Side - $0" data-description2="A round 4mm gemstone surrounded by decorative detailing" data-specs="Main Stone: One 4mm Round Stone" class="wizard-option face-option <?php if($product_data['default']=="default") echo "selected-item";?>">
 										                        <img width="50" height="50" alt="" title="" class="extimage" src="<?php echo $img_url;?>" data-pagespeed-url-hash="708250024" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"> 
 										                        <p>
 										                           <?php echo $product_data['default_title'];?><br>
