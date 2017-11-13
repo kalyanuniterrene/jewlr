@@ -106,6 +106,7 @@ i { position:absolute;
                      foreach ($product_data as $product_data) {
                         $params[$i]['size'][$j]['name'] = ($product_data['default_title']);
                         $params[$i]['size'][$j]['price'] = ($product_data['price']);
+                        $params[$i]['size'][$j]['default'] = ($product_data['default']);
                         $j++;
                      }
 
@@ -122,6 +123,7 @@ i { position:absolute;
                         $params[$i]['style'][$k]['price'] = ($product_data['price']);
                         $params[$i]['style'][$k]['image'] = ($product_data['img_url']);
                         $params[$i]['style'][$k]['description'] = ($product_data['description']);
+                        $params[$i]['style'][$k]['default'] = ($product_data['default']);
                         $params[$i]['style'][$k]['item'] = array();
 
 
@@ -150,6 +152,7 @@ i { position:absolute;
 
                             $side_1['details'][$l]['details'] = ($product_data['details']);                           
                             $side_1['details'][$l]['category'] = ($product_data['category']);                           
+                            $side_1['details'][$l]['default'] = ($product_data['default']);                           
                         
                             
                           $l++;
@@ -172,6 +175,7 @@ i { position:absolute;
                             $side_2['details'][$q]['paneltype'] = ($product_data['panel_type']);
                             $side_2['details'][$q]['details'] = ($product_data['details']);
                             $side_2['details'][$q]['category'] = ($product_data['category']);
+                            $side_2['details'][$q]['default'] = ($product_data['default']);
 
                          
                             
@@ -195,6 +199,7 @@ i { position:absolute;
                             $side_3['details'][$b]['paneltype'] = ($product_data['panel_type']);
                             $side_3['details'][$b]['details'] = ($product_data['details']);
                             $side_3['details'][$b]['category'] = ($product_data['category']);
+                            $side_3['details'][$b]['default'] = ($product_data['default']);
 
                         
                             
@@ -218,6 +223,7 @@ i { position:absolute;
                             $side_4['details'][$a]['paneltype'] = ($product_data['panel_type']);
                             $side_4['details'][$a]['details'] = ($product_data['details']);
                             $side_4['details'][$a]['category'] = ($product_data['category']);
+                            $side_4['details'][$a]['default'] = ($product_data['default']);
 
                         
                           $a++;
