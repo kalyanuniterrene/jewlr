@@ -124,6 +124,7 @@ i { position:absolute;
                         $params[$i]['style'][$k]['image'] = ($product_data['img_url']);
                         $params[$i]['style'][$k]['description'] = ($product_data['description']);
                         $params[$i]['style'][$k]['default'] = ($product_data['default']);
+                        $params[$i]['style'][$k]['sku'] = ($product_data['sku']);
                         $params[$i]['style'][$k]['item'] = array();
 
 
@@ -1048,13 +1049,42 @@ jQuery(document).on('click','.metal_type',function(){
 
 } );
 
-jQuery('.metal_type').click(function(){
+
+jQuery(document).on('click','.face-option',function(){
+	var sku = "metal-str-sliver-gemstone-filigree-side"; 
 
 	
 
 	
+
+	var default_sku = "fancy-halo-flip-ring";
+
+	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
+
+	 jQuery.ajax({
+	            url: url,
+	            data: {default_sku:default_sku,sku:sku},
+	            type: "POST",
+	            success: function(response)
+	            {
+	               // alert(response); 
+	                var imgages = response;
+	                var sdfsdf = jQuery.parseJSON(response);
+					//alert(sdfsdf[0]);
+
+					for (var i = 0; i < jQuery('.main-carousel .owl-item').length; i++) {
+						 jQuery('.main-carousel .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_full']);
+						 jQuery('#thumbnails .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_small']);
+					}
+
+	               
+	                
+	             }
+              });
+
 
 });
+
 
 </script>
 
