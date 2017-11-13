@@ -9,6 +9,8 @@
  $sku = "fancy-halo-flip-ring";
  $opt_title = "Metal";
  $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+
+ //print_r($product_data);
   ?>
   <div class="panel panel-default sku_pane">
                                         <!-- Metal Pane Header -->
@@ -34,17 +36,7 @@
                                                         <div class="wizard-option-category">
                                                             <ul class="thumbnails list-unstyled list-inline">
 
-                                                            <?php foreach($product_data as $dimond_data) {?>
-   		    													<?php $img_url = Mage::getBaseurl().'media/'.$dimond_data['img_url']; ?>                                                           
-
-                                                                <li data-title="14K Rose Gold" data-description="A higher % of pure gold than 10K.&lt;br/&gt;A distinct look with a rosy hue." data-price="329" data-sia="0" data-value="14KR" data-filter="gold" data-category="14K Gold" data-more-info-pane="sku-more-info" class="wizard-option metal-item metal_type <?php if($dimond_data['default']=="default") echo "selected-item";?>"> 
-
-                                                                <img height="40" width="40" alt="14K Rose Gold" title="14K Rose Gold" class="lazyautosizes lazyloaded" data-srcset="<?php echo $img_url;?>" data-sizes="auto" src="<?php echo $img_url;?>" sizes="40px" srcset="<?php echo $img_url;?>" data-sku="<?php echo $dimond_data['sku'];?>" data-default-sku="fancy-halo-flip-ring" data-default-name ="<?php echo $dimond_data['default_title']; ?>">
-                                                                    <p><small><?php echo $dimond_data['default_title']; ?></small></p>
-                                                                    <p> $<?php echo $dimond_data['price']; ?> </p>
-                                                                </li>
-
-                                                                <?php }?>
+                                                           
 
                                                             </ul>
                                                         </div>
