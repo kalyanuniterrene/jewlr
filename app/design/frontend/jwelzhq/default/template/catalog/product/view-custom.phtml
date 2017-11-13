@@ -1108,6 +1108,38 @@ jQuery(document).on('click','.face-option',function(){
 });
 
 
+jQuery(document).on('click','.stone-option',function(){
+
+	var sku = "metal-str-sliver-birthstone-infinity-side-side1-stone1-blue-topaz";
+
+	var default_sku = "fancy-halo-flip-ring";
+
+	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
+
+	 jQuery.ajax({
+	            url: url,
+	            data: {default_sku:default_sku,sku:sku},
+	            type: "POST",
+	            success: function(response)
+	            {
+	               // alert(response); 
+	                var imgages = response;
+	                var sdfsdf = jQuery.parseJSON(response);
+					//alert(sdfsdf[0]);
+
+					for (var i = 0; i < jQuery('.main-carousel .owl-item').length; i++) {
+						 jQuery('.main-carousel .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_full']);
+						 jQuery('#thumbnails .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_small']);
+					}
+
+	               
+	                
+	             }
+              });
+
+});
+
+
 </script>
 
 
