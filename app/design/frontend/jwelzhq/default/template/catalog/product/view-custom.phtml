@@ -157,6 +157,7 @@ i { position:absolute;
                             $side_1['details'][$l]['panel_type'] = ($product_data['panel_type']);                           
                             $side_1['details'][$l]['panelsize'] = ($product_data['panelsize']);                           
                             $side_1['details'][$l]['description'] = ($product_data['description']);                           
+                            $side_1['details'][$l]['default_title'] = ($product_data['default_title']);                           
                         
                             
                           $l++;
@@ -183,6 +184,7 @@ i { position:absolute;
                             $side_2['details'][$q]['panel_type'] = ($product_data['panel_type']);
                             $side_2['details'][$q]['panelsize'] = ($product_data['panelsize']);
                             $side_2['details'][$q]['description'] = ($product_data['description']);
+                            $side_2['details'][$q]['default_title'] = ($product_data['default_title']);
 
                          
                             
@@ -210,6 +212,7 @@ i { position:absolute;
                             $panel_type['details'][$b]['panel_type'] = ($product_data['panel_type']);
                             $side_3['details'][$b]['panelsize'] = ($product_data['panelsize']);
                             $side_3['details'][$b]['description'] = ($product_data['description']);
+                            $side_3['details'][$b]['default_title'] = ($product_data['default_title']);
 
                         
                             
@@ -223,7 +226,7 @@ i { position:absolute;
                         
                         $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title4);
 
-                        $a=0;
+                        $a=0; 
                         $side_4 = array();
                         $side_4['name'] = 'side 2 Stone 2';
                         foreach ($product_data as $product_data) {
@@ -237,6 +240,7 @@ i { position:absolute;
                             $side_4['details'][$a]['panel_type'] = ($product_data['panel_type']);
                             $side_4['details'][$a]['panelsize'] = ($product_data['panelsize']);
                             $side_4['details'][$a]['description'] = ($product_data['description']);
+                            $side_4['details'][$a]['default_title'] = ($product_data['default_title']);
 
                         
                           $a++;
