@@ -146,7 +146,7 @@ jQuery(document).ready(function() {
         jQuery(document).find('.filteredItems').remove();
         jQuery(document).find('.filtered').slideUp();
         size_style_item.forEach(function(data, index) {
-            var styleEachItem = '<div class="panel panel-default filteredItems stones_pane s1_pane">' +
+            var styleEachItem = '<div class="panel panel-default filteredItems stones_pane s1_pane sides-'+index+'">' +
                 '<!-- Stone 1 Pane Header -->' +
                 '<div class="panel-heading clearfix item_itm" data-toggle="collapse" data-parent="" href=".gem1Collapse' + index + '">' +
                 '<div class="eachItm" style="display:none;">' + JSON.stringify(data.details) + '</div>' +
@@ -213,8 +213,9 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
     for(let i=0; i<eachItmJson.length;i++){
 
     var li = '<li data-category="'+eachItmJson[i].category+
-            '" data-title="'+eachItmJson[i].paneltype+
-            '" data-description="'+eachItmJson[i].decsription+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="wizard-option stone-option">'+
+            '" data-title="'+eachItmJson[i].default_title+
+            '" data-sku="'+eachItmJson[i].sku+
+            '" data-description="'+eachItmJson[i].description+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="wizard-option stone-option">'+
             '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
             '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
             '</li>';
@@ -271,6 +272,21 @@ jQuery(document).on('click','.panel.stylePanel .panel-body .pane-content ul li',
    
     var img = jQuery(this).find('img').attr('src');
     jQuery('.panel.stylePanel .panel-heading .mw-thumb img').attr('src',img);
+
+});
+
+
+jQuery(document).on('mouseenter','.stone-option-category ul li',function (argument) {
+   
+    var title = jQuery(this).data('title');
+    var price = jQuery(this).attr('data-price');
+    var desc = jQuery(this).attr('data-description');
+    var panelSize = jQuery(this).attr('data-panelsize');
+    var panelType = jQuery(this).attr('data-paneltype');
+
+    jQuery(this).parent().parent().parent().find('.option-description.option-description-org h3').text(title+' - $'+price); 
+    jQuery(this).parent().parent().parent().find('.option-description.option-description-org .option-item-stone-size').text(panelSize); 
+    jQuery(this).parent().parent().parent().find('.option-description.option-description-org .option-item-description2').html(desc+'<br>'+'<span class="stone_attributes">'+ panelType +'</span>'); 
 
 });
 
