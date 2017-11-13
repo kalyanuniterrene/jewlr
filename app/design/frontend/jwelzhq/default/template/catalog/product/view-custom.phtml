@@ -284,6 +284,18 @@ i { position:absolute;
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
 
+<div class="all_require_data" style="display: none;">
+	<input type="text" name="metal" id="metal_data" value="">
+	<input type="text" name="size" id="size_data" value="">
+	<input type="text" name="style" id="style_data" value="">
+	<input type="text" name="side1_stone1" id="side1_stone1_data" value="">
+	<input type="text" name="side1_stone2" id="side1_stone2_data" value="">
+	<input type="text" name="side2_stone1" id="side2_stone1_data" value="">
+	<input type="text" name="side2_stone2" id="side2_stone2_data" value="">
+</div>
+
+
+
 <input type="text" name="json" id="json_encode" value='<?php echo $json_parr;?>' style="display: none;"/>
 
 <div id="mainWrapper" class="remodal-bg remodal-is-closed">      
@@ -1110,7 +1122,7 @@ jQuery(document).on('click','.face-option',function(){
 
 jQuery(document).on('click','.stone-option',function(){
 
-	var sku = "metal-str-sliver-birthstone-infinity-side-side1-stone1-blue-topaz";
+	var sku = jQuery(this).attr('data-sku');
 
 	var default_sku = "fancy-halo-flip-ring";
 
