@@ -26,6 +26,7 @@ jQuery(document).ready(function() {
                 var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
                     ' data-description=""' +
+                    ' data-sku="'+ data.sku +'"' +
                     ' data-price="329"' +
                     ' class="wizard-option metal-item metal_type selected-item">' +
                     '<img' +
@@ -52,6 +53,7 @@ jQuery(document).ready(function() {
                      var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
                     ' data-description=""' +
+                    ' data-sku="'+ data.sku +'"' +
                     ' data-price="329"' +
                     ' class="wizard-option metal-item metal_type">' +
                     '<img' +
@@ -99,7 +101,7 @@ jQuery(document).ready(function() {
 
         size_json.forEach(function(data) {
 
-            var size_item = '<option class="sz-item" value="+ data.price +">' + data.name + '</option>';
+            var size_item = '<option class="sz-item" value="'+ data.price +'">' + data.name + '</option>';
             jQuery('.panel .panel-body .pane-content select.size-wizard-option').append(size_item);
 
         });
@@ -135,6 +137,18 @@ jQuery(document).ready(function() {
             jQuery('.panel .panel-body.styles_panel ul').append(style_item);
 
         });
+
+
+        // checking for style actived or not
+
+        if(jQuery('.panel.panel-default.stylePanel ul li.selected-item').length > 0){
+            alert(jQuery('.panel.panel-default.stylePanel ul li.selected-item').attr('data-title'))
+        }
+
+
+
+
+
 
     });
 
@@ -294,6 +308,58 @@ jQuery(document).on('click','.stone-option-category ul li',function (argument) {
     jQuery(this).addClass('selected-item').parent().parent().siblings('.stone-option-category').find('ul li').removeClass('selected-item');
 });
 
+
+setInterval(function (argument) {
+    var metal_sku = jQuery('.panel.panel-default.sku_pane .pane-content ul li.selected-item').attr('data-sku');
+    jQuery('.all_require_data #metal_data').val(metal_sku);
+    jQuery('.all_require_data #metal_data').attr('data-val',metal_sku);
+
+    var metal_size = jQuery('.panel .sizeCollapse .size-wizard-option').val();
+    jQuery('.all_require_data #size_data').val(metal_size);
+    jQuery('.all_require_data #size_data').attr('data-val',metal_size);
+
+    var metal_style = jQuery('.styles_panel .pane-content ul li.selected-item').attr('data-sku');
+    jQuery('.all_require_data #style_data').val(metal_style);
+    jQuery('.all_require_data #style_data').attr('data-val',metal_style);
+
+
+    if(jQuery(document).find('.sides-0').length > 0){
+        var s1 = jQuery(document).find('.sides-0 ul li.selected-item').attr('data-sku');
+        jQuery('.all_require_data #side1_stone1_data').val(s1);
+        jQuery('.all_require_data #side1_stone1_data').attr('data-val',s1);
+    }else{
+        jQuery('.all_require_data #side1_stone1_data').val('');
+        jQuery('.all_require_data #side1_stone1_data').attr('data-val','');
+    }
+
+    if(jQuery(document).find('.sides-1').length > 0){
+        var s2 = jQuery(document).find('.sides-1 ul li.selected-item').attr('data-sku');
+        jQuery('.all_require_data #side1_stone2_data').val(s2);
+        jQuery('.all_require_data #side1_stone2_data').attr('data-val',s2);
+    }else{
+        jQuery('.all_require_data #side1_stone2_data').val('');
+        jQuery('.all_require_data #side1_stone2_data').attr('data-val','');
+    }
+
+    if(jQuery(document).find('.sides-2').length > 0){
+        var s2 = jQuery(document).find('.sides-2 ul li.selected-item').attr('data-sku');
+        jQuery('.all_require_data #side2_stone1_data').val(s2);
+        jQuery('.all_require_data #side2_stone1_data').attr('data-val',s2);
+    }else{
+        jQuery('.all_require_data #side2_stone1_data').val('');
+        jQuery('.all_require_data #side2_stone1_data').attr('data-val','');
+    }
+
+    if(jQuery(document).find('.sides-3').length > 0){
+        var s2 = jQuery(document).find('.sides-3 ul li.selected-item').attr('data-sku');
+        jQuery('.all_require_data #side2_stone2_data').val(s2);
+        jQuery('.all_require_data #side2_stone2_data').attr('data-val',s2);
+    }else{
+        jQuery('.all_require_data #side2_stone2_data').val('');
+        jQuery('.all_require_data #side2_stone2_data').attr('data-val','');
+    }
+
+},200);
 
 
 
