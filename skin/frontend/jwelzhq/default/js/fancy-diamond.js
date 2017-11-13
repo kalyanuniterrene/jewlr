@@ -290,6 +290,10 @@ jQuery(document).on('mouseenter','.stone-option-category ul li',function (argume
 
 });
 
+jQuery(document).on('click','.stone-option-category ul li',function (argument) {
+    jQuery(this).addClass('selected-item').parent().parent().siblings('.stone-option-category').find('ul li').removeClass('selected-item');
+});
+
 
 
 
