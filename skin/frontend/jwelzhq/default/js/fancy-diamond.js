@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
         jQuery('.panel.sku_pane .panel-body .pane-content ul').html('');
 
         obj.forEach(function(data) {
-
+			
              if(data.class == 'default'){
 
                 var matal_item = '<li' +
@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
                     ' title="14K Rose Gold"' +
                     ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
                     ' data-sizes="auto"' +
-                    ' src="http://jewelzhq.com/media/' + data.image + '"' +
+                    ' src="http://localhost/public_sc/jewlr/media/' + data.image + '"' +
                     ' sizes="40px"' +
                     ' srcset=""' +
                     ' data-sku="' + data.sku + '"' +
@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
                     ' title="14K Rose Gold"' +
                     ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
                     ' data-sizes="auto"' +
-                    ' src="http://jewelzhq.com/media/' + data.image + '"' +
+                    ' src="http://localhost/public_sc/jewlr/media/' + data.image + '"' +
                     ' sizes="40px"' +
                     ' srcset=""' +
                     ' data-sku="' + data.sku + '"' +
@@ -115,7 +115,7 @@ jQuery(document).ready(function() {
                     ' data-sku="' + data.sku + '"' +
                     ' class="wizard-option face-option selected-item">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
-                    ' src="http://jewelzhq.com/media/' + data.image + '">' +
+                    ' src="http://localhost/public_sc/jewlr/media/' + data.image + '">' +
                     ' <p>' + data.name + '<br></p>' +
                     '<div id="data-style-items" style="display:none;">' + JSON.stringify(data.item) + '</div>' +
                     '</li>';                
@@ -128,7 +128,7 @@ jQuery(document).ready(function() {
                     ' data-sku="' + data.sku + '"' +
                     ' class="wizard-option face-option">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
-                    ' src="http://jewelzhq.com/media/' + data.image + '">' +
+                    ' src="http://localhost/public_sc/jewlr/media/' + data.image + '">' +
                     ' <p>' + data.name + '<br></p>' +
                     '<div id="data-style-items" style="display:none;">' + JSON.stringify(data.item) + '</div>' +
                     '</li>';
@@ -161,7 +161,7 @@ jQuery(document).ready(function() {
                 '<div class="eachItm" style="display:none;">' + JSON.stringify(data.details) + '</div>' +
                 '<div class="mw-thumb mw-thumb-stone1"> ' +
                 '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" '+
-                'src="http://jewelzhq.com/media/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
+                'src="http://localhost/public_sc/jewlr/media/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
                 '</div>' +
                 '<div class="mw-desc-stone1"> ' +
                 '<div class="mw-desc">' +
@@ -225,7 +225,7 @@ jQuery(document).ready(function() {
                 '<div class="eachItm" style="display:none;">' + JSON.stringify(data.details) + '</div>' +
                 '<div class="mw-thumb mw-thumb-stone1"> ' +
                 '<img width="40" height="40" class="gem1_thumb summary_thumb lazyloaded" '+
-                'src="http://jewelzhq.com/media/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
+                'src="http://localhost/public_sc/jewlr/media/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/1x/side/S01GARN_RD-6eac1d083687b764929bcfb1052d635998d037f7cec26a551c132cfc8d1c2fc3.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/stones/40px/2x/side/S01GARN_RD-2974eb64e6107c5e069230999b08a99334c4c95e5efef81b4171e568b489dda4.png 2x"> ' +
                 '</div>' +
                 '<div class="mw-desc-stone1"> ' +
                 '<div class="mw-desc">' +
@@ -289,7 +289,7 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
             '" data-title="'+eachItmJson[i].default_title+
             '" data-sku="'+eachItmJson[i].sku+
             '" data-description="'+eachItmJson[i].description+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="wizard-option stone-option">'+
-            '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://jewelzhq.com/media/'+ eachItmJson[i].image +'">'+
+            '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://localhost/public_sc/jewlr/media/'+ eachItmJson[i].image +'">'+
             '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
             '</li>';
 
