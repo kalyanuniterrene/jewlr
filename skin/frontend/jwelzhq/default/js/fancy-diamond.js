@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
                     ' title="14K Rose Gold"' +
                     ' class="lazyautosizes lazyloaded"' + 'data-srcset=""' +
                     ' data-sizes="auto"' +
-                    ' src="http://jewelzhq.com/media/' + data.image + '"' +
+                    ' src="http://localhost/public_sc/jewlr/media/' + data.image + '"' +
                     ' sizes="40px"' +
                     ' srcset=""' +
                     ' data-sku="' + data.sku + '"' +
