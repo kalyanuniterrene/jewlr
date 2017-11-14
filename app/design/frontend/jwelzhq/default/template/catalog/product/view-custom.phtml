@@ -1045,30 +1045,30 @@ jQuery(document).on('click','.metal_type',function(){
 
 
 	var sku = jQuery(this).find('img').attr('data-sku');
-
+	
 	if((style_data) !="")
 	{
-		sku+= sku+'-'+style_data;
+		sku+= '-'+style_data;
 	}
 
 	if((side1_stone1_data) !="")
 	{
-		sku+= sku+'-'+side1_stone1_data;
+		sku+='-'+side1_stone1_data;
 	}
 
 	if((side1_stone2_data) !="")
 	{
-		sku+= sku+'-'+side1_stone2_data;
+		sku+= '-'+side1_stone2_data;
 	}
 
 	if((side2_stone1_data) !="")
 	{
-		sku+= sku+'-'+side2_stone1_data;
+		sku+= '-'+side2_stone1_data;
 	}
 
 	 if((side2_stone2_data) !="")
 	{
-		sku+= sku+'-'+side2_stone2_data;
+		sku+= '-'+side2_stone2_data;
 	}
 
 	alert(sku);
