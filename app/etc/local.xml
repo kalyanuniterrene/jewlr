@@ -40,7 +40,7 @@
             </db>
             <default_setup>
                 <connection>
-                    <host><![CDATA[192.168.10.137]]></host>
+                    <host><![CDATA[localhost]]></host>
                     <username><![CDATA[root]]></username>
                     <password><![CDATA[]]></password>
                     <dbname><![CDATA[jewlr2]]></dbname>

@@ -1,0 +1,478 @@
+
+@font-face {
+	font-family: 'trade-gothic-no-18-condensed';
+	src: url('../fonts/trade-gothic-no-18-condensed.otf');
+	font-weight: normal !important;
+	font-style: normal !important;
+}
+
+h2{
+	font-family: 'trade-gothic-no-18-condensed';
+	margin:0;
+}
+
+.container{
+    max-width: 1030px;
+}
+
+.top-header-row {
+    background-color: #772bef;
+    height: 38px;
+    width: 100%;
+    text-align: center;
+}
+.col-image-box {
+    position: relative;
+}
+.nopadding-right{
+	padding-right:10px !important;
+}
+.nopadding-left{
+	padding-left:0px !important;	
+}
+.nopadding-center{
+	padding-left:0px !important;	
+}
+.top-header-col h6 {
+    margin: 0;
+    color: #fff;
+    line-height: 38px;
+    font-family: 'trade-gothic-no-18-condensed';
+    font-size: 18px;
+	font-weight:700;
+}
+.homepage__header::after {
+    display: block;
+    content: ' ';
+    position: relative;
+    top: 10px;
+    left: calc(50% - 20px);
+    width: 40px;
+    border-bottom: 1px solid #191919;
+}
+.header_top_left
+{
+
+	margin-top: 12px;
+    margin-bottom: 15px;
+    padding: 0;
+    height: auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.header__logo-img {
+    display: block;
+    margin: 0 auto 8px;
+    height: 27px;
+}
+
+.header__logo {
+    
+    margin-top: 12px;
+   
+}
+
+.search-form {
+    display: block;
+    position: relative;
+    right: auto;
+    top: auto;
+    padding: 0;
+    height: 20px;
+    margin-top: 3px;
+    margin-bottom: 12px;
+    visibility: visible;
+}
+
+.search-form__input {
+    position: absolute;
+    right: 0;
+    padding-left: 25px;
+    width: 135px;
+    background: #fff url(http://onlinedevserver.biz/html/jwelzhq/images/search-icon.png) left center no-repeat;
+    font-style: normal;
+    font-size: 12px;
+    transition: width .2s ease-in-out;
+}
+
+.header__link {
+    display: inline-block;
+    margin-right: 15px;
+    line-height: 40px;
+    font-family: "TradeGothicNext", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.nav-desktop {
+    margin-top: 5px;
+    
+    border-top: 1px solid #ebebec;
+    display: inline-block;
+}
+
+.nav-d__list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 35px;
+    width: 100%;
+    text-align: justify;
+    font-family: "TradeGothicCondensed", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+}
+.nav-desktop__item {
+    display: inline-block;
+}
+.nav-d__dropdown {
+    display: block;
+    position: absolute;
+    top: 35px;
+    left: calc(-50vw + 50%);
+    width: 99.4vw;
+    padding: 0 0 30px;
+    max-height: 0;
+    visibility: hidden;
+    text-align: left;
+    line-height: normal;
+    z-index: 8;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 3px 3px 5px 0px #646464;
+    -webkit-box-shadow: 3px 3px 5px 0px #646464;
+    -moz-box-shadow: 3px 3px 5px 0px #646464;
+}
+
+.navbar-nav>li>.dropdown-menu {
+  margin-top: 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  width: 200px;
+  font-weight: bold;
+}
+
+.mega-dropdown {
+  position: static !important;
+  width: 100%;
+}
+
+.mega-dropdown-menu {
+  padding: 20px 0px;
+  width: 100%;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.mega-dropdown-menu:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 285px;
+  z-index: 10;
+} 
+
+.mega-dropdown-menu:after {
+  content: "";
+  position: absolute;
+  top: -17px;
+  left: 283px;
+  z-index: 8;
+}
+
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+}
+
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #999;
+  white-space: normal;
+}
+
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+  color: #444;
+  background-color: #f5f5f5;
+}
+
+.mega-dropdown-menu .dropdown-header {
+  color: #428bca;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.mega-dropdown-menu form {
+  margin: 3px 20px;
+}
+
+.mega-dropdown-menu .form-group {
+  margin-bottom: 3px;
+}
+
+.jwelzhq-nav
+{
+	margin-top: 5px;
+    border-bottom: 1px solid #ebebec;
+    border-top: 1px solid #ebebec;
+
+}
+
+
+
+.navbar-default {
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
+.nav-d__list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 35px;
+    width: 100%;
+    text-align: justify;
+    font-family: "TradeGothicCondensed", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+} 
+.nav-desktop__item {
+    display: inline-block;
+}
+
+.nav-d__list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 35px;
+    width: 100%;
+    text-align: justify;
+    font-family: "TradeGothicCondensed", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+}
+
+.nav-d__link {
+    position: relative;
+    line-height: 35px;
+}
+
+.nav__link {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.navbar {
+    position: relative;
+    min-height: auto !important;
+    margin-bottom: 10px !important;
+    border: 1px solid transparent;
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px !important;
+    padding-bottom: 0px !important;
+	line-height: 10px !important;
+}
+
+.banner_image_container
+
+{
+	margin-top: 10px;
+
+	
+}
+
+
+.banner_image {
+	margin-bottom: 80px;
+    width: 100%;
+    height: 418px;
+    background-color: #f5f5f7;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.homepage__header {
+    margin-bottom: 35px;
+    font-family:'trade-gothic-no-18-condensed',Sans-Serif;
+    font-size: 16px;	
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.get_right
+{
+	padding-right: 10px;
+}
+
+.image_text{
+    left: 20%;
+	top: 43%;
+	position: absolute;
+	font-size: 18px;
+	font-size: 16px;
+	font-weight: normal;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.image_text a{
+    color: #191919;
+}
+.image_text h2{
+	font-size: 18px;
+}
+.t--mothers {
+    
+    left: 5%;
+}
+
+.order-perks {
+    padding: 8px 0 5px;
+    background-color: #191919;
+}
+.pure-centered, .text-center {
+    text-align: center !important;
+}
+.list-unstyled {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+}
+.order-perks__item {
+    display: inline-block;
+    padding: 0 10px 0 6px;
+    line-height: 0.9;
+    border-right: 1px solid #fff;
+}
+.order-perks__link {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.order-perks__link {
+    vertical-align: top;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.t--promise {
+    width: 100%;
+    top: 10%;
+    left: auto;
+    transform: none;
+    text-align: center;
+}
+.t--promise h2{
+	margin-top: 0;
+    margin-bottom: 0;
+}
+.l--promise {
+    display: inline-block;
+    width: 45%;
+}
+.homepage__link {
+    font-size: 12px;
+    line-height: 55px;
+}
+.name_necklaces {
+    margin-top: 10px;
+}
+.t--name {
+    width: auto;
+    top: 40%;
+    right: 10%;
+    bottom: auto;
+    left: auto;
+}
+.t--name h2{
+	padding-bottom:10px;
+}
+.t--name a {
+    display: block;
+    text-align: center;
+    line-height: 32px;
+}
+.shipping_black_box {
+    margin: 10px 0;
+}
+.t--mens {
+    width: 100%;
+    top: auto;
+    right: auto;
+    bottom: 8%;
+    transform: none;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    left: auto;
+}
+
+.t--bridal {
+    top: 20%;
+    left: 4%;
+    width: auto;
+	left: 8%;
+}
+.t--bridal h2{
+	padding-bottom:10px;
+}
+.t--bridal a{
+	display: block;
+    text-align: center;
+    line-height: 32px;
+}
+.three-col-row {
+    margin-top: 10px;
+}
+.t--birthstone{
+    width: 100%;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: 8%;
+    transform: none;
+	position: absolute;
+	text-align:center;
+}
+.one-col-row {
+    margin-top: 10px;
+}
+.one-col-row .t--princess {
+    right: 15%;
+    text-align: right;
+}
+.two-col-row {
+    margin-top: 10px;
+}
