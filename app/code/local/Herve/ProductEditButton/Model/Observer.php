@@ -23,7 +23,7 @@ class Herve_ProductEditButton_Model_Observer
         // Create new button
         $myButton = $layout->createBlock('adminhtml/widget_button')
             ->setData(array(
-                'label'     => Mage::helper('producteditbutton')->__('My Button Label'),
+                'label'     => Mage::helper('producteditbutton')->__('Sync'),
                 'onclick'   => 'setLocation(\'' . $this->getButtonUrl() . '\')',
                 'class'  => 'save'
             ));
@@ -41,7 +41,35 @@ class Herve_ProductEditButton_Model_Observer
         // Replace the existing "Save and Continue Edit" button with our container
         $productEditBlock->setChild('save_and_edit_button', $container);
     }
+     public function social_share()
+    {
+        // Retrieve layout
+        $layout = Mage::app()->getLayout();
 
+        // Retrieve product_edit block
+        $productEditBlock = $layout->getBlock('product_edit');
+
+        // Create new button
+        $myButton = $layout->createBlock('adminhtml/widget_button')
+            ->setData(array(
+                'label'     => 'Social share',
+              //  'onclick'   => 'setLocation(\'' . $this->getButtonUrl() . '\')',
+                'class'  => 'save'
+            ));
+
+        // Create a container that will gather existing "Save and Continue Edit" button and the new button
+        $container = $layout->createBlock('core/text_list', 'button_container');
+
+        // Retrieve original "Save and Continue Edit" button
+        $saveAndContinueButton = $productEditBlock->getChild('save_and_edit_button');
+
+        // Append existing "Save and Continue Edit" button and the new button to the container
+        $container->append($saveAndContinueButton);
+        $container->append($myButton);
+
+        // Replace the existing "Save and Continue Edit" button with our container
+        $productEditBlock->setChild('save_and_edit_button', $container);
+    }
     /**
      * Retrieve the URL for button click
      *
