@@ -1,1 +1,0 @@
-[29-Nov-2017 07:22:16 UTC] PHP Parse error:  syntax error, unexpected '''' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/web/public_sc/jewlr/app/code/local/Edge/CustomOptionImage/Model/Observer/Product.php on line 29
