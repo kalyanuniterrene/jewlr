@@ -23,7 +23,7 @@ class Herve_ProductEditButton_Model_Observer
         // Create new button
         $myButton = $layout->createBlock('adminhtml/widget_button')
             ->setData(array(
-                'label'     => Mage::helper('producteditbutton')->__('My Button Label'),
+                'label'     => Mage::helper('producteditbutton')->__('Sync'),
                 'onclick'   => 'setLocation(\'' . $this->getButtonUrl() . '\')',
                 'class'  => 'save'
             ));
