@@ -56,7 +56,7 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit extends Mage_Adminhtml_Block_Wid
             $this->setChild('back_button',
                 $this->getLayout()->createBlock('adminhtml/widget_button')
                     ->setData(array(
-                        'label'     => Mage::helper('catalog')->__('Back111'),
+                        'label'     => Mage::helper('catalog')->__('Back'),
                         'onclick'   => 'setLocation(\''
                             . $this->getUrl('*/*/', array('store'=>$this->getRequest()->getParam('store', 0))).'\')',
                         'class' => 'back'
@@ -87,6 +87,15 @@ class Mage_Adminhtml_Block_Catalog_Product_Edit extends Mage_Adminhtml_Block_Wid
                     ->setData(array(
                         'label'     => Mage::helper('catalog')->__('Save'),
                         'onclick'   => 'productForm.submit()',
+                        'class' => 'save'
+                    ))
+            );
+
+             $this->setChild('syncimage_button',
+                $this->getLayout()->createBlock('adminhtml/widget_button')
+                    ->setData(array(
+                        'label'     => Mage::helper('catalog')->__('Sync Image'),
+                        'onclick'   => 'productCustomimageForm.submit()',
                         'class' => 'save'
                     ))
             );

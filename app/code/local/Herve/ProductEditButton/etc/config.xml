@@ -41,11 +41,14 @@
             <controller_action_layout_render_before_adminhtml_catalog_product_edit>
                 <observers>
                     <herve_producteditbutton_add_button>
-                        <class>Herve_ProductEditButton_Model_Observer</class>
+                        <class>Herve_ProductEditButton_Model_Observer</class> 
                         <method>addButton</method>
                     </herve_producteditbutton_add_button>
+                     
                 </observers>
+
             </controller_action_layout_render_before_adminhtml_catalog_product_edit>
         </events>
     </adminhtml>
+    
 </config>
