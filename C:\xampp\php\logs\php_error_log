@@ -13,3 +13,6 @@ Stack trace:
   thrown in /home/web/public_sc/jewlr/lib/Varien/File/Transfer/Adapter/Http.php on line 96
 [29-Nov-2017 11:23:51 UTC] PHP Fatal error:  Call to undefined method Mage::getBaseDirUrl() in /home/web/public_sc/jewlr/app/code/local/Herve/ProductEditButton/controllers/Adminhtml/ButtonController.php on line 39
 [29-Nov-2017 11:38:53 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/web/public_sc/jewlr/app/code/local/Herve/ProductEditButton/controllers/Adminhtml/ButtonController.php on line 48
+[29-Nov-2017 12:16:30 UTC] PHP Parse error:  syntax error, unexpected '$rc' (T_VARIABLE) in /home/web/public_sc/jewlr/app/code/local/Herve/ProductEditButton/controllers/Adminhtml/ButtonController.php on line 42
+[29-Nov-2017 12:34:14 UTC] PHP Fatal error:  Call to undefined function rrmdir() in /home/web/public_sc/jewlr/app/code/local/Herve/ProductEditButton/controllers/Adminhtml/ButtonController.php on line 51
+[29-Nov-2017 12:35:03 UTC] PHP Fatal error:  Call to undefined function rrmdir() in /home/web/public_sc/jewlr/app/code/local/Herve/ProductEditButton/controllers/Adminhtml/ButtonController.php on line 51
