@@ -17,7 +17,11 @@ OptionTemplateSelect = '<table class="border" cellpadding="0" cellspacing="0">'+
             <?php endif; ?>
             '<th class="type-sku"><?php echo Mage::helper('catalog')->__('SKU') ?></th>'+
             '<th class="type-image"><?php echo Mage::helper('catalog')->__('Image') ?></th>'+
-            '<th class="type-image"><?php echo Mage::helper('catalog')->__('Image2') ?></th>'+
+            '<th class="type-image"><?php echo Mage::helper('catalog')->__('View 1') ?></th>'+
+            '<th class="type-image"><?php echo Mage::helper('catalog')->__('View 2') ?></th>'+
+            '<th class="type-image"><?php echo Mage::helper('catalog')->__('View 3') ?></th>'+
+            '<th class="type-image"><?php echo Mage::helper('catalog')->__('View 4') ?></th>'+
+            '<th class="type-image"><?php echo Mage::helper('catalog')->__('View 5') ?></th>'+
             '<th class="type-class"><?php echo Mage::helper('catalog')->__('Default') ?></th>'+
             '<th class="type-class"><?php echo Mage::helper('catalog')->__('Template Name') ?></th>'+
             '<th class="type-class"><?php echo Mage::helper('catalog')->__('Height') ?></th>'+
@@ -65,9 +69,22 @@ OptionTemplateSelectRow = '<tr id="product_option_{{id}}_select_{{select_id}}">'
              
             
             '<td><input type="text" class="input-text" name="product[options][{{id}}][values][{{select_id}}][sku]" value="{{sku}}"></td>'+
-            '<td><img src="/media/{{image}}" alt="{{image}}" id="product_option_{{id}}_select_{{select_id}}_image" style="display:none;max-width:115px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image]"></td>' +
+            '<td><img src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);?>media/{{image}}" alt="{{image}}" id="product_option_{{id}}_select_{{select_id}}_image" style="display:none;max-width:115px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image]"></td>' +
 
-            '<td><img src="/media/{{image}}" alt="{{image1}}" id="product_option_{{id}}_select_{{select_id}}_image1" style="display:none;max-width:115px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image1]"></td>' +
+            '<td><img src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);?>media/{{image1}}" alt="{{image1}}" id="product_option_{{id}}_select_{{select_id}}_image" style="max-width:300px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image1]"></td>' +
+
+
+            '<td><img src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);?>media/{{image2}}" alt="{{image2}}" id="product_option_{{id}}_select_{{select_id}}_image" style="max-width:300px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image2]"></td>' +
+
+
+            '<td><img src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);?>media/{{image3}}" alt="{{image3}}" id="product_option_{{id}}_select_{{select_id}}_image" style="max-width:300px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image3]"></td>' +
+
+
+            '<td><img src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);?>media/{{image4}}" alt="{{image4}}" id="product_option_{{id}}_select_{{select_id}}_image" style="max-width:300px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image4]"></td>' +
+
+
+            '<td><img src="<?php echo Mage::getStoreConfig(Mage_Core_Model_Url::XML_PATH_SECURE_URL);?>media/{{image5}}" alt="{{image5}}" id="product_option_{{id}}_select_{{select_id}}_image" style="max-width:300px;max-height:115px;"><input type="file" class="input-text" name="product[options][{{id}}][values][{{select_id}}][image5]"></td>' +
+
 
 
             '<td><input type="text" class="input-text" name="product[options][{{id}}][values][{{select_id}}][class]" value="{{class}}"></td>' +

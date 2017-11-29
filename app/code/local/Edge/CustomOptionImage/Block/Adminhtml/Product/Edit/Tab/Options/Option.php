@@ -64,6 +64,10 @@ class Edge_CustomOptionImage_Block_Adminhtml_Product_Edit_Tab_Options_Option
                             'sort_order' => $_value->getSortOrder(),
                             'image' => $_value->getImage(),
                             'image1' => $_value->getImage1(),
+                            'image2' => $_value->getImage2(),
+                            'image3' => $_value->getImage3(),
+                            'image4' => $_value->getImage4(),
+                            'image5' => $_value->getImage5(),
                             'class' => $_value->getClass(),
                             
                             
