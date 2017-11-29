@@ -63,6 +63,7 @@ class Edge_CustomOptionImage_Block_Adminhtml_Product_Edit_Tab_Options_Option
                             'sku' => $this->escapeHtml($_value->getSku()),
                             'sort_order' => $_value->getSortOrder(),
                             'image' => $_value->getImage(),
+                            'image1' => $_value->getImage1(),
                             'class' => $_value->getClass(),
                             
                             
