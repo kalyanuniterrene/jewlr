@@ -12,7 +12,7 @@ class Edge_CustomOptionImage_Model_Observer_Product
 
         $productData = $observer->getEvent()->getRequest()->getPost('product');
 
-        echo '<pre>';
+        //echo '<pre>';
 
         //print_r($_FILES);
 
@@ -25,10 +25,7 @@ class Edge_CustomOptionImage_Model_Observer_Product
                     if (isset($options['options'])) {
                         foreach ($options['options'] as $optionId => $values) {
                             if (isset($values['values'])) {
-
-                                //print_r($values['values']) ;
-
-                                foreach ($values['values'] as $valueId => $data) {
+                                      foreach ($values['values'] as $valueId => $data) {
                                     $key = 'option_' . $optionId . '_value_' . $valueId;
                                     if (!isset($images[$key])) {
                                         $images[$key] = array();
@@ -47,11 +44,11 @@ class Edge_CustomOptionImage_Model_Observer_Product
                 //die;
 
                 foreach ($images as $imageName => $imageData) {
-                    print_r($imageData);
+                    //print_r($imageData);
                     $_FILES[$imageName] = $imageData;
                 }
             }
-            print_r($_FILES[$imageName]) ;
+           // print_r($_FILES[$imageName]) ;
 
             foreach ($productData['options'] as $optionId => $option) {
 
@@ -120,13 +117,13 @@ class Edge_CustomOptionImage_Model_Observer_Product
                 
 
                 foreach ($images1 as $imageName1 => $imageData1) {
-                    print_r($imageData1);
+                   // print_r($imageData1);
                     $_FILES[$imageName1] = $imageData1;
                 }
             }
 
 
-            print_r($_FILES[$imageName1]) ;
+           // print_r($_FILES[$imageName1]) ;
             
 
 
@@ -169,6 +166,8 @@ class Edge_CustomOptionImage_Model_Observer_Product
             }
 
             $product->setProductOptions($productData['options']);
+
+            //exit;
         }
     }
 }
