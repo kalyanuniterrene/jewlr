@@ -133,6 +133,7 @@ i { position:absolute;
                         $params[$i]['style'][$k]['description'] = ($product_data['description']);
                         $params[$i]['style'][$k]['default'] = ($product_data['default']);
                         $params[$i]['style'][$k]['sku'] = ($product_data['sku']);
+                        $params[$i]['style'][$k]['sort_order'] = ($product_data['sort_order']);
                         $params[$i]['style'][$k]['item'] = array();
 
 
@@ -154,6 +155,7 @@ i { position:absolute;
                         $side_1 = array();
                         $side_1['name'] = 'Side 1 Stone 1';
                         foreach ($product_data as $product_data) {
+                          //  echo "<pre>"; print_r($product_data);
                             $side_1['details'][$l]['price'] = ($product_data['price']);
                             $side_1['details'][$l]['image'] = ($product_data['img_url']);
                             $side_1['details'][$l]['sku'] = ($product_data['sku']);
@@ -165,7 +167,8 @@ i { position:absolute;
                             $side_1['details'][$l]['panel_type'] = ($product_data['panel_type']);                           
                             $side_1['details'][$l]['panelsize'] = ($product_data['panelsize']);                           
                             $side_1['details'][$l]['description'] = ($product_data['description']);                           
-                            $side_1['details'][$l]['default_title'] = ($product_data['default_title']);                           
+                            $side_1['details'][$l]['default_title'] = ($product_data['default_title']);
+                            $side_1['details'][$l]['stone_order'] = ($product_data['sort_order']);                           
                         
                             
                           $l++;
@@ -193,7 +196,7 @@ i { position:absolute;
                             $side_2['details'][$q]['panelsize'] = ($product_data['panelsize']);
                             $side_2['details'][$q]['description'] = ($product_data['description']);
                             $side_2['details'][$q]['default_title'] = ($product_data['default_title']);
-
+                            $side_2['details'][$l]['stone_order'] = ($product_data['sort_order']);
                          
                             
                           $q++;
@@ -221,8 +224,7 @@ i { position:absolute;
                             $side_3['details'][$b]['panelsize'] = ($product_data['panelsize']);
                             $side_3['details'][$b]['description'] = ($product_data['description']);
                             $side_3['details'][$b]['default_title'] = ($product_data['default_title']);
-
-                        
+                            $side_3['details'][$l]['stone_order'] = ($product_data['sort_order']);
                             
                           $b++;
                         }
@@ -249,45 +251,26 @@ i { position:absolute;
                             $side_4['details'][$a]['panelsize'] = ($product_data['panelsize']);
                             $side_4['details'][$a]['description'] = ($product_data['description']);
                             $side_4['details'][$a]['default_title'] = ($product_data['default_title']);
-
+                            $side_4['details'][$l]['stone_order'] = ($product_data['sort_order']);
                         
                           $a++;
                         }
                         $params[$i]['style'][$k]['item'][3] = $side_4;
-
-
-
-
                         $k++;
-                     }
-                     
+                     }                     
                     $i++;                   
-                }
-                
+                }                
                 //print_r($params);
-
                 $json_parr =  json_encode($params);
-
-
                 $myfile = fopen("jsonfile.txt", "w") or die("Unable to open file!");
 				$txt = $json_parr;
 				fwrite($myfile, $txt);
 				fclose($myfile);
             }
-
-
-        }   
-
-        
+        }          
 
 ?>
-
-
 <!--Creating The Json object-->
-
-
-
-
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
@@ -301,9 +284,6 @@ i { position:absolute;
 	<input type="text" name="side2_stone1" id="side2_stone1_data" value="">
 	<input type="text" name="side2_stone2" id="side2_stone2_data" value="">
 </div>
-
-
-
 <input type="text" name="json" id="json_encode" value='<?php echo $json_parr;?>' style="display: none;"/>
 
 <div id="mainWrapper" class="remodal-bg remodal-is-closed">      
@@ -1053,6 +1033,13 @@ jQuery(document).on('click','.metal_type',function(){
 
 
 	var sku = jQuery(this).find('img').attr('data-sku');
+
+    var metal = jQuery(this).attr('data-metal');
+    var color = jQuery(this).attr('data-color');
+    var style = jQuery(".face-option.selected-item").attr('data-styleorder');
+    var stone = jQuery(".stone-option.selected-item").attr('data-stoneorder');
+  // var stone = 10;
+
 	
 	if((style_data) !="")
 	{
@@ -1078,18 +1065,17 @@ jQuery(document).on('click','.metal_type',function(){
 	{
 		sku+= '-'+side2_stone2_data;
 	}
-
-	alert(sku);
-
+    //alert(metal_data);
+    var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
+    alert(url_param);
+	//alert(sku);
+    jQuery("#image-main").attr('src', url_param);
 	jQuery(this).addClass('selected-item').siblings().removeClass('selected-item');
 
 	var img = jQuery(this).find('img').attr('src');
 
-
-
 	var default_name = jQuery(this).find('img').attr('data-default-name');
 	//alert(img);
-
 	jQuery('.sku_description_metal').html(default_name);
 
 	jQuery('.summary_thumb_metal').attr('src',img);
@@ -1098,10 +1084,8 @@ jQuery(document).on('click','.metal_type',function(){
 	var selected_stone1 = jQuery('.selected-item-stone1').find('img').attr('data-sku');
 
 	//alert(selected_stone1);
-
 	if(selected_stone1 !=undefined)
-	{
-		
+	{		
 		sku = sku+'-'+selected_stone1;
 	}
 
@@ -1123,22 +1107,22 @@ jQuery(document).on('click','.metal_type',function(){
 					for (var i = 0; i < jQuery('.main-carousel .owl-item').length; i++) {
 						 jQuery('.main-carousel .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_full']);
 						 jQuery('#thumbnails .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_small']);
-					}
-
-	               
-	                
+					}   
 	             }
               });
 
 } );
-
-
 jQuery(document).on('click','.face-option',function(){
 	var sku = jQuery(this).attr('data-sku'); 
-
-	
-
-	
+    var style = jQuery(this).attr('data-styleorder');
+    var metal = jQuery(".metal_type.selected-item").attr('data-metal');
+    var color = jQuery(".metal_type.selected-item").attr('data-color');
+    //var stone = jQuery(".stone-option.selected-item").attr('data-stoneorder');
+    var stone = 10;
+    //console.log(style);
+    var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
+    alert(url_param);
+    jQuery("#image-main").attr('src', url_param);
 
 	var default_sku = "fancy-halo-flip-ring";
 
@@ -1171,9 +1155,30 @@ jQuery(document).on('click','.face-option',function(){
 
 jQuery(document).on('click','.stone-option',function(){
 
+    jQuery(this).siblings().removeClass(".selected-item");
+
 	var sku = jQuery(this).attr('data-sku');
 
+      // var stone_order =jQuery(this).parent().find(".selected-item").attr("data-stoneorder");
+      // var ston_arr=[];
+      // ston_arr.push(stone_order); 
+    // jQuery(".stone-option").each(function(index,item){
+    //     var stone_order =jQuery(".stone-option").find(".selected-item").attr("data-stoneorder");
+    //     ston_arr.push(stone_order);        
+    //  });
+  //   console.log(ston_arr.join(", "));
+    var color =jQuery(".metal_type.selected-item").attr("data-color");
+    var metal =jQuery(".metal_type.selected-item").attr("data-metal");
+    var style=jQuery(".face-option.selected-item").attr("data-styleorder");
+    var stone=jQuery(this).attr("data-stoneorder");
+    
+    var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
+     alert(url_param);
+   //  alert(ston_arr);
+
 	var default_sku = "fancy-halo-flip-ring";
+
+
 
 	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
 

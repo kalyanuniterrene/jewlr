@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+   <config>
+      <modules>
+        <Canvassignages_Liveeditor>
+            <active>true</active>
+            <codePool>local</codePool>
+         </Canvassignages_Liveeditor>
+       </modules>
+    </config>
