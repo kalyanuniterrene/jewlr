@@ -1118,7 +1118,8 @@ jQuery(document).on('click','.face-option',function(){
     var metal = jQuery(".metal_type.selected-item").attr('data-metal');
     var color = jQuery(".metal_type.selected-item").attr('data-color');
     //var stone = jQuery(".stone-option.selected-item").attr('data-stoneorder');
-    var stone = 10;
+    //var stone = 10;
+    var stone = jQuery(".stone-option.selected-item").attr('data-stoneorder');
     //console.log(style);
     var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
     alert(url_param);
