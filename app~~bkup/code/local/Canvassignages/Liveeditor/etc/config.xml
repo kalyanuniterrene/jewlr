@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+  <config>
+     <modules>
+        <Canvassignages_Liveeditor>
+          <version>0.1.0</version>
+        </Canvassignages_Liveeditor>
+     </modules>
+     <frontend>
+       <routers>
+          <routeurfrontend>
+              <use>standard</use>
+              <args>
+                 <module>Canvassignages_Liveeditor</module>
+                 <frontName>liveeditor</frontName>
+              </args>
+           </routeurfrontend>
+       </routers>
+	<layout>
+ 	     <updates>
+        		<canvassignages_liveeditor>
+            			 <file>canvassignages_liveeditor.xml</file>
+         		</canvassignages_liveeditor>
+    		</updates>
+	</layout>
+
+    </frontend>
+
+   <global>
+     <blocks>
+         <canvassignages_liveeditor>
+              <class>Canvassignages_Liveeditor_Block</class>
+         </canvassignages_liveeditor>
+      </blocks>
+   </global>	
+
+</config>

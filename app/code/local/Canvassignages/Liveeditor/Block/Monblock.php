@@ -37,7 +37,7 @@ class Canvassignages_Liveeditor_Block_Monblock extends Mage_Core_Block_Template
 				{
 					$ipt_title = $v->getData();
 
-					//print_r($v->getData());
+					//echo "<pre>"; print_r($v->getData());
 
 					$canvas_type_option_title = $ipt_title['default_title'];
 					$canvas_type_option_label = $ipt_title['class1'];
@@ -61,7 +61,7 @@ class Canvassignages_Liveeditor_Block_Monblock extends Mage_Core_Block_Template
 					$template = $ipt_title['template'];
 					$panelsize = $ipt_title['panelsize'];
 					$sku = $ipt_title['sku'];
-					
+					$sort_order=$ipt_title['sort_order'];
 					
 					$product_data.=$canvas_type_option_title;
 					
@@ -80,6 +80,7 @@ class Canvassignages_Liveeditor_Block_Monblock extends Mage_Core_Block_Template
 					$product_data_arr[$j]['template'] = $template;
 					$product_data_arr[$j]['panelsize'] = $panelsize;
 					$product_data_arr[$j]['sku'] = $sku;
+					$product_data_arr[$j]['sort_order'] =$sort_order;
 						
 					$j++;
 				}

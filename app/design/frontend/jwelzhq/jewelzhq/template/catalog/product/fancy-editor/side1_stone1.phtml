@@ -45,7 +45,7 @@ $i=0;
 
  foreach($product_data as $dimond_data) {
 
-//print_r($dimond_data);
+  //echo " <pre>" ; print_r($dimond_data);
 
   if($dimond_data['default']=="default")
   {
@@ -66,17 +66,15 @@ $i=0;
   $stone_array[$i]['img_url'] = $img_url;
   $stone_array[$i]['sku'] = $dimond_data['sku'];
   $stone_array[$i]['description'] = $dimond_data['description'];
+  $stone_array[$i]['stone_order'] = $dimond_data['sort_order'];
   
  
 $i++;
 
   }
-
 // /print_r($stone_array);
 
   ?>
-
-
  <!-- Stone 1 Pane -->
                                     <div class="panel panel-default stones_pane s1_pane filtered" data-filters="">
                                         <!-- Stone 1 Pane Header -->
@@ -106,16 +104,13 @@ $i++;
                                                                 <br><span class="stone_attributes">Attributes: Leadership, Truth, Creativity</span></div>
                                                         </div>
 
-                                                         <div class="option-description2 option-description" style="display: none;">
-                                                            
+                                                         <div class="option-description2 option-description" style="display: none;">                                                            
                                                         </div>
-
-
-
                                                         <h4>Genuine Stones&nbsp;&nbsp;<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>
                                                          <div class="wizard-option-category stone-option-category">
                                                             <ul class="thumbnails stone_thumbnails list-unstyled list-inline row">
                                                         <?php foreach($stone_array as $stone_array_data) {
+                                                          //echo "<pre>"; print_r($stone_array_data);
                                                           ?>
                                                             <?php if($stone_array_data['category'] == "Genuine Stones") {
                                                               //print_r($stone_array_data);
@@ -123,7 +118,7 @@ $i++;
 
                                                        
                                                                 
-                                                                <li class="wizard-option stone-option metal_type_stone1  <?php if($stone_array_data['default']=="default") echo "selected-item";?>" data-sku="<?php echo $stone_array_data['sku']; ?>" data-name="<?php echo $stone_array_data['default_title'];?>"> 
+                                                                <li class="wizard-option stone-option metal_type_stone1  <?php if($stone_array_data['default']=="default") echo "selected-item";?>" data-sku="<?php echo $stone_array_data['sku']; ?>" data-stoneorder="<?php echo $stone_array_data['stone_order']; ?>" data-name="<?php echo $stone_array_data['default_title'];?>"> 
 
                                                                 <img width="40" height="40" alt="" title="" class="lazyautosizes lazyloaded" data-srcset="
                                                                 <?php echo $stone_array_data['img_url'];?>" data-sizes="auto" src="<?php echo $stone_array_data['img_url'];?>" sizes="40px" srcset="
@@ -176,7 +171,7 @@ $i++;
 
                                                        
                                                                 
-                                                                <li class="wizard-option stone-option metal_type_stone2" data-name="<?php echo $stone_array_data['default_title'];?>"> 
+                                                                <li class="wizard-option stone-option metal_type_stone2" data-name="<?php echo $stone_array_data['default_title'];?>" data-stoneorder="<?php echo $stone_array_data['stone_order']; ?>"> 
 
                                                                 <img width="40" height="40" alt="" title="" class="lazyautosizes lazyloaded" data-srcset="
                                                                 <?php echo $stone_array_data['img_url'];?>" data-sizes="auto" src="<?php echo $stone_array_data['img_url'];?>" sizes="40px" srcset="

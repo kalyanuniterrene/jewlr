@@ -20,15 +20,19 @@ jQuery(document).ready(function() {
         jQuery('.panel.sku_pane .panel-body .pane-content ul').html('');
 
         obj.forEach(function(data) {
-			
+			console.log(data);
              if(data.class == 'default'){
 
                 var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
+                    ' data-color="'+data.template_name+'"'+
+                    ' data-style="'+data.height+'"'+
+               //     ' data-label="'+data.width+'"'+
+                    ' data-label="'+data.label+'"'+
                     ' data-description=""' +
                     ' data-sku="'+ data.sku +'"' +
                     ' data-price="329"' +
-                    ' class="wizard-option metal-item metal_type selected-item">' +
+                    ' class="xx wizard-option metal-item metal_type selected-item">' +
                     '<img' +
                     ' height="40"' +
                     ' width="40"' +
@@ -52,10 +56,14 @@ jQuery(document).ready(function() {
 
                      var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
+                    ' data-color="'+data.template_name+'"'+
+                    ' data-style="'+data.height+'"'+
+                  //  ' data-label="'+data.width+'"'+
+                    ' data-label="'+data.label+'"'+
                     ' data-description=""' +
                     ' data-sku="'+ data.sku +'"' +
                     ' data-price="329"' +
-                    ' class="wizard-option metal-item metal_type">' +
+                    ' class="xxx wizard-option metal-item metal_type">' +
                     '<img' +
                     ' height="40"' +
                     ' width="40"' +
@@ -113,7 +121,7 @@ jQuery(document).ready(function() {
                     ' data-price="' + data.price + '"' +
                     ' data-description="' + data.description + '"' +
                     ' data-sku="' + data.sku + '"' +
-                    ' class="wizard-option face-option selected-item">' +
+                    ' class="xx wizard-option face-option selected-item">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
                     ' src="http://localhost/public_sc/jewlr/media/' + data.image + '">' +
                     ' <p>' + data.name + '<br></p>' +
@@ -126,7 +134,7 @@ jQuery(document).ready(function() {
                     ' data-price="' + data.price + '"' +
                     ' data-description="' + data.description + '"' +
                     ' data-sku="' + data.sku + '"' +
-                    ' class="wizard-option face-option">' +
+                    ' class="xx wizard-option face-option">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
                     ' src="http://localhost/public_sc/jewlr/media/' + data.image + '">' +
                     ' <p>' + data.name + '<br></p>' +

@@ -15,20 +15,22 @@ jQuery(document).ready(function() {
     myFirstPromise.then((jsonData) => {
         var wid_wrap = jQuery('#wizard_accordion-wrapper');
         var obj = JSON.parse(jsonData);
-
+       
         // removing default
         jQuery('.panel.sku_pane .panel-body .pane-content ul').html('');
 
         obj.forEach(function(data) {
 			
              if(data.class == 'default'){
-
+                //console.log(data);
                 var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
+                    ' data-color="' + data.valmsg + '"' +
+                    ' data-metal="' + data.template + '"' +                    
                     ' data-description=""' +
                     ' data-sku="'+ data.sku +'"' +
                     ' data-price="329"' +
-                    ' class="wizard-option metal-item metal_type selected-item">' +
+                    ' class="xxxx wizard-option metal-item metal_type selected-item">' +
                     '<img' +
                     ' height="40"' +
                     ' width="40"' +
@@ -52,10 +54,12 @@ jQuery(document).ready(function() {
 
                      var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
+                    ' data-color="' + data.valmsg + '"' +
+                    ' data-metal="' + data.template + '"' +  
                     ' data-description=""' +
                     ' data-sku="'+ data.sku +'"' +
                     ' data-price="329"' +
-                    ' class="wizard-option metal-item metal_type">' +
+                    ' class="xxxx wizard-option metal-item metal_type">' +
                     '<img' +
                     ' height="40"' +
                     ' width="40"' +
@@ -77,6 +81,8 @@ jQuery(document).ready(function() {
                 }
 
             jQuery('.panel.sku_pane .panel-body .pane-content ul').append(matal_item);
+
+            //alert(data);
         });
 
     });
@@ -111,6 +117,7 @@ jQuery(document).ready(function() {
 
                 var style_item = '<li data-title="' + data.name + '"' +
                     ' data-price="' + data.price + '"' +
+                    ' data-styleorder="' + data.sort_order + '"' +
                     ' data-description="' + data.description + '"' +
                     ' data-sku="' + data.sku + '"' +
                     ' class="wizard-option face-option selected-item">' +
@@ -124,9 +131,10 @@ jQuery(document).ready(function() {
 
                 var style_item = '<li data-title="' + data.name + '"' +
                     ' data-price="' + data.price + '"' +
+                    ' data-styleorder="' + data.sort_order + '"' +
                     ' data-description="' + data.description + '"' +
                     ' data-sku="' + data.sku + '"' +
-                    ' class="wizard-option face-option">' +
+                    ' class="xx wizard-option face-option">' +
                     ' <img width="50"' + 'height="50"' + 'alt="" title="" class="extimage"' +
                     ' src="http://localhost/public_sc/jewlr/media/' + data.image + '">' +
                     ' <p>' + data.name + '<br></p>' +
@@ -134,7 +142,7 @@ jQuery(document).ready(function() {
                     '</li>';
                 }
 
-            jQuery('.panel .panel-body.styles_panel ul').append(style_item);
+        jQuery('.panel .panel-body.styles_panel ul').append(style_item);
 
         });
 
@@ -271,10 +279,7 @@ jQuery(document).ready(function() {
             if (data.details != undefined) {
                 jQuery(styleEachItem).insertAfter('.panel.panel-default.stylePanel');
             }
-
         });
-
-
     });
 
 // click on each items
@@ -284,10 +289,19 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
     jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
 
     for(let i=0; i<eachItmJson.length;i++){
+        var default_class=eachItmJson[i].default;
+
+
+        if(default_class=="default"){
+            var default_putclass="selected-item";
+        }else{
+            var default_putclass="";
+        }
 
     var li = '<li data-category="'+eachItmJson[i].category+
             '" data-title="'+eachItmJson[i].default_title+
             '" data-sku="'+eachItmJson[i].sku+
+            '"data-stoneorder="'+eachItmJson[i].stone_order+
             '" data-description="'+eachItmJson[i].description+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="wizard-option stone-option">'+
             '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://localhost/public_sc/jewlr/media/'+ eachItmJson[i].image +'">'+
             '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
