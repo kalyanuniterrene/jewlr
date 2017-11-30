@@ -74,7 +74,7 @@ class Herve_ProductEditButton_Adminhtml_ButtonController extends Mage_Adminhtml_
 
             if($sort_order == 1)
             {
-                //echo "Mr. Huda is here. And he will shake his tummy";
+                
 
 
                 $values = $o->getValues();
@@ -91,16 +91,13 @@ class Herve_ProductEditButton_Adminhtml_ButtonController extends Mage_Adminhtml_
                     $sort_order = $ipt_title['sort_order'];
 
 
-                    //$img_array = $ipt_title['sort_order'];
+                   
                     $img_array['view_1'][$j]['image1'] = $ipt_title['image1'];
                     $img_array['view_2'][$j]['image2'] = $ipt_title['image2'];
                     $img_array['view_3'][$j]['image3'] = $ipt_title['image3'];
                     $img_array['view_4'][$j]['image4'] = $ipt_title['image4'];
                     $img_array['view_5'][$j]['image5'] = $ipt_title['image5'];
-                    /*$img_array[$j]['view_2'] = $ipt_title['image2'];
-                    $img_array[$j]['view_3'] = $ipt_title['image3'];
-                    $img_array[$j]['view_4'] = $ipt_title['image4'];
-                    $img_array[$j]['view_5'] = $ipt_title['image5'];*/
+                   
                     
 
                     
@@ -108,11 +105,94 @@ class Herve_ProductEditButton_Adminhtml_ButtonController extends Mage_Adminhtml_
 
                 } //end of foreach
 
-                //print_r($img_array);
+                
+            } // end of if
+
+            /* Now we need to check which metal then metal-style and then metal-style-side 1 stone 1 */
+
+            if($option_title == "Metal"){
+                
+
+                 $values = $o->getValues();
+
+                 foreach ($values as $k => $v) {
+                    $ipt_title = $v->getData();
+                    //print_r($ipt_title);
+
+                    if($v->getClass() == "default"){
+                         
+                        $metal_name = $v->getTitle();
+                    }
+
+                }
+            } // metal contidation 
+
+
+            // load the default Style with the name of the default metal
+
+            if($option_title == $metal_name." Style"){
+
+                 $values = $o->getValues();
+
+                 foreach ($values as $k => $v) {
+                    $ipt_title = $v->getData();
+                    //print_r($ipt_title);
+
+                    if($v->getClass() == "default"){
+                         
+                        $style_name = $v->getTitle();
+
+
+                    }
+
+                }
+
+            }
+
+            // load the default stone images now
+
+            $main_stone_loader_title = $metal_name." Style ".$style_name." Side 1 Stone 1";
+
+           
+
+            if($option_title == $main_stone_loader_title){
+
+                
+
+                $values = $o->getValues();
+
+                $stone_array = array();
+
+                $s=1;
+
+                foreach ($values as $k => $v) 
+                {
+                    $ipt_title = $v->getData();
+
+                    $sort_order = $ipt_title['sort_order'];
+
+
+                   
+                    $stone_array['stone']['view_1'][$s]['image1'] = $ipt_title['image1'];
+                    $stone_array['stone']['view_2'][$s]['image2'] = $ipt_title['image2'];
+                    $stone_array['stone']['view_3'][$s]['image3'] = $ipt_title['image3'];
+                    $stone_array['stone']['view_4'][$s]['image4'] = $ipt_title['image4'];
+                    $stone_array['stone']['view_5'][$s]['image5'] = $ipt_title['image5'];
+                    
+                    
+
+                    
+                    $s++;
+
+                } //end of foreach
             }
 
 
+
         } //end of foreach
+
+
+        /*Added Code For Each View*/
 
 
         $view1_counter = 1;
@@ -154,6 +234,78 @@ class Herve_ProductEditButton_Adminhtml_ButtonController extends Mage_Adminhtml_
             copy($custom_image_path ,Mage::getBaseDir().'/'.'jewelzhq/style/view_5/'.$view5_counter.'.png');
             $view5_counter++;
         }
+
+        /*View Folder Style Images are here*/
+
+        /* Time to call the stone array now which is based on hudo's energy*/
+
+        
+
+        $stone_type_counter = 1;
+
+        foreach ($stone_array as $stone_array_slice) {
+
+            /*Don't think this slice means cold-drinks slice*/
+            
+            //print_r($stone_array_slice);
+
+            $stone_view1 = 1;
+
+            foreach ($stone_array_slice['view_1'] as $key => $value) {
+
+                
+                $custom_image_path = Mage::getBaseDir().'/'.'media/'.$value['image1'];
+                copy($custom_image_path ,Mage::getBaseDir().'/'.'jewelzhq/style/view_1/1/'.$stone_view1.'.png');
+                $stone_view1++;
+            }
+
+            $stone_view2 = 1;
+
+            foreach ($stone_array_slice['view_2'] as $key => $value) {
+
+                
+                $custom_image_path = Mage::getBaseDir().'/'.'media/'.$value['image2'];
+                copy($custom_image_path ,Mage::getBaseDir().'/'.'jewelzhq/style/view_2/1/'.$stone_view2.'.png');
+                $stone_view2++;
+            }
+
+            $stone_view3 = 1;
+
+            foreach ($stone_array_slice['view_3'] as $key => $value) {
+
+                
+                $custom_image_path = Mage::getBaseDir().'/'.'media/'.$value['image3'];
+                copy($custom_image_path ,Mage::getBaseDir().'/'.'jewelzhq/style/view_3/1/'.$stone_view3.'.png');
+                $stone_view3++;
+            }
+
+            $stone_view4 = 1;
+
+            foreach ($stone_array_slice['view_4'] as $key => $value) {
+
+                
+                $custom_image_path = Mage::getBaseDir().'/'.'media/'.$value['image4'];
+                copy($custom_image_path ,Mage::getBaseDir().'/'.'jewelzhq/style/view_4/1/'.$stone_view4.'.png');
+                $stone_view4++;
+            }
+
+            $stone_view5 = 1;
+
+            foreach ($stone_array_slice['view_5'] as $key => $value) {
+
+                
+                $custom_image_path = Mage::getBaseDir().'/'.'media/'.$value['image5'];
+                copy($custom_image_path ,Mage::getBaseDir().'/'.'jewelzhq/style/view_5/1/'.$stone_view5.'.png');
+                $stone_view5++;
+            }
+
+
+
+            $stone_type_counter++;
+
+        }
+        
+
 
          exit();
 
