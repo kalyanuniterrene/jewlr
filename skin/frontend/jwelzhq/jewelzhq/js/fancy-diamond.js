@@ -163,6 +163,10 @@ jQuery(document).ready(function() {
         jQuery(document).find('.filteredItems').remove();
         jQuery(document).find('.filtered').slideUp();
         size_style_item.forEach(function(data, index) {
+
+
+
+
             var styleEachItem = '<div class="panel panel-default filteredItems stones_pane s1_pane sides-'+index+'">' +
                 '<!-- Stone 1 Pane Header -->' +
                 '<div class="panel-heading clearfix item_itm" data-toggle="collapse" data-parent="" href=".gem1Collapse' + index + '">' +
@@ -197,7 +201,7 @@ jQuery(document).ready(function() {
                 ' </div>' +
                 ' <h4>Genuine Stones<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>' +
                 ' <div class="wizard-option-category stone-option-category">' +
-                ' <ul class="thumbnails stone_thumbnails list-unstyled list-inline row ranitul-' + index + '">' +
+                ' <ul class="thumbnails stone_thumbnails list-unstyled list-inline row  ranitul-' + index + '">' +
 
                 '</ul>' +
                 ' </div>' +
@@ -212,6 +216,8 @@ jQuery(document).ready(function() {
                 '</div>' +
                 '<!-- End Stone 1 Pane Body -->' +
                 '</div>';
+
+                //alert(data.details);
             if (data.details != undefined) {
                 jQuery(styleEachItem).insertAfter('.panel.panel-default.stylePanel');
             }
@@ -267,7 +273,7 @@ jQuery(document).ready(function() {
                 ' </div>' +
                 '<h4>Simulated Stones<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>' +
                 '<div class="wizard-option-category stone-option-category">' +
-                '<ul class="thumbnails stone_thumbnails list-unstyled list-inline row">' +
+                '<ul class="thumbnails stone_thumbnails list-unstyled list-inline row ranitul-' + index + '">' +
                 '</ul>' +
                 ' </div>' +
                 '</div>' +
@@ -285,10 +291,18 @@ jQuery(document).ready(function() {
 // click on each items
 
 jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
+
+	//alert('style panel clicked');
+
     var eachItmJson = JSON.parse(jQuery(this).find('.eachItm').html());
     jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
 
+    //alert(eachItmJson.length);
+
     for(let i=0; i<eachItmJson.length;i++){
+
+
+
         var default_class=eachItmJson[i].default;
 
 

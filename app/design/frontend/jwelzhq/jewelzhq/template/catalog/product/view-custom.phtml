@@ -31,6 +31,11 @@
  * @see Mage_Review_Block_Product_View
  */
 ?>
+
+
+
+
+
  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css'>
 
 <link rel="stylesheet" media="all" href="http://onlinedevserver.biz/html/jwelzhq/css/custom.css" />
@@ -71,12 +76,23 @@ i { position:absolute;
 }
 #main_body_images{
 
-	width: 350px !important;
+	width: 415px !important;
 	overflow: hidden;
 }
 #thumbnails .owl-item img{    
     width: 100% !important;
 }
+.owl-carousel .owl-item {
+    width: 415px !important;
+    overflow: hidden;
+    height: 375px;
+}
+
+.stone-option-info
+{
+    display: none;
+}
+
 </style>
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
@@ -155,7 +171,13 @@ i { position:absolute;
                         $side_1 = array();
                         $side_1['name'] = 'Side 1 Stone 1';
                         foreach ($product_data as $product_data) {
+                            $canvas_type_option_title = $product_data['default_title'];
+
+                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
                           //  echo "<pre>"; print_r($product_data);
+
+                            $side_1['details'][$l]['newclass'] = ($canvas_type_redirect);
+
                             $side_1['details'][$l]['price'] = ($product_data['price']);
                             $side_1['details'][$l]['image'] = ($product_data['img_url']);
                             $side_1['details'][$l]['sku'] = ($product_data['sku']);
@@ -185,6 +207,15 @@ i { position:absolute;
                         $side_2 = array();  
                         $side_2['name'] = 'Side 1 Stone 2';
                         foreach ($product_data as $product_data) {
+
+                            $canvas_type_option_title = $product_data['default_title'];
+
+                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+                          //  echo "<pre>"; print_r($product_data);
+
+                            $side_1['details'][$q]['newclass'] = ($canvas_type_redirect);
+
+
                             $side_2['details'][$q]['price'] = ($product_data['price']);
                             $side_2['details'][$q]['image'] = ($product_data['img_url']);
                             $side_2['details'][$q]['sku'] = ($product_data['sku']);
@@ -196,7 +227,7 @@ i { position:absolute;
                             $side_2['details'][$q]['panelsize'] = ($product_data['panelsize']);
                             $side_2['details'][$q]['description'] = ($product_data['description']);
                             $side_2['details'][$q]['default_title'] = ($product_data['default_title']);
-                            $side_2['details'][$l]['stone_order'] = ($product_data['sort_order']);
+                            $side_2['details'][$q]['stone_order'] = ($product_data['sort_order']);
                          
                             
                           $q++;
@@ -213,6 +244,14 @@ i { position:absolute;
                         $side_3 = array();
                         $side_3['name'] = 'side 2 Stone 1';
                         foreach ($product_data as $product_data) {
+
+                            $canvas_type_option_title = $product_data['default_title'];
+
+                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+                          //  echo "<pre>"; print_r($product_data);
+
+                            $side_1['details'][$b]['newclass'] = ($canvas_type_redirect);
+
                             $side_3['details'][$b]['price'] = ($product_data['price']);
                             $side_3['details'][$b]['image'] = ($product_data['img_url']);
                             $side_3['details'][$b]['sku'] = ($product_data['sku']);
@@ -224,7 +263,7 @@ i { position:absolute;
                             $side_3['details'][$b]['panelsize'] = ($product_data['panelsize']);
                             $side_3['details'][$b]['description'] = ($product_data['description']);
                             $side_3['details'][$b]['default_title'] = ($product_data['default_title']);
-                            $side_3['details'][$l]['stone_order'] = ($product_data['sort_order']);
+                            $side_3['details'][$b]['stone_order'] = ($product_data['sort_order']);
                             
                           $b++;
                         }
@@ -240,6 +279,14 @@ i { position:absolute;
                         $side_4 = array();
                         $side_4['name'] = 'side 2 Stone 2';
                         foreach ($product_data as $product_data) {
+
+                            $canvas_type_option_title = $product_data['default_title'];
+
+                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+                          //  echo "<pre>"; print_r($product_data);
+
+                            $side_1['details'][$a]['newclass'] = ($canvas_type_redirect);
+
                             $side_4['details'][$a]['price'] = ($product_data['price']);
                             $side_4['details'][$a]['image'] = ($product_data['img_url']);
                             $side_4['details'][$a]['sku'] = ($product_data['sku']);
@@ -251,7 +298,7 @@ i { position:absolute;
                             $side_4['details'][$a]['panelsize'] = ($product_data['panelsize']);
                             $side_4['details'][$a]['description'] = ($product_data['description']);
                             $side_4['details'][$a]['default_title'] = ($product_data['default_title']);
-                            $side_4['details'][$l]['stone_order'] = ($product_data['sort_order']);
+                            $side_4['details'][$a]['stone_order'] = ($product_data['sort_order']);
                         
                           $a++;
                         }
@@ -271,9 +318,9 @@ i { position:absolute;
 
 ?>
 <!--Creating The Json object-->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
-</script>
+</script> -->
 
 <div class="all_require_data" style="display: none;">
 	<input type="text" name="metal" id="metal_data" value="">
@@ -310,10 +357,10 @@ i { position:absolute;
                     </div>
                     <div id="main_product_header" class="pure_container pure-hidden-sm-down">
                         <div id="product_subtitle_row" class="pure-g">
-                            <div class="pure-u-md-1">
+                            <!-- <div class="pure-u-md-1">
                                 <h1 id="productTitle" class="product-header__title" itemprop="name">Double Baguette Bypass Ring</h1>
-                                <span class="product-fb-likes"><a href="http://onlinedevserver.biz/html/jwelzhq/details.html#social" class="named_anchor_link"><img width="23" height="19" class="facebook-like-icon" src="./JWELZHQ_files/facebook-like-icon-03dba96d6d2a37764fd299b0a33a3d03b4b31d10099e3be5eae287819ece9a6d.png" alt="Facebook like icon"><span></span></a> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                                <!--<span class="product_item_code">Style Code: JWL0024</span>-->
+                                <span class="product-fb-likes"><a href="http://onlinedevserver.biz/html/jwelzhq/details.html#social" class="named_anchor_link"><img width="23" height="19" class="facebook-like-icon" src="" alt="Facebook like icon"><span></span></a> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                             
                                 <div class="product-rating">
                                     <div class="product-rating-col">
                                         <ul>
@@ -325,7 +372,7 @@ i { position:absolute;
                                         </ul>
                                         <span class="product-rating-text"> <a href="http://onlinedevserver.biz/html/jwelzhq/details.html#review" id="review-btn">Read Reviews (64) </a></span> </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <p class="product-header__promo-blurb">Free Shipping, 99-Day Returns!</p>
                     </div>
@@ -335,7 +382,7 @@ i { position:absolute;
                         </div>
                         <div class="product-header__post-title">
                             <div class="product-fb-likes" style="display: none">
-                                <a href="http://onlinedevserver.biz/html/jwelzhq/details.html#social" class="named_anchor_link"><img height="19" width="23" class="facebook-like-icon" alt="Jewlr" src="./JWELZHQ_files/facebook-like-icon-03dba96d6d2a37764fd299b0a33a3d03b4b31d10099e3be5eae287819ece9a6d.png">&nbsp;<span></span></a>
+                                <a href="http://onlinedevserver.biz/html/jwelzhq/details.html#social" class="named_anchor_link"><img height="19" width="23" class="facebook-like-icon" alt="Jewlr" src="">&nbsp;<span></span></a>
                             </div>
                             <!-- <span class="product-header__post-title--style-code"> |  Style Code: JWL0024 </span> -->
                             <div class="product-rating">
@@ -359,22 +406,22 @@ i { position:absolute;
                                 <div id="wizard-main-image-container" class="image-item">
                                     <div id="carousel_mobile">
                                         <div id="mobile_images">
-                                            <div class="item"> <img width="200" height="200" id="mobile_t2_view" data-index="0" data-view="t2" class="product-image-unblur" src="./JWELZHQ_files/saved_resource" alt="Jwl0024 t2 s2 04czir)">
+                                            <div class="item"> <img width="200" height="200" id="mobile_t2_view" data-index="0" data-view="t2" class="product-image-unblur" src="" alt="Jwl0024 t2 s2 04czir)">
                                                 <div class="loading-indicator"> <i class="fa fa-large fa fa-spinner fa fa-spin"></i> </div>
                                             </div>
-                                            <div class="item"> <img width="200" height="200" id="mobile_t_view" data-index="1" data-view="t" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" class="product-image-unblur">
+                                            <div class="item"> <img width="200" height="200" id="mobile_t_view" data-index="1" data-view="t" src="" alt="Jewlr" class="product-image-unblur">
                                                 <div class="loading-indicator"> <i class="fa fa-large fa fa-spinner fa fa-spin"></i> </div>
                                             </div>
-                                            <div class="item"> <img width="200" height="200" id="mobile_m_view" data-index="2" data-view="m" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" class="product-image-unblur">
+                                            <div class="item"> <img width="200" height="200" id="mobile_m_view" data-index="2" data-view="m" src="" alt="Jewlr" class="product-image-unblur">
                                                 <div class="loading-indicator"> <i class="fa fa-large fa fa-spinner fa fa-spin"></i> </div>
                                             </div>
-                                            <div class="item"> <img width="200" height="200" id="mobile_s_view" data-index="3" data-view="s" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" class="product-image-unblur">
+                                            <div class="item"> <img width="200" height="200" id="mobile_s_view" data-index="3" data-view="s" src="" alt="Jewlr" class="product-image-unblur">
                                                 <div class="loading-indicator"> <i class="fa fa-large fa fa-spinner fa fa-spin"></i> </div>
                                             </div>
-                                            <div class="item"> <img width="200" height="200" id="mobile_p_view" data-index="4" data-view="p" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr" class="product-image-unblur">
+                                            <div class="item"> <img width="200" height="200" id="mobile_p_view" data-index="4" data-view="p" src="" alt="Jewlr" class="product-image-unblur">
                                                 <div class="loading-indicator"> <i class="fa fa-large fa fa-spinner fa fa-spin"></i> </div>
                                             </div>
-                                            <div class="item"> <img width="200" height="200" data-index="5" src="./JWELZHQ_files/jwl0024-i1" alt="Jwl0024 i1?wid=200"> </div>
+                                            <div class="item"> <img width="200" height="200" data-index="5" src="" alt="Jwl0024 i1?wid=200"> </div>
                                         </div>
                                     </div>
                                 </div>
@@ -460,11 +507,11 @@ i { position:absolute;
                                         <div id="item_promo_info_desktop" class="pure-hidden-sm-down"></div>
                                     </div>
                                     <div class="product_share_row hidden">
-                                        <a class="js-item_share" data-style-code="JWL0024" data-share-type="email" rel="nofollow" href="http://onlinedevserver.biz/products/email_a_friend"><img width="22" height="22" alt="Share by Email" title="Share by Email" src="./JWELZHQ_files/share_email-1f3de530bd4bb35cd98df8e07e3a072f02538bfc6b41f691ccdaed44a41fa970.png"></a>
-                                        <a class="messenger_share" rel="nofollow"><img width="22" height="22" title="Share on Messenger" alt="Share on Messenger" src="./JWELZHQ_files/fbmsgicon-551a3aafdfdf3da669d180e4249b71ba94a4ff41edbb8f6ecdb2844a65e6e192.png"></a>
-                                        <a class="facebook_share" rel="nofollow"><img width="22" height="22" title="Share on Facebook" alt="Share on Facebook" src="./JWELZHQ_files/share_fb-0f8d85f45ba3fa3d3d9773bb351eba63d2ff6c6db6784e8227a4f864ecf5242a.png"></a>
-                                        <a class="pinterest_share" rel="nofollow"><img width="22" height="22" title="Share on Pinterest" alt="Share on Pinterest" src="./JWELZHQ_files/share_pinterest-031646546d515f611cfe13feee7e086c425f11b1027b46f49928c10bb72c3510.png"></a>
-                                        <a class="twitter_share" rel="nofollow"><img width="22" height="22" title="Share on Twitter" alt="Share on Twitter" src="./JWELZHQ_files/share_twitter-7198ca7f1f93270e45ac00bfba35a79aa0dc7d257f0f83e03e61724f0a33f05c.png"></a>
+                                        <a class="js-item_share" data-style-code="JWL0024" data-share-type="email" rel="nofollow" href="http://onlinedevserver.biz/products/email_a_friend"><img width="22" height="22" alt="Share by Email" title="Share by Email" src=""></a>
+                                        <a class="messenger_share" rel="nofollow"><img width="22" height="22" title="Share on Messenger" alt="Share on Messenger" src=""></a>
+                                        <a class="facebook_share" rel="nofollow"><img width="22" height="22" title="Share on Facebook" alt="Share on Facebook" src=""></a>
+                                        <a class="pinterest_share" rel="nofollow"><img width="22" height="22" title="Share on Pinterest" alt="Share on Pinterest" src=""></a>
+                                        <a class="twitter_share" rel="nofollow"><img width="22" height="22" title="Share on Twitter" alt="Share on Twitter" src=""></a>
                                     </div>
                                 </div>
                                 <!-- FOR HOLIDAY SPECIAL - add class 'wizard_holiday_header' to #wizard_header_actions -->
@@ -498,7 +545,7 @@ i { position:absolute;
                                     <div class="panel panel-default ">
                                         <!-- Engravings Pane Header -->
                                         <div class="panel-heading clearfix" data-toggle="collapse" data-parent="" href=".efCollapse">
-                                            <div class="mw-thumb"> <img width="24" height="24" class="font_thumb summary_thumb classic" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                            <div class="mw-thumb"> <img width="24" height="24" class="font_thumb summary_thumb classic" src="" alt="Jewlr"> </div>
                                             <div class="mw-desc">
                                                 <h4>Engravings</h4>
                                                 <span class="allengravings_description"></span> </div>
@@ -520,16 +567,16 @@ i { position:absolute;
                                                                 </div>
                                                                 <div class="wizard-option-category">
                                                                     <ul class="thumbnails list-unstyled list-inline">
-                                                                        <li data-title="Classic" data-description="" data-price="" data-value="Classic" class="wizard-option ef-item selected-item"> <img width="24" height="24" alt="" title="" class="classic" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif">
+                                                                        <li data-title="Classic" data-description="" data-price="" data-value="Classic" class="wizard-option ef-item selected-item"> <img width="24" height="24" alt="" title="" class="classic" src="">
                                                                             <p>Classic</p>
                                                                         </li>
-                                                                        <li data-title="Modern" data-description="" data-price="" data-value="Modern" class="wizard-option ef-item"> <img width="24" height="24" alt="" title="" class="modern" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif">
+                                                                        <li data-title="Modern" data-description="" data-price="" data-value="Modern" class="wizard-option ef-item"> <img width="24" height="24" alt="" title="" class="modern" src="">
                                                                             <p>Modern</p>
                                                                         </li>
-                                                                        <li data-title="Italic" data-description="" data-price="" data-value="Italic" class="wizard-option ef-item"> <img width="24" height="24" alt="" title="" class="italic" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif">
+                                                                        <li data-title="Italic" data-description="" data-price="" data-value="Italic" class="wizard-option ef-item"> <img width="24" height="24" alt="" title="" class="italic" src="">
                                                                             <p>Italic</p>
                                                                         </li>
-                                                                        <li data-title="Cursive" data-description="" data-price="" data-value="Cursive" class="wizard-option ef-item"> <img width="24" height="24" alt="" title="" class="cursive" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif">
+                                                                        <li data-title="Cursive" data-description="" data-price="" data-value="Cursive" class="wizard-option ef-item"> <img width="24" height="24" alt="" title="" class="cursive" src="">
                                                                             <p>Cursive</p>
                                                                         </li>
                                                                     </ul>
@@ -624,7 +671,7 @@ i { position:absolute;
                                     <div class="panel panel-default">
                                         <!-- Size Pane Header -->
                                         <div class="panel-heading clearfix" data-toggle="collapse" data-parent="" href=".sizeCollapse">
-                                            <div class="mw-thumb pull-left"> <img height="40" width="40" alt="" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif"> </div>
+                                            <div class="mw-thumb pull-left"> <img height="40" width="40" alt="" src=""> </div>
                                             <div class="mw-desc panel__size-desc pull-left">
                                                 <h4>Ring Size</h4>
                                                 <span class="size_description"></span> </div>
@@ -648,7 +695,7 @@ i { position:absolute;
                                                             <div class="pure-form">
                                                                 <select class="wizard-option pure-controls size-wizard-option pure-hidden-sm-down select-box" data-pref="sz">
                                                                     <option value="" data-title="" data-filter="" data-value="" data-sia="0">Please select your size</option>
-                                                                    <option class="sz-item" value="4.00" data-title="4.00" data-price="0" data-sia="0" data-value="4.00" data-display-value="4.00" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-2f1edfb656afeda34335677ad24f40234e2019ead047119556b7ba98d3720ea8.png" data-filter="">4.00</option>
+                                                                    <!-- <option class="sz-item" value="4.00" data-title="4.00" data-price="0" data-sia="0" data-value="4.00" data-display-value="4.00" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-2f1edfb656afeda34335677ad24f40234e2019ead047119556b7ba98d3720ea8.png" data-filter="">4.00</option>
                                                                     <option class="sz-item" value="4.50" data-title="4.50" data-price="0" data-sia="0" data-value="4.50" data-display-value="4.50" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-50-22f95c1e4d7770d7be6a0296dbb9308589991f30e87cbe35c9f6f9631bd30e4f.png" data-filter="">4.50</option>
                                                                     <option class="sz-item" value="5.00" data-title="5.00" data-price="0" data-sia="0" data-value="5.00" data-display-value="5.00" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_5-3bed81c0610bf61168d3270e0e7b08d195fce6c8902548978dcfa6045b0c3d34.png" data-filter="">5.00</option>
                                                                     <option class="sz-item" value="5.50" data-title="5.50" data-price="0" data-sia="0" data-value="5.50" data-display-value="5.50" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_5-50-273999f840b90c8d16d762e039f864530b2bee115d99cd7d0ed2140dfca500ab.png" data-filter="">5.50</option>
@@ -664,91 +711,91 @@ i { position:absolute;
                                                                     <option class="sz-item" value="10.50" data-title="10.50" data-price="0" data-sia="0" data-value="10.50" data-display-value="10.50" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_10-50-b0a2eb891b3682d4c0e6e337a2a071649348dfa726a5df0f4747984a819bb9b9.png" data-filter="">10.50</option>
                                                                     <option class="sz-item" value="11.00" data-title="11.00" data-price="20" data-sia="0" data-value="11.00" data-display-value="11.00" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-0d8eb0bdc24251fd8fcd48b79fc856dbe58f14c665b8ee0e6bb86d893d3ab31d.png" data-filter="silver">11.00 (+$20)</option>
                                                                     <option class="sz-item" value="11.50" data-title="11.50" data-price="20" data-sia="0" data-value="11.50" data-display-value="11.50" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-50-aade67099c3ca23e21e8edecc3e907b11b1d03699214e62124e637f61d30c5a4.png" data-filter="silver">11.50 (+$20)</option>
-                                                                    <option class="sz-item" value="12.00" data-title="12.00" data-price="20" data-sia="0" data-value="12.00" data-display-value="12.00" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_12-c081d7b350d264a9643e0c243dd58e2f0acd409ed176645e2b31205b1edc9753.png" data-filter="silver">12.00 (+$20)</option>
+                                                                    <option class="sz-item" value="12.00" data-title="12.00" data-price="20" data-sia="0" data-value="12.00" data-display-value="12.00" data-display-image="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_12-c081d7b350d264a9643e0c243dd58e2f0acd409ed176645e2b31205b1edc9753.png" data-filter="silver">12.00 (+$20)</option> -->
                                                                 </select>
                                                                 <div class="pure-hidden-md-up size-wizard-option-ul">
                                                                     <div class="wizard-option-category">
                                                                         <ul class="thumbnails list-unstyled list-inline">
-                                                                            <li class="wizard-option sz-item" data-title="4.00" data-price="0" data-sia="0" data-value="4.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-2f1edfb656afeda34335677ad24f40234e2019ead047119556b7ba98d3720ea8.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_4-2380e71d3480f9d77ce57d1936da7f95c393da4d42592bc27810607c33f9de62.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                            <!-- <li class="wizard-option sz-item" data-title="4.00" data-price="0" data-sia="0" data-value="4.00" data-filter="">
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-2f1edfb656afeda34335677ad24f40234e2019ead047119556b7ba98d3720ea8.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_4-2380e71d3480f9d77ce57d1936da7f95c393da4d42592bc27810607c33f9de62.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="4.50" data-price="0" data-sia="0" data-value="4.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-50-22f95c1e4d7770d7be6a0296dbb9308589991f30e87cbe35c9f6f9631bd30e4f.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_4-50-6ec46b743366d849f2cb7802c523ebb99c3123151a92dafc3373c344e6274926.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_4-50-22f95c1e4d7770d7be6a0296dbb9308589991f30e87cbe35c9f6f9631bd30e4f.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_4-50-6ec46b743366d849f2cb7802c523ebb99c3123151a92dafc3373c344e6274926.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="5.00" data-price="0" data-sia="0" data-value="5.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_5-3bed81c0610bf61168d3270e0e7b08d195fce6c8902548978dcfa6045b0c3d34.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_5-6921a44efe4041b6af3b1d639d06f3ccc4c44d4a8e9e43bf0afb4f9409a7c8e1.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_5-3bed81c0610bf61168d3270e0e7b08d195fce6c8902548978dcfa6045b0c3d34.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_5-6921a44efe4041b6af3b1d639d06f3ccc4c44d4a8e9e43bf0afb4f9409a7c8e1.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="5.50" data-price="0" data-sia="0" data-value="5.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_5-50-273999f840b90c8d16d762e039f864530b2bee115d99cd7d0ed2140dfca500ab.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_5-50-0fed9936b35befd531b46af799912923b04fbabc72e525ae52a31d90322f6425.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_5-50-273999f840b90c8d16d762e039f864530b2bee115d99cd7d0ed2140dfca500ab.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_5-50-0fed9936b35befd531b46af799912923b04fbabc72e525ae52a31d90322f6425.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="6.00" data-price="0" data-sia="0" data-value="6.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_6-b02eba087711c7379b55d3c35aa421cf72103bdb0b77026e7f2ddb9693a40d66.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_6-6c1c13293adcf77f7076bd883fb354d6f72e306a192fcbe3a71515dd736fa17e.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_6-b02eba087711c7379b55d3c35aa421cf72103bdb0b77026e7f2ddb9693a40d66.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_6-6c1c13293adcf77f7076bd883fb354d6f72e306a192fcbe3a71515dd736fa17e.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="6.50" data-price="0" data-sia="0" data-value="6.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_6-50-03d572972301cf8e5c6aa09e7636903cdb72477e25c2467c091bc5079469e5de.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_6-50-fd9f47672a6cc0587f7b73c688278862fed82622db97adaf0a27aa38be0bb8da.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_6-50-03d572972301cf8e5c6aa09e7636903cdb72477e25c2467c091bc5079469e5de.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_6-50-fd9f47672a6cc0587f7b73c688278862fed82622db97adaf0a27aa38be0bb8da.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="7.00" data-price="0" data-sia="0" data-value="7.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_7-88e7ddffc41ef3b6217e9a8054534bbecd0937d0c99ccbe630c2767899db5a77.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_7-4432eebb7eac5c29a026bb896a692a84c4ce768c6a57972e5e70f2e1afdb9e4f.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_7-88e7ddffc41ef3b6217e9a8054534bbecd0937d0c99ccbe630c2767899db5a77.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_7-4432eebb7eac5c29a026bb896a692a84c4ce768c6a57972e5e70f2e1afdb9e4f.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="7.50" data-price="0" data-sia="0" data-value="7.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_7-50-ed7ee2aec870f5caab3ab332916a52659336392694490c397485d45d78a42739.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_7-50-c374e63e3208c1fe446ac56c853fa9dee841defb6aae7d941a11c441cdd4f870.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_7-50-ed7ee2aec870f5caab3ab332916a52659336392694490c397485d45d78a42739.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_7-50-c374e63e3208c1fe446ac56c853fa9dee841defb6aae7d941a11c441cdd4f870.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="8.00" data-price="0" data-sia="0" data-value="8.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_8-746c822704c7a03909b92e0d80386f1f9a9d2fea891167255db3a121cfea71d2.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_8-bf3751c5b6a3ee0beb4a29cd1e03f043db4c2e676dc10e5812d9c8496b74a4c8.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_8-746c822704c7a03909b92e0d80386f1f9a9d2fea891167255db3a121cfea71d2.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_8-bf3751c5b6a3ee0beb4a29cd1e03f043db4c2e676dc10e5812d9c8496b74a4c8.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="8.50" data-price="0" data-sia="0" data-value="8.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_8-50-273942d491f18150b31b4e8c131ce7493897ff3c8d71abb239a8cb8f49a6e8a8.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_8-50-341f8e96eb64f3aa00b775684ed597c7646c553652636898edbba3b90f536602.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_8-50-273942d491f18150b31b4e8c131ce7493897ff3c8d71abb239a8cb8f49a6e8a8.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_8-50-341f8e96eb64f3aa00b775684ed597c7646c553652636898edbba3b90f536602.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="9.00" data-price="0" data-sia="0" data-value="9.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_9-4480626197a7fcf365474b75df16b643864c50a5c16ca3d6f699e5b3b6ae7468.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_9-11e874eba2b5f2cd9395bd7abc33e1e9c0d7969677951fcc16ece6f244a24ef5.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_9-4480626197a7fcf365474b75df16b643864c50a5c16ca3d6f699e5b3b6ae7468.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_9-11e874eba2b5f2cd9395bd7abc33e1e9c0d7969677951fcc16ece6f244a24ef5.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="9.50" data-price="0" data-sia="0" data-value="9.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_9-50-9242f79b28f152b4214d22c3be356efbd205c3c75eb2f93dfee860523d56c641.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_9-50-edd86da896f2a6717a3368722af171637d29a6198cd6632bd3dea12fa30225d8.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_9-50-9242f79b28f152b4214d22c3be356efbd205c3c75eb2f93dfee860523d56c641.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_9-50-edd86da896f2a6717a3368722af171637d29a6198cd6632bd3dea12fa30225d8.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="10.00" data-price="0" data-sia="0" data-value="10.00" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_10-0ee9f746183a2a4a87e4737dd2720cc28363dd5de8dd72fac1c41c8dd36be74b.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_10-d82f5eb9118220b00ccee18aa3139077a2ea2f83a1c1b77f2214dc66c05e2532.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_10-0ee9f746183a2a4a87e4737dd2720cc28363dd5de8dd72fac1c41c8dd36be74b.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_10-d82f5eb9118220b00ccee18aa3139077a2ea2f83a1c1b77f2214dc66c05e2532.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="10.50" data-price="0" data-sia="0" data-value="10.50" data-filter="">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_10-50-b0a2eb891b3682d4c0e6e337a2a071649348dfa726a5df0f4747984a819bb9b9.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_10-50-7bb995028aff4a40b5ae0267eed1b58588e3ea7e325f86db1d275eb71fbccffd.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_10-50-b0a2eb891b3682d4c0e6e337a2a071649348dfa726a5df0f4747984a819bb9b9.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_10-50-7bb995028aff4a40b5ae0267eed1b58588e3ea7e325f86db1d275eb71fbccffd.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p></p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="11.00" data-price="20" data-sia="0" data-value="11.00" data-filter="silver">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-0d8eb0bdc24251fd8fcd48b79fc856dbe58f14c665b8ee0e6bb86d893d3ab31d.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-6cb78c50ea9eb14d33b0a265a00bb01bfc9f66faf90817fdf2dcc437d774780f.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-0d8eb0bdc24251fd8fcd48b79fc856dbe58f14c665b8ee0e6bb86d893d3ab31d.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-6cb78c50ea9eb14d33b0a265a00bb01bfc9f66faf90817fdf2dcc437d774780f.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p>(+$20)</p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="11.00" data-price="60" data-sia="0" data-value="11.00" data-filter="gold" style="display: none;">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-0d8eb0bdc24251fd8fcd48b79fc856dbe58f14c665b8ee0e6bb86d893d3ab31d.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-6cb78c50ea9eb14d33b0a265a00bb01bfc9f66faf90817fdf2dcc437d774780f.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-0d8eb0bdc24251fd8fcd48b79fc856dbe58f14c665b8ee0e6bb86d893d3ab31d.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-6cb78c50ea9eb14d33b0a265a00bb01bfc9f66faf90817fdf2dcc437d774780f.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p>(+$60)</p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="11.50" data-price="20" data-sia="0" data-value="11.50" data-filter="silver">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-50-aade67099c3ca23e21e8edecc3e907b11b1d03699214e62124e637f61d30c5a4.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-50-a6cfcfd482a121f08ee3cc216cdbe3a39046339c256d904444cfa790f45e93c6.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-50-aade67099c3ca23e21e8edecc3e907b11b1d03699214e62124e637f61d30c5a4.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-50-a6cfcfd482a121f08ee3cc216cdbe3a39046339c256d904444cfa790f45e93c6.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p>(+$20)</p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="11.50" data-price="60" data-sia="0" data-value="11.50" data-filter="gold" style="display: none;">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-50-aade67099c3ca23e21e8edecc3e907b11b1d03699214e62124e637f61d30c5a4.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-50-a6cfcfd482a121f08ee3cc216cdbe3a39046339c256d904444cfa790f45e93c6.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_11-50-aade67099c3ca23e21e8edecc3e907b11b1d03699214e62124e637f61d30c5a4.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_11-50-a6cfcfd482a121f08ee3cc216cdbe3a39046339c256d904444cfa790f45e93c6.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p>(+$60)</p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="12.00" data-price="20" data-sia="0" data-value="12.00" data-filter="silver">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_12-c081d7b350d264a9643e0c243dd58e2f0acd409ed176645e2b31205b1edc9753.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_12-2f6a310c5fb8943dae9f3b3feb1ead2304b5dd8db703b6511a932bceca161dfe.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_12-c081d7b350d264a9643e0c243dd58e2f0acd409ed176645e2b31205b1edc9753.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_12-2f6a310c5fb8943dae9f3b3feb1ead2304b5dd8db703b6511a932bceca161dfe.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p>(+$20)</p>
                                                                             </li>
                                                                             <li class="wizard-option sz-item" data-title="12.00" data-price="60" data-sia="0" data-value="12.00" data-filter="gold" style="display: none;">
-                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_12-c081d7b350d264a9643e0c243dd58e2f0acd409ed176645e2b31205b1edc9753.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_12-2f6a310c5fb8943dae9f3b3feb1ead2304b5dd8db703b6511a932bceca161dfe.png 2x" data-sizes="auto" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                                                                <div class="sz_icon"> <img class="pure-img lazyload" data-srcset="https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/1x/ringsize_12-c081d7b350d264a9643e0c243dd58e2f0acd409ed176645e2b31205b1edc9753.png 1x, https://j4-assets-jewlr.netdna-ssl.com/assets/product/sizes/2x/ringsize_12-2f6a310c5fb8943dae9f3b3feb1ead2304b5dd8db703b6511a932bceca161dfe.png 2x" data-sizes="auto" src="" alt="Jewlr"> </div>
                                                                                 <p>(+$60)</p>
-                                                                            </li>
+                                                                            </li> -->
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -782,7 +829,7 @@ i { position:absolute;
                                     <div class="panel panel-default">
                                         <!-- Box Pane Header -->
                                         <div class="panel-heading clearfix box-panel-heading" data-toggle="collapse" data-parent="" href=".boxCollapse">
-                                            <div class="mw-thumb"> <img width="40" height="40" class="summary_thumb box_thumb" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif" alt="Jewlr"> </div>
+                                            <div class="mw-thumb"> <img width="40" height="40" class="summary_thumb box_thumb" src="" alt="Jewlr"> </div>
                                             <div class="mw-desc mw--box">
                                                 <h4>Ring Box</h4>
                                                 <span class="box_description">Classic Black Ring Box</span> </div>
@@ -798,7 +845,7 @@ i { position:absolute;
                                                         <!-- Classic box -->
                                                         <div class="js-box-select js-classic-box photo-item__container clearfix selected" data-price="$0" data-name="Classic Black Ring Box" data-pref="box">
                                                             <div class="js-box-select-inner">
-                                                                <div class="photo-item__img-container pull-right"> <img data-src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ring_box_classic-e983677b1851e3f30dc668a21e4f12f8132f3362bc11b2feb16181ce2416277e.jpg" class="ring-box--image lazyloaded" alt="Classic box" src="./JWELZHQ_files/ring_box_classic-e983677b1851e3f30dc668a21e4f12f8132f3362bc11b2feb16181ce2416277e.jpg"> </div>
+                                                                <div class="photo-item__img-container pull-right"> <img data-src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ring_box_classic-e983677b1851e3f30dc668a21e4f12f8132f3362bc11b2feb16181ce2416277e.jpg" class="ring-box--image lazyloaded" alt="Classic box" src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ring_box_classic-e983677b1851e3f30dc668a21e4f12f8132f3362bc11b2feb16181ce2416277e.jpg"> </div>
                                                                 <div class="photo-item--description-container">
                                                                     <h3 class="photo-item--name">Classic Black Ring Box - $0 </h3>
                                                                     <p class="photo-item--description"> An elegant jewelry box with a luxury matte black finish. </p>
@@ -809,7 +856,7 @@ i { position:absolute;
                                                         <!-- Photo box -->
                                                         <div class="js-box-select js-photo-box photo-item__container clearfix" data-price="$14" data-name="Photo Ring Box">
                                                             <div class="js-box-select-inner js-pop-upload-modal" data-pref="box">
-                                                                <div class="photo-item__img-container pull-right"> <img data-src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ringbox_mockup-b7d12037d61231dd079632a357c6c58cb22c3e03f49e522912392d14ba2824e2.jpg" class="item-preview-img ring-box--image lazyloaded" alt="Photo preview box" data-pref="box" src="./JWELZHQ_files/ringbox_mockup-b7d12037d61231dd079632a357c6c58cb22c3e03f49e522912392d14ba2824e2.jpg"> <i class="fa fa-spinner fa-spin item-preivew--spinner"></i> </div>
+                                                                <div class="photo-item__img-container pull-right"> <img data-src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ringbox_mockup-b7d12037d61231dd079632a357c6c58cb22c3e03f49e522912392d14ba2824e2.jpg" class="item-preview-img ring-box--image lazyloaded" alt="Photo preview box" data-pref="box" src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ringbox_mockup-b7d12037d61231dd079632a357c6c58cb22c3e03f49e522912392d14ba2824e2.jpg"> <i class="fa fa-spinner fa-spin item-preivew--spinner"></i> </div>
                                                                 <div class="photo-item--description-container">
                                                                     <h3 class="photo-item--name">Photo Ring box <br>
 
@@ -823,7 +870,7 @@ i { position:absolute;
                                                         <!-- Customized box -->
                                                         <div class="js-box-select js-design-box photo-item__container clearfix" data-pref="box" data-price="$14" data-name=" Customized Ring Box">
                                                             <div class="js-box-select-inner js-pop-box-design-modal">
-                                                                <div class="photo-item__img-container pull-right" data-pref="box"> <img data-src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ring_box_mockup_design-d12eec81d52d51d42a5a2b1446ee5cdace1330f6573f7c5fec7826fa1ac3f732.jpg" class="item-preview-img ring-box--image" alt="Photo preview box" data-pref="box" src="./JWELZHQ_files/jewlr-4a34acfad1ff8388b748c3eb253a6fbb5b3e4fbe9a34cbeaf169de003c69853b.gif"> <i class="fa fa-spinner fa-spin item-preivew--spinner"></i> </div>
+                                                                <div class="photo-item__img-container pull-right" data-pref="box"> <img data-src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ring_box_mockup_design-d12eec81d52d51d42a5a2b1446ee5cdace1330f6573f7c5fec7826fa1ac3f732.jpg" class="item-preview-img ring-box--image" alt="Photo preview box" data-pref="box" src="https://j4-assets-jewlr.netdna-ssl.com/assets/product/box_photo_upload/ring_box_mockup_design-d12eec81d52d51d42a5a2b1446ee5cdace1330f6573f7c5fec7826fa1ac3f732.jpg"> <i class="fa fa-spinner fa-spin item-preivew--spinner"></i> </div>
                                                                 <div class="photo-item--description-container">
                                                                     <h3 class="photo-item--name">customized Ring box <br>
 
@@ -867,46 +914,7 @@ i { position:absolute;
                             <input type="hidden" value="" class="item_input input_required" id="size_description_input" name="sz" data-pane-id="sz_pane" data-focus="size-wizard-option" data-missing-msg="Please select your size before adding item to cart." autocomplete="off" data-criteo-param="true">
                         </div>
                     </div>
-                    <meta itemprop="sku" content="JWL0024">
-                    <div id="product_info_plus" style="display:none">
-                        <meta itemprop="image" content="https://www.jewlr.com/api/v3/images/fetch?style_code=JWL0024&amp;dim=240&amp;view=t2&amp;sku=&amp;s1=S01GARN&amp;s2=04CZIR&amp;e1=Jason&amp;e2=Ashley">
-                        <div itemprop="brand">Jewlr</div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">Sterling Silver</span> Price: <span itemprop="price">109.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">10K White Gold</span> Price: <span itemprop="price">219.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">14K White Gold</span> Price: <span itemprop="price">329.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">10K Yellow Gold</span> Price: <span itemprop="price">219.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">14K Yellow Gold</span> Price: <span itemprop="price">329.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">10K Rose Gold</span> Price: <span itemprop="price">219.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                        <div itemprop="offers" itemscope="" itemtype="//schema.org/Offer"> <span itemprop="description">14K Rose Gold</span> Price: <span itemprop="price">329.0</span>
-                            <meta itemprop="priceCurrency" content="USD">
-                            <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability" content="http://schema.org/InStock">
-                            <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/NewCondition">
-                        </div>
-                    </div>
+                    
                 </form>                
             </div>
         </div>
@@ -918,14 +926,14 @@ i { position:absolute;
 
 
 
-    <script>
+   <!--  <script>
       jQuery( "#accordion" ).accordion({
       heightStyle: "content",
       active:false,
       collapsible: true,
       header:"div.accordianheader"
     });
-    </script>
+    </script> -->
 
     <script type="text/javascript">
       var primary = jQuery("#carousel");
@@ -1000,17 +1008,7 @@ jQuery(document).ready(function($) {
   }
 });
 
-$( ".collapse-button" ).click(function() {
-  var thumbnailsWrapper = $('.thumbnails-wrapper');
-  if(thumbnailsWrapper.position().top < thumbnailsWrapper.parent().height() - 1){
-    thumbnailsWrapper.animate({bottom: '-' + thumbnailsWrapper.outerHeight() +'px'});
-    thumbnailsWrapper.find('.icon').addClass('-flip');
-  }
-  else {
-    thumbnailsWrapper.animate({bottom: '0'});
-    thumbnailsWrapper.find('.icon').removeClass('-flip');
-  }
-});
+
     </script>
 
 
@@ -1067,9 +1065,9 @@ jQuery(document).on('click','.metal_type',function(){
 	}
     //alert(metal_data);
     var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
-    alert(url_param);
+    //alert('url_param');
 	//alert(sku);
-    jQuery("#image-main").attr('src', url_param);
+   // jQuery("#image-main").attr('src', url_param);
 	jQuery(this).addClass('selected-item').siblings().removeClass('selected-item');
 
 	var img = jQuery(this).find('img').attr('src');
@@ -1081,36 +1079,27 @@ jQuery(document).on('click','.metal_type',function(){
 	jQuery('.summary_thumb_metal').attr('src',img);
 	jQuery('.summary_thumb_metal').attr('srcset',img);
 
-	var selected_stone1 = jQuery('.selected-item-stone1').find('img').attr('data-sku');
 
-	//alert(selected_stone1);
-	if(selected_stone1 !=undefined)
-	{		
-		sku = sku+'-'+selected_stone1;
-	}
 
-	var default_sku = jQuery(this).find('img').attr('data-default-sku');
 
-	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
+/*
+	var url = '<?php echo  Mage::getUrl('liveeditor/index/createimage')?>';
 
-	 jQuery.ajax({
-	            url: url,
-	            data: {default_sku:default_sku,sku:sku},
-	            type: "POST",
-	            success: function(response)
-	            {
-	                //alert(response[0]);
-	                var imgages = response;
-	                var sdfsdf = jQuery.parseJSON(response);
-					//alert(sdfsdf[0]);
+    var default_sku = jQuery(this).find('img').attr('data-default-sku');
 
-					for (var i = 0; i < jQuery('.main-carousel .owl-item').length; i++) {
-						 jQuery('.main-carousel .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_full']);
-						 jQuery('#thumbnails .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_small']);
-					}   
-	             }
-              });
+    jQuery.ajax({
+                url: url,
+               data: {metal:1,style:1,stone:1,color:color},
+                type: "POST",
+                success: function(response)
+                {
+                      
+                  
+                 }
+              });*/
 
+
+	 
 } );
 jQuery(document).on('click','.face-option',function(){
 	var sku = jQuery(this).attr('data-sku'); 
@@ -1122,16 +1111,16 @@ jQuery(document).on('click','.face-option',function(){
     var stone = jQuery(".stone-option.selected-item").attr('data-stoneorder');
     //console.log(style);
     var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
-    alert(url_param);
+    //alert(url_param);
     jQuery("#image-main").attr('src', url_param);
 
 	var default_sku = "fancy-halo-flip-ring";
 
 	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
 
-	 jQuery.ajax({
+	/* jQuery.ajax({
 	            url: url,
-	            data: {default_sku:default_sku,sku:sku},
+	            data: {metal:metal,style:style,stone:stone,color:color},
 	            type: "POST",
 	            success: function(response)
 	            {
@@ -1148,7 +1137,7 @@ jQuery(document).on('click','.face-option',function(){
 	               
 	                
 	             }
-              });
+              });*/
 
 
 });
@@ -1160,21 +1149,14 @@ jQuery(document).on('click','.stone-option',function(){
 
 	var sku = jQuery(this).attr('data-sku');
 
-      // var stone_order =jQuery(this).parent().find(".selected-item").attr("data-stoneorder");
-      // var ston_arr=[];
-      // ston_arr.push(stone_order); 
-    // jQuery(".stone-option").each(function(index,item){
-    //     var stone_order =jQuery(".stone-option").find(".selected-item").attr("data-stoneorder");
-    //     ston_arr.push(stone_order);        
-    //  });
-  //   console.log(ston_arr.join(", "));
+      
     var color =jQuery(".metal_type.selected-item").attr("data-color");
     var metal =jQuery(".metal_type.selected-item").attr("data-metal");
     var style=jQuery(".face-option.selected-item").attr("data-styleorder");
     var stone=jQuery(this).attr("data-stoneorder");
     
     var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
-     alert(url_param);
+    // alert(url_param);
    //  alert(ston_arr);
 
 	var default_sku = "fancy-halo-flip-ring";
@@ -1183,10 +1165,11 @@ jQuery(document).on('click','.stone-option',function(){
 
 	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
 
-	 jQuery.ajax({
+	 /*jQuery.ajax({
 	            url: url,
 	            data: {default_sku:default_sku,sku:sku},
 	            type: "POST",
+
 	            success: function(response)
 	            {
 	               // alert(response); 
@@ -1200,7 +1183,7 @@ jQuery(document).on('click','.stone-option',function(){
 					}
 	             
 	             }
-              });
+              });*/
 
 });
 
@@ -1409,3 +1392,90 @@ jQuery( ".metal_type_stone1_side2" ).mouseover(function() {
 
 
 </script>
+
+<style> 
+    #c{
+        border:1px solid #ddd;
+    }
+    .canvas-container{
+        float: left;    
+    display: none;
+    }
+   
+    </style>
+
+
+<?php
+
+
+   $view = 1;
+    $width = 600;
+    $height = 600;
+    $width = 600;
+    $style = '1';
+    $stone = '1';
+    $metal = '2';
+    $color = '1,1,1';
+    $glow = '0.02';
+    if(isset($_REQUEST['view'])){
+        $view =  $_REQUEST['view'];     
+    }
+    if(isset($_REQUEST['height'])){
+        $height =  $_REQUEST['height'];     
+    }
+    if(isset($_REQUEST['width'])){
+        $width =  $_REQUEST['width'];       
+    }
+    if(isset($_REQUEST['style'])){
+        $style =  $_REQUEST['style'];       
+    }
+    if(isset($_REQUEST['stone'])){
+        $stone =  $_REQUEST['stone'];       
+    }
+    if(isset($_REQUEST['metal'])){
+        $metal =  $_REQUEST['metal'];       
+    }
+    if(isset($_REQUEST['color'])){
+        $color =  $_REQUEST['color'];       
+    }
+    if(isset($_REQUEST['glow']) && !empty($_REQUEST['glow'])){
+        $glow =  $_REQUEST['glow'];     
+    }
+
+    if(empty($_REQUEST['color'])){
+
+        $color = '1,1,1';
+    }
+
+    $exp = explode(",",$color);
+    $s = explode(",",$stone);  
+
+
+?>
+
+<?php
+$session = Mage::getSingleton('core/session');
+$SID=$session->getEncryptedSessionId(); //current session id
+
+?>
+
+
+    <script src="http://localhost/public_sc/jewlr/file_path/fabric.js"></script>
+    <script src="http://localhost/public_sc/jewlr/file_path/canvas.js"></script>
+
+    <input type="hidden" id="session_id" value="<?php echo $SID; ?>">   
+    <input type="hidden" id="view" value="<?php echo $view; ?>">    
+    <input type="hidden" id="height" value="<?php echo $height; ?>">    
+    <input type="hidden" id="width" value="<?php echo $width; ?>">  
+    <input type="hidden" id="style" value="<?php echo $style; ?>">  
+  
+    <input type="hidden" id="stone2" value="<?php echo $s[1]; ?>" >
+
+         <input type="hidden" id="stone" value="<?php  echo $s[0]; ?>"  >
+    <input type="hidden" id="metal" value="<?php echo $metal; ?>">  
+    <input type="hidden" id="glow" value="<?php echo $glow; ?>">    
+    <input type="hidden" id="color" data-val1="<?php echo $exp[0]; ?>" data-val2="<?php echo $exp[1]; ?>" data-val3="<?php echo $exp[2]; ?>">   
+
+    <canvas id="c" ></canvas>
+
+

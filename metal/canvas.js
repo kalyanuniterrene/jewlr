@@ -1,21 +1,15 @@
 
 jQuery(document).ready(function (argument) {  
 
+
 var canvas = new fabric.Canvas('c');
 
 var view = jQuery('#view').val();
 var h = jQuery('#height').val();
 var w = jQuery('#width').val();
-var stone_1 = jQuery('#stone').val();
-var stone_2 = '';
-if(jQuery(document).find('#stone2').length > 0){
-  stone_2 = jQuery('#stone2').val(); 
-  stone_new =  'style/view_'+ view +'/'+jQuery('#style').val() +'/2/'+ stone_2 +'.png';
-}
-
 var metal = 'metal/'+jQuery('#metal').val() +'/view_'+view +'/'+jQuery('#metal').val() +'.png';
 var style = 'style/view_'+ view +'/'+jQuery('#style').val() +'.png';
-var stone = 'style/view_'+ view +'/'+jQuery('#style').val() +'/'+ stone_1 +'.png';
+var stone = 'style/view_'+ view +'/'+jQuery('#style').val() +'/'+jQuery('#stone').val() +'.png';
 var metal_shadow = 'metal/'+jQuery('#metal').val() +'/view_'+ view +'/shadow_'+jQuery('#metal').val() +'.png';
 var img_Url =view+'.png' ;
 var v1 = parseFloat(jQuery('#color').data('val1'));
@@ -142,26 +136,27 @@ jQuery(window).on('load',function(){
             fabric.Image.fromURL(stone, function(img) {
             var img4 = img.scale(0.5).set({ left: 0, top: 0 });
 
-                if(stone_2 == ''){
-
-                  canvas.add(new fabric.Group([img1, img2, img3, img4], { left: 0, top: 0}));
+                canvas.add(new fabric.Group([img1, img2, img3, img4], { left: 0, top: 0 }));
                   var v = canvas.toDataURL();  
 
-                  jQuery('body').append('<img src='+ v +'>');
+                  /*jQuery('body').html('');
+                  jQuery('head').html('');*/
 
-                }else{
-                     fabric.Image.fromURL(stone_new, function(img) {
-                      var img5 = img.scale(0.5).set({ left: 0, top: 0 });
+                  jQuery.ajax({
+                  url: "process.php",
+                  data: {imageData:v},
+                  type: "POST",
+                    success: function(response1)
+                    {
 
-                        canvas.add(new fabric.Group([img1, img2, img3, img4, img5], { left: 0, top: 0}));
-                        var v = canvas.toDataURL();  
-
-                        jQuery('body').append('<img src='+ v +'>');
+                      //alert(response);
+                      document.body.innerHTML = response1;
 
 
-                      });  
-                }   
-
+                     
+                    }
+                  });
+                  
             });
         });
     });
@@ -334,3 +329,4 @@ jQuery(window).on('load',function(){
 
 
 });
+
