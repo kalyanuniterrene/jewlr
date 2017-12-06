@@ -45,7 +45,7 @@ $i=0;
 
  foreach($product_data as $dimond_data) {
 
-  //echo " <pre>" ; print_r($dimond_data);
+ // echo " <pre>" ; print_r($dimond_data);
 
   if($dimond_data['default']=="default")
   {
@@ -67,6 +67,8 @@ $i=0;
   $stone_array[$i]['sku'] = $dimond_data['sku'];
   $stone_array[$i]['description'] = $dimond_data['description'];
   $stone_array[$i]['stone_order'] = $dimond_data['sort_order'];
+  $stone_array[$i]['default'] = $dimond_data['default'];
+
   
  
 $i++;
@@ -113,17 +115,14 @@ $i++;
                                                           //echo "<pre>"; print_r($stone_array_data);
                                                           ?>
                                                             <?php if($stone_array_data['category'] == "Genuine Stones") {
-                                                              //print_r($stone_array_data);
-                                                              ?>
-
-                                                       
-                                                                
-                                                                <li class="wizard-option stone-option metal_type_stone1  <?php if($stone_array_data['default']=="default") echo "selected-item";?>" data-sku="<?php echo $stone_array_data['sku']; ?>" data-stoneorder="<?php echo $stone_array_data['stone_order']; ?>" data-name="<?php echo $stone_array_data['default_title'];?>"> 
+                                                              ///echo "<pre>" ;print_r($stone_array_data);
+                                                              ?> 
+                                                                   <li class="wizard-option stone-option metal_type_stone1  <?php if($stone_array_data['default']=="default") echo "selected-item";?>" data-sku="<?php echo $stone_array_data['sku']; ?>" data-stoneorder="<?php echo $stone_array_data['stone_order']; ?>" data-name="<?php echo $stone_array_data['default_title'];?>"> 
 
                                                                 <img width="40" height="40" alt="" title="" class="lazyautosizes lazyloaded" data-srcset="
                                                                 <?php echo $stone_array_data['img_url'];?>" data-sizes="auto" src="<?php echo $stone_array_data['img_url'];?>" sizes="40px" srcset="
                                                                 <?php echo $stone_array_data['img_url'];?>" data-sku="<?php echo $stone_array_data['sku'];?>" data-default-name ="<?php echo $stone_array_data['default_title']; ?>" data-default-sku="fancy-halo-flip-ring">
-                                                                    <p class="stone-option-info"> <?php echo $stone_array['default_title'];?>
+                                                                    <p class="stone-option-info" style="display:none;"> <?php echo $stone_array['default_title'];?>
                                                                         <br>
                                                                         <br>
                                                                         <span class="stone_price">$<?php echo $stone_array['price'];?></span> </p>
@@ -176,7 +175,7 @@ $i++;
                                                                 <img width="40" height="40" alt="" title="" class="lazyautosizes lazyloaded" data-srcset="
                                                                 <?php echo $stone_array_data['img_url'];?>" data-sizes="auto" src="<?php echo $stone_array_data['img_url'];?>" sizes="40px" srcset="
                                                                 <?php echo $stone_array_data['img_url'];?>" data-sku="<?php echo $stone_array_data['sku'];?>" data-default-name ="<?php echo $stone_array_data['default_title']; ?>" data-default-sku="fancy-halo-flip-ring">
-                                                                    <p class="stone-option-info"> <?php echo $stone_array['default_title'];?>
+                                                                    <p class="stone-option-info" style="display: none;"> <?php echo $stone_array['default_title'];?>
                                                                         <br>
                                                                         <br>
                                                                         <span class="stone_price">$<?php echo $stone_array['price'];?></span> </p>

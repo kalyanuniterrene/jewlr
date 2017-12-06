@@ -68,15 +68,32 @@ class Canvassignages_Liveeditor_IndexController extends Mage_Core_Controller_Fro
      
    }
 
-   public function image2Action()
+   public function createimageAction()
    {
-    
-      $sku = $this->getRequest()->getParam('sku');
-      $default_sku = $this->getRequest()->getParam('default_sku');
+      // Now coming to the most interesting part of the project. where we can go with the dynamic image creation.
 
-     $dir = "/home/web/public_sc/jewlr/media/fancy-halo-flip-ring/metal-10k-yellow-gold/";
-   
-     echo $path = realpath(Mage::getBaseDir().'/media/fancy-images/'.$default_sku.'/'.$sku.'/');
+        $metal = $this->getRequest()->getParam('metal');
+        $style = $this->getRequest()->getParam('style');
+        $stone = $this->getRequest()->getParam('stone');
+        $color = $this->getRequest()->getParam('color');
+        $default_sku = $this->getRequest()->getParam('default_sku');
+
+         for ($i=1; $i <=5 ; $i++) { 
+
+            
+          
+           
+         }
+
+         $block = $this->getLayout()->createBlock('core/template');
+
+         //print_r($block);
+
+           $block->setTemplate('canvassignages_liveeditor/image-create.phml');
+
+            // Render the template to the browser
+        echo $block->toHtml();
+      //echo "die";  
      
    }
    

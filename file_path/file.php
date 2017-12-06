@@ -5,11 +5,13 @@
 */
 ?>
 
+
+
 <?php
 
 //echo "Mr. Hudo";
 
-$url = 'http://localhost/public_sc/jewlr/file_path/index.php?metal=2&view=1&style=undefined&stone=10&color=2,2,2';
+$url = 'http://localhost/public_sc/jewlr/file_path/index2.php?metal=1&view=1&style=2&stone=1&color=1,1,1';
  $content = file_get_contents($url);
 
  echo ($content);

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Jwler_LowerPortionIcon>
-            <active>true</active>
-            <codePool>community</codePool>
-        </Jwler_LowerPortionIcon>
-    </modules>
-</config>

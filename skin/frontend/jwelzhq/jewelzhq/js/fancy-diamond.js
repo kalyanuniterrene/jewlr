@@ -163,6 +163,10 @@ jQuery(document).ready(function() {
         jQuery(document).find('.filteredItems').remove();
         jQuery(document).find('.filtered').slideUp();
         size_style_item.forEach(function(data, index) {
+
+
+
+
             var styleEachItem = '<div class="panel panel-default filteredItems stones_pane s1_pane sides-'+index+'">' +
                 '<!-- Stone 1 Pane Header -->' +
                 '<div class="panel-heading clearfix item_itm" data-toggle="collapse" data-parent="" href=".gem1Collapse' + index + '">' +
@@ -197,7 +201,7 @@ jQuery(document).ready(function() {
                 ' </div>' +
                 ' <h4>Genuine Stones<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>' +
                 ' <div class="wizard-option-category stone-option-category">' +
-                ' <ul class="thumbnails stone_thumbnails list-unstyled list-inline row ranitul-' + index + '">' +
+                ' <ul class="thumbnails stone_thumbnails list-unstyled list-inline row  ranitul-' + index + '">' +
 
                 '</ul>' +
                 ' </div>' +
@@ -212,6 +216,8 @@ jQuery(document).ready(function() {
                 '</div>' +
                 '<!-- End Stone 1 Pane Body -->' +
                 '</div>';
+
+                //alert(data.details);
             if (data.details != undefined) {
                 jQuery(styleEachItem).insertAfter('.panel.panel-default.stylePanel');
             }
@@ -267,7 +273,7 @@ jQuery(document).ready(function() {
                 ' </div>' +
                 '<h4>Simulated Stones<i data-container="body" data-placement="right" class="fa fa-question-circle tooltip-w"></i> </h4>' +
                 '<div class="wizard-option-category stone-option-category">' +
-                '<ul class="thumbnails stone_thumbnails list-unstyled list-inline row">' +
+                '<ul class="thumbnails stone_thumbnails list-unstyled list-inline row ranitul-' + index + '">' +
                 '</ul>' +
                 ' </div>' +
                 '</div>' +
@@ -285,10 +291,18 @@ jQuery(document).ready(function() {
 // click on each items
 
 jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
+
+	//alert('style panel clicked');
+
     var eachItmJson = JSON.parse(jQuery(this).find('.eachItm').html());
     jQuery(this).parent().find('.pane-content .stone-option-category ul').html('');
 
+    //alert(eachItmJson.length);
+
     for(let i=0; i<eachItmJson.length;i++){
+
+
+
         var default_class=eachItmJson[i].default;
 
 
@@ -302,7 +316,7 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
             '" data-title="'+eachItmJson[i].default_title+
             '" data-sku="'+eachItmJson[i].sku+
             '"data-stoneorder="'+eachItmJson[i].stone_order+
-            '" data-description="'+eachItmJson[i].description+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="wizard-option stone-option">'+
+            '" data-description="'+eachItmJson[i].description+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="'+default_putclass+'wizard-option stone-option">'+
             '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://localhost/public_sc/jewlr/media/'+ eachItmJson[i].image +'">'+
             '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+
             '</li>';
@@ -379,6 +393,7 @@ jQuery(document).on('mouseenter','.stone-option-category ul li',function (argume
 
 jQuery(document).on('click','.stone-option-category ul li',function (argument) {
     jQuery(this).addClass('selected-item').parent().parent().siblings('.stone-option-category').find('ul li').removeClass('selected-item');
+    jQuery(this).siblings().removeClass('selected-item');
 });
 
 

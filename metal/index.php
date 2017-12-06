@@ -80,7 +80,15 @@
 
 	<canvas id="c" ></canvas>
 
-	<script src="canvas.js"></script>
+	<script src="canvas-org.js"></script>
+
+	<script>
+      var canvas = document.getElementById('c');
+      var context = canvas.getContext('2d');
+
+      context.font = 'italic 40pt Calibri';
+      context.fillText('Hello World!', 150, 100);
+    </script>
 
 </body>
 </html>
