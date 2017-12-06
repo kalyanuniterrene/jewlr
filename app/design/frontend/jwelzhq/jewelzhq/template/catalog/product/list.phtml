@@ -115,7 +115,10 @@
     <?php // Grid Mode ?>
 
     <?php $_collectionSize = $_productCollection->count() ?>
-    <?php $_columnCount = $this->getColumnCount(); ?>
+    <?php 
+	//$_columnCount = $this->getColumnCount(); 
+		$_columnCount = 3;
+		?>
     <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
             <?php /*if ($i++%$_columnCount==0): ?>
@@ -170,10 +173,12 @@
     <?php endif; ?>
 
     <div class="toolbar-bottom">
-        <?php echo $this->getToolbarHtml() ?>
+        <?php //echo $this->getToolbarHtml() ?>
+		<?php echo $this->getToolbarBlock()->setTemplate('catalog/product/list/toolbar-bottom.phtml')->toHtml() ?>
     </div>
 </div>
 <?php endif; ?>
+
 
 <?php
     //set product collection on after blocks
