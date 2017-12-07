@@ -274,10 +274,12 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
     {
         $errUrl = $this->_getUrl('*/*/create', array('_secure' => true));
 
-        if (!$this->_validateFormKey()) {
+        /*if (!$this->_validateFormKey()) {
+            echo "dolao";
+        exit;
             $this->_redirectError($errUrl);
             return;
-        }
+        }*/
 
         /** @var $session Mage_Customer_Model_Session */
         $session = $this->_getSession();
@@ -306,6 +308,8 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
                 $this->_addSessionError($errors);
             }
         } catch (Mage_Core_Exception $e) {
+
+
             $session->setCustomerFormData($this->getRequest()->getPost());
             if ($e->getCode() === Mage_Customer_Model_Customer::EXCEPTION_EMAIL_EXISTS) {
                 $url = $this->_getUrl('customer/account/forgotpassword');

@@ -197,11 +197,17 @@ class Mage_Wishlist_IndexController extends Mage_Wishlist_Controller_Abstract
 
         try {
             $requestParams = $this->getRequest()->getParams();
+
+
             if ($session->getBeforeWishlistRequest()) {
                 $requestParams = $session->getBeforeWishlistRequest();
                 $session->unsBeforeWishlistRequest();
             }
             $buyRequest = new Varien_Object($requestParams);
+
+            /*echo "<pre>";
+            print_r($requestParams);
+            exit;*/
 
             $result = $wishlist->addNewItem($product, $buyRequest);
             if (is_string($result)) {

@@ -681,7 +681,7 @@ class Herve_ProductEditButton_Adminhtml_ButtonController extends Mage_Adminhtml_
         
 
 
-         exit();
+         //exit();
 
 
 
@@ -689,7 +689,6 @@ class Herve_ProductEditButton_Adminhtml_ButtonController extends Mage_Adminhtml_
 
         // Redirect to product edit page
         $this->_redirect('*/catalog_product/edit', array(
->>>>>>> c0fd1add807818efa2a3726b92a5d520fc86e04e
             'id'    => $productId,
             '_current'=>true
 			));

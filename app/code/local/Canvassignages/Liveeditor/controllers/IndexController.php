@@ -143,6 +143,75 @@ class Canvassignages_Liveeditor_IndexController extends Mage_Core_Controller_Fro
      //print_r();
 
    }
+
+   public function wishlistjewlerAction(){
+
+     echo "Takla";
+
+     $selectedTypeArray = $this->getRequest()->getParam('selectedTypeArray');
+
+     $arrayObj = json_decode($selectedTypeArray);
+
+      $product = Mage::getModel('catalog/product')->load(518);
+
+
+      $order_arr = array();
+
+      foreach ($arrayObj as $key => $value) {
+
+
+                  $order_arr[$value->parent_id] = $value->option_id;
+                  
+                   //$value->parent_id => $value->option_id,
+            
+                }
+
+                 //$supp =  ;
+
+      /*$wishlist = Mage::helper('wishlist')->getWishlist();
+
+      $storeId = Mage::app()->getStore()->getId();
+      $model = Mage::getModel('catalog/product');
+      $_product = $product; 
+      $params = array('product' => $data['229'],
+                      'qty' => 1,
+                      'store_id' => $storeId,
+                      'super_attribute' => array ( [132] => 4,[135] => 17, [136] => 20)
+                      );
+       $request = new Varien_Object();
+       $request->setData($params);
+      $result = $wishlist->addNewItem($_product, $request);*/
+       $customer = Mage::getSingleton('customer/session')->getCustomer();
+        $wishlist = Mage::getModel('wishlist/wishlist')->loadByCustomer($customer, true);
+
+       $product = Mage::getModel('catalog/product')->load(518);
+
+       $options = array(
+        'product' => 518,
+        'options' => $order_arr
+);
+
+
+       $buyRequest = new Varien_Object($options);
+
+       $result = $wishlist->addNewItem($product, $buyRequest);
+
+      $wishlist->save();
+
+      Mage::dispatchEvent('wishlist_add_product', array(
+         'wishlist'  => $wishlist,
+         'product'   => $product,
+         'item'      => $result
+      ));
+
+      Mage::helper('wishlist')->calculate();
+
+
+     echo "Product added successfully";
+
+     //print_r();
+
+   }
     
     
 }
