@@ -94,6 +94,104 @@ i { position:absolute;
 }
 
 </style>
+
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+<?php $productName = $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+<?php $productUrl = $_helper->productAttribute($_product, $_product->getProductUrl(), 'product_url'); ?>
+<?php $productImage = $_product->getImageUrl() ?>
+
+
+<!--Added The Modal-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          
+              <div class="modal__bar">
+                        <p class="modal__bar-text f-16">Send a Hint!</p>
+              </div>
+
+              <div class="modal-share__container">
+               <div class="pure-g">
+                  <div class="pure-u-1 pure-u-md-1-2">
+                     <div class="modal-share__image-container pure-hidden-sm-down">
+                        <img alt="Fancy Halo Flip Ring" title="Fancy Halo Flip Ring" class="pure-img modal-share__image" src="">
+                     </div>
+                  </div>
+                  <div class="pure-u-1 pure-u-md-1-2 modal__grid--right">
+                     <p class="modal-share__text modal-share__text--padding">
+                        <span class="modal-share__text--personalized">Your personalized</span>
+                        <span class="js-share-product-email-title modal-share__text--title">Fancy Halo Flip Ring</span>
+                     </p>
+                     <div id="modal_share_product_desc">
+                        <p class="modal-share__text modal-share__text--share-save pure-hidden-sm-down">Share &amp; Save 10%</p>
+                        <div class="pure-g">
+                           <div class="pure-u-1-3">
+                              <div class="pure-hidden-md-up">
+                                 <img alt="Fancy Halo Flip Ring" title="Fancy Halo Flip Ring" class="pure-img" src="">
+                              </div>
+                           </div>
+                           <div class="pure-u-2-3 pure-u-md-1">
+                              <p class="modal-share__text">
+                                 Share your personalized version of our <span class="js-share-product-email-title modal-share__text--strong">Fancy Halo Flip Ring</span> with your family, friends, and loved ones and we'll send them a 10% discount code!
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div id="modal_share_product_success"></div>
+                  </div>
+               </div>
+           </div>
+
+           <ul class="pure-hidden-sm-down modal-share__social-ave-list">
+               <li class="modal-share__social-ave-li modal-share__social-ave-li--email active">
+                  <span class="modal-share__social-ave-text">Email</span>
+                  </a>
+               </li>
+               <li class="modal-share__social-ave-li modal-share__social-ave-li--facebook js-item_share">
+                  <a href="javascript:popWin('https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($productUrl); ?>&t=<?php echo urlencode($productName); ?>', 'facebook', 'width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes');" title="<?php echo $this->__('Share on Facebook') ?>">Facebook</a>
+
+               </li>
+               <li class="modal-share__social-ave-li modal-share__social-ave-li--messenger js-item_share">
+                  <span class="modal-share__social-ave-text">Messenger</span>
+               </li>
+               <li class="modal-share__social-ave-li modal-share__social-ave-li--pinterest js-item_share">
+                  <span class="modal-share__social-ave-text">Pinterest</span>
+               </li>
+               <li class="modal-share__social-ave-li modal-share__social-ave-li--twitter js-item_share">
+                  <span class="modal-share__social-ave-text">Twitter</span>
+               </li>
+               <li class="modal-share__social-ave-li modal-share__social-ave-li--copy-link" style="display: inline-block;">
+                  <span class="modal-share__social-ave-text">Copy Link</span>
+               </li>
+            </ul>
+          
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+
+
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
 <?php
@@ -108,6 +206,8 @@ i { position:absolute;
             $options = $o->getData();
             $optionType = $o->getType();
             $option_title = $options['default_title'];
+
+            $parent_option_id = $options['option_id']; 
             
             
             $values = $o->getValues();
@@ -128,9 +228,15 @@ i { position:absolute;
                         $j=0;
                     
                      foreach ($product_data as $product_data) {
+
+                        //print_r($product_data);
+
+
                         $params[$i]['size'][$j]['name'] = ($product_data['default_title']);
                         $params[$i]['size'][$j]['price'] = ($product_data['price']);
                         $params[$i]['size'][$j]['default'] = ($product_data['default']);
+                        $params[$i]['size'][$j]['option_id'] = ($product_data['option_id']);
+                        $params[$i]['size'][$j]['parent_id'] = ($product_data['parent_id']);
                         $j++;
                      }
 
@@ -150,6 +256,8 @@ i { position:absolute;
                         $params[$i]['style'][$k]['default'] = ($product_data['default']);
                         $params[$i]['style'][$k]['sku'] = ($product_data['sku']);
                         $params[$i]['style'][$k]['sort_order'] = ($product_data['sort_order']);
+                        $params[$i]['style'][$k]['option_id'] = ($product_data['option_id']);
+                        $params[$i]['style'][$k]['parent_id'] = ($product_data['parent_id']);
                         $params[$i]['style'][$k]['item'] = array();
 
 
@@ -191,6 +299,8 @@ i { position:absolute;
                             $side_1['details'][$l]['description'] = ($product_data['description']);                           
                             $side_1['details'][$l]['default_title'] = ($product_data['default_title']);
                             $side_1['details'][$l]['stone_order'] = ($product_data['sort_order']);                           
+                            $side_1['details'][$l]['option_id'] = ($product_data['option_id']);                           
+                            $side_1['details'][$l]['parent_id'] = ($product_data['parent_id']);                           
                         
                             
                           $l++;
@@ -228,6 +338,8 @@ i { position:absolute;
                             $side_2['details'][$q]['description'] = ($product_data['description']);
                             $side_2['details'][$q]['default_title'] = ($product_data['default_title']);
                             $side_2['details'][$q]['stone_order'] = ($product_data['sort_order']);
+                            $side_2['details'][$q]['option_id'] = ($product_data['option_id']);
+                            $side_2['details'][$q]['parent_id'] = ($product_data['parent_id']);
                          
                             
                           $q++;
@@ -264,6 +376,8 @@ i { position:absolute;
                             $side_3['details'][$b]['description'] = ($product_data['description']);
                             $side_3['details'][$b]['default_title'] = ($product_data['default_title']);
                             $side_3['details'][$b]['stone_order'] = ($product_data['sort_order']);
+                            $side_3['details'][$b]['option_id'] = ($product_data['option_id']);
+                            $side_3['details'][$b]['parent_id'] = ($product_data['parent_id']);
                             
                           $b++;
                         }
@@ -299,6 +413,8 @@ i { position:absolute;
                             $side_4['details'][$a]['description'] = ($product_data['description']);
                             $side_4['details'][$a]['default_title'] = ($product_data['default_title']);
                             $side_4['details'][$a]['stone_order'] = ($product_data['sort_order']);
+                            $side_4['details'][$a]['option_id'] = ($product_data['option_id']);
+                            $side_4['details'][$a]['parent_id'] = ($product_data['parent_id']);
                         
                           $a++;
                         }
@@ -516,8 +632,11 @@ i { position:absolute;
                                 </div>
                                 <!-- FOR HOLIDAY SPECIAL - add class 'wizard_holiday_header' to #wizard_header_actions -->
                                 <div id="wizard_header_actions" class="pure-u-24-24 pure-u-md-1-3">
-                                    <button type="submit" class="add-to-cart-btn pure-button pure-button-primary pure-button--full-width" href="#" rel="nofollow"> Add to Cart </button>
-                                    <a id="add-wishlist-btn" class="add-to-wishlist-btn pure-button pure-button--full-width" href="http://onlinedevserver.biz/html/jwelzhq/details.html#" rel="nofollow"><span>Add To Wish List</span></a> <a class="js-item_share pure-button pure-button--full-width" href="http://onlinedevserver.biz/products/email_a_friend" data-style-code="JWL0024" data-share-type="email" rel="nofollow">Send A Hint</a> </div>
+                                    <button type="button" class="add-to-cart-btn pure-button pure-button-primary pure-button--full-width" rel="nofollow"> Add to Cart </button>
+
+                                    <a id="add-wishlist-btn" class="add-to-wishlist-btn pure-button pure-button--full-width" rel="nofollow"><span>Add To Wish List</span></a> 
+
+                                    <a class="js-item_share pure-button pure-button--full-width" data-toggle="modal" data-target="#myModal">Send A Hint</a> </div>
                             </div>
                             <!-- Item Wizard -->
                             <a name="wizard-named-link"></a>
@@ -893,7 +1012,7 @@ i { position:absolute;
                             <!-- end #wizard_accordion -->
                             <div id="wizard_footer">
                                 <div id="wizard_footer_actions">
-                                    <button type="submit" class="add-to-cart-btn pure-button pure-button-primary pure-button--full-width" href="#" rel="nofollow"> Add to Cart </button>
+                                    <button type="button" class="add-to-cart-btn pure-button pure-button-primary pure-button--full-width" href="#" rel="nofollow"> Add to Cart </button>
                                 </div>
                             </div>
                             <input type="hidden" id="defaultCatch" name="default_catch" value="yes">
@@ -922,6 +1041,62 @@ i { position:absolute;
 
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js'></script>
+
+<!-- Add To cart Code-->
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+            jQuery('.add-to-cart-btn').click(function(){
+
+                
+
+             eventsArray = new Array();
+
+
+              var selectCounter=0;
+
+                jQuery('.selected-item').each(function(){
+                    var parent_id = jQuery(this).attr('data-parentid');
+                    var option_id = jQuery(this).attr('data-optionid');
+
+                    if(parent_id !=undefined && option_id !=undefined){
+                        
+                        /*selectedTypeArray[selectCounter] = [];
+                        selectedTypeArray[selectCounter]["parent_id"] = parent_id;
+                        selectedTypeArray[selectCounter]["option_id"] = option_id;*/
+                        eventsArray[selectCounter] = { parent_id: parent_id, option_id: option_id };
+                        selectCounter++;
+                    }
+
+                    
+                });
+
+                var jsonString = JSON.stringify(eventsArray);
+
+                //console.log(selectedTypeArray[1].parent_id);
+
+                    var url = '<?php echo  Mage::getUrl('liveeditor/index/orderjewler')?>';
+
+                    var default_sku = jQuery(this).find('img').attr('data-default-sku');
+
+                    jQuery.ajax({
+                                    url: url,
+                                    data: {selectedTypeArray:jsonString},
+
+                                    type: "POST",
+                                    success: function(response)
+                                    {
+                                          console.log(response);
+                                      
+                                     }
+                            });
+
+                });
+
+
+        });
+
+</script>
 
 
 

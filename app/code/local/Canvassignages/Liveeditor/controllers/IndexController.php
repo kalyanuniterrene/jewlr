@@ -105,6 +105,44 @@ class Canvassignages_Liveeditor_IndexController extends Mage_Core_Controller_Fro
 	echo $metal;
      
    }
+
+   public function orderjewlerAction(){
+
+     echo "Takla";
+
+     $selectedTypeArray = $this->getRequest()->getParam('selectedTypeArray');
+
+     $arrayObj = json_decode($selectedTypeArray);
+
+      $product = Mage::getModel('catalog/product')->load(518);
+
+
+      $order_arr = array();
+
+      foreach ($arrayObj as $key => $value) {
+
+
+                  $order_arr[$value->parent_id] = $value->option_id;
+
+                   //$value->parent_id => $value->option_id,
+            
+                }
+
+      $request = new Varien_Object();
+      $request->setData($params);
+  
+      $cart = Mage::getModel('checkout/cart');
+        $cart->init();
+        $cart->addProduct($product, array('qty' => $qty,'options' => $order_arr
+        
+        ),$request);
+       $cart->save();
+
+     echo "Product added successfully";
+
+     //print_r();
+
+   }
     
     
 }

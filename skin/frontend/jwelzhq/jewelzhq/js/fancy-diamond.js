@@ -25,6 +25,8 @@ jQuery(document).ready(function() {
                 //console.log(data);
                 var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
+                    ' data-optionid="' + data.option_type_id + '"' +
+                    ' data-parentid="' + data.option_id + '"' +
                     ' data-color="' + data.valmsg + '"' +
                     ' data-metal="' + data.template + '"' +                    
                     ' data-description=""' +
@@ -54,6 +56,8 @@ jQuery(document).ready(function() {
 
                      var matal_item = '<li' +
                     ' data-title="' + data.default_title + '"' +
+                     ' data-optionid="' + data.option_type_id + '"' +
+                    ' data-parentid="' + data.option_id + '"' +
                     ' data-color="' + data.valmsg + '"' +
                     ' data-metal="' + data.template + '"' +  
                     ' data-description=""' +
@@ -117,6 +121,8 @@ jQuery(document).ready(function() {
 
                 var style_item = '<li data-title="' + data.name + '"' +
                     ' data-price="' + data.price + '"' +
+                    ' data-optionid="' + data.option_id + '"' +
+                    ' data-parentid="' + data.parent_id + '"' +
                     ' data-styleorder="' + data.sort_order + '"' +
                     ' data-description="' + data.description + '"' +
                     ' data-sku="' + data.sku + '"' +
@@ -131,6 +137,8 @@ jQuery(document).ready(function() {
 
                 var style_item = '<li data-title="' + data.name + '"' +
                     ' data-price="' + data.price + '"' +
+                    ' data-optionid="' + data.option_id + '"' +
+                    ' data-parentid="' + data.parent_id + '"' +
                     ' data-styleorder="' + data.sort_order + '"' +
                     ' data-description="' + data.description + '"' +
                     ' data-sku="' + data.sku + '"' +
@@ -316,6 +324,8 @@ jQuery(document).on('click','.panel-heading.item_itm',function (argument) {
             '" data-title="'+eachItmJson[i].default_title+
             '" data-sku="'+eachItmJson[i].sku+
             '"data-stoneorder="'+eachItmJson[i].stone_order+
+            '"data-optionid="'+eachItmJson[i].option_id+
+            '"data-parentid="'+eachItmJson[i].parent_id+
             '" data-description="'+eachItmJson[i].description+'" data-panelsize="'+eachItmJson[i].panelsize+'" data-panelType="'+eachItmJson[i].paneltype+'" data-price="'+eachItmJson[i].price+'" data-rgb="102,204,255" class="'+default_putclass+'wizard-option stone-option">'+
             '<img width="40" height="40" alt="" class="lazyautosizes lazyloaded" src="http://localhost/public_sc/jewlr/media/'+ eachItmJson[i].image +'">'+
             '<p class="stone-option-info"> Blue Topaz<span class="subnote">December</span><span class="stone_price">$12</span> </p>'+

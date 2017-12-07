@@ -112,7 +112,6 @@ var session_id = jQuery('#session_id').val();
 
 
 
-
   fabric.Image.fromURL(metal_shadow, function(img) {
     var img1 = img.scale(0.5).set({ left: 0, top: 0 });
 
@@ -140,7 +139,23 @@ var session_id = jQuery('#session_id').val();
 
                 if(stone_2 == ''){
 
-                  canvas.add(new fabric.Group([img1, img2, img3, img4], { left: 0, top: 0}));
+                              var ttt = new fabric.Text('foo', { 
+                                        fontFamily: 'Delicious_500', 
+                                        left: 150, 
+                                        top: 120 ,
+                                        fontSize: 20
+                                      });
+
+                              if(i==1)
+                              {
+                                canvas.add(new fabric.Group([img1, img2, img3, img4,ttt], { left: 0, top: 0}));
+                              }
+                              else{
+                                
+                                canvas.add(new fabric.Group([img1, img2, img3, img4], { left: 0, top: 0}));
+                              }
+
+                  
                   var v = canvas.toDataURL();  
 
                   //jQuery('body').append('<img src='+ v +'>');
@@ -376,6 +391,14 @@ jQuery(document).on('click','.stone-option',function(){
     }
   }
 
+
+/*
+canvas.add(new fabric.Text('foo', { 
+  fontFamily: 'Delicious_500', 
+  left: 100, 
+  top: 100 
+}));
+canvas.renderAll();*/
 
 
 
