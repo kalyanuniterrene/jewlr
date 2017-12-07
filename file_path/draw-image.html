@@ -467,7 +467,7 @@ function ControlPoint(angle, magnitude, owner, isFirst) {
     var endPt = my.asPoint();
     ctx.moveTo(startPt.x(), startPt.y());
     ctx.lineTo(endPt.x(), endPt.y());
-    ctx.stroke();
+   // ctx.stroke();
     endPt.drawSquare(ctx);
     ctx.restore();
   }
@@ -634,7 +634,7 @@ function LineSegment(pt, prev) {
     ctx.beginPath();
     ctx.moveTo(startPt.x(), startPt.y());
     ctx.bezierCurveTo(ctrlPt1.x(), ctrlPt1.y(), ctrlPt2.x(), ctrlPt2.y(), endPt.x(), endPt.y());
-    ctx.stroke();
+    //ctx.stroke();
     ctx.restore();
   }
 
@@ -690,7 +690,7 @@ function BezierPath(startPoint) {
 
     var current = my.head;
     while (current != null) {
-      current.draw(ctx);
+      current.draw(ctx);  //comment this line
       current = current.next;
     }
   };
