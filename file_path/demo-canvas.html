@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="html2canvas.js"></script>
+<script src="canvas2image.js"></script>
+<form id='form1' style="position:relative">
+    <div id='d1' style="position:absolute; top:0px; left:0px; z-index:1">  
+        <canvas id='canvas1' width='200' height='100'>
+              Your browser does not support HTML5 Canvas.
+        </canvas>
+    </div>
+    <div id='d2' style="position:absolute; top:50px; left:50px; z-index:2">
+        <canvas id='canvas2' width='100' height='200'>
+              Your browser does not support HTML5 Canvas.
+        </canvas>
+    </div>
+    <div id='d3' style="position:absolute; top:75px; left:75px; z-index:3">
+        <canvas id='canvas3' width='50' height='50'>
+              Your browser does not support HTML5 Canvas.
+        </canvas>
+    </div>
+  </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input id='btn1' type="button" onClick="demoDisplay()" value="Hide canvas with display property">
+<input id='btn2' type="button" onClick="demoVisibility()" value="Hide canvas with visibility property">
+<input id='btn3' type="button" onClick="demoOrder()" value="Place blue over red">
+
+</head>
+<body onLoad="loadMe()">
+
+
+<script>
+function loadMe()
+{
+    var canvas = document.getElementById("canvas1");
+    if (canvas.getContext) { // Canvas Support
+       var ctx = canvas.getContext("2d");
+       // Work with context
+       var grd=ctx.createLinearGradient(0,0,ctx.canvas.height,ctx.canvas.width);
+       grd.addColorStop(0,'#8ed6ff');
+       grd.addColorStop(1,'#004cb3');
+       ctx.fillStyle=grd;
+       ctx.rect(0,0,ctx.canvas.width,ctx.canvas.height);
+       ctx.fill();
+    }   
+    var canvas = document.getElementById("canvas2");
+    if (canvas.getContext) { // Canvas Support
+       var ctx = canvas.getContext("2d");
+       // Work with context
+       var grd=ctx.createLinearGradient(0,0,ctx.canvas.height,ctx.canvas.width);
+       grd.addColorStop(0,'#C00');
+       grd.addColorStop(1,'#D00');
+       ctx.fillStyle=grd;
+       ctx.rect(0,0,ctx.canvas.width,ctx.canvas.height);
+       ctx.fill();
+    }   
+    var canvas = document.getElementById("canvas3");
+    if (canvas.getContext) { // Canvas Support
+       var ctx = canvas.getContext("2d");
+       // Work with context
+       var grd=ctx.createLinearGradient(0,0,ctx.canvas.height,ctx.canvas.width);
+       grd.addColorStop(0,'#00C');
+       grd.addColorStop(1,'#00D');
+       ctx.fillStyle=grd;
+       ctx.rect(0,0,ctx.canvas.width,ctx.canvas.height);
+       ctx.fill();
+    }   
+}
+
+function demoVisibility()
+{
+    btn = document.getElementById('btn2')
+    if (btn.value==='Hide canvas with visibility property') {
+        btn.value = 'Show canvas with visibility property';
+        document.getElementById("d2").style.visibility="hidden";
+    } else {
+        btn.value = 'Hide canvas with visibility property';
+        document.getElementById("d2").style.visibility="visible";
+    }
+}
+
+function demoDisplay()
+{
+    btn = document.getElementById('btn1')
+    if (btn.value==='Hide canvas with display property') {
+        btn.value = 'Show canvas with display property';
+        document.getElementById("d1").style.display="none";
+    } else {
+        btn.value = 'Hide canvas with display property';
+        document.getElementById("d1").style.display="inline";
+    }
+}
+
+function demoOrder()
+{
+    btn = document.getElementById('btn3')
+    if (btn.value==='Place blue over red') {
+        btn.value = 'Place red over blue';
+        document.getElementById("d1").style.zIndex=2;
+        document.getElementById("d2").style.zIndex=1;
+    } else {
+        btn.value = 'Place blue over red';
+        document.getElementById("d1").style.zIndex=1;
+        document.getElementById("d2").style.zIndex=2;
+    }
+}
+
+html2canvas(document.body, {
+                    allowTaint: true,
+                    taintTest: false,
+                    onrendered: function(canvas) {
+                        document.body.appendChild(canvas);
+                    }
+                });
+</script>
+
+</body>
+</html>

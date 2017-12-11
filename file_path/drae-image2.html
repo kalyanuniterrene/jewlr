@@ -5,25 +5,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="http://code.jquery.com/jquery.min.js"></script>
-	<script src="http://fabricjs.com/lib/fabric.js"></script>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://fabricjs.com/lib/fabric.js"></script>
+
+<script src="html2canvas.js"></script>
+<script src="canvas2image.js"></script>
 
 
 
-<!-- <style type="text/css">
+<link href="http://html2canvas.hertzen.com/site/css/bootstrap.min.css" rel="stylesheet">
+
+<style type="text/css">
   #canvasDiv{
-    position: relative;
+    /*position: relative;*/
   }
   .canvas-ring-text{
-    position: absolute;
-    top: 8px;
-    left: -61px;
+    /*position: absolute;*/
+    /*top: -2px;
+    left: -80px;*/
   }
-</style> -->
+</style>
 
-	
+  
 </head>
 
 
@@ -33,44 +38,20 @@
 
 
 <body>
+<input size="80" type="text" id="curve" name="curve" value="99.2,177.2,130.02,60.0,300.5,276.2,300.7,176.2" disabled=true>
+<input size="80" type="text" id="text" name="text" value="Text to path in HTML5!">
+<div id="canvasDiv" style="position: relative;"></div>
+<div id="canvasDiv2"></div>
+      <div id="point" />
 
-	<table>
-  <TR>
-    <TH>Bezier Curve</TH>
-    <TD>
-      <input size="80" type="text" id="curve" name="curve" value="99.2,177.2,130.02,60.0,300.5,276.2,300.7,176.2" disabled=true>
-    </TD>
-  </TR>
-  <TR>
-    <TH>Text</TH>
-    <TD>
-      <input size="80" type="text" id="text" name="text" value="Text to path in HTML5!">
-    </TD>
-  </TR>
-  <TR>
-    <TD colspan=2>Click the control points to change the curve</TD>
-  </TR>
-  <TR>
-    <TD colspan=2>Edit the text on the fly!</TD>
-  </TR>
-  <TR>
-    <TD colspan=2>
-      <div id="canvasDiv">
-        
-      </div>
-      
-    </TD>
-  </TR>
-</table>
-<TR>
-  <TD>
-    <div id="point" />
+  
+    
 
 
-	<!-- <script src="canvas.js"></script> -->
+  <!-- <script src="canvas.js"></script> -->
 
-	<script type="text/javascript">
-		//updated 20160824
+  <script type="text/javascript">
+    //updated 20160824
 //added the ability to edit the Bezier curve using mouse click/drag
 
 //#using jQuery.min.js  //auto included by jsFiddle
@@ -103,6 +84,9 @@ var HEIGHT;
 var ctx;
 var canvas;
 
+var canvasDiv;
+
+
 //window.onload = function () { 
 //commented for jsFiddle
 startIt();
@@ -110,7 +94,16 @@ startIt();
 
 function startIt() {
   canvasDiv = document.getElementById('canvasDiv');
-  canvasDiv.innerHTML = '<canvas class="canvas-ring-text" id="layer0" width="500" height="500"</canvas>'; //for IE
+ // canvasDiv2 = document.getElementById('canvasDiv2');
+  //canvasDiv = document.getElementById('canvasDiv');
+ canvasDiv.innerHTML = '<div id="newimage" class="product-deatils-teko-hudo"><img src="http://localhost/public_sc/jewlr/media/catalog/product/cache/2/thumbnail/400x/9df78eab33525d08d6e5fb8d27136e95/1/_/1_1_3.png" /></div><canvas class="canvas-ring-text" id="layer0" width="500" height="500" style="transform: matrix3d(1,0,0.00,0,0.00,0.5,-0.87,0,0,0.87,0.5,0,0,0,0,1);-webkit-transform: matrix3d(1,0,0.00,0,0.00,0.5,-0.87,0,0,0.87,0.5,0,0,0,0,1); top: -2px;left: -80px;position: absolute;"></canvas>';
+
+
+  /*canvasDiv.innerHTML = ' <div style="position: relative;" id="newimage" class="product-deatils-teko-hudo"><canvas id="layer0" width="500" height="300"></canvas><img src="http://localhost/public_sc/jewlr/media/catalog/product/cache/2/thumbnail/400x/9df78eab33525d08d6e5fb8d27136e95/1/_/1_1_3.png"  style="position: absolute; left: -80px; top:-2px;" /></div>';*/ //for IE
+
+    //canvasDiv2.innerHTML = '<canvas id="mycanvas" width="500" height="500"></canvas>';
+
+
   canvas = document.getElementById('layer0');
   WIDTH = canvas.width;
   HEIGHT = canvas.height;
@@ -128,7 +121,8 @@ background.onload = function(){
 
 
   ctx.fillStyle = "black";
-  ctx.font = "10px arial black";
+  ctx.font = "900 12px arial black";
+
   curve = document.getElementById('curve');
   curveText = document.getElementById('text');
   $(curveText).keyup(function(e) {
@@ -585,7 +579,7 @@ function LineSegment(pt, prev) {
               ctrlPt2y + ' + yoff, ' +
               x + ' + xoff, ' +
               y + ' + yoff);';
-		*/
+    */
     }
   }
   this.toPoints = function() {
@@ -635,7 +629,7 @@ function LineSegment(pt, prev) {
               ctrlPt2y + ' + yoff, ' +
               x + ' + xoff, ' +
               y + ' + yoff);';
-		*/
+    */
     }
   }
 
@@ -727,7 +721,7 @@ function BezierPath(startPoint) {
 
     var current = my.head;
     while (current != null) {
-      current.draw(ctx);  //comment this line
+      //current.draw(ctx);  //comment this line
       current = current.next;
     }
   };
@@ -804,22 +798,22 @@ function BezierPath(startPoint) {
       //alert(start.sX);
       ribbon = {
         maxChar: 50,
-        startX: start.sX,
+        /*startX: start.sX,
         startY: start.sY,
         control1X: def.c1x,
         control1Y: def.c1y,
         control2X: def.c2x,
         control2Y: def.c2y,
         endX: def.eX,
-        endY: def.eY
-       /* startX: 107,
+        endY: def.eY*/
+        startX: 107,
         startY: 281,
-        control1X: 134,
-        control1Y: 340,
+        control1X: 175,
+        control1Y: 325,
         control2X: 344,
-        control2Y: 491,
-        endX: 369,
-        endY: 213*/
+        control2Y: 550,
+        endX: 380,
+        endY: 213
       };
     }
     return ribbon;
@@ -828,10 +822,10 @@ function BezierPath(startPoint) {
 
     var myString = [];
     /*
-	  ['function drawShape(ctx, xoff, yoff) {',
+    ['function drawShape(ctx, xoff, yoff) {',
        '  ctx.beginPath();',
       ];
-	  */
+    */
 
     var current = my.head;
     while (current != null) {
@@ -848,7 +842,36 @@ function BezierPath(startPoint) {
   };
 }
 
-	</script>
+/*jQuery('#mycanvas').html(jQuery('#canvasDiv').html());*/
 
+  </script>
+ <script>
+           /*  html2canvas(jQuery("#canvasDiv"), {
+            onrendered: function(canvas) {
+                theCanvas = canvas;
+                document.body.appendChild(canvas);
+
+                // Convert and download as image 
+                Canvas2Image.saveAsPNG(canvas); 
+                $("#canvasDiv").append(canvas);
+                // Clean up 
+                //document.body.removeChild(canvas);
+            }
+        });*/
+          html2canvas(document.body, {
+                    allowTaint: true,
+                    taintTest: false,
+                    onrendered: function(canvasDiv) {
+                        document.body.appendChild(canvasDiv);
+                    }
+                });
+
+          
+            
+
+            
+
+        </script>
+ 
 </body>
 </html>
