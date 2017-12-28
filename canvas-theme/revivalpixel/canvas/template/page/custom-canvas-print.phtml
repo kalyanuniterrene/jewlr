@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<!-- Main Content -->
+<div class="main-content">
+    <?php
+    if (Mage::registry('current_product')) { //check if product global 'registry' object is available
+        $product = Mage::registry('current_product');
+        $sku = $product->getSku();
+    }
+    ?>
+
+    <!-- Main Banner -->
+    <?php
+    $attribute = $product->getCanvasBanner();
+    $attributeName = 'canvas_banner';
+    echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+    ?>
+
+    <?php if($store_coupon_counter !=0) {?>
+			<!-- Offer Box -->
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_discount')->toHtml(); ?> 
+	<?php } ?>
+	
+ 
+
+    <!-- FIxed Navigation -->
+    <?php
+    $attribute = $product->getFlexNavigation();
+    $attributeName = 'flex_navigation';
+    echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+    ?>
+
+
+    <!-- How It Works -->
+    <?php
+    $attribute = $product->getHowItWork();
+    $attributeName = 'how_it_work';
+    echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+    ?>
+
+    <!-- Frame Art -->
+    <?php
+    $attribute = $product->getFrameArt();
+    $attributeName = 'frame_art';
+    echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+    ?>
+
+    <!-- Photo Effect -->
+    <div class="photo-effect padding-70" id="photo-effect">
+        <div class="container text-center">
+            <div class="row">
+                <h3>photo effects</h3>
+                <p>Give a contemporary touch to your heart flow <br />moments with custom floating frames.</p>
+                <?php $opt_title = "Photo Filters"; ?>
+                <?php $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title); ?>
+                <div class="tab-content">
+                    <div id="dv_original" class="tab-pane fade in active">
+                        <div class="frame-box">
+                            <div id="original">
+                                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/original.jpg">
+                                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/original-after.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dv_sepia" class="tab-pane fade">
+                        <div class="frame-box">
+                            <div id="sepia-image">
+                                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/original.jpg">
+                                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/filter-sepia.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dv_greyscale" class="tab-pane fade">
+                        <div class="frame-box">
+                            <div id="greyscale">
+                                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/filter-image-original.jpg">
+                                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/filter-image-b&w.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form method="post" target="popup" action="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'canvas-product'; ?>" onsubmit="window.open('about:blank','popup','width=3260,height=700');">
+                    <ul class="nav nav-tabs color_scale">
+                        <?php $count = 1 ?>
+                        <?php foreach ($product_data as $canvas_data) { ?>
+                           <?php if($count <= 2) {$count++; continue; } ?>
+                            <?php
+                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                            $img_url = $canvas_data['img_url'];
+                            if ($canvas_data['default'] == "default") {
+                                $active = $canvas_data['default'];
+                            }
+                            ?>
+                            <li data-attr="<?php echo $canvas_data['default_title']; ?>" class="<?php echo ($active == $canvas_data['default_title']) ? "active" : ''; ?>">
+                                <a data-toggle="tab" href="#dv_<?php echo strtolower($canvas_data['canvas_type_redirect']); ?>">
+                                    <img id="<?php echo $canvas_data['default_title']; ?>" src="<?php echo $media_url . $img_url ?>" alt="Thumb">
+                                    <span><?php echo $canvas_data['option_label']; ?></span>
+                                </a>
+                                <input type="hidden" value="<?php echo $sku; ?>" name="product-sku" />
+                                <div class="color_scale_radio" style="display: none;">
+								<input type="radio" id="color" name="color" value="<?php echo $canvas_data['default_title']; ?>" for="<?php echo $canvas_data['default_title']; ?>" />
+                                </div>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                    <button type="submit" class="button large border">Try Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size & Prize -->
+    <div class="size-prize padding-70" id="size-prize">
+        <div class="container">
+            <div class="row">
+                <?php $opt_title = "Canvas Type"; ?>
+                <?php $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title); ?>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <h3>Size & Prizes</h3>
+                    <p>Choose the wide arrays of shapes,<br /> sizes, and patterns of your<br /> canvas style.</p>
+                    <h6>Choose your type:</h6>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <?php
+                        foreach ($product_data as $canvas_data) {
+                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                            $img_url = $canvas_data['img_url'];
+                            $active = '';
+                            if ($canvas_data['default'] == "default") {
+                                $active = $canvas_data['default_title'];
+                            }
+                            ?>
+                            <li role="presentation" class="<?php echo ($active == $canvas_data['default_title']) ? 'active' : ''; ?>">
+                                <a href="#<?php echo $canvas_data['canvas_type_redirect']; ?>" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <img src="<?php echo $media_url . $img_url ?>" alt="Size">
+                                    <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" class="select-image" alt="Select Image">
+                                    <span><?php echo $canvas_data['option_label']; ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>	
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="tab-content">
+						<div role="tabpanel" class="tab-pane " id="Rolled-Cannvas-test">
+							<form method="post" target="_blank" action="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'canvas-product'; ?>">
+										
+							</form>		
+						</div>
+                        <?php
+                        $j = 1;
+                        foreach ($product_data as $canvas_data) {
+                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                            $img_url = $canvas_data['img_url'];
+                            if ($canvas_data['default'] == "default") {
+                                $active = $canvas_data['default_title'];
+                            }
+                            ?>									
+                            <div role="tabpanel" class="tab-pane <?php echo (substr_count($active, $canvas_data['default_title']) > 0) ? 'active' : ''; ?>" id="<?php echo $canvas_data['canvas_type_redirect']; ?>">
+                                <form method="post" target="create_canvas" action="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'canvas-product'; ?>" onsubmit="window.open('about:blank','create_canvas','width=3260,height=700');">
+                                    <div class="price-size-table">
+                                        <ul class="list-unstyled">
+                                            <li class="main-title"><h6><?php echo $canvas_type = $canvas_data['option_label']; ?></h6></li>
+                                            <li class="sub-title">
+                                                <span class="size-title">Select size</span>
+                                                <span class="discount-title">discounted prize</span>
+                                            </li>
+                                            <?php
+                                            $opt_title = $canvas_data['option_label'] . " Size";
+
+                                            $opt_title_custom = $canvas_data['option_label'] . " Custom Size";
+                                            $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title);
+                                            $i = 0;
+                                            foreach ($product_data as $canvas_data) {
+                                                $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                                $img_url = $canvas_data['img_url'];
+
+                                                $canvas_type_option_title = $canvas_data['default_title'];
+                                                $canvas_type_option_label = $canvas_data['option_label'];
+                                                $canvas_data_type = str_replace(" ", "_", strtolower($canvas_type_option_title));
+                                                $canvas_type_redirect = str_replace(" ", "-", ($canvas_type_option_title));
+
+                                                $default = $canvas_data['default'];
+                                                $data_wh = explode('*', $canvas_type_option_title);
+
+                                                $initial_price = $canvas_data['initial_price'];
+                                                $price = number_format((float) $canvas_data['price'], 2, '.', '');
+                                                $checked = 'checked="checked"';
+                                                $width = $canvas_data['width'];
+                                                if ($default == 'default') {
+                                                    $price_default = number_format((float) $canvas_data['price'], 2, '.', '');
+                                                    $initial_price_default = number_format((float) $canvas_data['initial_price'], 2, '.', '');
+                                                }
+                                                ?>
+                                                <li>
+                                                    <input id="option<?php echo $j . $i; ?>" name="selector<?php echo $j; ?>" <?php echo ($default == 'default') ? "checked" : "" ?> type="radio" value='<?php echo $canvas_type_option_label ?>' data-price="<?php echo $price; ?>" data-initial-price="<?php echo $initial_price; ?>">
+                                                    <label for="option<?php echo $j . $i; ?>"><?php echo $canvas_type_option_label; ?>"</label>
+                                                    <div class="check"></div>
+                                                    <span class="price">
+                                                        <?php if ($initial_price > $price) { ?>
+                                                            <strike>$<?php echo $initial_price; ?></strike>
+                                                        <?php } ?>
+                                                        $<?php echo $price; ?>
+                                                    </span>
+
+                                                </li>
+                                                <?php $i++;
+                                            }
+                                            ?>  							    		
+                                            <li class="custom-size" >
+                                                <input id="option<?php echo $j . $i; ?>" name="selector<?php echo $j; ?>" type="radio" value="custom" data-w="Custom" >
+                                                <label for="option<?php echo $j . $i; ?>">Custom Size</label>
+                                                <div class="check"></div>
+                                                <?php
+                                                    $width_data = array();
+                                                    $height_data = array();
+                                                    $product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title_custom);
+                                                    foreach ($product_data_custom as $canvas_data_custom){
+                                                        $canvas_type_option_title = $canvas_data_custom['default_title'];
+                                                        $data_wh = explode('*', $canvas_type_option_title);
+                                                        $width_data[] = $data_wh[0];
+                                                        $height_data[] = $data_wh[1];
+                                                    } 
+													$width_data = array_unique($width_data);
+													$height_data = array_unique($height_data);
+													sort($width_data);
+													sort($height_data);
+                                                    ?> 
+                                                <select class="width" name="width" class="disable" disabled="disabled">
+                                                    <?php foreach ($width_data as $key => $value) { ?>
+                                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <select class="height" name="height" class="disable" disabled="disabled">
+                                                    <?php foreach ($height_data as $key => $value) { ?>
+                                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </li>
+                                            <input type="hidden" name="type" value="<?php echo $canvas_type; ?>">
+                                            <input type="hidden" name="color_scale" value="<?php echo $canvas_type; ?>">
+                                            <input type="hidden" value="<?php echo $sku; ?>" name="product-sku" >
+                                            <li class="final-price">
+                                                <strike class="final_initial_price">$<?php echo $initial_price_default; ?></strike><span class="final_price">$<?php echo $price_default; ?></span>											
+                                                <button type="submit" class="button large blue start_order">Create My Canvas</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+                            <?php $j++;
+                        }
+                        ?>						    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Happiness Guarantee Box -->
+    <?php
+    $attribute = $product->getHappinessGuarentee();
+    $attributeName = 'happiness_guarentee';
+    echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+    ?>
+
+
+<!-- Infornmation Section -->
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/detail.phtml')->toHtml(); ?>
+<!-- Main Product -->
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/related.phtml')->toHtml(); ?>
+
+
+</div>
+<?php echo $this->getChildHtml('global_messages') ?>
+<!-- Footer -->
+
+<?php echo $this->getChildHtml('footer_before') ?>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<?php echo $this->getAbsoluteFooter() ?>
+
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+<script type="text/javascript">
+    // Fixed Navigation JS
+    jQuery(document).ready(function (e) {
+        jQuery('#fix-nav').scrollToFixed();
+        jQuery('.res-nav_click').click(function () {
+            jQuery('.main-nav').slideToggle();
+            return false
+        });
+        if (jQuery(window).width() < 768) {
+            jQuery('.main-nav').hide();
+        }
+
+        jQuery('.color_scale > li').click(function () {
+            jQuery('.color_scale > li #color').attr('checked', false);
+            jQuery(this).children().children('#color').attr('checked', 'true');
+        });
+		
+		jQuery('.price-size-table ul li label').click(function(){
+			var parent_id = jQuery(this).parent().parent().parent().parent().parent().attr('id');
+			if(jQuery(this).parent().hasClass('custom-size')){
+				
+				//alert();
+				
+			
+             jQuery(this).parent().children('.width').removeAttr('disabled', true).removeClass('disable');
+             jQuery(this).parent().children('.height').removeAttr('disabled', true).removeClass('disable');
+			
+			
+				var ratio = jQuery(this).parent().children('.width').val()+'*'+jQuery(this).parent().children('.height').val();
+				jQuery.ajax({
+					url: '<?php echo Mage::getBaseUrl() . 'canvas-product/index/customprice'; ?>',
+					data: {
+						ratio: ratio,
+						title: jQuery('#'+parent_id+' .main-title h6').text()
+					},
+					type: "POST",
+					success: function(response)
+					{
+						var obj = JSON.parse(response);
+						jQuery('#'+parent_id+' .final-price .final_price').text('$'+obj.price);
+						jQuery('#'+parent_id+' .final-price .final_initial_price').text('$'+obj.initial_price);
+					}
+				});
+			} else {	
+				
+				 jQuery('.width').attr('disabled', true);
+				 jQuery('.width').addClass('disable');
+				jQuery('.height').attr('disabled', true);
+				jQuery('.height').addClass('disable');
+				
+							
+				jQuery('#'+parent_id+' .final-price .final_price').text('$'+jQuery('#'+jQuery(this).attr('for')).attr('data-price'));
+				jQuery('#'+parent_id+' .final-price .final_initial_price').text('$'+jQuery('#'+jQuery(this).attr('for')).attr('data-initial-price'));
+			}
+		});
+		
+		jQuery('.custom-size select').change(function(){
+			
+			var parent_id = jQuery(this).parent().parent().parent().parent().parent().attr('id');
+			var ratio = jQuery(this).parent().children('.width').val()+'*'+jQuery(this).parent().children('.height').val();
+			jQuery.ajax({
+				url: '<?php echo Mage::getBaseUrl() . 'canvas-product/index/customprice'; ?>',
+				data: {
+					ratio: ratio,
+					title: jQuery('#'+parent_id+' .main-title h6').text()
+				},
+				type: "POST",
+				success: function(response)
+				{
+					var obj = JSON.parse(response);
+					jQuery('#'+parent_id+' .final-price .final_price').text('$'+obj.price);
+					jQuery('#'+parent_id+' .final-price .final_initial_price').text('$'+obj.initial_price);
+				}
+			});
+		});
+    });
+	
+
+    // Fixed Navigation Smooth Scroll JS
+    jQuery(document).ready(function () {
+        if (screen && screen.width > 991) {
+            jQuery(".main-nav li a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery(jQuery.attr(this, 'href')).offset().top - 68
+                    }, 800, function () {
+                        //window.location.hash = hash;
+                    });
+                }
+            });
+        }
+        if (screen && screen.width < 992) {
+            jQuery(".main-nav li a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery($.attr(this, 'href')).offset().top - 150
+                    }, 800, function () {
+                        //window.location.hash = hash;
+                    });
+                }
+            });
+        }
+        jQuery('.main-nav li a').on('click', function () {
+            jQuery('.main-nav li a.current').removeClass('current');
+            jQuery(this).addClass('current');
+            event.preventDefault();
+        });
+    });
+
+    // Mobile Navigation
+    jQuery(document).ready(function () {
+     
+        jQuery(".color_scale li:first").addClass('active');
+
+        var myContentOriginal = jQuery("#dv_original .frame-box").html();
+        var myContentSepia = jQuery("#dv_sepia .frame-box").html();
+        var myContentGrayScale = jQuery("#dv_greyscale .frame-box").html();
+        
+        jQuery("#original").twentytwenty();
+
+        //jQuery("#dv_original .frame-box").html('');
+        jQuery("#dv_sepia .frame-box").html('');
+        jQuery("#dv_greyscale .frame-box").html('');
+
+        jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
+            jQuery('a[href="'+event.target.hash+'"]').tab('show');
+
+            // refresh the slider            
+            if(event.target.hash == "#dv_original") {
+                jQuery('#dv_original .frame-box').html('');
+                //jQuery('#dv_original').append(jQuery(myContentOriginal).twentytwenty());
+                jQuery('#dv_original .frame-box').append(myContentOriginal).fadeIn('slow');
+                jQuery('#dv_original .frame-box').find('div').twentytwenty();
+            } else if(event.target.hash == "#dv_sepia") {
+                jQuery('#dv_sepia .frame-box').html('');
+                //jQuery('#dv_sepia .frame-box').append(jQuery(myContentSepia).twentytwenty());
+                jQuery('#dv_sepia .frame-box').append(myContentSepia).fadeIn('slow');;
+                jQuery('#dv_sepia .frame-box').find('div').twentytwenty();
+            } else if(event.target.hash == "#dv_greyscale") {
+                jQuery('#dv_greyscale .frame-box').html('');
+                //jQuery('#dv_greyscale .frame-box').append(jQuery(myContentGrayScale).twentytwenty());
+                jQuery('#dv_greyscale .frame-box').append(myContentGrayScale).fadeIn('slow');;
+                jQuery('#dv_greyscale .frame-box').find('div').twentytwenty();
+            }
+        });
+    });
+
+    // Image Before After Effect JS
+    jQuery(window).on('load', function () {
+        jQuery("#original").twentytwenty();
+        //jQuery("#sepia-image").twentytwenty();
+        //jQuery("#greyscale").twentytwenty();
+    });
+</script>
+
+
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+<script>
+	(function( $ ) {
+		jQuery('body').imagesLoaded()
+        .always( function( instance ) {
+            console.log('all images loaded');
+        })
+        .done( function( instance ) {
+            console.log('all images successfully loaded');            
+        })
+        .fail( function() {
+            console.log('all images loaded, at least one is broken');
+        })
+        .progress( function( instance, image ) {
+            var result = image.isLoaded ? 'loaded' : 'broken';
+            console.log( 'image is ' + result + ' for ' + image.img.src );
+            // change class if the image is loaded or broken
+            var $item = $( image.img ).parent();
+            $item.removeClass('is-loading');
+            if ( !image.isLoaded ) {
+                $item.addClass('is-broken');
+            }
+        });
+	})( jQuery );
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $product = Mage::registry('current_product'); ?>
+<!-- Infornmation Section -->
+<div class="information light-creame-bg padding-top-70" id="information">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#Info" role="tab" data-toggle="tab">Info</a></li>
+
+                    <?php if ((Mage::registry('current_product')->getData('wall_display_panels'))) { ?>
+                        <li role="presentation"><a href="#wall_display_panels" role="tab" data-toggle="tab">Wall Display Panels</a></li>
+                    <?php } ?>
+					
+					<?php if ((Mage::registry('current_product')->getData('wrap_border'))) { ?>
+                        <li role="presentation"><a href="#wrap_border" role="tab" data-toggle="tab">Wrap Border</a></li>
+                    <?php } ?>
+                    
+                    <?php if ((Mage::registry('current_product')->getData('collage_printing_options'))) { ?>
+                        <li role="presentation"><a href="#collage-printing-options" role="tab" data-toggle="tab">Collage Printing Options</a></li>
+                    <?php } ?>
+                        
+                    <?php if ((Mage::registry('current_product')->getData('plate_surfaces'))) { ?>
+                        <li role="presentation"><a href="#plate-surfaces" role="tab" data-toggle="tab">Plate Surfaces</a></li>
+                    <?php } ?>
+                        
+                    <?php if ((Mage::registry('current_product')->getData('frame'))) { ?>
+                        <li role="presentation"><a href="#frame" role="tab" data-toggle="tab">Frame</a></li>
+                    <?php } ?>
+
+                    <?php if ((Mage::registry('current_product')->getData('image_customization'))) { ?>
+                        <li role="presentation"><a href="#image-customization" role="tab" data-toggle="tab">Image Customization</a></li>
+                    <?php } ?>
+
+                    <?php if ((Mage::registry('current_product')->getData('image_requirement'))) { ?>  
+                        <li role="presentation"><a href="#image-requirement" role="tab" data-toggle="tab">Image requirement</a></li>
+                    <?php } ?>
+                    <?php if ((Mage::registry('current_product')->getData('review_rating'))) { ?>
+                        <li role="presentation"><a href="#review-rating" role="tab" data-toggle="tab">Review & Rating</a></li>
+                    <?php } ?>
+                    <?php if ((Mage::registry('current_product')->getData('faq'))) { ?>
+                        <li role="presentation"><a href="#faq" role="tab" data-toggle="tab">Faq</a></li>
+                    <?php } ?>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <?php
+                    if ((Mage::registry('current_product')->getDescription())) {
+                        echo Mage::registry('current_product')->getDescription();
+                    }
+                    ?>
+                    <?php
+                    if ((Mage::registry('current_product')->getData('wall_display_panels'))) {
+                        $attribute = $product->getWallDisplayPanels();
+                        $attributeName = 'wall_display_panels';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+					<?php
+                    if ((Mage::registry('current_product')->getData('plate_surfaces'))) {
+                        $attribute = $product->getPlateSurfaces();
+                        $attributeName = 'plate_surfaces';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+                    <?php
+                    if ((Mage::registry('current_product')->getData('collage_printing_options'))) {
+                        $attribute = $product->getCollagePrintingOptions();
+                        $attributeName = 'collage_printing_options';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+                    <?php
+                    if ((Mage::registry('current_product')->getData('wrap_border'))) {
+                        $attribute = $product->getWrapBorder();
+                        $attributeName = 'wrap_border';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+                    <?php
+                    if ((Mage::registry('current_product')->getData('frame'))) {
+                        $attribute = $product->getFrame();
+                        $attributeName = 'frame';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+                    <?php
+                    if ((Mage::registry('current_product')->getData('image_customization'))) {
+                        $attribute = $product->getImageCustomization();
+                        $attributeName = 'image_customization';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+                    <?php
+                    if ((Mage::registry('current_product')->getData('image_requirement'))) {
+                        $attribute = $product->getImageRequirement();
+                        $attributeName = 'image_requirement';
+                        echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+                    }
+                    ?>
+                    <!--<div role="tabpanel" class="tab-pane" id="review-rating">
+                        <div class="row"><div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <p>Whether you want to engrave the name of your organization or a sign - Metal plates surely illustrations high signs professionalism and superiority. Incredible color saturation and contrast with stunning depth, and detail to your steel plate. Whether you want to an intricate line art, text, sign painted on our stainless steel plate, canvas signages always offers a matte, mirror finish or a brushed steel finish plates.</p>
+                                <p>Our steel plate designing mythology gives a brilliant sheen to your design that made the steel plate perfect for signs like traditional way finding, office, parking, house, parking and more. In addition to their attention-grabbing sheen appearance, Canvas Signage’s steel plates are lightweight and extremely rigid. No photo surface protection - fade-resistance that make these plates ideal for hanging both indoors and outdoors.</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <p>Multiple Reasons: Why choose canvas signages steel plates?</p>
+                                <ul class="list-unstyled">
+                                    <li>High-end interactive signs on metal</li>
+                                    <li>A budget-friendly option to display your pictures</li>
+                                    <li>Mounting with screws or the more exclusive option, standoffs</li>
+                                    <li>Crisp details and cleaner edges</li>
+                                    <li>Eye popping colors and enhanced depth</li>
+                                    <li>Available in frameless </li>
+                                    <li>Does not require surface protection</li>
+                                    <li>Soft appearance and clarify details that enhance texture</li>
+                                    <li>Highly durable that do not fade or rub-off</li>
+                                </ul>
+                                <p>Canvas Signages introduced a unique platform to design and fill any home or office wall with a sleek metal panel with custom-design perforation pattern. Our wide range of steel plates features a matte surface and rounded edges for a clean, beautiful display. </p>
+                            </div>
+                        </div>
+                    </div>-->
+                    <?php
+					if ((Mage::registry('current_product')->getData('faq'))) {
+						$attribute = $product->getFaq();
+						$attributeName = 'faq';
+						echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+					}
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

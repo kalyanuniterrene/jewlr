@@ -1,0 +1,257 @@
+<?php
+/*Version:3*/
+?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<a href="#" class="link">
+                            <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/addon.png" alt="Editor Icon">
+                            <span>Addon</span>
+                        </a>
+                        <div class="sidebar-content addon">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        Hardware
+                                        <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <ul class="list-unstyled">
+												
+												<?php 
+                                        $sku = "custom-canvas-print";
+                                        $opt_title = "Hardware Options";
+                                        $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+                                        
+                                        $i=1;
+
+                                        foreach ($product_data as $canvas_data) {
+											
+											$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+											$img_url = $canvas_data['img_url'];
+											
+											 $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $width= $canvas_data['width'];
+                                            $canvas_lable = strtolower(str_replace(" ","-",($canvas_type_option_title)));
+
+                                            ?>
+                                            
+                                            
+                                             <li <?php if($default == "default") echo 'class="active"';?> data-addon-name="<?php echo $canvas_lable;?>" data-addon-price="<?php echo $price; ?>">
+                                                    <a href="#">
+                                                        <img src="<?php echo $media_url.$img_url?>" alt="Style Image">
+                                                        <img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+                                                        <span><?php echo $canvas_type_option_label;?></span>
+                                                    </a>
+                                                </li>
+											
+										<?php
+										}
+                                        
+                                        
+                                        ?>
+												
+												
+                                               
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="collapsed">
+                                        Photo Filters
+                                        <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div id="collapse2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="list-unstyled">
+												
+												<?php 
+                                        $sku = "custom-canvas-print";
+                                        $opt_title = "Photo Filters";
+                                        $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+                                        
+                                        $i=1;
+
+                                        foreach ($product_data as $canvas_data) {
+											
+											$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+											$img_url = $canvas_data['img_url'];
+											
+											 $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $width= $canvas_data['width'];
+                                             $canvas_lable = strtolower(str_replace(" ","-",($canvas_type_option_title)));
+                                            ?>
+												
+												
+                                                <li <?php if($default == "default") echo 'class="active"';?> data-filter-name="<?php echo strtolower($canvas_type_option_title);?>" data-addon-name="<?php echo $canvas_lable;?>" data-addon-price="<?php echo $price; ?>" >
+                                                    <a href="#">
+                                                        <img src="<?php echo $media_url.$img_url?>" alt="Style Image">
+                                                        <img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+                                                        <span><?php echo $canvas_type_option_label;?></span>
+                                                    </a>
+                                                </li>
+                                                
+                                                <?php
+										}
+                                        
+                                        
+                                        ?>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="collapsed">
+                                        Photo Retouching
+                                        <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div id="collapse3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="photo-retouching">
+												
+												<?php 
+                                        $sku = "custom-canvas-print";
+                                        $opt_title = "Photo Retouching";
+                                        $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+                                        
+                                        $i=1;
+
+                                        foreach ($product_data as $canvas_data) {
+											
+											$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+											$img_url = $canvas_data['img_url'];
+											
+											 $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $width= $canvas_data['width'];
+                                            
+                                            $description = $canvas_data['description'];
+                                            $canvas_data_type = str_replace(" ","-",strtolower($canvas_type_option_title));
+                                            
+                                            //echo $description;
+                                            
+                                            ?>
+												
+												
+                                                <div class="radio-group">
+                                                    <input id="<?php echo $canvas_data_type;?>" <?php if($default == "default") echo 'checked="check"';?> name="selector5" type="radio" data-addon-name="<?php echo $canvas_data_type;?>" data-addon-price="<?php echo $price; ?>">
+                                                    <label for="<?php echo $canvas_data_type;?>"><?php echo $canvas_type_option_label;?></label>
+                                                    <div class="check"></div>
+                                                   <?php if($description !=""):?>
+                                                      <?php echo $description;?>
+                                                   <?php endif;?>
+                                                   
+                                                   <?php if(substr_count($canvas_type_option_title,'Major')>0):?>
+                                                   <div id="major-retouch">
+													<div class="form-group">
+													  	<textarea class="form-control" rows="4" id="comment" placeholder="Requirement for Retouching"></textarea>
+													</div>
+												</div>
+                                                   <?php endif; ?>
+                                                   
+                                                </div>
+                                                
+                                                <?php
+										}
+                                        
+                                        
+                                        ?>
+                                        
+                                         
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" class="collapsed">
+                                        Lamination
+                                        <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    <div id="collapse4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="photo-retouching">
+												
+												<?php 
+                                        $sku = "custom-canvas-print";
+                                        $opt_title = "Lamination";
+                                        $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+                                        
+                                        $i=1;
+
+                                        foreach ($product_data as $canvas_data) {
+											
+											$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+											$img_url = $canvas_data['img_url'];
+											
+											 $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $width= $canvas_data['width'];
+                                            
+                                            $description = $canvas_data['description'];
+                                            $canvas_data_type = str_replace(" ","-",strtolower($canvas_type_option_title));
+                                            ?>
+												
+												
+												
+                                                <div class="radio-group">
+                                                    <input id="<?php echo $canvas_data_type;?>" data-addon-name="<?php echo $canvas_data_type;?>" data-addon-price="<?php echo $price; ?>" name="selector9" value="<?php echo $canvas_data_type;?>" type="radio"
+                                                    <?php if($default=="default"):
+                                                    echo'checked="check"';endif;?>>
+                                                    <label for="<?php echo $canvas_data_type;?>"><?php echo $canvas_type_option_label;?></label>
+                                                    <div class="check"></div>
+                                                </div>
+                                                
+                                            <?php
+										}
+                                        
+                                        
+                                        ?>    
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

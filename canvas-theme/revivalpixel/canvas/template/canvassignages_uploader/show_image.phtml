@@ -1,0 +1,37 @@
+<?php
+//echo "here";
+
+ $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);
+$session = Mage::getSingleton('core/session');
+			$SID=$session->getEncryptedSessionId(); //current session id
+			 
+			   $customer_id="";
+			 
+			  // check customer logged in or not
+			  if(Mage::getSingleton('customer/session')->isLoggedIn()) 
+			  {
+				 $customerData = Mage::getSingleton('customer/session')->getCustomer();
+				 $customer_id = $customerData->getId();
+			  }
+			  
+			  if($customer_id !="")
+			  {
+				  $SID = $customer_id;
+			  }
+			  
+				
+
+$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Uploader_Block_Monblock')->methodblock($SID);
+            foreach($product_data as $product_data)
+{ //echo $product_data['image_name'];?>
+
+ <div class="my-photos-image-box">
+    <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/remove-white.png" class="remove resized_remove" alt="Remove" data-img-src="<?php echo $product_data['fullpath'];?>"
+    data-img-root-src="<?php echo $product_data['path_org'];?>" data-original-src="<?php echo $product_data['data_original_src'];?>"
+    >
+    <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" class="select-check" alt="Select Check">
+    <img class="main_img" src="<?php echo $product_data['image_name'];?>" alt="My Photos" data-img-src="<?php echo $product_data['fullpath'];?>"
+    data-img-root-src="<?php echo $product_data['path_org'];?>" data-original-src="<?php echo $product_data['data_original_src'];?>">
+</div>
+	
+<?php } ?>

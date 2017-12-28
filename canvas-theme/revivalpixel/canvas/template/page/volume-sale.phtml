@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<?php //echo $this->getChildHtml('content') ?>
+<!-- Main Content -->
+<div class="main-content"> 
+  
+  <!-- Main Page Title -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('volume_sale_banner')->toHtml(); ?>
+  
+  <!-- FIxed Navigation -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('volume_sale_fixed_navigation')->toHtml(); ?>
+  
+  <!-- OVERVIEW  -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('volume_sale_overview')->toHtml(); ?>
+  
+  <!-- BENEFITS -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('volume_sale_benefits')->toHtml(); ?>
+  
+  <!-- REQUEST A QUOTE-->
+  <div class="padding-70 blue-bg " id="request-a-quote">
+    <div class="container">
+      <div class="row">
+       <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('volume_sale_quote')->toHtml(); ?>
+        <div class="col-lg-5 col-sm-6">
+          <div class="contact-form">
+           <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('happy_codding/codding.phtml')->toHtml(); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php echo $this->getChildHtml('global_messages') ?>
+<!-- Footer -->
+
+<?php echo $this->getChildHtml('footer_before') ?>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+
+
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+<!-- Footer -->
+<!-- Javascript -->
+
+	
+<script type="text/javascript">
+	(function( $ ) {
+	// Fixed Navigation JS
+	$(document).ready(function(e) {
+       // $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+    });
+    
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+
+
+	// Image Before After Effect JS
+	$(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	});
+	
+	// Panel Display Filter 
+	$(document).ready(function(){
+		$(".filter-button").click(function(){
+        	var value = $(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$(".panel-display-box").not('.'+value).hide('3000');
+            	$('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($(".filter-button").removeClass("active")) {
+			$(this).removeClass("active");
+		}
+		$(this).addClass("active");
+		});
+		});
+
+	// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+	
+	})( jQuery );
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?php
+/**
+ * Padoo Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@padoo.com so we can send you a copy immediately.
+ *
+ * @category   Padoo
+ * @package    Padoo_Testimonial
+ * @copyright  Copyright (c) 2010-2012 Padoo Co. (http://padoo.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * template of testimonials
+ *
+ * @category   Padoo
+ * @package    Padoo_Testimonial
+ * @author     
+ */
+
+/**
+ * @var $this Padoo_Testimonial_Block_Testimonial
+ */
+ $storeId = Mage::app()->getStore(true)->getId();
+?>
+
+<?php $testimonials = $this->getTestimonials(); ?>
+
+	<?php $i=0;foreach ($testimonials as $testimonial): ?>
+	<?php if($i == 0){ $i++; continue; } ?>
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+		<!-- Testimonial Box -->
+		<div class="testimonial-box">
+			<div class="main-text">
+				<?php echo $testimonial->getTestimonialText(); ?>
+			</div>
+			<div class="detail">
+				<div class="rating">
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+				</div>										
+				<div class="name"><?php echo $testimonial->getTestimonialName(); ?></div>
+				<div class="date"><?php echo date('M d, Y',strtotime($testimonial->getTestimonialDate())); ?></div>
+			</div>
+		</div>
+	</div>
+	<?php if($i >= 3) { $i++; break;} ?>
+	<?php $i++;endforeach; ?>

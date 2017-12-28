@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php $home_url =  Mage::getBaseUrl();?>
+
+<head>
+	<!-- Meta Tags -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="generator" content="traque" />
+	<title>Wall Display</title>
+    <meta property="og:title" content="canvassignages" />
+    <meta property="og:site_name" content="canvassignages" />
+    <meta property="og:url" content="www.canvassignages.com" />
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="www.canvassignages.com/images/social.jpg" />
+    <meta property="og:description" content="Short Description of Site" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet"> 
+
+    <!-- Stylesheets -->
+    <link rel="shortcut icon" href="https://www.canvassignages.com/skin/frontend/base/default/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/editor.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/custom.css">
+	<!--[if lt IE 9]>
+      	<script src="js/html5.js"></script>
+    <![endif]-->
+
+   
+<body>
+	    <!-- please wait div -->
+
+    <div class="pleaseWait">
+        <img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/Processing.gif" alt="">
+    </div>
+
+    <!-- after Save Popup -->
+        <div class="modal afterOrder">
+            <div class="low-res-modal">
+                <div class="header">                    
+                    <img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/orderPlaced.png" alt="">
+                    <h4>Successfully added to cart</h4>
+                </div>
+                <div class="content">
+                    <ul class="after_Order">
+                        <li><a class="after_addtoCart" href="<?php echo $home_url?>checkout/cart"> Go to Cart </a></li>
+                        <li><a class="after_addtoCart closethisPop" href="javascript:void(0)"> Stay Here </a></li>
+                    </ul>
+                   <!--  <div class="text-wrap">
+                        <p>* The canvas will be saved by this Name</p>
+                    </div> -->
+                </div>
+               <!--  <button type="button" class="close_low_res_popup" aria-label="Close">
+                    <span aria-hidden="true">Minimize</span><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/minimize-icon.png" alt="Minimize Icon">
+                </button> -->
+            </div>
+        </div>
+        <!-- image Editor -->
+
+	         <!-- save MOdal -->
+        <div class="modal saveMOdal">
+            <div class="low-res-modal">
+                <div class="header">
+                    <h2>Save Canvas</h2>
+                </div>
+                <div class="content">
+                    <ul class="save_modal_list">
+                        <li><input type="text" id="saveName" placeholder="Enter a canvas name"></li>
+                        <li><button class="saveCanvas"> Save </button></li>
+                    </ul>
+                    <div class="text-wrap">
+                        <p>* The canvas will be saved by this Name</p>
+                    </div>
+                </div>
+                <button type="button" class="close_low_res_popup" aria-label="Close">
+                    <span aria-hidden="true">Minimize</span><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/minimize-icon.png" alt="Minimize Icon">
+                </button>
+            </div>
+        </div>
+
+
+<?php 
+            $sku = "wall-display";
+            $opt_title = "Size";
+            $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+            //print_r($product_data);
+            ?>
+
+            <?php 
+                                
+                                
+                
+
+								 //getting the dynamic values
+
+								 //~ if(!empty(Mage::getSingleton('core/session')->getWallTitle()))
+								 //~ {
+								 	$active =  Mage::getSingleton('core/session')->getWallTitle();
+								 	//Mage::getSingleton('core/session')->unsWallTitle();
+								 //}
+
+
+								 
+								 
+								 //~ if(!empty(Mage::getSingleton('core/session')->getWallTemplate()))
+								 //~ {
+								 	$template = Mage::getSingleton('core/session')->getWallTemplate();
+								 	//Mage::getSingleton('core/session')->unsWallTemplate();
+								 //}
+
+								
+								//~ if(!empty(Mage::getSingleton('core/session')->getWallPanelType()))
+								//~ {
+									$panel_type = Mage::getSingleton('core/session')->getWallPanelType();
+									//Mage::getSingleton('core/session')->unsWallPanelType();
+								//}
+								//~ if(!empty(Mage::getSingleton('core/session')->getWallPanelSize()))
+								//~ {
+									$panelsize = Mage::getSingleton('core/session')->getWallPanelSize();
+									//Mage::getSingleton('core/session')->unsWallPanelSize();
+								//}
+								//~ if(!empty(Mage::getSingleton('core/session')->getWallPrice()))
+								//~ {
+									$price = Mage::getSingleton('core/session')->getWallPrice();
+									$price = number_format((float)$price, 2, '.', '');;
+									//Mage::getSingleton('core/session')->unsWallPrice();
+								//}
+								
+								if($active == "")
+								{
+								
+								foreach($product_data as $canvas_data)
+
+                                {
+                                    $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                    $img_url = $canvas_data['img_url'];
+                                    
+                                    if($canvas_data['default']=="default")
+                                    {
+										$active = $canvas_data['option_label'];
+
+										$panel_type = $canvas_data['panel_type'];
+										$panelsize = $canvas_data['panelsize'];
+										$template = $canvas_data['template'];
+										$price = $canvas_data['price']; 
+										
+										$price = number_format((float)$price, 2, '.', '');
+									}
+                                           
+                                           
+                                          	
+								 }
+							 }
+								
+								
+                                            
+                                            
+                                            
+                                     ?>
+
+<!-- input fields -->
+        <div class="inputSets">
+
+            <input type="text" id="imageurl" value="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/">    
+            <input type="text" id="panel_type" value="<?php echo $panel_type;?>" data-canvas-name="<?php echo $active;?>">
+
+            <input type="hidden" id="cpr" value="<?php echo $price;?>"><!--Need to dynamic-->
+
+            
+            <input type="text" id="canvas_sizes" value="<?php echo $panelsize;?>">
+            <input type="text" id="canvas_template" value="<?php echo $template;?>">
+            
+
+            <input type="text" id="savedJSONdata" data-url="<?php echo  Mage::getUrl('editorsave/index/wall')?>">
+            
+            <input type="text" id="orderData" data-url="<?php echo  Mage::getUrl('order/index/wall')?>">
+
+           
+
+            
+
+        </div>
+
+	<!-- Editor Header -->
+	<div class="editor-header">
+		<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
+			<div class="logo">
+				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/small-logo.png" alt="Logo">
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-5 col-sm-4 col-xs-12 no-padding">
+			<div class="editor-middle-text dropdown">
+				Wall Display <a href="#" class="dropdown-toggle" data-toggle="dropdown">40X33" + $108.25<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+				<ul class="dropdown-menu">
+					 <li id="canvastype">
+                            8X8” Thin wrap gallery (0.754)
+                            <div class="pull-right">
+                                <a href="javascript:void(0)">$6.69</a>
+                                <a href="javascript:void(0)" class="icon"><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/edit.png" alt="Edit"></a>
+                            </div>
+                        </li>
+				    <!-- <li>
+				    	8X8” Thin wrap gallery (0.754)
+				    	<div class="pull-right">
+				    		<a href="#">$6.69</a>
+				    		<a href="#" class="icon"><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/edit.png" alt="Edit"></a>
+				    	</div>
+				    </li>
+				    <li>
+				    	<span>Black Frame </span>
+				    	<div class="pull-right">
+				    		<a href="#">$9.99</a>
+				    		<a href="#" class="icon"><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/remove.png" alt="Remove"></a>
+				    	</div>
+				    </li>
+				    <li>
+				    	<span>Minor Photo Retouching </span>
+				    	<div class="pull-right">
+				    		<a href="#">$9.99</a>
+				    		<a href="#" class="icon"><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/remove.png" alt="Remove"></a>
+				    	</div>
+				    </li>
+				    <li>
+				    	<span>Lamination </span>
+				    	<div class="pull-right">
+				    		<a href="#">$4.00</a>
+				    		<a href="#" class="icon"><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/remove.png" alt="Remove"></a>
+				    	</div>
+				    </li>
+				    <li class="subtotal">
+				    	<span class="title">Subtotal</span>
+				    	<span class="price">$30.67</span>
+				    </li> -->
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 no-padding">
+			<div class="editor-top-menu">
+				<ul class="list-unstyled">
+<!--
+					<li>
+						<a href="#"  data-toggle="modal" data-target=".how-to-design-video">How to Design?</a>
+					</li>
+-->
+					<li class="order" id="order_now">
+						<a href="#">Order Now</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- How To Design Popup Video -->
+	<div class="modal fade how-to-design-video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          			<span aria-hidden="true">Close &nbsp;&nbsp;X</span>
+        		</button>
+	      		<iframe width="700" height="500" src="https://www.youtube.com/embed/uXATjvr_rl4" frameborder="0" allowfullscreen></iframe>
+	    	</div>
+	  	</div>
+	</div>
+
+
+	<!-- Editor Main Content -->
+	<div class="editor-main-content">
+		<!-- Editor Sidebar -->
+		<div class="editor-sidebar">
+			<ul class="list-unstyled">
+			<!-- wall-display -->
+                        <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('canvassignages_liveeditor/wall-display/wall-display-panel.phtml')->toHtml(); ?>
+				
+				<li>
+					<a href="#" class="link">
+						<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/image.png" alt="Editor Icon">
+						<span>Image</span>
+					</a>
+					<div class="sidebar-content image">
+						<button type="button" class="button medium blue" data-toggle="modal" data-target="#photo-uplopad">
+						  	Upload Photos
+						</button>
+						<div class="upload-photo-icon">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/upload-photo-icon.png" alt="upload photo icon">						
+						</div>
+						<div class="uploaded-image">
+							<!-- <div class="uploaded-photo-box select">
+				  				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/remove-white.png" class="remove" alt="Remove"> 
+				  				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" class="select-check" alt="Select Check">
+				  				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/my-photos-image.jpg" alt="My Photos">
+				  			</div> -->
+				  			
+						</div>
+					</div>
+
+				</li>
+			</ul>
+		</div>
+
+		<!-- Editor Screen -->
+		<div class="edit-screen-container">
+			<div class="edit-screen">
+				<div class="edit-screen-outer">
+					<div class="image">
+					<!-- Wall display main div -->
+					
+					<div class="wall_display_main">
+						<!-- image editor -->
+							<div id="contextualEditNav" class="contextualMenu draggable_active">
+							      <ul class="context-menu-list">                    
+							        <li id="photoRotation" class="create-icon-roate-photo photoRotation" title="Rotate">  
+							        <div id="roundSlide"></div>
+							            <span id="mb_tools" class="m_1page">Rotate</span>
+							        </li>
+							        <li id="move_container" class="create-icon-move move_container crop-button icon-disabled" title="move">
+							            <span id="mb_tools" class="m_move">move</span>
+							        </li>
+							        <!-- <li id="crop_toggle" class="create-icon-crop crop-toggle crop-button" title="crop">
+							            <span id="mb_tools" class="m_crop">crop</span>
+							        </li> -->
+							       <!--  <li id="swap-photos" class="create-icon-swap-photo swap-photos icon-disabled" title="swap">
+							            <span id="mb_tools" class="m_swap">swap</span>
+							        </li> -->
+							        <li id="layer-up" class="create-icon-layer-up layer-up-mark icon-disabled" title="bring to front">
+							            <span id="mb_tools" class="m_back">front</span>
+							        </li>
+							        <li id="layer-down" class="create-icon-layer-down layer-down-mark icon-disabled" title="send to back">
+							            <span id="mb_tools" class="m_forward">back</span>
+							        </li>
+							        <li id="photoMaximize" class="photo-max create-icon-minimize photoMin" title="minimize">
+							            <span id="mb_tools" class="m_fullphoto">minimize</span>
+							        </li>
+							        <!-- delete icon placement should be consistent across all builders  -->
+							        <li id="canvasImageDelete" class="create-icon-delete delete crop-button" title="delete">
+							            <span id="mb_tools" class="m_delete">delete</span>
+							        </li>
+							    </ul>
+							    <div class="zoomSlider">
+							        <a href="javascript:void(0)" class="zoomMinus zooms">-</a>
+							        <a href="javascript:void(0)" class="zoomPlud zooms">+</a>
+							        <input type="range" min=".1" max="3" step=".1" value="1" />
+							    </div>
+							</div>
+						<!-- image editor ends -->
+						<div class="wall_type_1 clearfix">
+							<!-- <div class="wall_canvas_item_1"></div>
+							<div class="wall_canvas_item_2"></div>
+							<div class="wall_canvas_item_3"></div> -->
+						</div>
+					</div>
+						<!-- <img src="<?php// echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/edit-screen-image.jpg" alt="Edit Screen"> -->
+						<!-- <div class="edit-text">
+							DRAG PHOTO HERE
+						</div> -->
+					</div>
+				</div>
+				<div class="design-view-container">
+					<div class="roomCanvasImg wall_d"><img src="" alt=""></div>
+					<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/design-view.jpg">
+				</div>
+				<div class="view-menu">
+					<ul class="list-unstyled">
+						<li class="active">
+							<a class="room-view" href="#">Design View</a>
+						</li>
+						<li>
+							<a class="design-view" href="#">Room View</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="edit-menu">
+				<ul class="list-unstyled">
+<!--
+					<li class="undo_obj">
+						<label><span>Undo</span></label>
+						<a href="#">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/undo.png" alt="Edit Icon">
+						</a>
+					</li>
+					<li class="redo_obj">
+						<label><span>Redo</span></label>
+						<a href="#">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/redo.png" alt="Edit Icon">
+						</a>
+					</li>-->
+					<li class="save_it" id="save_it_liveeditor">
+						<label><span>Save</span></label>
+						<a href="#">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/save.png" alt="Edit Icon">
+						</a>
+					</li>					
+
+					<li class="for_zoom_in">
+						<label><span>Zoom In</span></label>
+						<a href="#">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/zoom-in.png" alt="Edit Icon">
+						</a>
+					</li>
+					<li class="for_zoom_out ">
+						<label><span>Zoom Out</span></label>
+						<a href="#">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/zoom-out.png" alt="Edit Icon">
+						</a>
+					</li>
+					<li>
+						<label><span>Help</span></label>
+						<a href="#">
+							<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/help.png" alt="Edit Icon">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Photo Upload Popup -->
+        <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('canvassignages_liveeditor/wall-display/live-editor-uploader.phtml')->toHtml(); ?>
+        <!-- Photo Upload Popup End-->
+
+	<!-- Javascript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	 <!-- jquery ui -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/bootstrap.js"></script>
+	 <script src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/fabric.min.js"></script> 
+	 <script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/wall_live_editor/custom_editor_wall.js"></script>    
+	 <script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/wall_live_editor/html2canvas.min.js"></script>    
+	<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery.slimscroll.js"></script>
+	<script type="text/javascript">
+
+	// Sidebar JS
+
+	$(".editor-sidebar li a").click(function() {
+
+     	$(this).parent().addClass('selected').siblings().removeClass('selected');
+    });
+	$(document).click(function(e){
+	    var targetbox = $('.editor-sidebar li');
+	    if(!targetbox.is(e.target) && targetbox.has(e.target).length === 0){
+	        $('.editor-sidebar li').removeClass("selected");
+	    }
+	});
+
+	// Smooth Scroll js
+	$('.sidebar-content').slimscroll({
+        height: '100%'
+    });
+
+	// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select');
+    });
+
+	// Sidebar Photo Select Js
+	$(".uploaded-photo-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+    
+	// Sidebar Style Photo Select Js
+	$(".sidebar-content.style .tab-content li").click(function() {
+	 	$(this).addClass('active').siblings().removeClass('active');
+    });
+    
+    // Sidebar Addon Photo Select Js
+	$(".sidebar-content.addon .panel-body li").click(function() {
+	 	$(this).addClass('active').siblings().removeClass('active');
+    });
+
+    //View Menu Js 
+    $(".view-menu li").click(function() {
+	 	$(this).addClass('active').siblings().removeClass('active');
+    });
+    $(".view-menu a.design-view").click(function() {
+	 	$('body').addClass('design-view-open');
+    });
+    $(".view-menu a.room-view").click(function() {
+	 	$('body').removeClass('design-view-open');
+    });
+
+	// 3D Prview Icon JS
+	$(".preview-button").click(function() {
+	 	$(this).addClass('active').siblings().removeClass('active');
+    });
+    $(document).click(function(e){
+	    var targetbox = $('.preview-button');
+	    if(!targetbox.is(e.target) && targetbox.has(e.target).length === 0){
+	        $('.preview-button').removeClass("active");
+	    }
+	});
+	</script>
+	<!--Added Custom Js-->
+		<script>
+	
+			$(document).ready(function() {
+				
+				//need to delete
+				jQuery('.upload-photo-box:gt(0)').hide();
+				
+				$('#photo-uplopad .modal-body > ul li:nth-of-type(2)').on('click',function() 
+				{
+                    $('.preloader_image').show();
+					var url = '<?php echo  Mage::getUrl('uploader/index/showimages')?>';
+
+					$.ajax({
+							url: url,					
+							type: "POST",
+							success: function(response)
+							{
+                                $('.preloader_image').fadeOut();    
+							
+								//console.log(response);
+								$('.my-photos').html(response);
+							
+							     $('.fileuploader-items-list li').remove();
+							}
+						});
+					
+					});
+					
+					$(document).on('click','.resized_remove',function() {
+						var t = $(this);
+						var url = '<?php echo  Mage::getUrl('uploader/index/removeimages')?>';
+						
+						var remove_url =$(this).attr('data-img-src') ;
+						var remove_url_root =$(this).attr('data-img-root-src') ;
+						//alert(remove_url);
+						
+						$.ajax({
+							url: url,
+							data: {remove_url:remove_url,remove_url_root:remove_url_root},
+							type: "POST",
+							success: function(response)
+							{
+								t.parent().remove();
+							
+								console.log(t);
+							
+							
+							
+							}
+						});
+					});
+					
+					$('#my-photo .button-group button.button.medium.border:nth-of-type(2)').on('click',function(){	
+                        if($('.my-photos-image-box.select').length > 0){}else{ alert('Please Select a picture!'); return false; }					
+						$('.my-photos-image-box.select').each(function(){
+							var t = $(this);
+							var url = '<?php echo  Mage::getUrl('uploader/index/removeimages')?>';
+							var remove_url = $(this).find('.resized_remove').attr('data-img-src') ;
+							var remove_url_root =$(this).find('.resized_remove').attr('data-img-root-src') ;
+							$.ajax({
+								url: url,
+								data: {remove_url:remove_url,remove_url_root:remove_url_root},
+								type: "POST",
+								success: function(response)
+								{
+									t.remove();
+								
+									console.log(t);
+								
+								
+								
+								}
+							});
+						});
+					});
+
+                    var ursl = '<?php echo  Mage::getUrl('uploader/index/allimages')?>';
+                    jQuery('.add_selected_button').attr('data-send-url', ursl);
+
+                    //~ jQuery('.add_selected_button').on('click', function(argument) {
+
+
+        //~ var url_to_send = jQuery(this).data('send-url');
+
+
+        //~ if ($('.my-photos-image-box.select').length > 0) {} else {
+            //~ alert('Please Select a picture!');
+            //~ return false;
+        //~ }
+
+        //~ $('.my-photos-image-box.select').each(function() {
+
+            //~ var url = url_to_send;
+            //~ var original_url = $(this).find('.resized_remove').attr('data-original-src');
+            //~ var resized_url = $(this).find('.main_img').attr('src');
+
+            //~ //check_image_exixtance(image_name(original_url));
+
+
+            //~ $.ajax({
+                //~ url: url,
+                //~ data: { original_url: original_url, resized_url: resized_url },
+                //~ type: "POST",
+                //~ success: function(response) {
+                    //~ jQuery('#my-photo .button-group button.button.medium.border:first-child').text('Select All');
+                    //~ jQuery('.my-photos .my-photos-image-box').removeClass('select');
+                    //~ $('.uploaded-image').append(response);
+
+                    //~ $('#photo-uplopad').modal('hide');
+                    //~ $('.editor-sidebar > ul li:nth-of-type(2)').addClass('selected');
+
+                    //~ var uploaded_img_area = jQuery('.uploaded-image');
+
+                    //~ uploaded_img_area.find('.uploaded-photo-box').each(function() {
+                        //~ jQuery(this).children('img').addClass('enable_dragging');
+                    //~ });
+
+
+
+                    //~ jQuery('.enable_dragging').draggable({
+                        //~ helper: "clone",
+                        //~ appendTo: 'body',
+                        //~ zIndex: 9999,
+                        //~ revert: true,
+                        //~ start: function() {
+                            //~ dragged_Src = jQuery(this).attr('src');
+                            //~ jQuery(this).addClass('Dragging');
+                        //~ },
+                        //~ stop: function(argument) {
+                            //~ jQuery(this).removeClass('Dragging')
+                        //~ }
+                    //~ });
+
+
+                //~ }
+            //~ });
+
+
+        //~ });
+
+    //~ });
+                    
+                   
+					
+					// jQuery('.add_selected_button').on('click',function (argument) {
+						
+					// 	$('.my-photos-image-box.select').each(function(){
+							
+					// 		var url = '<?php echo  Mage::getUrl('uploader/index/allimages')?>';
+					// 		var original_url = $(this).find('.resized_remove').attr('data-original-src') ;
+					// 		var resized_url =$(this).find('.main_img').attr('src') ;
+							
+					// 		$.ajax({
+					// 			url: url,
+					// 			data: {original_url:original_url,resized_url:resized_url},
+					// 			type: "POST",
+					// 			success: function(response)
+					// 			{
+					// 				//alert(response);
+									
+					// 				$('.uploaded-image').append(response);							
+					// 			}
+					// 		});
+							
+							
+					// 	});	
+						
+					// });
+
+					// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+    // image upload from computer
+    //================================
+    jQuery(document).on('click', '.closeCOmputerModal', function(e) {
+        e.preventDefault();
+        jQuery('.my_computer').addClass('hides');
+    });
+    jQuery('#upload-photo .upload-photo-box:first-child').on('click', function(argument) {
+        jQuery('.my_computer').removeClass('hides');
+    });
+    jQuery(document).on('click', '.my-photos-image-box', function(argument) {
+        jQuery(this).toggleClass('select');
+    });
+    jQuery('#my-photo .button-group button.button.medium.border:first-child').on('click', function() {
+        if (jQuery(this).text() == "Select All") {
+            jQuery(this).text('Deselect All');
+            jQuery('.my-photos-image-box').each(function(argument) {
+                jQuery(this).addClass('select');
+            });
+        } else {
+            jQuery(this).text('Select All');
+            jQuery('.my-photos-image-box').each(function(argument) {
+                jQuery(this).removeClass('select');
+            });
+        }
+    });
+
+    
+					
+					
+				});
+
+			
+
+   
+	
+		</script>  
+        <img id="canvas_image" />
+        <div class="wall_images">
+        	
+        </div>
+
+</body>
+</html>

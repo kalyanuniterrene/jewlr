@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php 
+if(Mage::registry('current_product')) { //check if product global 'registry' object is available
+	$product = Mage::registry('current_product');
+	$sku = $product->getSku();
+   //etc
+} 
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/editor.css">	
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+	<!-- Main Content -->
+	<div class="main-content">
+
+		<!-- Main Banner -->
+		<?php
+			$attribute = $product->getCanvasBanner();
+			$attributeName = 'canvas_banner';
+			echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+		?>
+		<!-- Offer Box -->
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_discount')->toHtml(); ?> 
+
+		<!-- FIxed Navigation -->
+		<?php
+			$attribute = $product->getFlexNavigation();
+			$attributeName = 'flex_navigation';
+			echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+		?>
+
+
+		<!-- How It Works -->
+		<?php
+			$attribute = $product->getHowItWork();
+			$attributeName = 'how_it_work';
+			echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+		?>
+
+		<!-- Panel Display -->
+		<div class="panel-display light-grey-bg" id="panel-display">
+			<div class="container text-center">
+				<div class="row">
+					<h3>Here’s why you will love it! </h3>
+					<p>Explore the endless possibilities of our multi-panel canvas wall displays.</p>
+					<?php $opt_title = "Panel Filter"; ?>
+					<?php 
+						$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+					?>
+					<div class="filters">
+					  	<button class="filter-button active" data-filter="all">All</button>
+						<?php foreach($product_data_custom as $custom_data){ ?>	
+							<button class="filter-button" data-filter="<?php echo $custom_data['default_title']; ?>"><?php echo $custom_data['option_label']; ?></button>
+						<?php } ?>			            
+					</div>
+					<?php $opt_title = "Size"; ?>
+					<?php 
+						$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+					?>
+					<?php $counter = 1;
+					foreach($product_data_custom as $custom_data){
+						$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+						$img_url = $custom_data['img_url'];
+						if($custom_data['default']=="default")
+						{
+							$active = $custom_data['default_title'];
+						}
+					?>
+					<form method="post" action="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'canvas-product/index/walldisplay'; ?>" enctype="form-data" >
+						<div class="panel-display-box <?php echo $custom_data['category'] ?> all">
+							<div class="image-box">
+								<div class="image">
+									<img src="<?php echo $media_url.$img_url ?>" alt="Panel Image">
+									<div class="select-panel">
+										<input type="hidden" name="custom_option" value='<?php echo serialize($custom_data) ?>' />
+										<button type="submit" class="button medium blue">Select Panel</button>
+									</div>
+								</div>
+							</div>
+							<div class="detail">
+								Size: <?php echo $custom_data['option_label']; ?>”
+								<span class="price">
+									<strike>$<?php echo number_format($custom_data['initial_price'],2); ?></strike>  $<?php echo number_format($custom_data['price'],2); ?>
+								</span>
+							</div>
+						</div>
+					</form>	
+					<?php } ?>	
+			    	<div class="clearfix"></div>
+			    	<div class="text-center">
+			    		<a href="<?php echo Mage::getBaseUrl()?>liveeditor/index/walldisplay" class="button medium blue">Start Now</a>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+
+		<!-- Happiness Guarantee Box -->
+		<?php
+			$attribute = $product->getHappinessGuarentee();
+			$attributeName = 'happiness_guarentee';
+			echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+		?>
+
+		<!-- Infornmation Section -->
+		<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/detail.phtml')->toHtml(); ?>
+		<!-- Main Product -->
+		<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/related.phtml')->toHtml(); ?>
+		
+	</div>
+	<?php echo $this->getChildHtml('global_messages') ?>
+	<!-- Footer -->
+
+	<?php echo $this->getChildHtml('footer_before') ?>
+	<?php echo $this->getChildHtml('footer') ?>
+	<?php echo $this->getChildHtml('global_cookie_notice') ?>
+	<?php echo $this->getChildHtml('before_body_end') ?>
+
+
+
+
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+
+	<script type="text/javascript">
+	(function( $ ) {
+	// Fixed Navigation JS
+	$(document).ready(function(e) {
+        $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+    });
+    
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+
+	// Mobile Navigation
+	$(document).ready(function () {
+	  var trigger = $('.hamburger'),
+	      overlay = $('.overlay'),
+	     isClosed = false;
+
+	    trigger.click(function () {
+	      hamburger_cross();      
+	    });
+
+	    function hamburger_cross() {
+
+	      if (isClosed == true) {          
+	        overlay.hide();
+	        trigger.removeClass('is-open');
+	        trigger.addClass('is-closed');
+	        isClosed = false;
+	      } else {   
+	        overlay.show();
+	        trigger.removeClass('is-closed');
+	        trigger.addClass('is-open');
+	        isClosed = true;
+	      }
+	  }
+	  
+	  $('[data-toggle="offcanvas"]').click(function () {
+	        $('body').toggleClass('toggled');
+	  });  
+	});
+
+	// Image Before After Effect JS
+	$(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	});
+	
+	// Panel Display Filter 
+	$(document).ready(function(){
+		$(".filter-button").click(function(){
+        	var value = $(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$(".panel-display-box").not('.'+value).hide('3000');
+            	$('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($(".filter-button").removeClass("active")) {
+			$(this).removeClass("active");
+		}
+		$(this).addClass("active");
+		});
+		});
+	})( jQuery );
+	</script>
+</body>
+</html>

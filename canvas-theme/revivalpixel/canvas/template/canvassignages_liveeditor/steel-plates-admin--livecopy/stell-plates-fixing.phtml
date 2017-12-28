@@ -1,0 +1,58 @@
+<?php
+/*
+* Template For the fixing method
+*/
+?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+
+<?php 
+$sku = "steel-plates";
+$opt_title = "Fixing Method";
+$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+//print_r($product_data);
+?>
+
+ <a href="#" class="link">
+                        <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/fixing-method.png" alt="Editor Icon">
+                        <span>Fixing <br>Method</span>
+                    </a>
+                    <div class="sidebar-content fixing-method">
+                        <ul class="list-unstyled">
+
+
+                            <?php 
+                        $j=0;
+                        
+                        foreach($product_data as $canvas_data)
+
+                        {
+
+                              $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                            $img_url = $canvas_data['img_url'];
+
+                                            $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $checked= 'class="selected active"';
+                                            $width= $canvas_data['width'];?>
+
+                                             <li <?php if($canvas_data['default']=="default"){echo $checked;}?>data-method-name="<?php echo $canvas_type_option_title;?>" data-method-price="<?php echo $price;?>" >
+                                <a href="javascript:void(0)">
+                                    <img src="<?php echo $media_url.$img_url?>" alt="Style Image">
+                                    <img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+                                    <span><?php echo $canvas_type_option_label;?></span>
+                                </a>
+                            </li>
+
+
+                             <?php } ?>               
+
+                        </ul>
+                    </div>

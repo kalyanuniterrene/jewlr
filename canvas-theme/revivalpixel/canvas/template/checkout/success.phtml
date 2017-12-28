@@ -1,0 +1,82 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<!-- Main Content -->
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<div class="main-content">
+  <div class="container">
+    <div class="thankyou text-center padding-70">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/thank-you.png" width="90" height="90" alt=""/>
+          <h3 class="animated fadeInUp">you’re all set</h3>
+          <h6 class="margin-top-30 order-number"><strong>order #: <?php echo $this->__('%s.', $this->escapeHtml($this->getOrderId())) ?></strong></h6>
+          <p>We have sent you an email with all the details of your order.<br>
+            Email us at <a href="mailto:info@canvassignages.com">info@canvassignages.com</a> or call us at <a href="tel:8174004497">+1 817 400 4497</a> with any questions or suggestions.</p>
+          <p><button type="button" class="button medium blue margin-top-20" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="padding-70 light-grey-bg border-top-bot" >
+  <div class="container ">
+    <div class="row text-center">
+      <h3>help us to improve ourself</h3>
+    </div>
+    <div class="row margin-top-50">
+      <div class="col-md-6">
+        <div class="thankyou-form">
+          <form>
+            <h5>SUBMIT YOUR FEEDBACK</h5>
+            <p><strong>Draft Feedback*</strong></p>
+            <p>
+              <textarea rows="4"></textarea>
+            </p>
+            <p class="text-center">OR</p>
+            <p><strong>Upload Video Feeback*</strong></p>
+            <p>
+              <input type="file" class="button large white">
+            </p>
+            <a href="#" class="button large blue">Submit your image</a>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6 review-list">
+        <div class="">
+          <h5>SUBMIT YOUR REVIEW</h5>
+          <ul>
+            <li>How do you feel about signup process ?</li>
+            <li>How do you feel product customization (Real time product editor ) ?</li>
+            <li>How you rate our cart page ?</li>
+            <li>How do you feel about check out and Payment process ?</li>
+            <li>Have you got what you are looking for ?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<?php //echo $this->getChildHtml('content') ?>
+<!-- Main Content -->
+<div class="main-content"> 
+  
+  <!-- Main Page Title -->
+  <div class="inner-page-title" style="background: url(<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/volume-sale-banner.jpg) top center no-repeat; background-size: cover;">
+    <div class="title">
+      <div class="container">
+        <div class="col-lg-12">
+          <h1>Volume Sale: Buy More, Save More</h1>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Start Now</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- FIxed Navigation -->
+  <nav class="main-nav-outer" id="fix-nav">
+    <div class="container">
+      <ul class="main-nav">
+        <li><a class="current" href="#overview">Bulk Order Outline</a></li>
+        <li><a href="#benefits">We Pride!</a></li>
+        <li><a href="#request-a-quote">Request a quote</a></li>
+      </ul>
+      <a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a> </div>
+  </nav>
+  
+  <!-- OVERVIEW  -->
+  <div class="padding-70" id="overview">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-8 col-sm-7 col-lg-offset-2 text-center">
+           <h3 class="no-margin-top">Bulk Order Outline</h3>
+<p>Are you looking to buy Canvas prints at a wholesale rate? We`ve got your covered.<br /><br /></p>
+
+<p>Landed at canvas signages`, enable you to get huge discount i.e.  Top of our excellent pricing to all of our wholesale resellers and buyers. The discount range lies in 15% to 30% on whole order. Moreover, the benefits aren’t limited - we also give free shipping option to patrons reach a certain amount of sale.</p>
+<p>If you are not sure – whether your purchase qualifies for a discount, send us an email at <a href='mailto:info@canvassignages.com'>info@canvassignages.com</a>. We’ll check to see what the best discount is for your purchase</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- BENEFITS -->
+  <div class=" border-top-1" id="benefits">
+    <div class="">
+      <div class="padding-70"><div class="container"><div class="row">
+        <div class="col-lg-6 col-sm-6">
+          <div class="text-left left70"><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/best-price.png" alt=""/></div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <h3 class="no-margin-top">Best Price Guarantee</h3>
+          <p> Our wide-ranging experience in this field has ensured that we maintain the quality of our canvas prints while also offering the best price and guarantee for all wholesale orders and customize the order according to the requirement.</p>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Fast Quote</a></p>
+        </div>
+      </div></div></div>
+      
+       <div class="white-bg-box padding-70"><div class="container"><div class="row ">
+        <div class="col-lg-6 col-sm-6">
+          <h3 class="no-margin-top">15 -30 % Discount! Bulk Work of art </h3>
+          <p> If you happen to be whole sellers and require such artifacts in bulk, you are at the right place. Canvas Signages is your one-stop destination to get canvas prints in bulk - offering diverse customization options. It is a sure shot way of saving time, efforts and money!</p>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Fast Quote</a></p>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="text-right right70"><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/discount-structures.png" alt=""/></div>
+        </div>
+      </div></div></div>
+      
+      <div class="padding-70"><div class="container"><div class="row">
+        <div class="col-lg-6 col-sm-6">
+          <div class="text-left left70"><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/no-quality-compromise.png" alt=""/></div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <h3 class="no-margin-top">No Quality Compromise</h3>
+          <p> At Canvas Signages, we never compromise on the quality of the material we use. We print onto canvas material that’s not only crisp white in color but very tightly woven, ensuring a smooth finish so that your photos remain picture perfect.</p>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Fast Quote</a></p>
+        </div>
+       
+      </div></div></div>
+      
+           <div class="white-bg-box padding-70"><div class="container"><div class="row ">
+         <div class="col-lg-6 col-sm-6">
+          <h3 class="no-margin-top">Discount Eligible</h3>
+          <p>Volume discount is only applicable if you order the same model of the same material and finish, in one order. The discount cannot be split up over several orders in different materials or finishes. The exact value of your discount Varies - depends on factors like size, volume, and items.</p>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Fast Quote</a></p>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="text-right right70 "><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/printing-discount.png" alt=""/></div>
+        </div>
+      </div></div></div>
+    
+     <div class="padding-70"><div class="container"><div class="row">
+     <div class="col-lg-6 col-sm-6">
+          <div class="text-left left70 "><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/shipping.png" alt=""/></div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <h3 class="no-margin-top">Shipping Duration and Charges</h3>
+          <p>As loved by our customers, we use finest shipping solutions to deliver all our goods, we offer the fastest "ORDER TO DELIVERY" time in the industry. We take Pride in the fact that we have over 99.98% on or before time deliveries.</p>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Fast Quote</a></p>
+        </div>
+       
+      </div></div></div>
+      
+      <div class="white-bg-box padding-70"><div class="container"><div class="row ">
+          <div class="col-lg-6 col-sm-6">
+          <h3 class="no-margin-top">Refund and Return</h3>
+          <p>No Risk! 100% money back guarantee is our assurance on any printing that has been ordered through us. Unfortunately, any issue originates – we either replace odder or give a complete refund within 30 days.</p>
+          <p ><a href="#request-a-quote" class="button large blue margin-top-20">Fast Quote</a></p>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="text-right right70 "><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/refound-return.png" alt=""/></div>
+        </div>
+      </div></div></div>
+      
+    </div>
+  </div>
+  
+  <!-- REQUEST A QUOTE-->
+  <div class="padding-70 blue-bg " id="request-a-quote">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-sm-6">
+          <div class="quote"> <img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/quote.png" alt=""/>
+            <h3>We Are Champion at What We Do</h3>
+            <p>Request a Consultation and let’s get connected!</p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-sm-6">
+          <div class="contact-form">
+           <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('happy_codding/codding.phtml')->toHtml(); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php echo $this->getChildHtml('global_messages') ?>
+<!-- Footer -->
+
+<?php echo $this->getChildHtml('footer_before') ?>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+
+
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+<!-- Footer -->
+<!-- Javascript -->
+
+	
+<script type="text/javascript">
+	(function( $ ) {
+	// Fixed Navigation JS
+	$(document).ready(function(e) {
+        $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+    });
+    
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+
+	// Mobile Navigation
+	$(document).ready(function () {
+	  var trigger = $('.hamburger'),
+	      overlay = $('.overlay'),
+	     isClosed = false;
+
+	    trigger.click(function () {
+	      hamburger_cross();      
+	    });
+
+	    function hamburger_cross() {
+
+	      if (isClosed == true) {          
+	        overlay.hide();
+	        trigger.removeClass('is-open');
+	        trigger.addClass('is-closed');
+	        isClosed = false;
+	      } else {   
+	        overlay.show();
+	        trigger.removeClass('is-closed');
+	        trigger.addClass('is-open');
+	        isClosed = true;
+	      }
+	  }
+	  
+	  $('[data-toggle="offcanvas"]').click(function () {
+	        $('body').toggleClass('toggled');
+	  });  
+	});
+
+	// Image Before After Effect JS
+	$(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	});
+	
+	// Panel Display Filter 
+	$(document).ready(function(){
+		$(".filter-button").click(function(){
+        	var value = $(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$(".panel-display-box").not('.'+value).hide('3000');
+            	$('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($(".filter-button").removeClass("active")) {
+			$(this).removeClass("active");
+		}
+		$(this).addClass("active");
+		});
+		});
+
+	// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+	
+	})( jQuery );
+	</script>
+	
+</body>
+</html>

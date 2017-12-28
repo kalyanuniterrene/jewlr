@@ -1,0 +1,110 @@
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?> 
+<li>
+                    <a href="#" class="link">
+                        <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/size.png" alt="Editor Icon">
+                        <span>Size</span>
+                    </a>
+                    <div class="sidebar-content size-prize">
+                        <div class="price-size-table steel-plate">
+                            <ul class="list-unstyled">
+                                <li class="sub-title">
+                                    <span class="size-title">Select size</span>
+                                    <span class="discount-title">discounted prize</span>
+                                </li>
+
+                                <?php 
+$sku = "steel-plates";
+$opt_title = "Plate Size";
+$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+//print_r($product_data);
+?>
+                                <?php 
+                        $j=0;
+                        
+                        foreach($product_data as $canvas_data)
+
+                        {
+
+                              $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                            $img_url = $canvas_data['img_url'];
+
+                                            $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $checked= 'checked="checked"';
+                                            $width= $canvas_data['width'];?>
+                                             <li <?php if($default=="default")echo 'class="default-selected"'; ?>>
+                                                <input id="option<?php echo $j;?>" name="selector1" data-w="<?php echo $data_wh[0]?>" data-h="<?php echo $data_wh[1]?>" type="radio" <?php if($default=="default")echo 'checked="checked"'; ?>>
+
+                                                
+
+                                                <label for="option<?php echo $j;?>"><?php echo $canvas_type_option_label;?></label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                               <?php
+                                                /*Check Whether The Price is less than initial price or not*/
+
+                                                if($initial_price > $price)
+                                                {?>
+                                                    <strike>$<?php echo $initial_price;?></strike>
+                                                <?php } ?>    
+
+                                                 $<?php echo $price;?>
+                                            </span>
+                                            </li>   
+                        <?php $j++;}   
+
+                        ?>
+
+                                
+                                <li class="custom-size"> 
+                                    <input id="option16" name="selector1" type="radio" data-w="Custom">
+                                    <label for="option16">Custom Size</label>
+                                    <div class="check"></div>
+                                    <div class="select-box">
+                                        <select>
+                                         <?php
+                                                    $sku = "steel-plates";
+                                                    $product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,'Custom Size');
+                                                    
+                                                    foreach($product_data_custom as $canvas_data_custom)
+
+                                                    {
+                                                        //echo "here hudo";
+                                                         $canvas_type_option_title = $canvas_data_custom['default_title'];
+                                                        
+                                                      $data_wh = explode('*',$canvas_type_option_title);    
+                                                    ?>
+                                            <option><?php echo $data_wh[0];?></option>
+                                            <?php } ?>
+                                        </select>
+                                        x
+                                        <select>
+                                            <?php
+                                                    $sku = "steel-plates";
+                                                    $product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,'Custom Size');
+                                                    
+                                                    foreach($product_data_custom as $canvas_data_custom)
+
+                                                    {
+                                                        
+                                                         $canvas_type_option_title = $canvas_data_custom['default_title'];
+                                                        
+                                                      $data_wh = explode('*',$canvas_type_option_title);    
+                                                    ?>
+                                            <option><?php echo $data_wh[1];?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>

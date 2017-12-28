@@ -1,0 +1,68 @@
+<?php
+/**
+ * Padoo Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@padoo.com so we can send you a copy immediately.
+ *
+ * @category   Padoo
+ * @package    Padoo_Testimonial
+ * @copyright  Copyright (c) 2010-2012 Padoo Co. (http://padoo.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+/**
+ * template of testimonials
+ *
+ * @category   Padoo
+ * @package    Padoo_Testimonial
+ * @author     
+ */
+/**
+ * @var $this Padoo_Testimonial_Block_Testimonial
+ */
+$storeId = Mage::app()->getStore(true)->getId();
+?>
+<?php $skin_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>
+<?php $testimonials = $this->getTestimonials(); ?>
+
+<?php foreach ($testimonials as $testimonial): ?>
+    <?php
+    $stores = $testimonial->getStoreId();
+    //print_r($testimonial->getData());
+    if (strpos($stores, $storeId) !== false || strpos($stores, 0) !== false || $stores == 0) {
+        ?>
+        <div class="main-testimonial-box">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="main-testimonial">
+                    <p><?php echo substr($testimonial->getTestimonialText(), 0, 150); ?>...</p>
+                    <div class="name"><?php echo $testimonial->getTestimonialName(); ?>, Owner</div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <?php if($testimonial->getVideoEmbedCode() != "" ) { ?>
+                    <div id="testimonial-video"> 
+<!--
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $testimonial->getTestimonialImg() ?>" alt=""> 
+-->
+                        <div id="play" style=""><iframe id="player" src="<?php echo $testimonial->getVideoEmbedCode();?>" seamless="seamless" style="border: medium none;" width="535.833" height="357.217"></iframe></div>
+                    </div>
+                <?php } else { ?>
+					 
+                    <div id="testimonial-video"> 
+
+                        <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $testimonial->getTestimonialImg() ?>" alt=""> 
+
+                       
+                        <div id="play" style=""></div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    <?php } ?>
+    <?php break;
+endforeach; ?>

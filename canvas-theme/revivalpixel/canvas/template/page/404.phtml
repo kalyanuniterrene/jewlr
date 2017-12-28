@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<!--[if lt IE 7 ]> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
+
+<head>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<?php echo $this->getChildHtml('head') ?>
+
+</head>
+
+   
+<body>
+
+	<!-- header -->
+	<?php echo $this->getChildHtml('header') ?>
+		<?php echo $this->getChildHtml('content') ?>
+	
+	
+	
+
+
+
+	<!-- Javascript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/js/bootstrap.js"></script>
+	<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/js/jquery-scrolltofixed.js"></script>
+	<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/js/jquery.before-after.js"></script>
+	<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/js/jquery.event.move.js"></script>
+	<script type="text/javascript">
+	
+	// Fixed Navigation JS
+	$(document).ready(function(e) {
+        $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+    });
+    
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+
+	// Image Before After Effect JS
+	$(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	});
+	
+	// Panel Display Filter 
+	$(document).ready(function(){
+		$(".filter-button").click(function(){
+        	var value = $(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$(".panel-display-box").not('.'+value).hide('3000');
+            	$('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($(".filter-button").removeClass("active")) {
+			$(this).removeClass("active");
+		}
+		$(this).addClass("active");
+		});
+		});
+
+	// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+	</script>
+
+</body>
+</html>
+
+
+	
+
+    
+

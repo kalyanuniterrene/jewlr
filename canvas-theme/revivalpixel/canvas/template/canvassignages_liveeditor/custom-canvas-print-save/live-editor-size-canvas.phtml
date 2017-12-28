@@ -1,0 +1,254 @@
+<?php
+
+/*
+ * Author: Shourya-Uniterrene
+* Description: Added the code for the size section for custom-canvas-print products
+* Date: 10-8-17
+* Version: 4.0
+*/
+?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+ 
+ <a href="#" class="link">
+   <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/size.png" alt="Editor Icon">
+     <span>Size</span>
+  </a>
+
+<?php 
+$sku = "custom-canvas-print";
+$opt_title = "Canvas Type";
+$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+//print_r($product_data);
+?>
+        <div class="sidebar-content size-prize">                        
+                    <ul class="nav nav-tabs" role="tablist">
+                         <?php 
+                        
+                        
+                        foreach($product_data as $canvas_data)
+
+                        {
+                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                            $img_url = $canvas_data['img_url'];
+                            
+                            //~ if($canvas_data['default']=="default")
+                            //~ {
+                                //~ $active = $canvas_data['default_title'];
+                            //~ }
+                            
+                            /*Getting the active value from the saved data*/
+                            
+                             $active_type = Mage::registry('canvas_type');
+                            //echo "tak";
+                            $canvas_w = Mage::registry('canvas_w');
+                            $canvas_h = Mage::registry('canvas_h');
+                                    ?>
+
+                            <!--Creating The Parent li for tab-->
+                            
+                            <li role="presentation" data-width-border="<?php echo $canvas_data['width']?>" data-canvas-type="<?php echo $canvas_data['data_canvas_type']; ?>" class="<?php if(rtrim($active_type) == rtrim($canvas_data['option_label'])) {?>
+                    <?php echo "active";?>
+                <?php }?>">
+                                <a href="#<?php echo $canvas_data['canvas_type_redirect']; ?>" role="tab" data-toggle="tab" aria-expanded="true">
+                                    <img src="<?php echo $media_url.$img_url?>" alt="Size">
+                                    <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" class="select-image" alt="Select Image">
+                                    <span><?php echo $canvas_data['option_label']; ?></span>
+                                </a>
+                            </li>   
+                                
+                         <?php
+                              
+                        }   
+
+                        ?>
+                    </ul>
+                            
+                            
+                    <div class="tab-content">
+
+                     <!--Creating The Tab Content-->
+
+                         <?php 
+                        $j=1;
+                        
+                        foreach($product_data as $canvas_data)
+
+                        {
+                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                            $img_url = $canvas_data['img_url'];
+                            
+                            if($canvas_data['default']=="default")
+                            {
+                                $active = $canvas_data['default_title'];
+                            }
+                            
+                            
+                            if($active_type == $canvas_data['default_title'])
+                            {
+								$active = $canvas_data['default_title'];
+							}
+                            
+                                    ?>
+                                    
+                                    <div role="tabpanel" class="tab-pane 
+                        <?php if(substr_count($active,$canvas_data['default_title'])>0) {?>
+                                            <?php echo "active";?>
+                            <?php }?>" id="<?php echo $canvas_data['canvas_type_redirect']; ?>">
+                            
+                            
+                            <div class="price-size-table">
+                                    <ul class="list-unstyled">
+                                        <li class="sub-title">
+                                            <span class="size-title">Select size</span>
+                                            <span class="discount-title">discounted prize</span>
+                                        </li>
+
+
+                                        <?php 
+                                        $product_sku = 'custom-canvas-print';
+                                       
+
+                                        $sku = "custom-canvas-print";
+                                        $opt_title = $canvas_data['option_label']." Size";
+                                        
+                                        $opt_title_custom = $canvas_data['option_label']." Custom Size";
+                                        $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+
+                                         $i=0;
+
+                                        foreach($product_data as $canvas_data_option)
+
+                                        {
+                                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                            $img_url = $canvas_data_option['img_url'];
+
+                                            $canvas_type_option_title = $canvas_data_option['default_title'];
+                                            $canvas_type_option_label = $canvas_data_option['option_label'];
+                                            $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+
+                                            
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data_option['initial_price'];
+                                            $price = number_format((float)$canvas_data_option['price'], 2, '.', '');
+                                            $checked= 'checked="checked"';
+                                            $width= $canvas_data_option['width'];
+                                            
+                                            $data_w =$data_wh[0];
+                                            $data_h =$data_wh[1];
+                                            
+                                            
+                                            if($canvas_w == $data_w && $canvas_h == $data_h)
+                                            {
+												//echo "here";
+												$data_w =$canvas_w;
+												$data_h =$canvas_h;
+												
+												$default=="default";
+											}
+											else
+											{
+											
+												$default = $canvas_data_option['default']; 
+												
+											} 
+                                            
+
+                                                    ?>
+                                            
+                                           <li <?php if($default=="default")echo 'class="default-selected"'; ?>>
+                                                <input id="option<?php echo $j.$i;?>" name="selector<?php echo $j; ?>" data-w="<?php echo $data_w;?>" data-h="<?php echo $data_h;?>" type="radio" <?php if($default=="default")echo 'checked="checked"'; ?>>
+
+                                                
+
+                                                <label for="option<?php echo $j.$i;?>"><?php echo $canvas_type_option_label;?></label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                               <?php
+                                                /*Check Whether The Price is less than initial price or not*/
+
+                                                if($initial_price > $price)
+                                                {?>
+                                                    <strike class="strike">$<?php echo $initial_price;?></strike>
+                                                <?php } ?>    
+
+                                                 <span>$<?php echo $price;?></span>
+                                            </span>
+                                            </li>   
+                                                
+                                         <?php
+                                      $i++;
+                                }   
+                                 ?>  
+
+                                        <li class="custom-size">
+                                                <input id="option<?php echo $j.$i;?>" name="selector<?php echo $j; ?>" type="radio" data-w="Custom" >
+                                                <label for="option<?php echo $j.$i;?>">Custom Size</label>
+                                                <div class="check"></div>
+                                                <div class="select-box">
+                                                    <select <?php echo 'disabled="disabled" class="disable"'; ?> >
+                                                    
+                                                    <?php
+                                                    
+                                                    $product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title_custom);
+                                                    
+                                                    foreach($product_data_custom as $canvas_data_custom)
+
+													{
+														$canvas_type_option_title = $canvas_data_custom['default_title'];
+														
+													  $data_wh = explode('*',$canvas_type_option_title);	
+                                                    ?>
+                                                    
+                                                     <option><?php echo $data_wh[0];?></option>
+                                                     
+                                                     <?php } ?>
+                                                        
+                                                        
+                                                    </select>
+                                                    x
+                                                    <select <?php echo 'disabled="disabled" class="disable"'; ?>>
+                                                    
+                                                     <?php
+                                                    
+                                                    $product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title_custom);
+                                                    
+                                                    foreach($product_data_custom as $canvas_data_custom)
+
+													{
+														$canvas_type_option_title = $canvas_data_custom['default_title'];
+														
+													  $data_wh = explode('*',$canvas_type_option_title);	
+                                                    ?>
+                                                        <option><?php echo $data_wh[1];?></option>
+                                                        
+                                                    <?php } ?>    
+                                                    </select>
+                                                </div>
+                                            </li>
+                                          
+                                        
+                                    </ul>
+                                </div>
+                            
+                            
+                            
+                            
+                        </div> 
+                                        
+                                 <?php
+                                 
+                                 $j++;
+                              
+                        }   
+
+                        ?>
+
+
+
+
+                        
+
+                     
+            </div>

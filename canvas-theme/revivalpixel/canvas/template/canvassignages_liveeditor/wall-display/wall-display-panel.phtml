@@ -1,0 +1,359 @@
+<?php
+/*
+* Add the panel Code
+*/
+?>
+<?php  $panelsize = Mage::getSingleton('core/session')->getWallPanelSize();?>
+
+
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php $home_url =  Mage::getBaseUrl();?>
+<li >
+					<a href="#" class="link">
+						<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panel-icon.png" alt="Editor Icon">
+						<span>Panel</span>
+					</a>
+
+
+
+
+					<div class="sidebar-content addon">
+						<div class="panel-group" id="accordion">
+
+							<?php
+$sku = "wall-display";
+$opt_title = "Panel Filter";
+ $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+ $j=1;
+ foreach($product_data as $canvas_data)
+{
+	$op_title = "Size"; 
+
+$product_data_size = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$op_title);
+$size_arr = array();
+
+$default_panel ="";
+ foreach($product_data_size as $canvas_data_size)
+{
+
+	$size_arr[] = $canvas_data_size['category'];
+	if($panelsize !="")
+	{
+		$template = Mage::getSingleton('core/session')->getWallTemplate();
+		
+		//echo $canvas_data_size['template'];
+		
+		if($canvas_data_size['template'] == $template)
+		{
+			 $default_panel = $template;
+		}
+	}
+}
+
+if (in_array($canvas_data['default_title'], $size_arr)) {
+	
+	
+    
+?>
+
+<div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $j;?>">
+						        		<?php echo $canvas_data['option_label'];?>
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+						    	<div id="collapse<?php echo $j;?>" class="panel-collapse collapse <?php if($canvas_data['default']=="default"){echo "in";}?>">
+						      		<div class="panel-body">
+						      			<ul class="list-unstyled">
+						      				
+
+						      			<?php 
+											 
+											 foreach($product_data_size as $canvas_data_size)
+											{ 
+												if($canvas_data_size['category'] == $canvas_data['default_title'] )
+												{ 
+													 $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                            						$img_url = $canvas_data_size['img_url'];
+                            						
+                            						if($default_panel ==""){
+		
+		
+															if($canvas_data_size['default']=="default"){
+																
+																echo $default_panel = $canvas_data_size['template'];
+																
+															}
+													
+													}
+                            						
+                            						
+													?>
+													<li <?php if($default_panel==$canvas_data_size['template']){echo 'class="active"';}?> data-canvas-name="<?php echo $canvas_data_size['default_title'];?>" data-price="<?php echo number_format((float)$canvas_data_size['price'], 2, '.', '') ;?>" data-template="<?php echo $canvas_data_size['template'];?>" data-size="<?php echo $canvas_data_size['panelsize'];?>" data-panel-type="<?php echo $canvas_data_size['panel_type'];?>">
+										    			<a href="#">
+										    				<img src="<?php echo $media_url.$img_url?>" alt="Style Image">
+										    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+										    				<span>Size: <?php echo $canvas_data_size['default_title'];?>"</span>
+										    				<span class="price">
+										    					<strike>$<?php 
+										    					echo number_format((float)$canvas_data_size['initial_price'], 2, '.', '');
+										    					 ;?></strike>$<?php echo number_format((float)$canvas_data_size['price'], 2, '.', '');?>
+										    				</span>
+										    			</a>
+										    		</li>
+
+													<?php
+												}
+											} ?>
+
+
+								    		<!-- <li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li> -->
+								    	</ul>
+						      		</div>
+						    	</div>
+						  	</div>
+
+<?php $j++;} } ?>
+
+
+						  	<!-- <div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+						        		Popular
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+						    	<div id="collapse1" class="panel-collapse collapse in">
+						      		<div class="panel-body">
+						      			<ul class="list-unstyled">
+								    		<li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li>
+								    	</ul>
+						      		</div>
+						    	</div>
+						  	</div>
+						  	<div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="collapsed">
+						        		2 Panel
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+						    	<div id="collapse2" class="panel-collapse collapse">
+						      		<div class="panel-body">
+						      			<ul class="list-unstyled">
+								    		<li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li>
+								    	</ul>
+						      		</div>
+						    	</div>
+						  	</div>
+						  	<div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="collapsed">
+						        		3 Panel
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+							    <div id="collapse3" class="panel-collapse collapse">
+							      	<div class="panel-body">
+							      		<ul class="list-unstyled">
+								    		<li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li>
+								    	</ul>
+							      	</div>
+							    </div>
+							</div>
+							<div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse4" class="collapsed">
+						        		4 Panel
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+							    <div id="collapse4" class="panel-collapse collapse">
+							    	<div class="panel-body">
+								      	<ul class="list-unstyled">
+								    		<li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li>
+								    	</ul>
+									</div>
+							    </div>
+							</div>
+							<div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse5" class="collapsed">
+						        		5 Panel
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+							    <div id="collapse5" class="panel-collapse collapse">
+							    	<div class="panel-body">
+								      	<ul class="list-unstyled">
+								    		<li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li>
+								    	</ul>
+									</div>
+							    </div>
+							</div>
+							<div class="panel panel-default">
+						    	<div class="panel-heading">
+						      		<div class="panel-title">
+						        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse6" class="collapsed">
+						        		6 Panel
+						        		<i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
+						        		</a>
+						      		</div>
+						    	</div>
+							    <div id="collapse6" class="panel-collapse collapse">
+							    	<div class="panel-body">
+								      	<ul class="list-unstyled">
+								    		<li class="active">
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4033.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 40 x 33"</span>
+								    				<span class="price">
+								    					<strike>$158.25</strike>$108.25
+								    				</span>
+								    			</a>
+								    		</li>
+								    		<li>
+								    			<a href="#">
+								    				<img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/panelwhite4230.jpg" alt="Style Image">
+								    				<img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+								    				<span>Size: 42 x 30"</span>
+								    				<span class="price">
+								    					<strike>$150.04</strike>$125.14
+								    				</span>
+								    			</a>
+								    		</li>
+								    	</ul>
+									</div>
+							    </div>
+							</div> -->
+						</div> 
+					</div>
+				</li>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php echo $this->getChildHtml('content') ?>
+
+<!-- Footer -->
+<?php echo $this->getChildHtml('global_messages') ?>
+<!-- Footer -->
+
+<?php echo $this->getChildHtml('footer_before') ?>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<?php echo $this->getAbsoluteFooter() ?>
+
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<!-- Javascript --> 
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+<script type="text/javascript">
+    //jQuery = jQuery.noConflict(true);
+	//$ = jQuery.noConflict(true);
+    // Fixed Navigation JS
+	(function( $ ) {
+    $(document).ready(function (e) {
+        $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function () {
+            $('.main-nav').slideToggle();
+            return false
+        });
+        if ($(window).width() < 768) {
+            $('.main-nav').hide();
+        }
+    });
+
+    // Fixed Navigation Smooth Scroll JS
+    $(document).ready(function () {
+        if (screen && screen.width > 991) {
+            $(".main-nav li a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $($.attr(this, 'href')).offset().top - 68
+                    }, 800, function () {
+                        //window.location.hash = hash;
+                    });
+                }
+            });
+        }
+        if (screen && screen.width < 992) {
+            $(".main-nav li a").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $($.attr(this, 'href')).offset().top - 150
+                    }, 800, function () {
+                        //window.location.hash = hash;
+                    });
+                }
+            });
+        }
+        $('.main-nav li a').on('click', function () {
+            $('.main-nav li a.current').removeClass('current');
+            $(this).addClass('current');
+            event.preventDefault();
+        });
+    });
+
+    // Mobile Navigation
+    $(document).ready(function () {
+        var trigger = $('.hamburger'),
+                overlay = $('.overlay'),
+                isClosed = false;
+
+        trigger.click(function () {
+            hamburger_cross();
+        });
+
+        function hamburger_cross() {
+
+            if (isClosed == true) {
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('body').toggleClass('toggled');
+        });
+    });
+
+    // Image Before After Effect JS
+    $(window).on('load', function () {
+        $("#origonal").twentytwenty();
+        $("#sepia-image").twentytwenty();
+        $("#greyscale").twentytwenty();
+    });
+
+    // Panel Display Filter 
+    $(document).ready(function () {
+        $(".filter-button").click(function () {
+            var value = $(this).attr('data-filter');
+            if (value == "all")
+            {
+                $('.panel-display-box').show('3000');
+            } else
+            {
+                $(".panel-display-box").not('.' + value).hide('3000');
+                $('.panel-display-box').filter('.' + value).show('3000');
+            }
+
+            if ($(".filter-button").removeClass("active")) {
+                $(this).removeClass("active");
+            }
+            $(this).addClass("active");
+        });
+    });
+
+    // Popup Photo Select Js
+    $(".my-photos-image-box").click(function () {
+        $(this).addClass('select').siblings().removeClass('select');
+    });
+	})( jQuery );
+</script>
+
+</body>
+</html>
+

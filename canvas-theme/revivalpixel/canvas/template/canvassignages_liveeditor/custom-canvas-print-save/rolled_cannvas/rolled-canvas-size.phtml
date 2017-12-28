@@ -1,0 +1,88 @@
+<div class="price-size-table">
+                                    <ul class="list-unstyled">
+                                        <li class="sub-title">
+                                            <span class="size-title">Select size</span>
+                                            <span class="discount-title">discounted prize</span>
+                                        </li>
+
+
+                                        <?php 
+                                $product_sku = 'custom-canvas-print';
+                                $product = Mage::getModel('catalog/product')->loadByAttribute('sku', $product_sku);
+                                $product_id = 1;
+                                $obj = Mage::getModel('catalog/product');
+                                $product = $obj->load($product_id);
+                                
+                                foreach($product->getOptions() as $o)
+
+                                {
+                                    
+                                    $options = $o->getData();
+                                    $optionType = $o->getType();
+                                    $option_title = $options['default_title'];
+                                    
+                                    if($option_title == "Rolled Canvas Size")
+                                    {
+                                        $values = $o->getValues();
+
+                                        $i=0;
+
+                                        foreach ($values as $k => $v) 
+                                        {
+                                            $ipt_title = $v->getData();
+
+                                            //print_r($v->getData());
+
+                                            $canvas_type_option_title = $ipt_title['default_title'];
+                                            $canvas_type_option_label = $ipt_title['class1'];
+                                            $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+
+                                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $ipt_title['class2'];
+                                            $price = number_format((float)$ipt_title['price'], 2, '.', '');
+
+
+
+
+                                            $img_url = $ipt_title['image'];
+                                            if($canvas_type_option_title !="Custom")
+                                            {
+
+
+                                            ?>
+                                            
+                                            <li>
+                                                <input id="option<?php echo $i;?>" name="selector1" data-w="<?php echo $data_wh[0]?>" data-h="<?php echo $data_wh[1]?>" type="radio">
+                                                <label for="option<?php echo $i;?>"><?php echo $canvas_type_option_label;?></label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                               <?php
+                                                /*Check Whether The Price is less than initial price or not*/
+
+                                                if($initial_price > $price)
+                                                {?>
+                                                    <strike>$<?php echo $initial_price;?></strike>
+                                                <?php } ?>    
+
+                                                 $<?php echo $price;?>
+                                            </span>
+                                            </li>  
+                                                
+                                         <?php
+                                            }
+                                         $i++;
+                                        }
+                                    }
+                                    
+                                }   
+        
+                                ?>  
+
+
+                                          
+                                        
+                                    </ul>
+                                </div>

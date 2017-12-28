@@ -1,0 +1,242 @@
+<style>	.videoWrapper {		position: relative;		padding-bottom: 56.25%; /* 16:9 */		padding-top: 25px;		height: 0;	}	.videoWrapper iframe {		position: absolute;		top: 0;		left: 0;		width: 100%;		height: 100%;	}</style><?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php $storeId = Mage::app()->getStore(true)->getId(); ?>
+<div class="main-content"> 
+  <!-- Testimonial -->
+  <div class="testimonial">
+    <div class="testimonial-header">
+      <div class="container">
+        <div class="row">
+          <h3>Our success stories straight from our customer</h3>
+        </div>
+      </div>
+    </div>
+	<?php $testimonials = $this->getTestimonials(); ?>
+    <div class="container">
+      <div class=""> 
+        <!-- Main Testimonial -->
+        <div class="main-testimonial-box">
+          <div class="carousel slide" data-ride="carousel" id="quote-carousel"> 
+            <!-- Bottom Carousel Indicators -->
+            <ol class="carousel-indicators">
+				<?php $count = 0; $active = 'active'; ?>
+				<?php foreach ($testimonials as $testimonial): ?>
+					<li data-target="#quote-carousel" data-slide-to="<?php echo $count ?>" class="<?php echo $active ?>"></li> <?php $active = ''; ?> 
+			    <?php break;$count++;endforeach; ?>            
+            </ol>
+            <?php $i = 5; $active = 'active'; ?>
+            <!-- Carousel Slides / Quotes -->
+            <div class="carousel-inner"> 
+              <?php foreach ($testimonials as $testimonial): ?>
+				  <!-- Quote 1 -->
+				  <div class="item <?php echo $active ?>">
+					<div class="row">
+					  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+						<div class="main-testimonial">
+						  <p><?php echo substr($testimonial->getTestimonialText(),0,150); ?></p>
+						  <div class="name"><?php echo $testimonial->getTestimonialName(); ?>, Owner</div>
+						</div>
+					  </div>
+					  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+						<div data-video="xK70K_q_034" id="testimonial-video"> 			
+					<?php if($testimonial->getVideoEmbedCode() !="") {?><div class="videoWrapper">						<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$testimonial->getTestimonialImg() ?>" class="img img-responsive" alt="Use your own screenshot."> 
+					<iframe id="player" src="<?php echo $testimonial->getVideoEmbedCode();?>" seamless="seamless" style="border: medium none;" width="535.833" height="357.217"></iframe></div>
+					<?php } ?>
+					</div>
+					  </div>
+					</div>
+				  </div>
+				 <?php $active = ''; ?> 
+               <?php break;$i++;endforeach; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<?php if ($testimonials->count() > 0): ?> 
+  <div class="container">
+    <div class="masonry-testimonials">
+      <div class="row">
+        <div class="masonry-container">
+		 <?php $i = 5; ?>
+		<?php foreach ($testimonials as $testimonial): ?>
+		<?php 
+			$stores = $testimonial->getStoreId();
+			if(strpos($stores,$storeId) !== false || strpos($stores,0) !== false || $stores == 0){
+		?>
+          <div class="col-md-6 col-sm-12 item">
+            <div class="thumbnail">
+              <div data-video="xK70K_q_034" id="testimonial-video<?php echo $i ?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . $testimonial->getTestimonialImg() ?>" class="img-responsive" alt=""> 
+              <?php if($testimonial->getVideoEmbedCode() !="") {?>			  <div class="videoWrapper">
+              <iframe id="player" src="<?php echo $testimonial->getVideoEmbedCode();?>" seamless="seamless"  width="100%" height="auto" frameborder="0" allowfullscreen></iframe>				</div>
+              <?php } ?>
+              </div>
+              <div class="caption">
+                <p><?php echo $testimonial->getTestimonialText(); ?></p>
+                <h5><?php echo $testimonial->getTestimonialName(); ?></h5>
+                <p><?php echo date('M d, Y',strtotime($testimonial->getTestimonialDate())); ?></p>
+              </div>
+            </div>
+          </div>
+		<?php } ?>
+		<?php $i++;endforeach; ?>
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;</div>
+      <!--<div class="row">
+        <div class="col-md-12">
+          <p class="text-center"><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/loading.gif" width="50" height="50" alt=""/><br>
+            Loading... </p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  
+<?php endif;?>  
+</div>
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/imagesLoaded.js"></script> 
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/masonry.js"></script> 
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/testimonial-filter.js"></script>
+<script type="text/javascript">
+	(function( $ ) {	
+		// Home Main Product same height JS
+		// $(document).ready ( function(){
+		window.onload = function() {
+			if (screen && screen.width > 991) {
+ 				var divHeight = $('#one-image').height();
+ 				$('#two-image').height(divHeight);
+ 			}
+		};
+
+		// Our Promiss JS
+		$(window).scroll(function(){
+		    if ($(this).scrollTop() > 600) {
+		       $('#status-1').addClass('remove-bg');
+		    } else {
+		       $('#status-1').removeClass('remove-bg');
+		    }
+			
+			if ($(this).scrollTop() > 800) {
+		       $('#status-2').addClass('remove-bg');
+		    } else {
+		       $('#status-2').removeClass('remove-bg');
+		    }
+			if ($(this).scrollTop() > 1000) {
+		       $('#status-3').addClass('remove-bg');
+		    } else {
+		       $('#status-3').removeClass('remove-bg');
+		    }
+			
+			if ($(this).scrollTop() > 1200) {
+		       $('#status-4').addClass('remove-bg');
+		    } else {
+		       $('#status-4').removeClass('remove-bg');
+		    }
+			
+			if ($(this).scrollTop() > 1400) {
+		       $('#status-5').addClass('remove-bg');
+		    } else {
+		       $('#status-5').removeClass('remove-bg');
+		    }
+			if ($(this).scrollTop() > 1600) {
+		       $('#status-6').addClass('remove-bg');
+		    } else {
+		       $('#status-6').removeClass('remove-bg');
+		    }
+		});
+
+		// Testimonial Video JS
+		$("document").ready(function() {
+			$("#testimonial-video").simplePlayer();
+				$("#testimonial-video2").simplePlayer();
+				$("#testimonial-video3").simplePlayer();
+				$("#testimonial-video4").simplePlayer();
+				$("#testimonial-video5").simplePlayer();
+				$("#testimonial-video6").simplePlayer();
+			$("#testimonial-video7").simplePlayer();
+			$("#testimonial-video8").simplePlayer();
+			$("#testimonial-video9").simplePlayer();
+			$("#testimonial-video10").simplePlayer();
+		});
+		
+
+
+		// Mobile Navigation
+		$(document).ready(function () {
+		  var trigger = $('.hamburger'),
+		      overlay = $('.overlay'),
+		     isClosed = false;
+
+		    trigger.click(function () {
+		      hamburger_cross();      
+		    });
+
+		    function hamburger_cross() {
+
+		      if (isClosed == true) {          
+		        overlay.hide();
+		        trigger.removeClass('is-open');
+		        trigger.addClass('is-closed');
+		        isClosed = false;
+		      } else {   
+		        overlay.show();
+		        trigger.removeClass('is-closed');
+		        trigger.addClass('is-open');
+		        isClosed = true;
+		      }
+		  }
+		  
+		  $('[data-toggle="offcanvas"]').click(function () {
+		        $('body').toggleClass('toggled');
+		  });  
+		});
+
+
+		function determineDropDirection(){
+		  $(".dropdown-menu").each( function(){
+		    $(this).css({
+		      visibility: "hidden",
+		      display: "block"
+		    });
+		    
+		    $(this).parent().removeClass("dropup");
+		    
+		    if ($(this).offset().top + $(this).outerHeight() > $(window).innerHeight() + $(window).scrollTop()){
+		      $(this).parent().addClass("dropup");
+		    }
+		    
+		    $(this).removeAttr("style");
+		  });
+		}
+
+		determineDropDirection();
+
+		$(window).scroll(determineDropDirection);
+
+
+		// Back To Top js
+		jQuery(document).ready(function($){
+			var offset = 300,
+				offset_opacity = 1200,
+				scroll_top_duration = 700,
+				$back_to_top = $('.back-to-top');
+			$(window).scroll(function(){
+				( $(this).scrollTop() > offset ) ? $back_to_top.addClass('bw-is-visible') : $back_to_top.removeClass('bw-is-visible bw-fade-out');
+				if( $(this).scrollTop() > offset_opacity ) { 
+					$back_to_top.addClass('bw-fade-out');
+				}
+			});
+			$back_to_top.on('click', function(event){
+				event.preventDefault();
+				$('body,html').animate({
+					scrollTop: 0 ,
+				 	}, scroll_top_duration
+				);
+			});
+		});
+
+	})( jQuery );
+	</script>
+</body>
+</html>

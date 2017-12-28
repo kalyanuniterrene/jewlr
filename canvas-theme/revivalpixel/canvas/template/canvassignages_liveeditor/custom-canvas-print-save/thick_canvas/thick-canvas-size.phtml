@@ -1,0 +1,89 @@
+<div class="price-size-table">
+                                    <ul class="list-unstyled">
+                                        <li class="sub-title">
+                                            <span class="size-title">Select size</span>
+                                            <span class="discount-title">discounted prize</span>
+                                        </li>
+
+
+                                        <?php 
+                                $product_sku = 'custom-canvas-print';
+                                $product = Mage::getModel('catalog/product')->loadByAttribute('sku', $product_sku);
+                                $product_id = 1;
+                                $obj = Mage::getModel('catalog/product');
+                                $product = $obj->load($product_id);
+
+                                $sku = "custom-canvas-print";
+                                $opt_title = "Thick Canvas Size";
+                                $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+
+                                $i=20;
+
+                                foreach($product_data as $canvas_data)
+
+                                {
+                                    $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                    $img_url = $canvas_data['img_url'];
+
+                                    $canvas_type_option_title = $canvas_data['default_title'];
+                                    $canvas_type_option_label = $canvas_data['option_label'];
+                                    $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                    $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+                                    $default = $canvas_data['default'];
+                                             
+                                    $data_wh = explode('*',$canvas_type_option_title);
+
+                                    $initial_price = $canvas_data['initial_price'];
+                                    $price = number_format((float)$canvas_data['price'], 2, '.', '');
+
+                                            ?>
+                                            
+                                           <li>
+                                                <input id="option<?php echo $i;?>" name="selector1" data-w="<?php echo $data_wh[0]?>" data-h="<?php echo $data_wh[1]?>" type="radio" <?php if($default == "default") { echo 'checked="checked"';}else{}
+                                               ?>>
+                                                <label for="option<?php echo $i;?>"><?php echo $canvas_type_option_label;?></label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                               <?php
+                                                /*Check Whether The Price is less than initial price or not*/
+
+                                                if($initial_price > $price)
+                                                {?>
+                                                    <strike>$<?php echo $initial_price;?></strike>
+                                                <?php } ?>    
+
+                                                 $<?php echo $price;?>
+                                            </span>
+                                            </li>   
+                                                
+                                         <?php
+                                      $i++;
+                                }   
+                                 ?>  
+
+                                    <li class="custom-size">
+                                                <input id="option6" name="selector1" type="radio">
+                                                <label for="option6">Custom Size</label>
+                                                <div class="check"></div>
+                                                <div class="select-box">
+                                                    <select>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                    x
+                                                    <select>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                          
+                                        
+                                    </ul>
+                                </div>

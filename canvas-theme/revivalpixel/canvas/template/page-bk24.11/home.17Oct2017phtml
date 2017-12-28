@@ -1,0 +1,324 @@
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>
+<?php $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>
+<!-- Main Content -->
+<div class="main-content">
+    <!-- Main Showcase Product -->
+    <div class="showcase-product">		
+        <?php
+        $categories = Mage::getModel('catalog/category')->getCollection()
+                ->addAttributeToSelect('*')//or you can just add some attributes
+                ->addAttributeToFilter('level', 2)//2 is actually the first level
+                ->addAttributeToFilter('is_active', 1)//if you want only active categories
+        ;
+        $color = array('blue', 'orange', 'green');
+        $count = 0;
+        ?>
+        <?php foreach ($categories as $category) { ?>	
+            <?php
+            $url = '';
+            $products = Mage::getModel('catalog/category')->load($category->getId())
+                    ->getProductCollection()
+                    ->addAttributeToSelect('*');
+            ?>				
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+                <div class="showcase-product-box" style="background-image: url(<?php echo $media_url ?>catalog/category/<?php echo $category->getImage(); ?>);">
+                    <!-- Main Showcase Product Image -->
+                    <div class="image <?php echo $color[$count] ?> ">
+                        <!--<img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/<?php echo $category->getImage(); ?>" alt="Showcase Product" class="img-responsive" />-->
+                        <!--<img src="<?php echo $media_url ?>catalog/category/<?php echo $category->getImage(); ?>" alt="Showcase Product" class="img-responsive" />-->
+                    </div>
+
+                    <!-- Main Showcase Product Detail -->
+                    <div class="detail">
+                        <h3><?php echo $category->getName(); ?></h3>
+                        <p><?php echo $category->getDescription(); ?></p>
+                    </div>
+                    <div class="button-dropdown">
+                        <?php
+                        foreach ($products as $product) {
+                            $url = $product->getUrlPath();
+                        }
+                        ?>
+                        <?php if ($products->count() <= 1) { ?>
+                            <a href="<?php echo Mage::getBaseUrl() . $url; ?>" class="button large border">Start your <?php echo $category->getName(); ?></a>
+                        <?php } else { ?>
+                            <div class="dropdown">
+                                <button class="button large border dropdown-toggle" type="button" data-toggle="dropdown">Start your <?php echo $category->getName(); ?> <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                                <ul class="dropdown-menu">
+                                    <?php foreach ($products as $product) { ?>
+                                        <li><a href="<?php echo Mage::getBaseUrl() . $product->getUrlPath(); ?>"><?php echo $product->getName(); ?></a></li>
+                                    <?php } ?>									
+                                </ul>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+            $count++;
+            if ($count > 2) {
+                break;
+            }
+        }
+        ?>			
+    </div>
+
+
+
+    <!-- Offer Box -->
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_discount')->toHtml(); ?> 
+
+    <!-- our promises section start -->
+    <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_promises')->toHtml();  ?> 
+    <div class="our-promises">
+        <div class="">
+            <div class="container">
+                <h3 class="text-center">Number #1 Choice for Quality Imprint</h3>
+                <div class="stem-wrapper" >
+                    <div class="stem"></div>
+                    <div class="stem-background"></div>
+                </div>
+                <div class="section main-content">
+                    <div class="section-inner">
+                        <div class="post-wrapper"> 
+                            <!-- empty tag start -->
+                            <article class="post music-icon" data-stem-color="yellow" style="padding-bottom: 40px;">
+                                <div class="stem-overlay">
+                                    <div class="stem-mask" style="top:0;"></div>
+                                </div>
+                            </article>
+                            <article class="post music-icon" data-stem-color="yellow" style="padding-bottom: 40px;">
+                                <div class="stem-overlay">
+                                    <div class="stem-mask" style="top:0;"></div>
+                                </div>
+                            </article>
+                            <!-- empty tag end -->
+                            <article class="post music-icon" data-stem-color="yellow">
+                                <div class="stem-overlay">
+                                    <div class="icon"></div>
+                                    <div class="stem-mask"></div>
+                                </div>
+                                <div class="post-content">
+                                    <p class="meta"><i id='status-1' class="remove glyph-icon flaticon-hand-white"></i></p>
+                                    <h6 class="post-title">Easy (And Free) To Use</h6>
+                                    <div class="entry-content">
+                                        <p>Free online editor is designed to be simple-to-use. With Canvas, you can turn a photo into gorgeous art, you love – without any technical savvy or pricey software required.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post music-icon" data-stem-color="yellow">
+                                <div class="stem-overlay">
+                                    <div class="icon"></div>
+                                    <div class="stem-mask"></div>
+                                </div>
+                                <div class="post-content">
+                                    <p class="meta"><i id='status-2' class="remove glyph-icon flaticon-layers-white"></i></p>
+                                    <h6 class="post-title">Freedom of Design</h6>
+                                    <div class="entry-content">
+                                        <p>Intuitive controls and high-resolution graphic features make us a meekest approach to overhaul the color, depth, and tone of your uploaded image.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post music-icon" data-stem-color="yellow">
+                                <div class="stem-overlay">
+                                    <div class="icon"></div>
+                                    <div class="stem-mask"></div>
+                                </div>
+                                <div class="post-content">
+                                    <p class="meta"><i id='status-3' class="remove glyph-icon flaticon-tag-white" ></i></p>
+                                    <h6 class="post-title">Finest Prices Guarantee</h6>
+                                    <div class="entry-content">
+                                        <p>A large volume design selection empowers us to bid very competitive pricing, and we guarantee to provide the finest prices and best premium quality.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post music-icon" data-stem-color="yellow">
+                                <div class="stem-overlay">
+                                    <div class="icon"></div>
+                                    <div class="stem-mask"></div>
+                                </div>
+                                <div class="post-content">
+                                    <p class="meta"><i id='status-4' class="remove glyph-icon flaticon-locked-white"></i></p>
+                                    <h6 class="post-title">Safe & Secure</h6>
+                                    <div class="entry-content">
+                                        <p>Safe and secure checkout and payment transitions. Canvas Signages guarantee to keep your personally identifiable information are in a safe, secure environment.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post music-icon" data-stem-color="yellow">
+                                <div class="stem-overlay">
+                                    <div class="icon"></div>
+                                    <div class="stem-mask"></div>
+                                </div>
+                                <div class="post-content">
+                                    <p class="meta"><i id='status-5' class="remove glyph-icon flaticon-happy-white"></i></p>
+                                    <h6 class="post-title">Service Excellence </h6>
+                                    <div class="entry-content">
+                                        <p>Takes pride of service team for providing the top-notch customer service experience in the industry. Our service chain follow-up customers one by one and reach them via call and emails.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="post music-icon" data-stem-color="yellow">
+                                <div class="stem-overlay">
+                                    <div class="icon"></div>
+                                    <div class="stem-mask"></div>
+                                </div>
+                                <div class="post-content">
+                                    <p class="meta"><i id='status-6' class="remove glyph-icon flaticon-diamond-white"></i></p>
+                                    <h6 class="post-title">Professional Quality </h6>
+                                    <div class="entry-content">
+                                        <p>From simple charm to industrial strength and professional luxury, we have canvas designs to suit all needs. Our archival-quality and eco-friendly pages feature sharp images and vibrant colors.</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center"> 
+                        <!-- <a href="#" class="button large blue dropbtn2" onclick="myFunction()" >START YOUR PROJECT<i class="flaticon-arrows"></i></a>
+                        <div id="myDropdown2" class="dropdown-content2"> <a href="#">Custom Canvas Prints</a> <a href="#">Wall Display</a> <a href="#">Photo Collage</a> </div> -->
+                    <div class="button-dropdown">
+                        <div class="dropdown">
+                            <button class="button large blue dropdown-toggle" type="button" data-toggle="dropdown">Let's design now <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo Mage::getBaseUrl() ?>custom-canvas-print.html">Custom Canvas Prints</a></li>
+                                <li><a href="<?php echo Mage::getBaseUrl() ?>wall-display.html">Wall Display</a></li>
+                                <li><a href="<?php echo Mage::getBaseUrl() ?>photo-collage-23.html">Photo Collage</a></li>
+                                <li><a href="<?php echo Mage::getBaseUrl() ?>steel-plates.html">Steel Plates</a></li>
+                                <li><a href="<?php echo Mage::getBaseUrl() ?>acrylic.html">Acrylic Plates</a></li>
+                            </ul>
+                        </div> 				
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial -->
+    <div class="testimonial">
+        <div class="testimonial-header">
+            <div class="container">
+                <div class="row">
+                    <h3>Customers Who LOVE IT: Customer Who TRUST US</h3>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- Main Testimonial -->
+                <?php echo $this->getLayout()->createBlock('padoo_testimonial/testimonial')->setTemplate('padoo/testimonial/home-testimonial-main.phtml')->toHtml(); ?>
+            </div>
+        </div>
+        <div class="container">
+            <div class="testimonial-box-outrr">
+                <div class="row">
+                    <?php /* echo $this->getLayout()->createBlock('padoo_testimonial/testimonial')->setTemplate('padoo/testimonial/home-testimonial.phtml')->toHtml(); */ ?>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-center">
+                <a href="<?php echo Mage::getBaseUrl(); ?>testimonials/" class="button large blue">More Prospectives</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Home Main Product -->
+
+    <?php $productPos = array(); ?>
+    <?php
+    $collection = Mage::getModel('catalog/product')->getCollection()
+            ->addAttributeToFilter('status', 1)
+            ->addAttributeToSelect('*'); // select all attributes
+
+    foreach ($collection as $product) {
+        $productPos[$product->getId()] = $product;
+    }
+    ?>
+    <div class="home-main-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h3 class="text-center">Made With Love: We Bring Passion In</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div>
+                <div class="home-main-product-box">
+                    <div class="image">
+                        <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($productPos[1]->getImage()); ?>" alt="Home Main Product">
+                    </div>
+                    <div class="detail">
+                        <h4><?php echo $productPos[1]->getName(); ?></h4>
+                        <p><b>Starts at</b>  <strike>$<?php echo number_format($productPos[1]->getPrice(), 2); ?></strike>  <b>$<?php echo number_format($productPos[1]->getSpecialPrice(), 2); ?></b></p>
+                    </div>
+                    <a href="<?php echo $productPos[1]->getUrlPath(); ?>" class="button large border">Start Your Order</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                    <div class="home-main-product-box">
+                        <div class="image">
+                            <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($productPos[5]->getImage()); ?>" alt="Home Main Product">
+                        </div>
+                        <div class="detail">
+                            <h4><?php echo $productPos[5]->getName(); ?></h4>
+                            <p><b>Starts at</b>  <strike>$<?php echo number_format($productPos[5]->getPrice(), 2); ?></strike></strike>  <b>$<?php echo number_format($productPos[5]->getSpecialPrice(), 2); ?></b></p>
+                        </div>
+                        <a href="<?php echo $productPos[5]->getUrlPath(); ?>" class="button large border">Start Your Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="home-main-product-box">
+                <div class="image">
+                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($productPos[3]->getImage()); ?>" alt="Home Main Product">
+                </div>
+                <div class="detail">
+                    <h4><?php echo $productPos[3]->getName(); ?></h4>
+                    <p><b>Starts at</b>  <strike>$<?php echo number_format($productPos[3]->getPrice(), 2); ?></strike>  <b>$<?php echo number_format($productPos[3]->getSpecialPrice(), 2); ?></b></p>
+                </div>
+                <a href="<?php echo $productPos[3]->getUrlPath(); ?>" class="button large border">Start Your Order</a>
+            </div>            
+        </div>     
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="home-main-product-box">
+                <div class="image">
+                    <img src="<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl($productPos[7]->getImage()); ?>" alt="Home Main Product">
+                </div>
+                <div class="detail">
+                    <h4><?php echo $productPos[7]->getName(); ?></h4>
+                    <p><b>Starts at</b>  <strike>$<?php echo number_format($productPos[7]->getPrice(), 2); ?></strike>  <b>$<?php echo number_format($productPos[7]->getSpecialPrice(), 2); ?></b></p>
+                </div>
+                <a href="<?php echo $productPos[7]->getUrlPath(); ?>" class="button large border">Start Your Order</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Attrack Box -->
+    <div class="customer-attrack">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_discount')->toHtml(); ?> 
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_newsletter')->toHtml(); ?> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php echo $this->getChildHtml('footer_before') ?>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<?php //echo $this->getAbsoluteFooter()  ?>
+</body>
+</html>

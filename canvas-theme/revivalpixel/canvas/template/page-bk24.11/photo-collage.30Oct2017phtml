@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php 
+if(Mage::registry('current_product')) { //check if product global 'registry' object is available
+	$product = Mage::registry('current_product');
+	$sku = $product->getSku();
+   //etc
+} 
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/editor.css">	
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<style>
+.my_computer{
+    position: absolute;  
+    overflow: auto;
+    width: 100%;
+    bottom: 0;
+    background: #fff;
+    top: 78px;
+    padding: 0 50px;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transform: scale(1);
+}
+.my_computer.hides{
+    transform: scale(0);
+}
+.my_computer a.closeCOmputerModal{
+        width: 25px;
+    height: 25px;
+    border: 1px solid #687ddb;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    color: #fff !important;
+   text-align: center;
+    background: #687ddb;
+    right: 5px;
+    top: 5px;
+}
+.my-photos{
+    min-height: 345px;
+    max-height: 345px;
+    overflow: auto;
+}
+.preloader_image{
+    display: none;        
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    width: 100%;
+    text-align: center;   
+    height: 344px;
+    background: #fff;
+    padding-top: 15%;
+}
+.preloader_image img{
+    width: 100px;
+}
+.pleaseWait{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0, .5);
+    z-index: 99999;
+    display: none;
+}
+.afterOrder{
+    background: rgba(0,0,0, .5);
+    display: none;  
+    z-index: 9999999;
+}
+.afterOrder img{
+    max-width: 120px;
+}
+.afterOrder h4{
+    text-transform: capitalize !important;
+    line-height: 60px;
+}
+.afterOrder > .low-res-modal{
+    background-color: #f8f8f8;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.25);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: auto;
+    width: 480px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.afterOrder > .low-res-modal{
+    background-color: #f8f8f8;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.25);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: auto;
+    width: 480px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.saveMOdal > .low-res-modal{
+    background-color: #f8f8f8;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.25);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: auto;
+    width: 480px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.openSaveMOdal > .low-res-modal{
+    background-color: #f8f8f8;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.25);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    margin: auto;
+    width: 480px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.low-res-modal{
+    text-align: center;
+    padding: 20px;
+}
+.after_Order{
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.after_Order li{
+    display: inline-block;
+    vertical-align: top;
+    width: 48%
+}
+.after_Order li a{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    background: #08b4e0 none repeat scroll 0 0;
+    box-shadow: 0 0 0 #03a0cc inset;
+    text-decoration: none;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: 900;
+}
+.after_Order li a:hover{
+    box-shadow: 6px 5px 13px -3px #000 inset;
+}
+</style>
+	<!-- Main Content -->
+	<div class="main-content">
+
+	<!-- please wait div -->
+
+    <div class="pleaseWait">
+        <img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/Processing.gif" alt="">
+    </div>
+
+    <!-- after Save Popup -->
+        <div class="modal afterOrder">
+            <div class="low-res-modal">
+                <div class="header">                    
+                    <img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/orderPlaced.png" alt="">
+                    <h4>Successfully added to cart</h4>
+                </div>
+                <div class="content">
+                    <ul class="after_Order">
+                        <li><a class="after_addtoCart" href="<?php echo $home_url?>checkout/cart"> Go to Cart </a></li>
+                        <li><a class="after_addtoCart closethisPop" href="javascript:void(0)"> Stay Here </a></li>
+                    </ul>
+                   <!--  <div class="text-wrap">
+                        <p>* The canvas will be saved by this Name</p>
+                    </div> -->
+                </div>
+               <!--  <button type="button" class="close_low_res_popup" aria-label="Close">
+                    <span aria-hidden="true">Minimize</span><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/minimize-icon.png" alt="Minimize Icon">
+                </button> -->
+            </div>
+        </div>
+        <!-- image Editor -->
+
+		<!-- Main Banner -->
+		<?php
+			$attribute = $product->getCanvasBanner();
+			$attributeName = 'canvas_banner';
+			echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+		?>
+		<!-- Offer Box -->
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_discount')->toHtml() ?>
+		
+
+		<!-- FIxed Navigation -->
+		<nav class="main-nav-outer" id="fix-nav">
+			<div class="container">
+		        <ul class="main-nav">
+		        	<li><a href="#extensive-collection">Products</a></li>
+                    <li><a href="#happiness-guarentee">Happiness Guarantee</a></li>
+                    <li><a href="#information">Information</a></li>
+		        </ul>
+		        <a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		    </div>
+		</nav>
+
+
+		<!-- Extensive Collection -->
+		<div class="extensive-collection padding-70" id="extensive-collection">
+			<div class="container">
+				<div class="row">
+					<h3 class="text-center">Single out your layout from our extensive collection</h3>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="sorting-row">
+							<div class="pull-left">
+								<span>Sort By: </span>
+								<?php $opt_title = "Archive Gallery"; ?>
+								<?php 
+									$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+								?>
+								<select class="sort_sign" name="sort_sign" data-sku="<?php echo $sku; ?>" data-opt="<?php echo $opt_title; ?>" >
+									<option value="">All Design</option>
+								<?php foreach($product_data_custom as $custom_data){ ?>									
+									<option value="<?php echo $custom_data['default_title']; ?>"><?php echo $custom_data['option_label']; ?></option>
+								<?php } ?>
+								</select>
+							</div>
+							<?php $opt_title = "Photo Gallery"; ?>
+							<?php 
+								$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+							?>
+							<div class="pull-right show_pagination">
+								<span>Show: </span>
+								<select id="show_count" >
+									<?php 
+									$tot = count($product_data_custom);
+									$parpage = 12;
+									$cout = $tot/$parpage;
+									$i = 1;
+									while($i <= ceil($cout)){ ?>
+									   <option value="<?php echo $i; ?>" ><?php echo $i++; ?></option>
+									<?php } ?>		
+								</select>
+								<div class="pagination">									<span>Per Page: </span>									<ul class="list-unstyled">										<?php $i = 1; ?>										<li class="prev" style="">											<a id="<?php echo $i; ?>" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>										</li>										<?php while($i <= ceil($cout)){ ?>										<li	class="<?php echo ($i == 1 )?'active':'' ?>">											<a id="<?php echo $i; ?>" href='javascript:void(0)'><?php echo $i++; ?></a>										</li>										<?php } ?>											<li class="next" style="">											<a id="<?php echo ceil($cout); ?>" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>										</li>									</ul>								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="row filter_custom_option">
+							<?php $counter = 1;
+								foreach($product_data_custom as $custom_data){
+									$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+									$img_url = $custom_data['img_url'];
+									if($custom_data['default']=="default")
+									{
+										$active = $custom_data['default_title'];
+									}
+								?>		
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="extensive-collection-product">
+										<div class="top">
+											<div class="image">
+												<img src="<?php echo $media_url.$img_url?>" alt="extensive collection Product">
+											</div>
+											<div class="detail">
+												<div class="name"><?php echo $custom_data['option_label']; ?> </div>
+												<div class="image-count">(<?php echo $custom_data['panel_type']; ?> image) </div>
+												<div class="price">Start at <span>$<?php echo number_format($custom_data['price'],2); ?></span></div>
+											</div>
+										</div>
+										<div class="bottom">
+											<a href="#" class="button medium blue upload_modal_button"  data-toggle="modal" data-title="<?php echo $custom_data['default_title']; ?>" data-image-upload="<?php echo $custom_data['panel_type']; ?>" data-target="#photo-uplopad">Upload & Order</a> 
+										</div>
+									</div>
+								</div>
+								<?php if($counter >= $parpage) { break; } $counter++ ?>	
+							<?php } ?>								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		 <!-- Photo Upload Popup -->
+        <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('canvassignages_liveeditor/photo-collage/live-editor-uploader.phtml')->toHtml(); ?>
+        <!-- Photo Upload Popup End-->
+
+		<!-- Happiness Guarantee Box -->
+		<?php
+			$attribute = $product->getHappinessGuarentee();
+			$attributeName = 'happiness_guarentee';
+			echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+		?>
+		
+		<!-- Infornmation Section -->
+		<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/detail.phtml')->toHtml(); ?>
+		
+		<!-- Main Product -->
+		<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/related.phtml')->toHtml(); ?>
+
+		
+	</div>
+
+	<?php echo $this->getChildHtml('global_messages') ?>
+	<!-- Footer -->
+
+	<?php echo $this->getChildHtml('footer_before') ?>
+	<?php echo $this->getChildHtml('footer') ?>
+	<?php echo $this->getChildHtml('global_cookie_notice') ?>
+	<?php echo $this->getChildHtml('before_body_end') ?>
+	<!-- Javascript -->
+
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+
+<script>
+	(function( $ ) {
+	$(document).ready(function() {
+		
+		//need to delete
+		jQuery('.upload-photo-box:gt(0)').hide();
+		
+		$('#photo-uplopad .modal-body > ul li:nth-of-type(2)').on('click',function() 
+		{
+			$('.preloader_image').show();
+			var url = '<?php echo  Mage::getUrl('uploader/index/showimages')?>';
+			$.ajax({
+					url: url,					
+					type: "POST",
+					success: function(response)
+					{
+						$('.preloader_image').fadeOut();    
+					
+						//console.log(response);
+						$('.my-photos').html(response);
+					
+						 $('.fileuploader-items-list li').remove();
+					}
+				});
+			
+			});
+			
+			$(document).on('click','.resized_remove',function() {
+				var t = $(this);
+				var url = '<?php echo  Mage::getUrl('uploader/index/removeimages')?>';
+				
+				var remove_url =$(this).attr('data-img-src') ;
+				var remove_url_root =$(this).attr('data-img-root-src') ;
+				//alert(remove_url);
+				
+				$.ajax({
+					url: url,
+					data: {remove_url:remove_url,remove_url_root:remove_url_root},
+					type: "POST",
+					success: function(response)
+					{
+						t.parent().remove();
+					
+						console.log(t);
+					
+					
+					
+					}
+				});
+			});
+			
+			jQuery(document).on('click', '#my-photo .button-group button.button.medium.border:nth-of-type(2)', function(argument) {
+			
+				
+				if($('.my-photos-image-box.select').length > 0){}else{ alert('Please Select a picture!'); return false; }					
+				$('.my-photos-image-box.select').each(function(){
+					var t = $(this);
+					var url = '<?php echo  Mage::getUrl('uploader/index/removeimages')?>';
+					var remove_url = $(this).find('.resized_remove').attr('data-img-src') ;
+					var remove_url_root =$(this).find('.resized_remove').attr('data-img-root-src') ;
+					$.ajax({
+						url: url,
+						data: {remove_url:remove_url,remove_url_root:remove_url_root},
+						type: "POST",
+						success: function(response)
+						{
+							t.remove();
+						
+							console.log(t);
+						
+						
+						
+						}
+					});
+				});
+			});
+			var ursl = '<?php echo  Mage::getUrl('uploader/index/allimages')?>';
+			jQuery('.add_selected_button').attr('data-send-url', ursl);
+
+			//for the order part
+			
+			
+			jQuery(document).on('click', '.upload_modal_button', function(argument) {
+
+					var data_title = $(this).attr('data-title');
+
+					var data_image_upload = $(this).attr('data-image-upload');
+					$('.add_selected_button_order').val(data_title);
+
+					$('.add_selected_button_order').attr('data-img-upload',data_image_upload);
+					
+					console.log('teko');
+
+			});
+
+			jQuery('.add_selected_button_order').on('click',function (argument) {
+
+					var original_url ="";
+
+					var order_option_name = $(this).val();
+					var data_image_upload = $(this).attr('data-img-upload');
+
+					var j=0;
+
+					$('.my-photos-image-box.select').each(function(){
+						
+						original_url+= $(this).find('.resized_remove').attr('data-original-src')+',';
+						j++;
+					});
+					//alert(j);
+					if(j>=data_image_upload){
+
+							var url = '<?php echo  Mage::getUrl('order/index/photo')?>';
+							   //alert(original_url);         
+							   $.ajax({
+								url: url,
+								data: {original_url:original_url,order_option_name:order_option_name},
+								type: "POST",
+									success: function(response)
+									{
+										//console.log(response);
+										
+										jQuery('.pleaseWait').fadeOut();
+
+											console.log(response);
+
+											jQuery('.afterOrder').fadeIn();						
+									}
+						});
+					}
+
+					else
+					{
+						alert('need to upload all the require images');
+					}
+
+					
+
+			});
+			
+			
+			
+			
+			
+		});
+	})( jQuery );
+	</script> 
+	<script type="text/javascript">
+	(function( $ ) {
+	// Fixed Navigation JS
+	$(document).ready(function(e) {
+		$('.show_news_loader').hide();
+        $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+		
+		$('.sort_sign').change(function(){
+			var elem = $(this);
+			$.ajax({
+                url: '<?php echo Mage::getBaseUrl().'search/index/photofilter' ?>',
+                data: {
+						sort_by:$(this).val()
+					},
+                type: "POST",
+                success: function(response)
+                {                                    
+					$('.filter_custom_option').html(response);
+					if(elem.val() == ''){
+						$('.show_pagination').hide();
+					}else {
+						$('.show_pagination').show();
+					}
+                }
+            });			
+		});				
+		$('#show_count').change(function() {
+			$.ajax({
+				url: '<?php echo Mage::getBaseUrl() ?>search/index/photopaginate',
+				data: {
+					show_count: $(this).val(),
+					sort_by: $('#sort_sign').val()
+				},
+				type: "POST",
+				success: function(response) {
+					$('.filter_custom_option').html(response);
+				}
+			});
+		});
+		$('.pagination ul li').click(function() {
+		$('.pagination ul li').show();
+		var show_count;
+		if ($(this).hasClass("next")) {
+			show_count = parseInt($('.pagination ul .active').children().attr('id')) + parseInt(1);
+			$('.pagination ul li').removeClass('active');
+			$('.pagination ul li a#' + show_count).parent().addClass('active');
+		} else if ($(this).hasClass("prev")) {
+			show_count = parseInt($('.pagination ul .active').children().attr('id')) - parseInt(1);
+			$('.pagination ul li').removeClass('active');
+			$('.pagination ul li a#' + show_count).parent().addClass('active');
+		} else {
+			show_count = $(this).children().attr('id');
+			$('.pagination ul li').removeClass('active');
+			$(this).addClass('active');
+		}
+		if (show_count == $('.pagination ul li.next').children().attr('id')) {
+			$('.pagination ul li').show();
+			$('.pagination ul li.next').hide();
+		}
+		if (show_count == $('.pagination ul li.prev').children().attr('id')) {
+			$('.pagination ul li').show();
+			$('.pagination ul li.prev').hide();
+		}
+		$.ajax({
+			url: '<?php echo Mage::getBaseUrl()?>search/index/photopaginate',
+			data: {
+				show_count: show_count,
+				sort_by: $('#sort_sign').val()
+			},
+			type: "POST",
+			success: function(response) {
+				$('.filter_custom_option').html(response);
+			}
+		});
+		return false;
+		});
+		});
+    
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+	// Mobile Navigation
+	$(document).ready(function () {
+	  var trigger = $('.hamburger'),
+	      overlay = $('.overlay'),
+	     isClosed = false;
+	    trigger.click(function () {
+	      hamburger_cross();      
+	    });
+	    function hamburger_cross() {
+	      if (isClosed == true) {          
+	        overlay.hide();
+	        trigger.removeClass('is-open');
+	        trigger.addClass('is-closed');
+	        isClosed = false;
+	      } else {   
+	        overlay.show();
+	        trigger.removeClass('is-closed');
+	        trigger.addClass('is-open');
+	        isClosed = true;
+	      }
+	  }
+	  
+	  $('[data-toggle="offcanvas"]').click(function () {
+	        $('body').toggleClass('toggled');
+	  });  
+	});
+	// Image Before After Effect JS
+	/* $(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	}); */
+	
+	// Panel Display Filter 
+	$(document).ready(function(){
+		$(".filter-button").click(function(){
+        	var value = $(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$(".panel-display-box").not('.'+value).hide('3000');
+            	$('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($(".filter-button").removeClass("active")) {
+			$(this).removeClass("active");
+		}
+		$(this).addClass("active");
+		});
+		});
+	// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+    // image upload from computer
+    //================================
+    jQuery(document).on('click', '.closeCOmputerModal', function(e) {
+        e.preventDefault();
+        jQuery('.my_computer').addClass('hides');
+    });
+    jQuery('#upload-photo .upload-photo-box:first-child').on('click', function(argument) {
+        jQuery('.my_computer').removeClass('hides');
+    });
+    jQuery(document).on('click', '.my-photos-image-box', function(argument) {
+        jQuery(this).toggleClass('select');
+    });
+    jQuery('#my-photo .button-group button.button.medium.border:first-child').on('click', function() {
+        if (jQuery(this).text() == "Select All") {
+            jQuery(this).text('Deselect All');
+            jQuery('.my-photos-image-box').each(function(argument) {
+                jQuery(this).addClass('select');
+            });
+        } else {
+            jQuery(this).text('Select All');
+            jQuery('.my-photos-image-box').each(function(argument) {
+                jQuery(this).removeClass('select');
+            });
+        }
+    });
+    // closing the after order popup
+    //==================================
+    jQuery('.closethisPop').on('click', function(argument) {
+        jQuery('.afterOrder').fadeOut();
+    });
+	})( jQuery );
+	</script>
+</body>
+</html>

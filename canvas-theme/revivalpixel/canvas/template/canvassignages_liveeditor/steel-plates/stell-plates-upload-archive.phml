@@ -1,0 +1,136 @@
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php 
+$sku = "steel-plates";
+$opt_title = "Archive Gallery Icons";
+$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+ ?>
+ <style>
+ .search-result-archive{
+    position: absolute;
+    left:0;
+    width: 100%;
+    z-index: 99999;
+    background: #fff;
+    height: 2000px;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transform:scale(0);
+    -webkit-transform:scale(0);
+    -moz-transform:scale(0);
+    -ms-transform:scale(0);
+    -o-transform:scale(0);
+ }
+ .search-result-archive ul{
+    margin: 0;
+    padding: 0;
+ }
+ .search-result-archive ul li{
+  padding: 18px !important;
+ }
+ .search-result-archive .closeCOmputerModal{
+    position: relative;
+    width: 25px !important;   
+    padding-top: 0px;
+    display: block;
+    background: #fff;
+    height: 25px !important;
+    border: 1px solid #08b4e0;
+    border-radius: 50%;
+    margin: 10px 10px auto auto;
+ }
+ .search-result-archive.show{
+    transform:scale(1);
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1);
+    -o-transform:scale(1);
+ }
+ #search-icon{
+    cursor: pointer;
+ }
+ </style>
+ 
+<?php
+
+$archive_type = Mage::getSingleton('core/session')->getArchiveTitle();
+
+?> 
+ 
+ 
+<div id="Archive" class="tab-pane fade">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search" placeholder="Search Here">
+                <i class="fa fa-search" id="search-icon" aria-hidden="true" data-search-url="<?php echo  Mage::getUrl('search/index')?>" ></i>
+            </div>
+            <div class="panel-group" id="accordion">
+            <div class="search-result-archive">
+                <a href="javascript:void(0)" class="closeCOmputerModal"><i class="fa fa-times"></i> </a>
+
+               <!--  <ul>
+                    <li><img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/media/custom_option_image/dcrM6AMc9.png" alt=""></li>
+                      <li><img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/media/custom_option_image/dcrM6AMc9.png" alt=""></li>
+                </ul> -->
+            </div>
+             <?php 
+    $j=1;
+    
+    foreach($product_data as $canvas_data)
+
+    { //echo $canvas_data['option_label']; echo "<br/>";?>
+         <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title <?php if($j==1) { echo 'selected'; }?>">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $j;?>">
+                            <?php echo $canvas_data['option_label'];?>
+                            <i class="fa fa-angle-right pull-right" aria-hidden="false"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="collapse<?php echo $j;?>" class="panel-collapse <?php if($j!=1) { echo 'collapse out'; } else{'collapse in';}?>">
+                        <div class="panel-body">
+                            <ul class="list-unstyled">
+
+                            <?php 
+                            $sku = "steel-plates";
+                            $opt_title = "Our Icons";
+                            $product_data_archive = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+                            foreach ($product_data_archive as $product_data_archive) { 
+
+                                 $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                                
+                                 $img_url = $product_data_archive['img_url'];
+
+                                if($product_data_archive['category'] == $canvas_data['default_title'])
+                                { //echo $product_data_archive['default_title'];?>
+                                   <li data-json='<?php echo $product_data_archive['template'];  ?>'  <?php if($archive_type == $product_data_archive['default_title']){echo 'class="checked selected active"';}?>>
+                                    <a href="#" data-name="<?php echo $product_data_archive['default_title'];?>">
+                                        <img src="<?php echo $media_url.$img_url ?>" alt="Style Image">
+                                        <img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+                                    </a>
+                                </li>
+                                <?php
+                                }
+                            }
+                            ?>
+
+                            
+
+                           
+                                
+                                
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+    <?php $j++;} ?>
+               
+                
+            </div>
+        </div>
+
+                            

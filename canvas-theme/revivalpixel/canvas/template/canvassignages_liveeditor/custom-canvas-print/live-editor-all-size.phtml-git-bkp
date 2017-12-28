@@ -1,0 +1,316 @@
+<?php
+
+/*
+ * Author: Shourya-Uniterrene
+* Description: Added the code for the size section for custom-canvas-print products
+* Date: 10-8-17
+* Version: 4.0
+*/
+?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+ 
+
+                        <a href="#" class="link">
+                            <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/size.png" alt="Editor Icon">
+                            <span>Size</span>
+                        </a>
+
+
+
+
+                        <div class="sidebar-content size-prize ">                        
+                            <ul class="nav nav-tabs" role="tablist">
+                                 <?php 
+                                $product_sku = 'custom-canvas-print';
+                                $product = Mage::getModel('catalog/product')->loadByAttribute('sku', $product_sku);
+                                $product_id = 1;
+                                $obj = Mage::getModel('catalog/product');
+                                $product = $obj->load($product_id);
+                                
+                                foreach($product->getOptions() as $o)
+
+                                {
+                                    
+                                    $options = $o->getData();
+                                    $optionType = $o->getType();
+                                    $option_title = $options['default_title'];
+                                    
+                                    if($option_title == "Canvas Type")
+                                    {
+                                        $values = $o->getValues();
+
+                                        foreach ($values as $k => $v) 
+                                        {
+                                            $ipt_title = $v->getData();
+
+                                            //print_r($v->getData());
+
+                                            $canvas_type_option_title = $ipt_title['default_title'];
+                                            $canvas_type_option_label = $ipt_title['class1'];
+                                            $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+
+                                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+
+
+                                            $img_url = $ipt_title['image'];
+                                            ?>
+                                            
+                                            <li role="presentation" data-canvas-type="<?php echo $canvas_data_type; ?>">
+                                                <a href="#<?php echo $canvas_type_redirect;?>" role="tab" data-toggle="tab" aria-expanded="true">
+                                                    <img src="<?php echo $media_url.$img_url?>" alt="Size">
+                                                    <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" class="select-image" alt="Select Image">
+                                                    <span><?php echo $canvas_type_option_label;?></span>
+                                                </a>
+                                            </li>   
+                                                
+                                         <?php
+                                        }
+                                    }
+                                    
+                                }   
+        
+                                ?>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" id="Rolled-Cannvas">
+                                    <div class="price-size-table">
+                                        <ul class="list-unstyled">
+                                            <li class="sub-title">
+                                                <span class="size-title">Select size</span>
+                                                <span class="discount-title">discounted prize</span>
+                                            </li>
+
+                                            <?php
+
+                                           
+                                     foreach($product->getOptions() as $o)
+
+                                 {
+                                    
+                                    $options = $o->getData();
+                                    $optionType = $o->getType();
+                                    $option_title = $options['default_title'];
+                                    
+                                    if($option_title == "Rolled Canvas Size")
+                                    {
+                                        $values = $o->getValues();
+                                         $j=0;
+                                        foreach ($values as $k => $v) 
+                                        {
+                                            $ipt_title = $v->getData();
+
+                                            //print_r($v->getData());
+
+                                            $canvas_type_option_title = $ipt_title['default_title'];
+                                            $canvas_type_option_label = $ipt_title['class1'];
+                                            $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+                                            $canvas_type_redirect = str_replace(" ","-",($canvas_type_option_title));
+
+                                            $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+
+
+                                            $img_url = $ipt_title['image'];
+                                            ?>
+                                            
+                                             <li>
+                                                <input id="option<?php echo $j;?>" name="selector1" data-w="<?php echo $data_wh[0]?>" data-h="<?php echo $data_wh[1]?>" type="radio" type="radio">
+                                                <label for="option<?php echo $j;?>"><?php echo $canvas_type_option_label;?></label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $10.07
+                                            </span>
+                                            </li>
+                                             
+                                                
+                                         <?php
+
+                                         $j++;
+                                        }
+
+                                    }
+                                    
+                                }   
+
+
+                                            ?>
+
+
+
+                                            
+                                            <li class="custom-size">
+                                                <input id="option6" name="selector1" type="radio">
+                                                <label for="option6">Custom Size</label>
+                                                <div class="check"></div>
+                                                <div class="select-box">
+                                                    <select>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                    x
+                                                    <select>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane active" id="Thin-Gallery">
+                                    <div class="price-size-table">
+                                        <ul class="list-unstyled">
+                                            <li class="sub-title">
+                                                <span class="size-title">Select size</span>
+                                                <span class="discount-title">discounted prize</span>
+                                            </li>
+                                            <li>
+                                                <input id="option7" name="selector1" data-w="8" data-h="8" type="radio">
+                                                <label for="option7">8x8"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $6.69
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option8" name="selector1" data-w="8" data-h="12" type="radio">
+                                                <label for="option8">8x12"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $12.61
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option9" name="selector1" data-w="9" data-h="9" type="radio">
+                                                <label for="option9">9x9"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $10.07
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option10" name="selector1" data-w="16" data-h="12" type="radio">
+                                                <label for="option10">16x20"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $28.41
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option11" name="selector1" data-w="18" data-h="36" type="radio">
+                                                <label for="option11">18x36"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $50.97
+                                            </span>
+                                            </li>
+                                            <li class="custom-size">
+                                                <input id="option12" name="selector1" data-w="custom" data-h="custom" type="radio">
+                                                <label for="option12">Custom Size</label>
+                                                <div class="check"></div>
+                                                <div class="select-box">
+                                                    <select disabled="true" class="disable">
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                    x
+                                                    <select disabled="true" class="disable">
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="Thick-Gallery">
+                                    <div class="price-size-table">
+                                        <ul class="list-unstyled">
+                                            <li class="sub-title">
+                                                <span class="size-title">Select size</span>
+                                                <span class="discount-title">discounted prize</span>
+                                            </li>
+                                            <li>
+                                                <input id="option13" name="selector1" data-w="8" data-h="8" type="radio" type="radio">
+                                                <label for="option13">8x8"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $6.69
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option14" name="selector1" data-w="8" data-h="12" type="radio" type="radio">
+                                                <label for="option14">8x12"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $12.61
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option15" name="selector1" data-w="9" data-h="9" type="radio" type="radio">
+                                                <label for="option15">9x9"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $10.07
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option16" name="selector1" data-w="16" data-h="20" type="radio" type="radio">
+                                                <label for="option16">16x20"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $28.41
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <input id="option17" name="selector1" data-w="16" data-h="36" type="radio" type="radio">
+                                                <label for="option17">18x36"</label>
+                                                <div class="check"></div>
+                                                <span class="price">
+                                                <strike>$37.09</strike> $50.97
+                                            </span>
+                                            </li>
+                                            <li class="custom-size">
+                                                <input id="option18" name="selector1" type="radio">
+                                                <label for="option18">Custom Size</label>
+                                                <div class="check"></div>
+                                                <div class="select-box">
+                                                    <select>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                    x
+                                                    <select>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    

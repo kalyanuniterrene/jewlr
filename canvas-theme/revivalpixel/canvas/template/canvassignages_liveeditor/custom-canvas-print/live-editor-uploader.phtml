@@ -1,0 +1,178 @@
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php $skin_url_new =  Mage::getBaseUrl();?>
+
+<link href="<?php echo $skin_url_new?>canvas_uploader/src/jquery.fileuploader.css" media="all" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="<?php echo $skin_url_new?>canvas_uploader/src/jquery.fileuploader.min.js" type="text/javascript"></script>
+
+<script src="<?php echo $skin_url_new?>canvas_uploader/js/custom.js" type="text/javascript"></script>
+
+<style>
+.fileuploader-item .progress-bar2 .fileuploader-progressbar{
+				height: 6px !important;
+				top: inherit !important;
+				bottom: 0 !important;
+			}
+			.fileuploader-item .progress-bar2 .fileuploader-progressbar .bar{
+				background: #08b3df !important;
+			}
+		</style>
+
+        <?php 
+
+        $insta_url ="http://beta.canvassignages.com/insta_recent_post/index.php";
+        $session = Mage::getSingleton('core/session');
+         $SID=$session->getEncryptedSessionId();   
+
+         $googleimg_url="http://beta.canvassignages.com/login_with_google_using_php";
+         
+           ?> 
+
+<div class="modal fade photo-upload-popup" id="photo-uplopad" tabindex="-1" role="dialog" aria-labelledby="photo-uplopad" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">Minimize</span><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/minimize-icon.png" alt="Minimize Icon">
+                    </button>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item active">
+                                <a class="nav-link active" data-toggle="tab" href="#upload-photo" role="tab">Upload Photo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#my-photo" role="tab">My Photo</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="upload-photo" role="tabpanel">
+                                <div class="uploaderpanel">
+
+                                <div class="uplodcontentpanel my_computer hides" > <a href="javascript:void(0)" class="closeCOmputerModal"><i class="fa fa-times"></i> </a>  <input type="file" name="files"></div>
+
+                                <div class="uplodcontentpanel facebook_image hides">
+                                    <a href="javascript:void(0)" class="close"><i class="fa fa-times"></i> </a>          
+                                </div>
+                               <div class="uplodcontentpanel instagram_image hides">
+                                    <a href="javascript:void(0)" class="close"><i class="fa fa-times"></i> </a>
+                                    
+                                     <input type="hidden" id="session_id" name="session_id" value="<?php echo $SID;  ?>">
+                    <a class="button medium blue" href="<?php echo $insta_url ; ?>" target="popup" onclick="return instagrm() ">Connect to my Instagram</a> 
+                                
+                                </div>
+
+                                 <div class="uplodcontentpanel flickers_images hides " > <a href="javascript:void(0)" class="close"><i class="fa fa-times"></i> </a>   
+                                 <form id="flickerform">                                 
+                                        <div class="form_wrapper"><label>Search : </label><input type"text" name="flickers_images_search" required/></div>
+                                        <div class="form_wrapper clearfix"><label>Result : </label><input type"text" name="flickers_images_count" value="10"/> <span>* max : 500</span></div>
+                                        <div class="form_wrapper"><label>Size : </label><select name="flickers_images_size">
+                                            <option value="s">Square</option>
+                                            <option value="q">Large Square</option>
+                                            <option value="t">Thumbnail</option>
+                                            <option value="m">Small</option>
+                                            <option value="n">Small 320</option>
+                                            <option value="Med" selected>Medium</option>                                          
+                                        </select>
+                                        </div>
+                                        <div class="form_wrapper clearfix"><input type="submit" name="flickers_images_submit" value="Search" class="search" /></div>
+                                    </form> 
+                                    <div class="flickersrch-images"></div>
+                                    </div>
+                                    <div class="uplodcontentpanel google_image hides">
+                                        <a href="javascript:void(0)" class="close"><i class="fa fa-times"></i> </a>  
+                                         <div>hfghhshh</div>              
+                                    </div>
+                                    <div class="uplodcontentpanel photobucket_image hides">
+                                        <a href="javascript:void(0)" class="close"><i class="fa fa-times"></i> </a>  
+                                       
+                                    </div>
+                                </div>
+                                <div class="upload-photo-main">			
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/my-computer.png" alt="Upload Icon">
+                                                <span>My Computer</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box" style="display: none;">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/facebook.png" alt="Upload Icon">
+                                                <span>Facebook</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                             <?php ///$insta_url ="http://beta.canvassignages.com/insta_recent_post/index.php"; ?> 
+                                            <a href="<?php echo $insta_url ; ?>" target="popup" onclick="return instagrm() ">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/instagram.png" alt="Upload Icon">
+                                                <span>Instagram</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner flickrbox">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/flickr.png" alt="Upload Icon">
+                                                <span>Flickr</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="<?php echo $googleimg_url ; ?>" target="popup" onclick="return google_img() ">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/google-photo.png" alt="Upload Icon">
+                                                <span>Google Photo</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box" style="display: none;">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/photo-bucket.png" alt="Upload Icon">
+                                                <span>Photo Bucket</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="my-photo" role="tabpanel">
+                                <div class="preloader_image">
+                                    <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/loading.gif" alt="">
+                                </div>
+                                <div class="my-photos">                                   
+                                </div>
+                                <div class="button-group">
+                                    <div class="pull-left">
+                                        <button value="" name="" class="button medium border">Select All</button>
+                                        <button value="" name="" class="button medium border">Delete All</button>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button value="" name="" class="button medium blue add_selected_button">Add Selected Photos</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function instagrm(){   
+
+            var session_id = document.getElementById("session_id").value;          
+            var url= "http://beta.canvassignages.com/insta_recent_post/index.php";           
+            sessionStorage.setItem("session_id", session_id); 
+            window.open(url,'popup','width=600,height=600,scrollbars=no,resizable=no');           
+        }
+
+        function google_img(){
+             var session_id = document.getElementById("session_id").value;          
+            var url= "http://beta.canvassignages.com/login_with_google_using_php";           
+            sessionStorage.setItem("session_id", session_id); 
+            window.open(url,'popup','width=600,height=600,scrollbars=no,resizable=no'); 
+        }
+        </script>

@@ -1,0 +1,255 @@
+
+<?php $skin_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>
+<?php $headBlock = $this->getLayout()->getBlock('head'); ?>
+<meta http-equiv="Content-Type" content="<?php echo $headBlock->getContentType() ?>" />
+<title><?php echo $headBlock->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($headBlock->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($headBlock->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($headBlock->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $headBlock->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $headBlock->getFaviconFile(); ?>" type="image/x-icon" />
+</head>
+<body>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet"> 
+
+    <!-- Stylesheets -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/style.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/custom-style.css">    
+    <!-- header -->
+    <header class="">
+        <!-- Top Header -->
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header_top')->toHtml(); ?>
+        <!-- Middle Header -->
+        <div class="middle-header visible-lg visible-md">
+            <div class="container">
+                <div class="row">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('custom_canvas_header_left')->toHtml(); ?>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="<?php echo $this->getUrl('') ?>">
+                                <img src="<?php echo $this->getLogoSrcSmall() ?>" alt="<?php echo $this->getLogoAlt() ?>">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right">
+                        <!-- Account Detail -->
+                        <div class="account-detail">
+                            <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+                                <!--<a href="javascript:void(0)" data-toggle="modal" data-target=".login"> Sign In</a>/<a href="javascript:void(0)" data-toggle="modal" data-target=".join">Join </a>-->
+                                <a href="/customer/account/login/"> Sign In</a>/<a href="/customer/account/create/">Join </a>
+                            <?php } else { ?>
+                                <a href="<?php echo Mage::getBaseUrl() ?>customer/account/logout"> Sign out</a>	
+                            <?php } ?>
+                            <a href="<?php echo Mage::getBaseUrl() ?>faq"> FAQs </a>
+                            <!-- Shopping Cart -->
+                            <div class="shopping-cart">
+                                <?php
+                                $count = $this->helper('checkout/cart')->getSummaryCount();  //get total items in cart							  
+                                ?>
+                                <a href="<?php echo Mage::getBaseUrl() . 'checkout/cart/'; ?>">
+                                    <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/shopping-cart.svg" alt="Cart">
+                                    <span class="price"><?php echo (!empty($count)) ? $count : 0; ?></span> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        $categories = Mage::getModel('catalog/category')->getCollection()
+                ->addAttributeToSelect('*')//or you can just add some attributes
+                ->addAttributeToFilter('level', 2)//2 is actually the first level
+                ->addAttributeToFilter('is_active', 1)//if you want only active categories
+        ;
+        ?>
+        <!-- Main Navigation -->
+        <div class="main-menu visible-lg visible-md">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+                        <ul class="nav navbar-nav">
+                            <?php
+                            foreach ($categories as $category) {
+                                $url = '';
+                                $products = Mage::getModel('catalog/category')->load($category->getId())
+                                        ->getProductCollection()
+                                        ->addAttributeToSelect('*');
+
+                                if ($products->count() <= 1) {
+
+                                    $class = "";
+                                } else {
+                                    $class = "dropdown mega-dropdown";
+                                }
+                                ?>							
+                                <li class="<?php echo $class; ?>">
+                                    <?php
+                                    foreach ($products as $product) {
+                                        $url = Mage::getBaseUrl() . $product->getUrlPath();
+                                    }
+                                    if ($products->count() <= 1) {
+                                        ?>												
+                                        <a href="<?php echo $url; ?>"><?php echo $category->getName(); ?></a>
+                                    <?php } else { ?>
+                                        <a href="javascript:void();" class="dropdown-toggle" data-toggle="dropdown" ><?php echo $category->getName(); ?></a>
+                                        <div class="dropdown-menu">
+                                            <?php foreach ($products as $product) { ?>
+                                                <div class="col-sm-4">
+                                                    <img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail'); ?>" class="img-responsive" alt=""/>
+                                                    <h5><a href="<?php echo Mage::getBaseUrl() . $product->getUrlPath(); ?>"><?php echo $product->getName(); ?></a></h5>
+                                                    <p><?php echo $product->getShortDescription(); ?></p>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>								
+                                </li>		
+                            <?php } ?>
+                            <li><a href="<?php echo Mage::getBaseUrl() . 'vectorization'; ?>">Vectorization</a></li>
+                            <li><a href="<?php echo Mage::getBaseUrl() . 'volume-sale'; ?>">Volume Sale</a></li>
+                            <li><a href="<?php echo Mage::getBaseUrl() . 'blog'; ?>">Blog</a></li>
+                            <li><a href="<?php echo Mage::getBaseUrl() . 'deals'; ?>">Deals</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header visible-xs visible-sm">
+        <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
+        <div class="mobile-logo">
+            <a href="<?php echo $this->getUrl('') ?>"><img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/mobile-logo.png" alt="Mobile Logo"></a>
+        </div>
+        <div class="shopping-cart">
+            <?php
+            $count = $this->helper('checkout/cart')->getSummaryCount();  //get total items in cart							  
+            ?>
+            <a href="<?php echo Mage::getBaseUrl() . 'checkout/cart/'; ?>">
+                <img src="<?php echo $skin_url ?>frontend/rwd/default/images/canvas_live_editor/images/shopping-cart.svg" alt="Cart">
+                <span class="price"><?php echo (!empty($count)) ? $count : 0; ?></span> 
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div id="wrapper">
+        <div class="overlay"></div>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <?php
+                foreach ($categories as $category) {
+                    $url = '';
+                    $products = Mage::getModel('catalog/category')->load($category->getId())
+                            ->getProductCollection()
+                            ->addAttributeToSelect('*');
+                    ?>							
+                    <li class="<?php ($products->count() <= 1) ? '' : 'dropdown' ?>">
+                        <?php
+                        foreach ($products as $product) {
+                            $url = $product->getUrlPath();
+                        }
+                        if ($products->count() <= 1) {
+                            ?>												
+                            <a href="<?php echo $url; ?>"><?php echo $category->getName(); ?></a>
+    <?php } else { ?>
+                            <a href="javascript:void();" class="dropdown-toggle" data-toggle="dropdown" ><?php echo $category->getName(); ?> <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <?php foreach ($products as $product) { ?>
+                                    <li><a href="<?php echo $product->getUrlPath(); ?>"><?php echo $product->getName(); ?></a></li>
+                            <?php } ?>
+                            </ul>
+    <?php } ?>
+
+                    </li>		
+<?php } ?>
+                <li>
+                    <a href="<?php echo Mage::getBaseUrl() . 'blog'; ?>">blog</a>
+                </li>
+                <li>
+                    <a href="<?php echo Mage::getBaseUrl() . 'deals'; ?>" class="deal">deals</a>
+                </li>
+                <li>
+                    <a href="javascript:void()"  data-toggle="modal" data-target=".login">Sign in</a> / <a href="#" data-toggle="modal" data-target=".join">Join</a>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" href="javascript:void()" data-toggle="dropdown">Support <span class="caret"></span></a>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('header_contact_detail')->toHtml(); ?>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Sign in form  model -->
+    <div class="modal fade login-signup-form login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">Close &nbsp;&nbsp;X</span>
+                </button>
+                <div class="login-signup"> 
+                    <h5 class="text-center">Welcome back! Go ahead and Log In</h5>
+                  <!--   <a href="#" class="btn btn-md fb-button margin-top-20"><i class="fa fa-facebook-square"></i> Log in with facebook</a> -->
+                    <div class="or-box"> <span class="or">or</span> </div>
+<?php echo $this->getLayout()->createBlock('customer/form_login')->setTemplate('persistent/customer/form/login-custom.phtml')->toHtml(); ?>
+                    <!-- <form class="form-signin" action="#">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" required="" autofocus>
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="">
+                      </div>
+                       <div class="padding-top10 text-right"><a href="#" class="">Forgot Password?</a></div>
+                      <div class="form-group form-horizontal">
+                        
+                          <input type="checkbox" id="save-detail" name="radio" value="save details">
+                          <label for="save-detail">Remember me on this computer</label>
+                          
+                      </div>
+                      
+                      <button class="button large blue" type="submit"> login in to canvas signages</button>
+                    </form> -->
+
+                </div>
+                <div class="text-center light-grey-bg border-top-1 padding-top-bot-20"> New to Canvas Signages? <a href="#" data-toggle="modal" data-target=".join"><strong>Sign Up</strong></a></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- join form  model -->
+    <div class="modal fade login-signup-form join" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">Close &nbsp;&nbsp;X</span>
+                </button>
+                <div class="login-signup"> 
+                    <h5 class="text-center">Get up to 50% off your first order!</h5>
+                    <a href="#" class="btn btn-md fb-button margin-top-20"><i class="fa fa-facebook-square"></i> Log in with facebook</a>
+                    <div class="or-box"> <span class="or">or</span> </div>
+
+<?php echo $this->getLayout()->createBlock('customer/form_register')->setTemplate('persistent/customer/form/register-custom.phtml')->toHtml(); ?>
+                </div>
+                <div class="text-center light-grey-bg border-top-1 padding-top-bot-20">Already have an account?  <a href="#" data-toggle="modal" data-target=".login"><strong>Sign In</strong></a></div>
+            </div>
+        </div>
+    </div>

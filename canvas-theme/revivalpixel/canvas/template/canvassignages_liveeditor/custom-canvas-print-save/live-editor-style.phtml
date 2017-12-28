@@ -1,0 +1,108 @@
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<a href="#" class="link">
+                            <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/style.png" alt="Editor Icon">
+                            <span>Style</span>
+                        </a>
+                        <div class="sidebar-content style">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#Wrap-Border">Wrap/Border</a></li>
+                                <li><a data-toggle="tab" href="#Frames">Frames</a></li>
+                            </ul>
+                            
+                            <?php 
+$sku = "custom-canvas-print";
+$opt_title = "Wrap Border";
+$product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+//print_r($product_data);
+?>
+                            
+                            <div class="tab-content">
+                                <div id="Wrap-Border" class="tab-pane fade in active">
+                                    <ul class="list-unstyled">
+										<?php
+										$j=1;
+                        
+                        foreach($product_data as $canvas_data)
+
+                        {
+							 $media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+                             $img_url = $canvas_data['img_url'];
+							 $canvas_type_option_title = $canvas_data['default_title'];
+                             $canvas_type_option_label = $canvas_data['option_label'];
+							 $canvas_data_type = str_replace(" ","_",strtolower($canvas_type_option_title));
+							 
+							 $canvas_style = Mage::registry('canvas_style');
+							 
+							 
+							
+							?>
+							
+							<li id="<?php echo $canvas_data_type;?>" data-frame-id="<?php echo $canvas_data_type;?>" data-frame-price="0.00"<?php if($canvas_style==$canvas_data_type) echo 'class="active"'; ?>>
+                                            <a href="#">
+                                                <img src="<?php echo $media_url.$img_url?>" alt="Style Image">
+                                                <img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+                                                <span><?php echo $canvas_type_option_label;?></span>
+                                            </a>
+                                        </li>
+							
+							
+						<?php }?>
+
+                                        <!-- color Picker box -->
+                                                <div class="color_picker_box">
+                                                    <button type="button" class="close_low_res_popup" aria-label="Close">
+                                                        <span aria-hidden="true">Color Picker</span><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/minimize-icon.png" alt="Minimize Icon">
+                                                    </button>
+                                                    <input type="text" id="for_color_picker">
+                                                </div>
+                                    </ul>
+                                </div>
+                                <div id="Frames" class="tab-pane fade">
+                                    <ul class="list-unstyled">
+										
+										<?php 
+                                        $sku = "custom-canvas-print";
+                                        $opt_title = "Frame Options";
+                                        $product_data = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku,$opt_title);
+                                        
+                                        $i=1;
+
+                                        foreach ($product_data as $canvas_data) {
+											
+											$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+											$img_url = $canvas_data['img_url'];
+											
+											 $canvas_type_option_title = $canvas_data['default_title'];
+                                            $canvas_type_option_label = $canvas_data['option_label'];
+                                            $default = $canvas_data['default'];  
+                                            $data_wh = explode('*',$canvas_type_option_title);
+
+                                            $initial_price = $canvas_data['initial_price'];
+                                            $price = number_format((float)$canvas_data['price'], 2, '.', '');
+                                            $width= $canvas_data['width'];
+                                            $canvas_type_redirect = strtolower(str_replace(" ","-",($canvas_type_option_title)));
+                                            
+                                            $canvas_style = Mage::registry('canvas_style');
+                                            
+                                            echo "canvas style is".$canvas_style;
+											
+											?>
+											
+											<li data-frame-id="<?php echo $canvas_type_redirect; ?>" data-frame-price="<?php echo $price; ?>" <?php if($canvas_style==$canvas_type_redirect) echo 'class="active"'; ?>>
+                                            <a href="#">
+                                                <img data-border="<?php echo $width;?>" src="<?php echo $media_url.$img_url?>" alt="Style Image">
+                                                <span class="frame-size"><?php echo $i;?>"</span>
+                                                <img class="select-check" src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/select-check.png" alt="Select Check">
+                                                <span><?php echo $canvas_type_option_label;?> - $<?php echo $price;?></span>
+                                            </a>
+                                        </li>
+										<?php 
+											$i++;
+										} ?>
+										
+										
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>

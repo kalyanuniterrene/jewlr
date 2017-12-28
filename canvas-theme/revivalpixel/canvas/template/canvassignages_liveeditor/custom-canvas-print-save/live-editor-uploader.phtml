@@ -1,0 +1,114 @@
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<?php $skin_url_new =  Mage::getBaseUrl();?>
+
+<link href="<?php echo $skin_url_new?>canvas_uploader/src/jquery.fileuploader.css" media="all" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="<?php echo $skin_url_new?>canvas_uploader/src/jquery.fileuploader.min.js" type="text/javascript"></script>
+
+<script src="<?php echo $skin_url_new?>canvas_uploader/js/custom.js" type="text/javascript"></script>
+
+<style>
+.fileuploader-item .progress-bar2 .fileuploader-progressbar{
+				height: 6px !important;
+				top: inherit !important;
+				bottom: 0 !important;
+			}
+			.fileuploader-item .progress-bar2 .fileuploader-progressbar .bar{
+				background: #08b3df !important;
+			}
+		</style>
+
+<div class="modal fade photo-upload-popup" id="photo-uplopad" tabindex="-1" role="dialog" aria-labelledby="photo-uplopad" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">Minimize</span><img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/minimize-icon.png" alt="Minimize Icon">
+                    </button>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item active">
+                                <a class="nav-link active" data-toggle="tab" href="#upload-photo" role="tab">Upload Photo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#my-photo" role="tab">My Photo</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="upload-photo" role="tabpanel">
+                                <div class="my_computer hides" > <a href="javascript:void(0)" class="closeCOmputerModal"><i class="fa fa-times"></i> </a>  <input type="file" name="files"></div>
+                                <div class="upload-photo-main">
+									
+																		
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/my-computer.png" alt="Upload Icon">
+                                                <span>My Computer</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/facebook.png" alt="Upload Icon">
+                                                <span>Facebook</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/instagram.png" alt="Upload Icon">
+                                                <span>Instagram</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/flickr.png" alt="Upload Icon">
+                                                <span>Flickr</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/google-photo.png" alt="Upload Icon">
+                                                <span>Google Photo</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="upload-photo-box">
+                                        <div class="upload-photo-box-inner">
+                                            <a href="#">
+                                                <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/photo-bucket.png" alt="Upload Icon">
+                                                <span>Photo Bucket</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="my-photo" role="tabpanel">
+                                <div class="preloader_image">
+                                    <img src="<?php echo $skin_url?>frontend/rwd/default/images/canvas_live_editor/images/loading.gif" alt="">
+                                </div>
+                                <div class="my-photos">
+                                   
+                                </div>
+                                <div class="button-group">
+                                    <div class="pull-left">
+                                        <button value="" name="" class="button medium border">Select All</button>
+                                        <button value="" name="" class="button medium border">Delete All</button>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button value="" name="" class="button medium blue add_selected_button">Add Selected Photos</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

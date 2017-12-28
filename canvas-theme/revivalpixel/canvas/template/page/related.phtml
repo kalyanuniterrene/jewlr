@@ -1,0 +1,28 @@
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<div class="home-main-product">
+	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('related_title')->toHtml(); ?> 
+	<div class="container">
+		<div class="row">
+			<?php foreach(Mage::registry('current_product')->getRelatedProducts() as $relatedProduct): ?>
+			<?php $product = Mage::getModel('catalog/product')->load($relatedProduct->getId()); ?>	
+			<?php $_images = $product->getMediaGalleryImages();?>
+			
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="home-main-product-box">
+						<div class="image">		
+							<?php $i=0; foreach($_images as $_image){ $i++; ?>
+								<img height="300" src="<?php echo $this->helper('catalog/image')->init($product, 'related_image');?>" alt="Home Main Product">
+								<?php break; ?>
+							<?php } ?>
+						</div>
+						<div class="detail">
+							<h4><?php echo $product->getName(); ?></h4>								<?php									$attribute = $product->getStartPrice();									$attributeName = 'start_price';								?>
+							<p><b>Starts at</b>  <strike><?php echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName); ?></strike>  <b>							<?php									$attribute = $product->getEndPrice();									$attributeName = 'end_price';									echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);								?>														</b></p>
+						</div>
+						<a href="<?php echo $product->getUrlPath(); ?>" class="button large border">Start Your Order</a>
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
+	</div>
+</div>

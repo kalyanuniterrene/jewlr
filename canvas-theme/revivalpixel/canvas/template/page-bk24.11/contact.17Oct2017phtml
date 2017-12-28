@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('header') ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+	 
+<div class="main-content" style="background:url(http://staging.canvassignages.com/skin/frontend/revivalpixel/canvas/css/images/contact-banner.jpg) top center no-repeat; background-size: 100%;"><!-- Main Page Title -->
+<div class="inner-page-title">
+	<div class="title">
+	  <div class="container">
+		<div class="col-lg-12">
+		  <h1>Contact Us</h1>
+		  <p>We believe all of our customers are partners in our mission. </p>
+		</div>
+	  </div>
+	</div>
+	</div>
+	
+<!-- Feature Section -->
+  <div class="contact-feature">
+    <div class="container">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"	> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/customer-support.png" width="54" height="54" class="animated fadeIn" alt=""/></i>
+        <h4>customer support</h4>
+        <p>Get in touch with customer support for assistance with your Achieve3000 implementation.</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/inquiry.png" width="67" height="54" class="animated fadeIn" alt=""/></i>
+        <h4>customer support</h4>
+        <p>Get in touch with customer support for assistance with your Achieve3000 implementation.</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center"	> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/sudgetion.png" width="45" height="54" class="animated fadeIn" alt=""/></i>
+        <h4>customer support</h4>
+        <p>Get in touch with customer support for assistance with your Achieve3000 implementation.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Get in touch Section -->
+  <div class="get-in-touch">
+    <div class="container">
+      <div class="get-in-touch-bg"> 
+        <!-- Contact details -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+          <div class="contact-detail">
+            <h4>Let’s get in touch</h4>
+            <ul>
+              <li> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/map.svg" class="img-responsive" alt="map"/></i> Canvas Signages LLC <br>
+                2000 Saddleback Pass Rd <br>
+                Keller, TX 76248 </li>
+              <li> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/phone-call.svg" class="img-responsive" alt="phone"/></i> + 1 817 400 4497 </li>
+              <li> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/mail.svg" class="img-responsive" alt="map"/></i> <a href="mailto:info@canvassignages.com">info@canvassignages.com</a><br>
+                <a href="mailto:support@canvassignages.com">support@canvassignages.com</a> </li>
+              <li> <i><img src="<?php echo $skin_url?>frontend/revivalpixel/images/canvas_live_editor/images/compass.svg" class="img-responsive" alt="compass"/></i> <a href="#">View larger map</a> </li>
+            </ul>
+          </div>
+        </div>
+		<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+        <!-- Contact form -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding ">
+          <div class="contact-form">
+            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('contacts/form.phtml')->toHtml(); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>	 
+
+<!-- Javascript --> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>	
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/simplePlayer.js"></script>
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery.before-after.js"></script>
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery.event.move.js"></script>
+<script type="text/javascript" src="<?php echo $skin_url?>frontend/revivalpixel/canvas/js/canvas_live_editor/custom_editor_steel.js"></script> 
+<script type="text/javascript">
+	
+	// Fixed Navigation JS
+	$(document).ready(function(e) {
+        $('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+    });
+    
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+
+	// Mobile Navigation
+	$(document).ready(function () {
+	  var trigger = $('.hamburger'),
+	      overlay = $('.overlay'),
+	     isClosed = false;
+
+	    trigger.click(function () {
+	      hamburger_cross();      
+	    });
+
+	    function hamburger_cross() {
+
+	      if (isClosed == true) {          
+	        overlay.hide();
+	        trigger.removeClass('is-open');
+	        trigger.addClass('is-closed');
+	        isClosed = false;
+	      } else {   
+	        overlay.show();
+	        trigger.removeClass('is-closed');
+	        trigger.addClass('is-open');
+	        isClosed = true;
+	      }
+	  }
+	  
+	  $('[data-toggle="offcanvas"]').click(function () {
+	        $('body').toggleClass('toggled');
+	  });  
+	});
+
+	// Image Before After Effect JS
+	$(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	});
+	
+	// Panel Display Filter 
+	$(document).ready(function(){
+		$(".filter-button").click(function(){
+        	var value = $(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$(".panel-display-box").not('.'+value).hide('3000');
+            	$('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($(".filter-button").removeClass("active")) {
+			$(this).removeClass("active");
+		}
+		$(this).addClass("active");
+		});
+		});
+
+	// Popup Photo Select Js
+	$(".my-photos-image-box").click(function() {
+	 	$(this).addClass('select').siblings().removeClass('select');
+    });
+	</script>
+	
+	<?php echo $this->getChildHtml('footer') ?>
+</body>
+</html>
+

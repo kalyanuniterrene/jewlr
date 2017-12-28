@@ -1,0 +1,869 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); // print_r($_product); ?>
+
+<!-- Mobile Header -->
+	<div class="mobile-header visible-xs visible-sm">
+	    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+			<span class="hamb-middle"></span>
+			<span class="hamb-bottom"></span>
+        </button>
+        <div class="mobile-logo">
+        	<a href="index.html"><img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/mobile-logo.png" alt="Mobile Logo"></a>
+        </div>
+        <div class="shopping-cart">
+			<a href="#">
+		    	<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/shopping-cart.svg" alt="Cart">
+		        <span class="price">1</span> 
+		    </a>
+		</div>
+	</div>
+
+	<!-- Mobile Sidebar -->
+	<div id="wrapper">
+        <div class="overlay"></div>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">CANVAS PRINTS <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+	                    <li><a href="#">Custom CANVAS PRINTS</a></li>
+	                    <li><a href="#">Wall Display</a></li>
+	                    <li><a href="#">Photo Collage</a></li>
+                  	</ul>
+                </li>
+                <li>
+                    <a href="#">steel plates</a>
+                </li>
+                <li>
+                    <a href="#">acrylic plates</a>
+                </li>
+                <li>
+                    <a href="#">vectorization</a>
+                </li>
+                <li>
+                	<a href="#">volume sale</a>
+                </li>
+                <li>
+                	<a href="#">blog</a>
+                </li>
+                <li>
+                	<a href="#" class="deal">deals</a>
+                </li>
+                <li>
+                	<a href="#">Sign in / Join</a>
+                </li>
+                <li class="dropdown">
+                  	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <span class="caret"></span></a>
+                  	<ul class="dropdown-menu" role="menu">
+	                    <li><a href="#">Help</a></li>
+	                    <li><a href="tel:1 817 400 4497">+ 1 817 400 4497</a></li>
+	                    <li><a href="#">Email</a></li>
+	                    <li><a href="#">Live Chat</a></li>
+                  	</ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+	
+	<!-- Main Content -->
+	<div class="main-content">
+	<?php echo $this->getChildHtml('content') ?>
+	<?php 
+	if(Mage::registry('current_product')) { //check if product global 'registry' object is available
+		$product = Mage::registry('current_product');
+	   //etc
+	} 
+?>
+		<!-- Main Banner -->
+		<div class="main-banner" style="background-image:url(http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/main-banner.png);">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+						<h3><?php echo $name = $product->getName();  ?></h3>
+						<p>Transform your photos into<br> works of art.</p>
+						<a href="#" class="button large blue">start your canvas print</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Offer Box -->
+		<div class="offer-box">
+			<b>Enjoy up to 50% Off!</b> Code: APRIL Ends: 4/3 <a href="#">View Details</a> <a class="button small border" href="#">Apply</a>
+		</div>
+
+		<!-- FIxed Navigation -->
+		<nav class="main-nav-outer" id="fix-nav">
+			<div class="container">
+		        <ul class="main-nav">
+		        	<li><a class="current" href="#how-it-work">How it works</a></li>
+                    <li><a href="#frame-art">Frames </a></li>
+                    <li><a href="#photo-effect">photo effects</a></li>
+                    <li><a href="#size-prize">Size &amp; Price</a></li>
+                    <li><a href="#happiness-guarentee">Happiness Guarantee</a></li>
+                    <li><a href="#information">Information</a></li>
+		        </ul>
+		        <a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
+		    </div>
+		</nav>
+
+
+		<!-- How It Works -->
+		<div class="how-it-work padding-70" id="how-it-work">
+			<div class="container">
+				<div class="row">
+			        <div class="col-lg-4 col-sm-5">
+			            <!-- Nav tabs -->
+			            <ul class="nav nav-tabs tabs-left">
+			                <li class="active">
+			                	<a href="#upload" data-toggle="tab">
+			                		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/upload.svg" alt="Icon">	
+			                		<div class="detail">
+			                			<h6>Upload It</h6>
+			                			<p>Safely upload & store your photos from anywhere.</p>
+			                		</div>
+			                	</a>
+			                </li>
+			                <li>
+			                	<a href="#design" data-toggle="tab">
+			                		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/edit.svg" alt="Icon">	
+			                		<div class="detail">
+			                			<h6>Design it</h6>
+			                			<p>Transform your photos with easy to use editing tools.</p>
+			                		</div>
+			                	</a>
+			                </li>
+			                <li>
+			                	<a href="#hang" data-toggle="tab">
+			                		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/shopping-cart.svg" alt="Icon">	
+			                		<div class="detail">
+			                			<h6>Hang it</h6>
+			                			<p>Create the perfect gift for the ones you love.</p>
+			                		</div>
+			                	</a>
+			                </li>
+			            </ul>
+			        </div>
+			        <div class="col-lg-8 col-sm-7">
+			            <div class="tab-content">
+			                <div class="tab-pane active" id="upload">
+			                	<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/placeholder.jpg" class="img-responsive" alt="Screenshot">
+			                </div>
+			                <div class="tab-pane" id="design">
+			                	<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/placeholder1.jpg" class="img-responsive" alt="Screenshot">
+			                </div>
+			                <div class="tab-pane" id="hang">
+			                	<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/placeholder2.jpg" class="img-responsive" alt="Screenshot">
+			                </div>
+			            </div>
+			        </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Frame Art -->
+		<div class="happiness-guarentee light-grey-bg" id="frame-art" style="background-image:url(http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/frame-art.jpg);">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+						<h3>Frame Art</h3>
+						<p>Add a contemporary touch to <br> your canvas with a custom<br> floating frames.</p>
+						<a href="#" class="button large blue">start framed canvas print</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Photo Effect -->
+		<div class="photo-effect padding-70" id="photo-effect">
+			<div class="container text-center">
+				<div class="row">
+					<h3>photo effects</h3>
+					<p>Add a contemporary touch to your canvas with a <br>custom floating frames.</p>
+					<div class="tab-content">
+					    <div id="original" class="tab-pane fade in active">
+					      	<div class="frame-box">
+						      	<div id="origonal">
+						            <img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-before.jpg">
+						            <img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-after.jpg">
+						        </div>
+					        </div>
+						</div>
+					    <div id="sepia" class="tab-pane fade">
+					      	<div class="frame-box">
+						      	<div id="sepia-image">
+						            <img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-before.jpg">
+						            <img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-after.jpg">
+						        </div>
+					        </div>
+					    </div>
+					    <div id="greyscal" class="tab-pane fade">
+					      	<div class="frame-box">
+						      	<div id="greyscale">
+						            <img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-before.jpg">
+						            <img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-after.jpg">
+						        </div>
+					        </div>
+					    </div>
+					</div>
+					<ul class="nav nav-tabs">
+					    <li class="active">
+					    	<a data-toggle="tab" href="#original">
+					    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original-thumb.jpg" alt="Thumb">
+					    		<span>Original</span>
+					    	</a>
+					    </li>
+					    <li>
+					    	<a data-toggle="tab" href="#sepia">
+					    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/sepia-thumb.jpg" alt="Thumb">
+					    		<span>Sepia</span>
+					    	</a>
+					    </li>
+					    <li>
+					    	<a data-toggle="tab" href="#greyscal">
+					    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/greyscal-thumb.jpg" alt="Thumb">
+					    		<span>Greyscale</span>
+					    	</a>
+					    </li>
+					</ul>
+					<a href="#" class="button large border">Start Creating Photo Effect</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Size & Prize -->
+		<div class="size-prize padding-70" id="size-prize">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<h3>size & prizes</h3>
+						<p>Add a contemporary touch to <br> your canvas with a custom <br> floating frames.</p>
+						<h6>Choose your type:</h6>
+						<ul class="nav nav-tabs" role="tablist">
+						    <li role="presentation">
+						    	<a href="#Rolled-Cannvas" role="tab" data-toggle="tab">
+						    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/Rolled-Canvas.jpg" alt="Size">
+						    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/select-check.png" class="select-image" alt="Select Image">
+						    		<span>Rolled Canvas</span>
+						    	</a>
+						    </li>
+						    <li role="presentation" class="active">
+						    	<a href="#Thin-Gallery " role="tab" data-toggle="tab">
+						    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/Thin-Gallery.jpg" alt="Size">
+						    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/select-check.png" class="select-image" alt="Select Image">
+						    		<span>Thin Gallery Wrap (0.75")</span>		
+						    	</a>
+						    </li>
+						    <li role="presentation">
+						    	<a href="#Thick-Gallery " role="tab" data-toggle="tab">
+						    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/Thick-Gallery.jpg" alt="Size">
+						    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/select-check.png" class="select-image" alt="Select Image">
+						    		<span>Thick Gallery Wrap (1.5")</span>		
+						    	</a>
+						    </li>
+						</ul>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="tab-content">
+						    <div role="tabpanel" class="tab-pane" id="Rolled-Cannvas">
+						    	<div class="price-size-table">
+							    	<ul class="list-unstyled">
+							    		<li class="main-title"><h6>Rolled Canvas</h6></li>
+							    		<li class="sub-title">
+							    			<span class="size-title">Select size</span>
+							    			<span class="discount-title">discounted prize</span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option1" name="selector" checked="check">
+										    <label for="option1">8x8"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $6.69
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option2" name="selector">
+										    <label for="option2">8x12"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $12.61
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option3" name="selector">
+										    <label for="option3">9x9"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $10.07
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option4" name="selector">
+										    <label for="option4">16x20"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $28.41
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option5" name="selector">
+										    <label for="option5">18x36"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $50.97
+										    </span>
+							    		</li>
+							    		<li class="custom-size"> 
+							    			<input type="radio" id="option6" name="selector">
+										    <label for="option6">Custom Size</label>
+										    <div class="check"></div>
+										    <select>
+										    	<option>8</option>
+										    	<option>9</option>
+										    	<option>10</option>
+										    	<option>11</option>
+										    	<option>12</option>
+										    </select>
+										    x
+										    <select>
+										    	<option>8</option>
+										    	<option>9</option>
+										    	<option>10</option>
+										    	<option>11</option>
+										    	<option>12</option>
+										    </select>
+							    		</li>
+							    		<li class="final-price">
+							    			<strike>$37.09</strike>$6.69
+							    			<a href="#" class="button large blue">start your canvas print</a>
+							    		</li>
+							    	</ul>
+							    </div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane active" id="Thin-Gallery">
+						    	<div class="price-size-table">
+							    	<ul class="list-unstyled">
+							    		<li class="main-title"><h6>Thin Gallery Wrap (0.75")</h6></li>
+							    		<li class="sub-title">
+							    			<span class="size-title">Select size</span>
+							    			<span class="discount-title">discounted prize</span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option7" name="selector1" checked="check">
+										    <label for="option7">8x8"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $6.69
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option8" name="selector1">
+										    <label for="option8">8x12"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $12.61
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option9" name="selector1">
+										    <label for="option9">9x9"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $10.07
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option10" name="selector1">
+										    <label for="option10">16x20"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $28.41
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option11" name="selector1">
+										    <label for="option11">18x36"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $50.97
+										    </span>
+							    		</li>
+							    		<li class="custom-size"> 
+							    			<input type="radio" id="option12" name="selector1">
+										    <label for="option12">Custom Size</label>
+										    <div class="check"></div>
+										    <select>
+										    	<option>8</option>
+										    	<option>9</option>
+										    	<option>10</option>
+										    	<option>11</option>
+										    	<option>12</option>
+										    </select>
+										    x
+										    <select>
+										    	<option>8</option>
+										    	<option>9</option>
+										    	<option>10</option>
+										    	<option>11</option>
+										    	<option>12</option>
+										    </select>
+							    		</li>
+							    		<li class="final-price">
+							    			<strike>$37.09</strike>$6.69
+							    			<a href="#" class="button large blue">start your canvas print</a>
+							    		</li>
+							    	</ul>
+							    </div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="Thick-Gallery">
+						    	<div class="price-size-table">
+							    	<ul class="list-unstyled">
+							    		<li class="main-title"><h6>Thick Gallery Wrap (1.5")</h6></li>
+							    		<li class="sub-title">
+							    			<span class="size-title">Select size</span>
+							    			<span class="discount-title">discounted prize</span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option13" name="selector2" checked="check">
+										    <label for="option13">8x8"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $6.69
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option14" name="selector2">
+										    <label for="option14">8x12"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $12.61
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option15" name="selector2">
+										    <label for="option15">9x9"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $10.07
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option16" name="selector2">
+										    <label for="option16">16x20"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $28.41
+										    </span>
+							    		</li>
+							    		<li>
+							    			<input type="radio" id="option17" name="selector2">
+										    <label for="option17">18x36"</label>
+										    <div class="check"></div>
+										    <span class="price">
+										    	<strike>$37.09</strike> $50.97
+										    </span>
+							    		</li>
+							    		<li class="custom-size"> 
+							    			<input type="radio" id="option18" name="selector2">
+										    <label for="option18">Custom Size</label>
+										    <div class="check"></div>
+										    <select>
+										    	<option>8</option>
+										    	<option>9</option>
+										    	<option>10</option>
+										    	<option>11</option>
+										    	<option>12</option>
+										    </select>
+										    x
+										    <select>
+										    	<option>8</option>
+										    	<option>9</option>
+										    	<option>10</option>
+										    	<option>11</option>
+										    	<option>12</option>
+										    </select>
+							    		</li>
+							    		<li class="final-price">
+							    			<strike>$37.09</strike>$6.69
+							    			<a href="#" class="button large blue">start your canvas print</a>
+							    		</li>
+							    	</ul>
+							    </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Happiness Guarantee Box -->
+		<div class="happiness-guarentee" id="happiness-guarentee" style="background-image:url(http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/happiness-guarentee.jpg);">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+						<h3>100% HAPPINESS GUARANTEED</h3>
+						<p>Add a contemporary touch to <br> your canvas with a custom <br> floating frames.</p>
+						<a href="#" class="button large blue">start your canvas print</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Infornmation Section -->
+		<div class="information light-creame-bg padding-top-70" id="information">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+						    <li role="presentation" class="active"><a href="#Info" role="tab" data-toggle="tab">Info</a></li>
+						    <li role="presentation"><a href="#frame" role="tab" data-toggle="tab">Frame</a></li>
+						    <li role="presentation"><a href="#image-customization" role="tab" data-toggle="tab">Image Customization</a></li>
+						    <li role="presentation"><a href="#image-requirment" role="tab" data-toggle="tab">Image Requirment</a></li>
+						    <li role="presentation"><a href="#review-rating" role="tab" data-toggle="tab">Review & Rating</a></li>
+						    <li role="presentation"><a href="#faq" role="tab" data-toggle="tab">Faq</a></li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+						    <div role="tabpanel" class="tab-pane active" id="Info">
+						    	<div class="row">
+							    	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								    	<p>Sometimes, a great photograph is not sufficient to be placed in your home’s interior after printing. Printed images seek a professional touch. Canvas Signages offer you graceful Custom Canvas Prints so that you are tickled pink whenever you pay an attention to them. We understand what embellishments your canvases require to bring a smile on your face. The artistic value of our services is pretty high.</p>
+										<p>It’s time to change your source of addiction and make some space for enticing Custom Canvas from Canvas Signages. We let you create your fantasy canvas by entering into the world of canvas customization. You can choose your frames from a wide line of options available along with the dimension, effects, and filters.</p>
+										<p>Your home’s interior should speak your story and the professional Custom Photo Canvas Prints adds a loud voice to it. You can expect high-end results from our creative team who never cut corners to meet your budget. We ensure to fix every minor and major embellishment needed to your printed image and provide you an elegant canvas frame to go well with your home interior.</p>
+									</div>
+
+									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+										<ul class="list-unstyled">
+											<li>Canvas Signages provide the unique ingredient to the images that make them jump off the page</li>
+											<li>We use hi-tech techniques to provide a classy look to your images</li>
+											<li>Our Reasonable Priced Custom Canvas Prints are suitable for home and workplace décor</li>
+											<li>Easy customization, placing order and shipping</li>
+											<li>Print Quality:- Eco Solvent Print</li>
+											<li>Our Canvas Print Material is PollyCotton and Semi Gloss.</li>
+											<li>Wooden Canvas Stretcher Bars is 0.75 Inch Thick and 1.5 Inch Thick.</li>
+											<li>MDF Fixed on Wooden Bar</li>
+										</ul>
+									</div>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane frame" id="frame">
+						    	<div class="row">
+							    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/black_frame.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Black Frame</h6>
+											<p>If you want to go for a bold effect, then a black frame will display your image in the best way.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/brown_golden_frame.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Brown Golden Frame</h6>
+											<p>This frame design will give your image the soft reflected glow seen in museum paintings and art masterpieces.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/mirror_images.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Mirror Image</h6>
+											<p>0.75" or 1.5" (depending on the thickness selected) is copied and extended on the edges to wrap around the frame. Select this option if you have any important details on the edges that you do not want to loose.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/border_color.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Border Color</h6>
+											<p>The wrap is printed with the solid color that you choose from the palette. Select this option when you want the edges to be in sync with the color on the walls.</p>
+								    	</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/brown_frame.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Brown Frame</h6>
+											<p>For a lighter yet impactful effect, the brown frame is exactly what you need for your next canvas print.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/golden_frame.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Golden Frame</h6>
+											<p>The ever popular golden print frame will give your image the classic look unique to old paintings in galleries.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/wrap_images.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Image Wrap</h6>
+											<p>0.75" or 1.5" ( depending on the thickness selected ) of the image is extended. The classic look. May crop some of your image in the wrap. Select this option if you want to go for the classic look and do not have any important details on the edges.</p>
+								    	</div>
+									</div>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane image-customization" id="image-customization">
+						    	<div class="row">
+							    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/original_effect.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Original Effect</h6>
+											<p>Want to go in with the original effect of the image? Then choose this image specification.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/gray_scale.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Gray Scale</h6>
+											<p>Want your picture to be printed in different shades of gray for a spectacular result? Then opt for the gray scale.</p>
+								    	</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/sepia.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Sepia</h6>
+											<p>Wish for a stylish, classic image with a brown hue? Then sepia is the option you should choose.</p>
+								    	</div>
+								    	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								    		<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/pixel_painting.jpg" class="img-responsive" alt="Frame">
+								    	</div>
+								    	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<h6>Pixel Painting</h6>
+											<p>Want to go for an abstract pixel painting effect? Just choose the style you want!</p>
+								    	</div>
+									</div>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="image-requirment">
+						    	<div class="row">
+							    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							    		<p>We offer you a wide variety of sizes, to help you choose the one that best meets your needs.</p>
+										<ul class="list-unstyled">
+											<li>We accept JPEG, BMP, TIFF and PNG, image files for canvas printing</li>
+											<li>You can also upload images in an Adobe RGB or RGB color profile.</li>
+											<li>We do not print images uploaded in the CMYK colors spaces</li>
+											<li>Minimum 100 DPI required in actual size. 1 inch = 100 pixels</li>
+											<li>You can upload a file of upto 50 MB in size. If file is larger than 50MB then it is saved in the JPEG format.</li>
+											<li>Image size dimensions are square, double width, dslr, digital point and shoot, or long and short panoramic image</li>
+										</ul>
+									</div>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="review-rating">
+						    	<div class="row">
+							    	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								    	<p>Sometimes, a great photograph is not sufficient to be placed in your home’s interior after printing. Printed images seek a professional touch. Canvas Signages offer you graceful Custom Canvas Prints so that you are tickled pink whenever you pay an attention to them. We understand what embellishments your canvases require to bring a smile on your face. The artistic value of our services is pretty high.</p>
+										<p>It’s time to change your source of addiction and make some space for enticing Custom Canvas from Canvas Signages. We let you create your fantasy canvas by entering into the world of canvas customization. You can choose your frames from a wide line of options available along with the dimension, effects, and filters.</p>
+										<p>Your home’s interior should speak your story and the professional Custom Photo Canvas Prints adds a loud voice to it. You can expect high-end results from our creative team who never cut corners to meet your budget. We ensure to fix every minor and major embellishment needed to your printed image and provide you an elegant canvas frame to go well with your home interior.</p>
+									</div>
+
+									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+										<ul class="list-unstyled">
+											<li>Canvas Signages provide the unique ingredient to the images that make them jump off the page</li>
+											<li>We use hi-tech techniques to provide a classy look to your images</li>
+											<li>Our Reasonable Priced Custom Canvas Prints are suitable for home and workplace décor</li>
+											<li>Easy customization, placing order and shipping</li>
+											<li>Print Quality:- Eco Solvent Print</li>
+											<li>Our Canvas Print Material is PollyCotton and Semi Gloss.</li>
+											<li>Wooden Canvas Stretcher Bars is 0.75 Inch Thick and 1.5 Inch Thick.</li>
+											<li>MDF Fixed on Wooden Bar</li>
+										</ul>
+									</div>
+								</div>
+						    </div>
+						    <div role="tabpanel" class="tab-pane" id="faq">
+						    	<div class="row">
+							    	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								    	<p>Sometimes, a great photograph is not sufficient to be placed in your home’s interior after printing. Printed images seek a professional touch. Canvas Signages offer you graceful Custom Canvas Prints so that you are tickled pink whenever you pay an attention to them. We understand what embellishments your canvases require to bring a smile on your face. The artistic value of our services is pretty high.</p>
+										<p>It’s time to change your source of addiction and make some space for enticing Custom Canvas from Canvas Signages. We let you create your fantasy canvas by entering into the world of canvas customization. You can choose your frames from a wide line of options available along with the dimension, effects, and filters.</p>
+										<p>Your home’s interior should speak your story and the professional Custom Photo Canvas Prints adds a loud voice to it. You can expect high-end results from our creative team who never cut corners to meet your budget. We ensure to fix every minor and major embellishment needed to your printed image and provide you an elegant canvas frame to go well with your home interior.</p>
+									</div>
+
+									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+										<ul class="list-unstyled">
+											<li>Canvas Signages provide the unique ingredient to the images that make them jump off the page</li>
+											<li>We use hi-tech techniques to provide a classy look to your images</li>
+											<li>Our Reasonable Priced Custom Canvas Prints are suitable for home and workplace décor</li>
+											<li>Easy customization, placing order and shipping</li>
+											<li>Print Quality:- Eco Solvent Print</li>
+											<li>Our Canvas Print Material is PollyCotton and Semi Gloss.</li>
+											<li>Wooden Canvas Stretcher Bars is 0.75 Inch Thick and 1.5 Inch Thick.</li>
+											<li>MDF Fixed on Wooden Bar</li>
+										</ul>
+									</div>
+								</div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Main Product -->
+		<div class="home-main-product">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<h3 class="text-center">Transform your photos into works of art</h3>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="home-main-product-box">
+							<div class="image">
+								<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/wall-display.jpg" alt="Home Main Product">
+							</div>
+							<div class="detail">
+								<h4>Steel plates</h4>
+								<p><b>Starts at</b>  <strike>$37.09</strike>  <b>$4.82</b></p>
+							</div>
+							<a href="#" class="button large border">Start Your Order</a>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="home-main-product-box">
+							<div class="image">
+								<img src="http://localhost/public_sc/canvasmagento/canvassignages/Magento-Code/skin/frontend/rwd/default/images/custom_canvas_print/photo-collage.jpg" alt="Home Main Product">
+							</div>
+							<div class="detail">
+								<h4>Acrylic plates</h4>
+								<p><b>Starts at</b>  <strike>$37.09</strike>  <b>$4.82</b></p>
+							</div>
+							<a href="#" class="button large border">Start Your Order</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+	<!-- Javascript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script type="text/javascript">
+	
+	// Fixed Navigation Smooth Scroll JS
+	$(document).ready(function(){
+		$('#fix-nav').scrollToFixed();
+        $('.res-nav_click').click(function(){
+            $('.main-nav').slideToggle();
+            return false    
+        });
+        if ($(window).width() < 768 ) { 
+    		$('.main-nav').hide(); 
+  		}
+			
+		if (screen && screen.width > 991) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$('html, body').animate({
+	        		scrollTop: $( $.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $('.main-nav li a').on('click', function(){
+		    $('.main-nav li a.current').removeClass('current');
+		    $(this).addClass('current');
+		    event.preventDefault();
+		});
+		 var trigger = $('.hamburger'),
+	      overlay = $('.overlay'),
+	      isClosed = false;
+		trigger.click(function () {
+		  hamburger_cross();      
+		});
+		  $('[data-toggle="offcanvas"]').click(function () {
+				$('body').toggleClass('toggled');
+		  });
+	});
+
+	function hamburger_cross() {
+	  if (isClosed == true) {          
+		overlay.hide();
+		trigger.removeClass('is-open');
+		trigger.addClass('is-closed');
+		isClosed = false;
+	  } else {   
+		overlay.show();
+		trigger.removeClass('is-closed');
+		trigger.addClass('is-open');
+		isClosed = true;
+	  }
+	 }
+
+	// Image Before After Effect JS
+	$(window).on('load', function() { 
+		$("#origonal").twentytwenty();
+	  	$("#sepia-image").twentytwenty();
+	  	$("#greyscale").twentytwenty();
+	});
+	
+
+	
+	</script>

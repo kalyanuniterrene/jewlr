@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<?php echo $this->getChildHtml('head') ?>
+		<?php echo $this->getChildHtml('header') ?>
+		<?php $skin_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>
+		<?php
+			if (Mage::registry('current_product')) { //check if product global 'registry' object is available
+				$product = Mage::registry('current_product');
+				$sku = $product->getSku();
+				//etc
+			}
+		?>
+		<link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/editor.css">	
+		<link rel="stylesheet" type="text/css" href="<?php echo $skin_url ?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">	
+		
+		<!-- Main Content -->
+		<div class="main-content">
+			<!-- Main Banner -->
+			<?php
+				$attribute = $product->getCanvasBanner();
+				$attributeName = 'canvas_banner';
+				echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+			?>		
+			<!-- Offer Box -->
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_discount')->toHtml(); ?> 
+			
+			<!-- FIxed Navigation -->
+			<?php
+				$attribute = $product->getFlexNavigation();
+				$attributeName = 'flex_navigation';
+				echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+			?>
+			<!-- Extensive Collection -->
+			<div class="extensive-collection steel-plates padding-70" id="extensive-collection">
+				<div class="container">
+					<div class="row">
+						<h3 class="text-center">Distinctive Layouts: Choose and Use In Amazing Ways.</h3>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="sorting-row">
+								<div class="pull-left">
+									<span>Sort By: </span>
+									<?php $opt_title = "Archive Gallery"; ?>
+									<?php
+										$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title);
+									?>
+									<select id="sort_sign" name="sort_sign">
+										<option value="">All Design</option>
+										<?php foreach ($product_data_custom as $custom_data) { ?>									
+											<option value="<?php echo $custom_data['default_title']; ?>"><?php echo $custom_data['option_label']; ?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<?php $opt_title = "Our Sign Gallery"; ?>
+								<?php
+									$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title);
+									
+									
+									/*$key = 'category';
+									$sort_value = 'Office Sign';
+									$sorted_result_data =  search($product_data_custom, $key, $sort_value);	
+									print_r($sorted_result_data);*/
+									
+									
+									$new_product_arr=array_slice($product_data_custom, 0,12);
+								?>
+								<div class="pull-right show_pagination">
+									<span>Show: </span>
+									<select id="show_count" name="item_per_pasge">
+										<?php
+											echo $tot = count($product_data_custom);
+											$parpage = 12;	
+											//$i = 12;
+											while ($parpage <= ceil($tot)) { ?>
+											<option value="<?php echo $parpage; ?>" ><?php echo $parpage;  ?><?php $parpage += 12;  ?> </option>
+										<?php } ?>		
+									</select>
+									<?php $totpg= ceil($tot/12);  if( $totpg >1 ){ ?>
+										<div class="pagination">
+											<span>Per Page: </span>                                
+											<ul class="list_pagination list-unstyled">
+												<!-- <li  class="prev">
+													<a id="1" href='javascript:void(0)'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+												</li> -->
+												<?php                                       
+													for ($i=1 ; $i <=$totpg ;$i++) {
+														$next_link=$i+1;
+													?>
+													<li class="<?php if($i==1){echo "active"; } ?>">
+														<a id="<?php echo $i ; ?>" href='javascript:void(0)'><?php echo $i ; ?></a>
+													</li>
+												<?php } ?>
+												<li class="next">
+													<a id="<?php echo $next_link; ?>" href='javascript:void(0)'><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+												</li>
+											</ul>                                
+										</div>
+									<?php } ?>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="row sort_custom_option">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									<div class="extensive-collection-product fixed-box">
+										<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) ?>frontend/rwd/default/images/custom_canvas_print/edit-icon.png" alt="Edit Icon">
+										<h3>Design Yourself </h3>
+										<a href="<?php echo Mage::getBaseUrl() . 'liveeditor/index/steelplate'; ?>" class="button small border">Start Your Design</a> 
+									</div>
+								</div>
+								<?php
+									$counter = 1;
+									foreach ($new_product_arr as $custom_data) {
+										$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+										$img_url = $custom_data['img_url'];
+										if ($custom_data['default'] == "default") {
+											$active = $custom_data['default_title'];
+										}
+									?>
+									<div class="col-lg-3 extensive-collection-product"> 
+										<form method="post" action="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'canvas-product/index/steelplate'; ?>" enctype="form-data" class="clearfix" >
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												
+												<div class="">
+													<div class="top">
+														<div class="image">
+															<img src="<?php echo $media_url . $img_url ?>" height="200" width="220" alt="extensive collection Product">
+														</div>
+														<div class="detail">
+															<div class="name"><?php echo $custom_data['option_label']; ?></div>
+															<div class="price"><strike>$<?php echo number_format($custom_data['initial_price'], 2); ?></strike><span>$<?php echo number_format($custom_data['price'], 2); ?></span></div>
+															<div class="width_height">Size:<?php echo $custom_data['height']?> * <?php echo $custom_data['width']?></div>
+															<input type="hidden" name="custom_option" value='<?php echo serialize($custom_data) ?>' />
+														</div>
+													</div>
+													<div class="bottom">
+														<button type="submit" class="button small blue">Start Sign</button>
+													</div>
+												</div>
+											</div>
+										</form>
+										<form method="post" action="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB) . 'order/index/stelladd'; ?>" enctype="form-data" >
+											<div class="col-lg-12 col-md-3 col-sm-6 col-xs-12">
+												<div class="">
+													<input type="hidden" name="custom_option_id" value='<?php echo serialize($custom_data) ?>' />
+													
+													<div class="bottom">
+														<button type="submit" class="button small blue">Add To Cart</button>
+													</div>
+												</div>
+											</div>        
+										</form>
+									</div>
+									<?php if ($counter >= $parpage) {
+										break;
+									} $counter++ ?>	
+								<?php } ?>	
+								
+							</div>
+						</div>
+						
+						<!-- div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="sorting-row">
+							
+							<div class="pull-left">
+                            <span>Sort By: </span>
+                            <?php $opt_title = "Archive Gallery"; ?>
+                            <?php
+								$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title);
+							?>
+                            <select id="sort_sign" name="sort_sign">
+							<option value="">All Design</option>
+							<?php foreach ($product_data_custom as $custom_data) { ?>									
+								<option value="<?php echo $custom_data['default_title']; ?>"><?php echo $custom_data['option_label']; ?></option>
+							<?php } ?>
+                            </select>
+							</div>
+							
+							<?php $opt_title = "Our Sign Gallery"; ?>
+							<?php
+								$product_data_custom = $this->getLayout()->getBlockSingleton('Canvassignages_Liveeditor_Block_Monblock')->customCanvasPrint($sku, $opt_title,2);
+								// echo "<pre>"; print_r($product_data_custom);echo "</pre>";
+							?>
+							<div class="pull-right show_pagination">
+                            <span>Show: </span>
+                            <select id="show_count" >
+							<?php
+                                $tot = count($product_data_custom);
+                                $parpage = 12;
+                                $cout = $tot / $parpage;
+                                $i = 1;
+                                while ($i <= ceil($cout)) {
+								?>
+								<option value="<?php echo $i; ?>" ><?php echo $i++; ?></option>
+							<?php } ?>		
+                            </select>
+                            <div class="pagination">
+							<span>Per Page: </span>
+							<ul class="list-unstyled">
+							<li  class="prev">
+							<a id="1" href='javascript:void(0)'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+							</li>
+							<li class="active">
+							<a id="1" href='javascript:void(0)'>1</a>
+							</li>
+							<li>
+							<a id="2" href='javascript:void(0)'>2</a>
+							</li>
+							<li>
+							<a id="3" href='javascript:void(0)'>3</a>
+							</li>
+							<li class="next">
+							<a id="<?php echo ceil($cout) ?>" href='javascript:void(0)'><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</li>
+							</ul>
+                            </div>
+							</div>
+							</div>
+						</div> -->
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- Happiness Guarantee Box -->
+			<?php
+				$attribute = $product->getHappinessGuarentee();
+				$attributeName = 'happiness_guarentee';
+				echo $this->helper('catalog/output')->productAttribute($product, $attribute, $attributeName);
+			?>
+			
+			<!-- Infornmation Section -->
+			<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/detail.phtml')->toHtml(); ?>
+			<!-- Main Product -->
+			<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('page/related.phtml')->toHtml(); ?>
+			
+		</div>	
+		<?php echo $this->getChildHtml('global_messages') ?>
+		<!-- Footer -->
+		
+		<?php echo $this->getChildHtml('footer_before') ?>
+		<?php echo $this->getChildHtml('footer') ?>
+		<?php echo $this->getChildHtml('global_cookie_notice') ?>
+		<?php echo $this->getChildHtml('before_body_end') ?>
+		<!-- Javascript -->
+		<script type="text/javascript" src="<?php echo $skin_url ?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+		<script type="text/javascript">
+			(function( $ ) {
+				// Fixed Navigation JS
+				$(document).ready(function (e) {
+					$('#fix-nav').scrollToFixed();
+					$('.res-nav_click').click(function () {
+						$('.main-nav').slideToggle();
+						return false
+					});
+					if ($(window).width() < 768) {
+						$('.main-nav').hide();
+					}
+					
+					$('#sort_sign').change(function () {          
+						
+						var elem = $(this);
+						var per_page=$('#show_count').val();
+						
+						$.ajax({
+							url: '<?php echo Mage::getBaseUrl() . 'search/index/custompaginate'; ?>',
+							data: {
+							   item_num: per_page,
+								sort_by: $(this).val()
+							},
+							type: "POST",
+							success: function (response)
+							{
+								var result = $.parseJSON(response);
+								
+								//alert(result['pagination']);
+								
+								
+								
+								var per_page=$('#show_count').val();
+								var tot_item=result['pagination'];           
+								var num_page= Math.ceil(tot_item/per_page);          
+								var arr=[];
+								arr.push('<li class="prev"><a id="1" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>');
+								for ( i=1 ; i <=num_page ;i++) 
+								{ 
+									if(i==1){
+										arr.push('<li class="active" ><a href="javascript:void(0)" id="'+i+'">'+ i +'</a></li>');
+										} else{
+										arr.push('<li><a href="javascript:void(0)" id="'+i+'">'+ i +'</a></li>');
+									}  
+								}  
+								arr.push('<li class="next"><a id="'+tot_item+'" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>');            
+								$('.list_pagination').html(arr); 
+								
+								$('.sort_custom_option').html(result['res']);
+								
+								
+							/*	if (elem.val() == '') {
+									$('.pagination').hide();
+									} else {*/
+									//var prodct_count= $(".extensive-collection-product").length;
+									
+									var prodct_count =	result['pagination'];
+									// console.log(prodct_count);
+									if(prodct_count >per_page)
+									{
+										$('.pagination').show();
+									}
+									else{
+										$('.pagination').hide();
+									}
+									
+									
+								//}
+							}
+						});
+					});
+					
+					$('#show_count').change(function () {
+						//mod by 
+						var per_page=$(this).val();
+						$srt_val = $('#sort_sign').val();
+						
+						// mod by             
+						$.ajax({
+							url: '<?php echo Mage::getBaseUrl() . 'search/index/custompaginate'; ?>',
+							data: {
+								// page_num: 1,
+								item_num: per_page,
+								show_count: $(this).val(),
+								sort_by: $('#sort_sign').val(),
+							},
+							type: "POST",
+							success: function (response)
+							{
+								var result = $.parseJSON(response);
+								
+								var tot_item=result['pagination'];           
+								var num_page= Math.ceil(tot_item/per_page);          
+								var arr=[];
+								arr.push('<li class="prev"><a id="1" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>');
+								for ( i=1 ; i <=num_page ;i++) 
+								{ 
+									if(i==1){
+										arr.push('<li class="active" ><a href="javascript:void(0)" id="'+i+'">'+ i +'</a></li>');
+										} else{
+										arr.push('<li><a href="javascript:void(0)" id="'+i+'">'+ i +'</a></li>');
+									}  
+								}  
+								arr.push('<li class="next"><a id="'+tot_item+'" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>');  
+								
+								$('.list_pagination').html(arr);  
+								
+								
+								
+								$('.sort_custom_option').html(result['res']);
+								
+								var prodct_count =	result['pagination'];
+									// console.log(prodct_count);
+									if(prodct_count >per_page)
+									{
+										$('.pagination').show();
+									}
+									else{
+										$('.pagination').hide();
+									}
+								
+								
+								
+								// $('.sort_custom_option').html(response);
+							}
+						});
+					});
+					//mod by          
+					
+					//mod by 
+					$('ul.list_pagination').on('click','a', function(e) {
+						$('.pagination ul li').show();
+						var show_count;
+						if ($(this).hasClass("next")) {
+							show_count = parseInt($('.pagination ul .active').children().attr('id')) + parseInt(1);
+							$('.pagination ul li').removeClass('active');
+							$('.pagination ul li a#' + show_count).parent().addClass('active');
+							} else if ($(this).hasClass("prev")) {
+							show_count = parseInt($('.pagination ul .active').children().attr('id')) - parseInt(1);
+							$('.pagination ul li').removeClass('active');
+							$('.pagination ul li a#' + show_count).parent().addClass('active');
+							} else {
+							show_count = $(this).children().attr('id');
+							$('.pagination ul li').removeClass('active');
+							$(this).addClass('active');
+						}
+						if (show_count == $('.pagination ul li.next').children().attr('id')) {
+							$('.pagination ul li').show();
+							$('.pagination ul li.next').hide();
+						}
+						if (show_count == $('.pagination ul li.prev').children().attr('id')) {
+							$('.pagination ul li').show();
+							$('.pagination ul li.prev').hide();
+						}
+						//~ $.ajax({
+						//~ url: '<?php// echo Mage::getBaseUrl() . 'search/index/custompaginate'; ?>',
+						//~ data: {
+						//~ show_count: show_count,
+						//~ sort_by: $('#sort_sign').val()
+						//~ },
+						//~ type: "POST",
+						//~ success: function (response)
+						//~ {
+						//~ $('.sort_custom_option').html(response);
+						//~ }
+						//~ });
+						
+						var id = $(this).attr('id');
+						var item_num= $('#show_count').val();
+						//console.log(item_num);
+						//console.log(id);
+						$.ajax({
+							url: '<?php echo Mage::getBaseUrl() . 'search/index/custompaginate'; ?>',
+							data: {
+								page_num: id,
+								item_num:item_num,
+								show_count: $(this).val(),
+								sort_by: $('#sort_sign').val()
+							},
+							type: "POST",
+							success: function (response)
+							{
+								
+								var result = $.parseJSON(response);
+								$('.sort_custom_option').html(result['res']);
+								//$('.sort_custom_option').html(response);
+							}
+						});
+						return false;
+					});
+					
+					
+				});
+				
+				// Fixed Navigation Smooth Scroll JS
+				$(document).ready(function () {
+					if (screen && screen.width > 991) {
+						$(".main-nav li a").on('click', function (event) {
+							if (this.hash !== "") {
+								event.preventDefault();
+								var hash = this.hash;
+								$('html, body').animate({
+									scrollTop: $($.attr(this, 'href')).offset().top - 68
+									}, 800, function () {
+									//window.location.hash = hash;
+								});
+							}
+						});
+					}
+					if (screen && screen.width < 992) {
+						$(".main-nav li a").on('click', function (event) {
+							if (this.hash !== "") {
+								event.preventDefault();
+								var hash = this.hash;
+								$('html, body').animate({
+									scrollTop: $($.attr(this, 'href')).offset().top - 150
+									}, 800, function () {
+									//window.location.hash = hash;
+								});
+							}
+						});
+					}
+					$('.main-nav li a').on('click', function () {
+						$('.main-nav li a.current').removeClass('current');
+						$(this).addClass('current');
+						event.preventDefault();
+					});
+				});
+				
+				// Mobile Navigation
+				$(document).ready(function () {
+					var trigger = $('.hamburger'),
+					overlay = $('.overlay'),
+					isClosed = false;
+					
+					trigger.click(function () {
+						hamburger_cross();
+					});
+					
+					function hamburger_cross() {
+						
+						if (isClosed == true) {
+							overlay.hide();
+							trigger.removeClass('is-open');
+							trigger.addClass('is-closed');
+							isClosed = false;
+							} else {
+							overlay.show();
+							trigger.removeClass('is-closed');
+							trigger.addClass('is-open');
+							isClosed = true;
+						}
+					}
+					
+					$('[data-toggle="offcanvas"]').click(function () {
+						$('body').toggleClass('toggled');
+					});
+				});
+				
+				// Image Before After Effect JS
+				$(window).on('load', function () {
+					$("#origonal").twentytwenty();
+					$("#sepia-image").twentytwenty();
+					$("#greyscale").twentytwenty();
+				});
+				
+				// Panel Display Filter 
+				$(document).ready(function () {
+					$(".filter-button").click(function () {
+						var value = $(this).attr('data-filter');
+						if (value == "all")
+						{
+							$('.panel-display-box').show('3000');
+						} else
+						{
+							$(".panel-display-box").not('.' + value).hide('3000');
+							$('.panel-display-box').filter('.' + value).show('3000');
+						}
+						
+						if ($(".filter-button").removeClass("active")) {
+							$(this).removeClass("active");
+						}
+						$(this).addClass("active");
+					});
+				});
+				
+				// Popup Photo Select Js
+				$(".my-photos-image-box").click(function () {
+					$(this).addClass('select').siblings().removeClass('select');
+				});
+			})( jQuery );
+		</script>
+		<!-- Footer -->
+	</body>
+</html>	

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php echo $this->getChildHtml('header') ?>
+<?php $skin_url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>
+<link rel="stylesheet" type="text/css" href="<?php echo $skin_url?>frontend/revivalpixel/canvas/css/canvas_live_editor/before-after.css">
+<div class="main-content"> 
+  
+  <!-- Main Banner -->
+   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_banner')->toHtml(); ?>
+  
+  <!-- FIxed Navigation -->
+   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_fixed_navigation')->toHtml(); ?>
+  
+  <!-- Introduction -->
+  
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_introduction')->toHtml(); ?>
+  
+  <!-- Features -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_features')->toHtml(); ?>
+  
+  <!-- How It Works -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_how_it_works')->toHtml(); ?>
+  
+  <!-- Why Choose Us -->
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_why_choose_us')->toHtml(); ?>
+  
+  <!-- Samples -->
+ <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_samples')->toHtml(); ?>
+  <!-- Introduction -->
+  
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_introduction_end')->toHtml(); ?>
+  <!-- Convert -->
+  <div class="padding-70 blue-bg " id="convert">
+    <div class="container">
+      <div class="row">
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('vectorization_convert')->toHtml(); ?>
+        <div class="col-lg-5 col-sm-6">
+          <div class="contact-form">
+			<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('folio3_feedback/feedback.phtml')->toHtml(); ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php echo $this->getChildHtml('global_messages') ?>
+	<!-- Footer -->
+
+<?php echo $this->getChildHtml('footer_before') ?>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('global_cookie_notice') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<!-- Javascript -->
+<script type="text/javascript" src="<?php echo $skin_url ?>frontend/revivalpixel/canvas/js/canvas_live_editor/jquery-scrolltofixed.js"></script>
+
+<script type="text/javascript">
+(function( $ ) {
+	// Fixed Navigation JS
+	$j(document).ready(function(e) {
+        $j('#fix-nav').scrollToFixed();
+        $j('.res-nav_click').click(function(){
+            $j('.main-nav').slideToggle();
+            return false    
+        });
+        if ($j(window).width() < 768 ) { 
+    		$j('.main-nav').hide(); 
+  		}
+    });
+    
+	// Fixed Navigation Smooth Scroll JS
+	$j(document).ready(function(){
+		if (screen && screen.width > 991) {
+			$j(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$j('html, body').animate({
+	        		scrollTop: $j( $j.attr(this, 'href') ).offset().top - 68
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+		if (screen && screen.width < 992) {
+			$j(".main-nav li a").on('click', function(event) {
+			    if (this.hash !== "") {
+			      	event.preventDefault();
+			      	var hash = this.hash;
+			      	$j('html, body').animate({
+	        		scrollTop: $j( $j.attr(this, 'href') ).offset().top - 150
+	      		}, 800, function(){
+	           	//window.location.hash = hash;
+	      		});
+    		}
+  			});
+		}
+	    $j('.main-nav li a').on('click', function(){
+		    $j('.main-nav li a.current').removeClass('current');
+		    $j(this).addClass('current');
+		    event.preventDefault();
+		});
+	});
+
+
+	// Image Before After Effect JS
+	$j(window).on('load', function() { 
+		$j("#origonal").twentytwenty();
+	  	$j("#sepia-image").twentytwenty();
+	  	$j("#greyscale").twentytwenty();
+	});
+	
+	// Panel Display Filter 
+	$j(document).ready(function(){
+		$j(".filter-button").click(function(){
+        	var value = $j(this).attr('data-filter');
+        	if(value == "all")
+        		{
+            	$j('.panel-display-box').show('3000');
+        		}
+        	else
+        	{
+            	$j(".panel-display-box").not('.'+value).hide('3000');
+            	$j('.panel-display-box').filter('.'+value).show('3000');
+        	}
+    	
+    	if ($j(".filter-button").removeClass("active")) {
+			$j(this).removeClass("active");
+		}
+		$j(this).addClass("active");
+		});
+		});
+})( jQuery );
+	</script>
+</body>
+</html>
