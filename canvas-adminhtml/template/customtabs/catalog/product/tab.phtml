@@ -1,0 +1,42 @@
+<?php
+/**
+ * Custom tab template
+ */
+?>
+  <div class="input-field">
+    <label for="custom_field">Custom Field</label>
+    <select class="input-text" name="custom_field" id="custom_field" onchange="myFunction()">
+ <?php
+ $attributeSetCollection = Mage::getResourceModel('eav/entity_attribute_set_collection');
+$attributeSetCollection->setEntityTypeFilter('4'); // 4 is Catalog Product Entity Type ID
+// foreach ($attributeSetCollection as $id=>$attributeSet) {
+//     $name = $attributeSet->getAttributeSetName(); 
+//     $attributeSetId = $attributeSet->getId();
+//     ?>
+     <option value="please_select">Please Select</option>
+     <option value="Default">Default</option>
+     <option value="Acrylic">Acrylic</option>
+     <option value="Custom Canvas Print">Custom Canvas Print</option>
+     <option value="Steel Plates">Steel Plates</option>
+   
+<!-- <?php
+//}
+ ?> -->
+
+</select>
+    <!--
+ <button id="custom" title="Save" type="button" class="scalable save"  style=""><span><span><span>Import Options</span></span></span></button>
+-->
+
+    <select class="input-text" name="custom_field1" style="display:none">
+ <option value="custom_field1" id="custom_field1">xxxxxxxxxxxxxxxx</span>
+ </select>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("custom_field").value;
+      document.getElementById("custom_field1").value = x;
+    }
+  </script>
+ 
