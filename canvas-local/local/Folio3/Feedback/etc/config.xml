@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Folio3_Feedback>
+            <version>0.0.1</version>
+        </Folio3_Feedback>
+    </modules>
+    <global>
+        <blocks>
+            <!--
+            add an adminhtml block definition
+            -->
+            <folio3_feedback_adminhtml>
+                <class>Folio3_Feedback_Block_Adminhtml</class>
+            </folio3_feedback_adminhtml>
+            <!--
+            add an frontend block definition
+            -->
+            <folio3_feedback>
+                <class>Folio3_Feedback_Block</class>
+            </folio3_feedback>
+        </blocks>
+        <helpers>
+            <folio3_feedback>
+                <class>Folio3_Feedback_Helper</class>
+            </folio3_feedback>
+        </helpers>
+        <models>
+            <folio3_feedback>
+                <!--
+                This tells Magento where to find models for this module.
+                -->
+                <class>Folio3_Feedback_Model</class>
+                <!--
+                This tells Magento where to find resource
+                materials for this module.
+                -->
+                <resourceModel>folio3_feedback_resource</resourceModel>
+            </folio3_feedback>
+            <!--This alias must match the <resourceModel/> value above.-->
+            <folio3_feedback_resource>
+                <!--
+                This tells Magento where to find resource
+                models for this module.
+                -->
+                <class>Folio3_Feedback_Model_Resource</class>
+                <entities>
+                    <!--
+                    This is the table alias referred to in install-0.0.1.php.
+                    -->
+                    <feedback>
+                        <!--This is the name of the database table itself.-->
+                        <table>folio3_feedback</table>
+                    </feedback>
+                </entities>
+            </folio3_feedback_resource>
+        </models>
+        <resources>
+            <!--
+            This must match our folder name in the module sql folder.
+            -->
+            <folio3_feedback_setup>
+                <setup>
+                    <!--
+                    This defines which module the setup
+                    scripts in this location belong to.
+                    -->
+                    <module>Folio3_Feedback</module>
+                    <!--
+                    In each setup script, this
+                    value determines the class of $this.
+                    -->
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <!--
+                This is relevant only if you have multiple database connections.
+                -->
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </folio3_feedback_setup>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <!-- This is the alias for this router. -->
+            <folio3_feedback_admin>
+                <!--
+                This basically informs Magento to use the
+                admin scope for requests to this router.
+                -->
+                <use>admin</use>
+                <args>
+                    <!--
+                    This tells Magento where to find
+                    adminhtml controllers for this module.
+                    -->
+                    <module>Folio3_Feedback_Adminhtml</module>
+                    <!-- This is the term used in the actual URL. -->
+                    <frontName>feedback</frontName>
+                </args>
+            </folio3_feedback_admin>
+        </routers>
+    </admin>
+    <frontend>
+        <layout>
+            <updates>
+                <folio3_feedback>
+                    <file>Folio3_Feedback.xml</file>
+                </folio3_feedback>
+            </updates>
+        </layout>
+        <routers>
+            <folio3_feedback>
+                <use>standard</use>
+                <args>
+                    <module>Folio3_Feedback</module>
+                    <frontName>feedback</frontName>
+                </args>
+            </folio3_feedback>
+        </routers>
+        <routers>	
+            <customer>
+                <args>
+                    <modules>
+                        <folio3_feedback before="Mage_Customer">Folio3_Feedback</folio3_feedback>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+    </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <folio3_feedback>
+                    <file>folio3_feedback.xml</file>
+                </folio3_feedback>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?> 
+<config>
+ <modules>
+  <Canvas_ProductLayout>
+   <version>0.0.1</version>
+  </Canvas_ProductLayout>
+ </modules>
+ <global>
+  <page>
+   <layouts>
+    <home_page module="page" translate="label">
+     <label>Home Page</label>
+     <template>page/home.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </home_page>  
+    <custom_canvas_print module="page" translate="label">
+     <label>Custom Canvas Print</label>
+     <template>page/custom-canvas-print.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </custom_canvas_print> 
+    <wall_display module="page" translate="label">
+     <label>Wall Display</label>
+     <template>page/wall-display.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </wall_display> 
+    <acrylic module="page" translate="label">
+     <label>Acrylic</label>
+     <template>page/acrylic.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </acrylic> 
+    <steel_plate module="page" translate="label">
+     <label>Steel Plate</label>
+     <template>page/steel-plate.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </steel_plate> 
+    <photo_collage module="page" translate="label">
+     <label>Photo Collage</label>
+     <template>page/photo-collage.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </photo_collage> 
+    <deals module="page" translate="label">
+     <label>Deals</label>
+     <template>page/deals.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </deals> 
+    <route module="page" translate="label">
+     <label>404</label>
+     <template>page/404.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </route> 
+    
+	<testimonial module="page" translate="label">
+     <label>Testimonial</label>
+     <template>page/testimonial.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </testimonial> 
+    
+    <about module="page" translate="label">
+     <label>about</label>
+     <template>page/about.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </about>
+	
+    <vectorization module="page" translate="label">
+     <label>Vectorization</label>
+     <template>page/vectorization.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </vectorization> 
+	
+    <volume_sale module="page" translate="label">
+     <label>Volume Sale</label>
+     <template>page/volume-sale.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </volume_sale> 
+    
+    <contact module="page" translate="label">
+     <label>contact</label>
+     <template>page/contact.phtml</template>
+     <layout_handle>lookbook</layout_handle>
+    </contact> 
+    
+   </layouts>
+  </page>
+ </global>
+</config>

@@ -69,7 +69,7 @@ class Mage_Core_Block_Html_Select extends Mage_Core_Block_Abstract
      */
     public function addOption($value, $label, $params=array())
     {
-        $this->_options[] = array('value' => $value, 'label' => $label, 'params' => $params);
+        $this->_options[] = array('value' => $value, 'label' => $label,  'params' => $params);
         return $this;
     }
 
@@ -214,6 +214,7 @@ class Mage_Core_Block_Html_Select extends Mage_Core_Block_Abstract
      */
     protected function _optionToHtml($option, $selected = false)
     {
+        print_r($option);
         $selectedHtml = $selected ? ' selected="selected"' : '';
         if ($this->getIsRenderToJsTemplate() === true) {
             $selectedHtml .= ' #{option_extra_attr_' . self::calcOptionHash($option['value']) . '}';

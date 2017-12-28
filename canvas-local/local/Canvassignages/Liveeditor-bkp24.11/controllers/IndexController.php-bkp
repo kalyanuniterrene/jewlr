@@ -1,0 +1,140 @@
+<?php
+
+class Canvassignages_Liveeditor_IndexController extends Mage_Core_Controller_Front_Action
+{
+   public function indexAction()
+   {
+     //echo 'test index' ;
+     $this->loadLayout();
+          $this->renderLayout();
+   }
+   public function canvasprintAction()
+   {
+     //echo 'test mamethode';
+     
+     $block = $this->getLayout()->createBlock('core/template');
+     
+     
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setData('key', 'some value')->setTemplate('canvassignages_liveeditor/liveeditor.phtml');
+        
+        
+        // Render the template to the browser
+        echo $block->toHtml();
+     
+    }
+    
+    public function walldisplayAction()
+   {
+    // echo 'test mamethode';
+     
+     $block = $this->getLayout()->createBlock('core/template');
+     
+     
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setData('key', 'some value')->setTemplate('canvassignages_liveeditor/wall-liveeditor.phtml');
+        
+        
+        // Render the template to the browser
+        echo $block->toHtml();
+     
+    }
+    
+    public function steelplateAction()
+    {
+		$block = $this->getLayout()->createBlock('core/template');
+     
+     
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setData('key', 'some value')->setTemplate('canvassignages_liveeditor/liveeditor-stell.phtml');
+        
+        
+        // Render the template to the browser
+        echo $block->toHtml();
+		
+	}
+	
+	
+	public function acrylicAction()
+    {
+		$block = $this->getLayout()->createBlock('core/template');
+     
+     
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setData('key', 'some value')->setTemplate('canvassignages_liveeditor/liveeditor-acrylic.phtml');
+        
+        
+        // Render the template to the browser
+        echo $block->toHtml();
+		
+	}
+    
+    public function editAction()
+    
+    {
+  //echo "here";
+  
+  
+   $id = $this->getRequest()->getPost('data_id');
+  
+  $block = $this->getLayout()->createBlock('core/template');
+  
+  Mage::getSingleton('core/session')->setEditId($id);
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setData('key', $id)->setTemplate('canvassignages_liveeditor/liveeditor-save.phtml');
+
+        // Render the template to the browser
+        echo $block->toHtml();
+ }
+    
+
+    public function editstellAction()
+    
+    {
+  //echo "here";
+  
+  
+   $id = $this->getRequest()->getPost('data_id');
+  
+  $block = $this->getLayout()->createBlock('core/template');
+  
+  Mage::getSingleton('core/session')->setEditId($id);
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setData('key', $id)->setTemplate('canvassignages_liveeditor/liveeditor-stell-save.phtml');
+
+        // Render the template to the browser
+        echo $block->toHtml();
+ }
+    
+    public function saveAction()
+    
+    {
+  //echo "here";
+  
+  
+  echo $name = ''.$this->getRequest()->getPost('name');
+  
+  $block = $this->getLayout()->createBlock('core/template');
+
+        // Assign your template to it
+        // This path is relative to your current theme (eg: rwd/default/template/...)
+        $block->setTemplate('canvassignages_liveeditor/liveeditor.phtml');
+
+        // Render the template to the browser
+        //echo $block->toHtml();
+ }
+    
+    
+}

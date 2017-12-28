@@ -32,6 +32,9 @@
  */
 ?>
 
+  
+
+
 
 
 <script type="text/javascript" src="http://localhost/public_sc/jewlr/skin/frontend/jwelzhq/jewelzhq/js/fancy-diamond.js"></script>
@@ -452,9 +455,8 @@ i { position:absolute;
 <div id="mainWrapper" class="remodal-bg remodal-is-closed">      
         <div id="content_container" class="pure-margin-zoom">
             <div id="main_product_container" class="pure-margin-zoom" itemscope="" itemtype="">
-                <form id="item-form" action="http://onlinedevserver.biz/html/jwelzhq/details.html" accept-charset="UTF-8" method="post">
-                    <input name="utf8" type="hidden" value="✓">
-                    <input type="hidden" name="authenticity_token" value="">
+               <!--  <form id="item-form"> -->
+                    
                     <div id="product_title_row">
                         <div class="product-title-div product-header__row">
                             <div class="pure_container">
@@ -712,54 +714,18 @@ i { position:absolute;
                                                                 <div class="pure-form engraving-entry">
                                                                     <div class="pure-control-group pure-g pure-g--no-padding">
                                                                         <div class="pure-u-10-24 pure-u-sm-14-24">
-                                                                            <input type="text" placeholder="Enter engraving" data-price="0" data-sia="0" data-summary-field="e1" data-pref="e1" class="wizard-option engraving-input-option wizard_input_e1" data-engraving-num="1" data-minchars="0" data-caps="Any" data-maxchars="8" data-pattern="[^a-z0-9&amp;@$!%?*#,.\-:;() ]" data-default-engraving="Jason" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-allcap-text="We noticed you&#39;re using all capital letters on your engraving. Unless you&#39;re writing initials, we recommend just capitalizing the first letter of the word!">
+                                                                            <input id="eng_input_text1"type="text" placeholder="Enter engraving">
                                                                         </div>
                                                                         <div class="pure-u-14-24 pure-u-sm-10-24"> <span class="action-buttons">
 
-                                     <button class="pure-button-alternate btn-update update-button">APPLY</button>
+                                     <button class="pure-button-alternate btn-update update-button eng1">APPLY</button>
+
+                                     
 
                                      <span></span>
-                                                                            <button class="pure-button-alternate clear-engravings clear-button"><i class="fa fa-times"></i></button>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span class="engraving-chars-text">8 left</span> </div>
-                                                            </div>
-                                                            <div class="engravings-control e2_control clearfix">
-                                                                <div class="pane-title">
-                                                                    <label class="help-block" for="input_e2">Engraving 2</label>
-                                                                </div>
-                                                                <div class="pure-form engraving-entry">
-                                                                    <div class="pure-control-group pure-g pure-g--no-padding">
-                                                                        <div class="pure-u-10-24 pure-u-sm-14-24">
-                                                                            <input type="text" placeholder="Enter engraving" data-price="0" data-sia="0" data-summary-field="e2" data-pref="e2" class="wizard-option engraving-input-option wizard_input_e2" data-engraving-num="2" data-minchars="0" data-caps="Any" data-maxchars="8" data-pattern="[^a-z0-9&amp;@$!%?*#,.\-:;() ]" data-default-engraving="Ashley" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-allcap-text="We noticed you&#39;re using all capital letters on your engraving. Unless you&#39;re writing initials, we recommend just capitalizing the first letter of the word!">
-                                                                        </div>
-                                                                        <div class="pure-u-14-24 pure-u-sm-10-24"> <span class="action-buttons">
+                                                                            
 
-                                     <button class="pure-button-alternate btn-update update-button">APPLY</button>
-
-                                     <span></span>
-                                                                            <button class="pure-button-alternate clear-engravings clear-button"><i class="fa fa-times"></i></button>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span class="engraving-chars-text">8 left</span> </div>
-                                                            </div>
-                                                            <div class="base-engraving-control clearfix">
-                                                                <div class="pane-title">
-                                                                    <label class="help-block" for="input_e0"> Base Engraving (+$25)&nbsp;
-                                                                        <i data-container="body" data-placement="right" title="Engrave a special message, date or name inside the base of the ring." class="fa fa-question-circle tooltip-w"></i></label>
-                                                                </div>
-                                                                <div class="pure-form engraving-entry">
-                                                                    <div class="pure-control-group pure-g pure-g--no-padding">
-                                                                        <div class="pure-u-10-24 pure-u-sm-14-24">
-                                                                            <input type="text" placeholder="Enter engraving" data-price="25" data-sia="0" data-summary-field="e0" data-pref="e0" class="wizard-option  engraving-input-option wizard_input_e0" data-engraving-num="0" data-caps="Any" data-minchars="0" data-maxchars="16" data-pattern="[^a-z0-9&amp;@$!%?*#,.\-:;() ]" data-default-engraving="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-allcap-text="We noticed you&#39;re using all capital letters on your engraving. Unless you&#39;re writing initials, we recommend just capitalizing the first letter of the word!">
-                                                                        </div>
-                                                                        <div class="pure-u-14-24 pure-u-sm-10-24"> <span class="action-buttons">
-
-                                     <button class="pure-button-alternate btn-update update-button">APPLY</button>
-
-                                     <span></span>
+                                     
                                                                             <button class="pure-button-alternate clear-engravings clear-button"><i class="fa fa-times"></i></button>
                                                                             </span>
                                                                         </div>
@@ -1015,26 +981,12 @@ i { position:absolute;
                                     <button type="button" class="add-to-cart-btn pure-button pure-button-primary pure-button--full-width" href="#" rel="nofollow"> Add to Cart </button>
                                 </div>
                             </div>
-                            <input type="hidden" id="defaultCatch" name="default_catch" value="yes">
-                            <input type="hidden" id="jsEnabled" name="js_enabled" value="no">
-                            <input type="hidden" id="jqueryEnabled" name="jquery_enabled" value="no">
-                            <input type="hidden" id="styleCode" name="style_code" value="JWL0024">
-                            <input type="hidden" id="variableEngravingCount" name="variableEngravingCount" value="false">
-                            <input type="hidden" id="line_item_id" name="line_item_id" value="">
-                            <input type="hidden" id="promo_code" name="code" value="">
-                            <input type="hidden" class="item_input input_required" id="sku_description_input" name="sku" autocomplete="off" data-criteo-param="true" value="SS">
-                            <input type="hidden" class="item_input gem_input input_required" id="gem1_description_input" name="s1" autocomplete="off" data-criteo-param="true" value="S01GARN">
-                            <input type="hidden" class="item_input gem_input input_required" id="gem2_description_input" name="s2" autocomplete="off" data-criteo-param="true" value="S01GARN">
-                            <input type="hidden" class="item_input" id="font_description_input" name="ef" value="Classic" autocomplete="off" data-criteo-param="true">
-                            <input type="hidden" class="item_input engraving_input" id="e1_description_input" name="e1" data-pane-id="ef_pane" data-focus="input_e1" data-minchars="0" data-missing-msg="Please enter engraving 1" data-criteo-param="true" value="">
-                            <input type="hidden" class="item_input engraving_input" id="e2_description_input" name="e2" data-pane-id="ef_pane" data-focus="input_e2" data-minchars="0" data-missing-msg="Please enter engraving 2" data-criteo-param="true" value="">
-                            <input type="hidden" class="item_input" id="e0_description_input" name="e0" autocomplete="off" data-criteo-param="true" value="">
-                            <input type="hidden" class="item_input box_input" id="box_description_input" name="box" autocomplete="off">
-                            <input type="hidden" value="" class="item_input input_required" id="size_description_input" name="sz" data-pane-id="sz_pane" data-focus="size-wizard-option" data-missing-msg="Please select your size before adding item to cart." autocomplete="off" data-criteo-param="true">
+                            <input type="hidden" id="eng_text" name="eng_text" value="Teko">
+                            
                         </div>
                     </div>
                     
-                </form>                
+               <!--  </form>    -->             
             </div>
         </div>
     </div>   
@@ -1147,14 +1099,7 @@ i { position:absolute;
 
 
 
-   <!--  <script>
-      jQuery( "#accordion" ).accordion({
-      heightStyle: "content",
-      active:false,
-      collapsible: true,
-      header:"div.accordianheader"
-    });
-    </script> -->
+   
 
     <script type="text/javascript">
       var primary = jQuery("#carousel");
@@ -1286,9 +1231,7 @@ jQuery(document).on('click','.metal_type',function(){
 	}
     //alert(metal_data);
     var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
-    //alert('url_param');
-	//alert(sku);
-   // jQuery("#image-main").attr('src', url_param);
+   
 	jQuery(this).addClass('selected-item').siblings().removeClass('selected-item');
 
 	var img = jQuery(this).find('img').attr('src');
@@ -1303,21 +1246,7 @@ jQuery(document).on('click','.metal_type',function(){
 
 
 
-/*
-	var url = '<?php echo  Mage::getUrl('liveeditor/index/createimage')?>';
 
-    var default_sku = jQuery(this).find('img').attr('data-default-sku');
-
-    jQuery.ajax({
-                url: url,
-               data: {metal:1,style:1,stone:1,color:color},
-                type: "POST",
-                success: function(response)
-                {
-                      
-                  
-                 }
-              });*/
 
 
 	 
@@ -1339,26 +1268,7 @@ jQuery(document).on('click','.face-option',function(){
 
 	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
 
-	/* jQuery.ajax({
-	            url: url,
-	            data: {metal:metal,style:style,stone:stone,color:color},
-	            type: "POST",
-	            success: function(response)
-	            {
-	               // alert(response); 
-	                var imgages = response;
-	                var sdfsdf = jQuery.parseJSON(response);
-					//alert(sdfsdf[0]);
-
-					for (var i = 0; i < jQuery('.main-carousel .owl-item').length; i++) {
-						 jQuery('.main-carousel .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_full']);
-						 jQuery('#thumbnails .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_small']);
-					}
-
-	               
-	                
-	             }
-              });*/
+	
 
 
 });
@@ -1377,34 +1287,14 @@ jQuery(document).on('click','.stone-option',function(){
     var stone=jQuery(this).attr("data-stoneorder");
     
     var url_param='http://localhost/public_sc/jewlr/file_path/index.php?metal='+metal+'&view=1&style='+style+'&stone='+stone+'&color='+color;
-    // alert(url_param);
-   //  alert(ston_arr);
-
+  
 	var default_sku = "fancy-halo-flip-ring";
 
 
 
 	var url = '<?php echo  Mage::getUrl('liveeditor/index/image')?>';
 
-	 /*jQuery.ajax({
-	            url: url,
-	            data: {default_sku:default_sku,sku:sku},
-	            type: "POST",
-
-	            success: function(response)
-	            {
-	               // alert(response); 
-	                var imgages = response;
-	                var sdfsdf = jQuery.parseJSON(response);
-					//alert(sdfsdf[0]);
-
-					for (var i = 0; i < jQuery('.main-carousel .owl-item').length; i++) {
-						 jQuery('.main-carousel .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_full']);
-						 jQuery('#thumbnails .owl-item').eq(i).find('img').attr('src',sdfsdf[i]['img_small']);
-					}
-	             
-	             }
-              });*/
+	 
 
 });
 
@@ -1620,7 +1510,7 @@ jQuery( ".metal_type_stone1_side2" ).mouseover(function() {
     }
     .canvas-container{
         float: left;    
-    display: none;
+    /*display: none;*/
     }
    
     </style>
@@ -1681,8 +1571,10 @@ $SID=$session->getEncryptedSessionId(); //current session id
 ?>
 
 
-    <script src="http://localhost/public_sc/jewlr/file_path/fabric.js"></script>
-    <script src="http://localhost/public_sc/jewlr/file_path/canvas.js"></script>
+  
+
+
+    
 
     <input type="hidden" id="session_id" value="<?php echo $SID; ?>">   
     <input type="hidden" id="view" value="<?php echo $view; ?>">    
@@ -1697,6 +1589,26 @@ $SID=$session->getEncryptedSessionId(); //current session id
     <input type="hidden" id="glow" value="<?php echo $glow; ?>">    
     <input type="hidden" id="color" data-val1="<?php echo $exp[0]; ?>" data-val2="<?php echo $exp[1]; ?>" data-val3="<?php echo $exp[2]; ?>">   
 
-    <canvas id="c" ></canvas>
+    
 
 
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.0-rc.3/fabric.js"></script>
+
+
+<canvas id="c" ></canvas>
+<canvas id="c1" ></canvas>
+<canvas id="c2" ></canvas>
+<canvas id="c3" ></canvas>
+<canvas id="c4" ></canvas>
+
+
+
+
+
+<script src="http://localhost/public_sc/jewlr/file_path/all.js"></script>
+<script src="http://localhost/public_sc/jewlr/file_path/all1.js"></script>
+<script src="http://localhost/public_sc/jewlr/file_path/all2.js"></script>
+<script src="http://localhost/public_sc/jewlr/file_path/all3.js"></script>
+<script src="http://localhost/public_sc/jewlr/file_path/all4.js"></script>

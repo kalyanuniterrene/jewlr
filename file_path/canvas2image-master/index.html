@@ -15,6 +15,7 @@
 <body>
 <div class="doc">
     <canvas width="600" height="400" id="cvs"></canvas>
+    <canvas width="600" height="400" id="canvas1"></canvas>
     <div>
         <p>
             <button id="save">save</button> or <button id="convert">convert to</button> as: 
@@ -33,6 +34,8 @@
     </div>
 </div>
 <script>
+
+
     var canvas, ctx, bMouseIsDown = false, iLastX, iLastY,
         $save, $imgs,
         $convert, $imgW, $imgH,

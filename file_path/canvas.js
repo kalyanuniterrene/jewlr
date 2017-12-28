@@ -1,5 +1,162 @@
+/*Text js*/
+function createImage(){
 
-jQuery(document).ready(function (argument) {  
+    canvas = new fabric.Canvas('c1');
+
+  var src = jQuery('.fancy-image1').attr('src');
+
+  canvas.setBackgroundImage(src, canvas.renderAll.bind(canvas));
+
+
+  var original = canvas.getActiveObject();
+
+
+    var str = jQuery('#eng_input_text1').val();
+    var n = str.length;
+     /**
+    * Default options
+    */
+    CurvedText.defaults = {
+      top: 0,
+      left: 0,
+      scaleX: 1,
+      scaleY: 1,
+      angle: 40,
+      spacing: 30,
+      radius: 100,
+      text: str,
+      align: 'center',
+      reverse: false,
+      fontSize: 35,
+      fontWeight: 'normal',
+      selectable: true
+    };
+    Example = new CurvedText( canvas, {angle:50} );
+
+    /*Checking the length and min is 5*/
+
+    /*case 1*/
+
+    Example.set( 'currentHeight', 5.003672418653247 ) ;
+
+    if(n<=3)
+    {
+      
+      
+      Example.center();
+      Example.set( 'reverse', true ) ;
+      Example.set( 'top', 132 ) ; 
+      Example.set( 'spacing', 8 ) ; 
+      Example.set( 'left', 204.33475249083943 ) ; 
+      Example.set( 'radius', 100 ) ; 
+      Example.set( 'width', 178.13589139289846 ) ; 
+       Example.set( 'reverse', false ) ;  
+    }
+    if(n>3 && n<=5)
+    {
+      
+      
+      Example.center();
+      Example.set( 'reverse', true ) ;
+      Example.set( 'top', 132 ) ; 
+      Example.set( 'spacing', 8 ) ; 
+      Example.set( 'left', 204.33475249083943 ) ; 
+      Example.set( 'radius', 100 ) ; 
+      Example.set( 'width', 178.13589139289846 ) ; 
+       Example.set( 'reverse', false ) ;  
+    }
+
+    if(n>5 && n<=7)
+    {
+      
+      
+      Example.center();
+      Example.set( 'reverse', true ) ;
+      Example.set( 'top', 132 ) ; 
+      Example.set( 'spacing', 8 ) ; 
+      Example.set( 'left', 204.33475249083943 ) ; 
+      Example.set( 'radius', 100 ) ; 
+      Example.set( 'width', 178.13589139289846 ) ; 
+       Example.set( 'reverse', false ) ;  
+    }
+
+
+    if(n>7 && n<=9)
+    {
+      console.log(n);
+      //Example = new CurvedText( canvas, {angle:50} );
+      Example.center();
+      Example.set( 'reverse', true ) ;
+      Example.set( 'top', 132 ) ; 
+      Example.set( 'spacing', 8 ) ; 
+      Example.set( 'left', 204.33475249083943 ) ; 
+      Example.set( 'radius', 100 ) ; 
+      Example.set( 'width', 178.13589139289846 ) ; 
+       Example.set( 'reverse', false ) ;  
+    }
+
+    if(n==10)
+
+    {
+      Example.center();
+      Example.set( 'reverse', true ) ;
+      Example.set( 'top', 132 ) ; 
+      Example.set( 'spacing', 8 ) ; 
+      Example.set( 'left', 204.33475249083943 ) ; 
+      Example.set( 'radius', 100 ) ; 
+      Example.set( 'width', 178.13589139289846 ) ; 
+       Example.set( 'reverse', false ) ;  
+    }
+
+
+
+    if(n>10 && n<=16){
+      console.log(n);
+      //Example = new CurvedText( canvas, {angle:50} );
+      Example.center();
+      Example.set( 'reverse', true ) ;
+      Example.set( 'top', 150 ) ; 
+      Example.set( 'spacing', 8 ) ; 
+      Example.set( 'left', 200.33475249083943 ) ; 
+      Example.set( 'radius', 130 ) ; 
+      Example.set( 'width', 178.13589139289846 ) ; 
+       Example.set( 'reverse', false ) ;  
+    
+    }
+
+    
+
+  
+
+ 
+ 
+      jQuery('.radius, .spacing, .align, .fontSize').change(function(){
+        Example.set( jQuery(this).attr('class'), jQuery(this).val() ) ;    
+      });
+      jQuery('.reverse').change(function(){
+        Example.set( 'reverse', ( jQuery(this).val() == 'true' ) ) ;    
+      });
+  }
+
+
+jQuery('#eng_input_text1').keyup(function(){
+
+  createImage();
+
+});
+
+jQuery('.eng1').click(function(){
+
+      var newsrc = canvas.toDataURL();
+
+      jQuery('.fancy-image1').attr('old-url',jQuery('fancy-image1').attr('src'));
+
+      jQuery('.fancy-image1').attr('src',newsrc);
+
+   });
+
+
+/*End Text js*/
 
 var canvas = new fabric.Canvas('c');
 
@@ -148,7 +305,7 @@ var session_id = jQuery('#session_id').val();
 
                               if(i==1)
                               {
-                                canvas.add(new fabric.Group([img1, img2, img3, img4,ttt], { left: 0, top: 0}));
+                                canvas.add(new fabric.Group([img1, img2, img3, img4], { left: 0, top: 0}));
                               }
                               else{
                                 
@@ -216,7 +373,9 @@ var session_id = jQuery('#session_id').val();
 
 
                       });  
-                }   
+                }  
+
+
 
             });
         });
@@ -252,7 +411,7 @@ jQuery(document).on('click','.metal_type',function(){
     
 
    createCanvasImage (con,metal_org,color_org,style_org,stone_org,extra_folder);
-     
+     /*jQuery('.eng1').click();*/
    }
 
 });
@@ -390,17 +549,3 @@ jQuery(document).on('click','.stone-option',function(){
       canvas.renderAll();
     }
   }
-
-
-/*
-canvas.add(new fabric.Text('foo', { 
-  fontFamily: 'Delicious_500', 
-  left: 100, 
-  top: 100 
-}));
-canvas.renderAll();*/
-
-
-
-
-});

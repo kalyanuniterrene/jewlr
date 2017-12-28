@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+  
+    <menu>
+      
+        <folio3_feedback translate="title" module="folio3_feedback">
+          <title>Vectorization</title>
+          <sort_order>79</sort_order>
+          <action>folio3_feedback_admin/feedback</action>	
+        </folio3_feedback>
+      
+    </menu>
+    
+</config>

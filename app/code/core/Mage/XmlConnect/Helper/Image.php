@@ -98,7 +98,7 @@ class Mage_XmlConnect_Helper_Image extends Mage_Core_Helper_Abstract
 
             /** @var $uploader Mage_Core_Model_File_Uploader */
             $uploader = Mage::getModel('core/file_uploader', $field);
-            $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+            $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png','mov'));
             $uploader->setAllowRenameFiles(true);
             $uploader->addValidateCallback(
                 Mage_Core_Model_File_Validator_Image::NAME,

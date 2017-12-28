@@ -54,7 +54,7 @@ class Mage_Catalog_Model_Resource_Product_Attribute_Backend_Image
 
         try {
             $uploader = new Mage_Core_Model_File_Uploader($this->getAttribute()->getName());
-            $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+            $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png','mov'));
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(true);
             $uploader->addValidateCallback(

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+  
+    <menu>
+      
+        <happy_codding translate="title" module="happy_codding">
+          <title>Volume Sale</title>
+          <sort_order>79</sort_order>
+          <action>happy_codding_admin/codding</action>	
+        </happy_codding>
+      
+    </menu>
+    
+</config>

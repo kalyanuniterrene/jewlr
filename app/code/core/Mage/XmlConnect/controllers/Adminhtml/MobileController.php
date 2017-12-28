@@ -1392,7 +1392,7 @@ class Mage_XmlConnect_Adminhtml_MobileController extends Mage_Adminhtml_Controll
 
             /** @var $uploader Mage_Core_Model_File_Uploader */
             $uploader = Mage::getModel('core/file_uploader', $imageModel->getImageType());
-            $uploader->setAllowRenameFiles(true)->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+            $uploader->setAllowRenameFiles(true)->setAllowedExtensions(array('mov','jpg', 'jpeg', 'gif', 'png'));
             $uploader->addValidateCallback(
                 Mage_Core_Model_File_Validator_Image::NAME,
                 Mage::getModel('core/file_validator_image'),

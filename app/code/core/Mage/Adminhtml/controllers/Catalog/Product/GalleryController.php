@@ -37,16 +37,19 @@ class Mage_Adminhtml_Catalog_Product_GalleryController extends Mage_Adminhtml_Co
     {
         try {
             $uploader = new Mage_Core_Model_File_Uploader('image');
-            $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-            $uploader->addValidateCallback('catalog_product_image',
-                Mage::helper('catalog/image'), 'validateUploadFile');
+            $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png','mov'));
+
+           
+
+            /*$uploader->addValidateCallback('catalog_product_image',
+                Mage::helper('catalog/image'), 'validateUploadFile');*/
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(true);
-            $uploader->addValidateCallback(
+            /*$uploader->addValidateCallback(
                 Mage_Core_Model_File_Validator_Image::NAME,
                 Mage::getModel('core/file_validator_image'),
                 'validate'
-            );
+            );*/
             $result = $uploader->save(
                 Mage::getSingleton('catalog/product_media_config')->getBaseTmpMediaPath()
             );
@@ -73,6 +76,9 @@ class Mage_Adminhtml_Catalog_Product_GalleryController extends Mage_Adminhtml_Co
             );
 
         } catch (Exception $e) {
+
+
+
             $result = array(
                 'error' => $e->getMessage(),
                 'errorcode' => $e->getCode());
