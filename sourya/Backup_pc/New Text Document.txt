@@ -1,7 +1,0 @@
-inner-page-member-area
-
-<p style="font-size: 38px; color: white; font-weight: bold; line-height: 77px;">Going With The Current Trends</p>
-<p style="font-size: 58px; color: white; font-weight: bold;">Delivaring <span style="color: green;">Quality Products</span></p>
-[sf_button colour="white" type="sf-icon-reveal" size="standard" link="/shop/?sidebar=left-sidebar" target="_self" icon="fa-long-arrow-right" dropshadow="no" extraclass=""]START SHOPPING[/sf_button]
-
-https://www.youtube.com/watch?v=j-qrUZuk9N4

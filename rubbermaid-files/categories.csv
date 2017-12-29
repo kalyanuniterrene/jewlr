@@ -1,0 +1,104 @@
+id,name,parentname
+3,Agriculture,Default Category
+4,Cleaning,Default Category
+5,Food Service,Default Category
+6,Material Handling,Default Category
+7,Safety,Default Category
+8,Waste,Default Category
+9,Big Wheel & Tractor Carts,Agriculture
+10,Stock Tanks,Agriculture
+11,"Brooms, Brushes & Dusters",Cleaning
+12,Brooms,"Brooms, Brushes & Dusters"
+13,Handles,"Brooms, Brushes & Dusters"
+14,Brushes,"Brooms, Brushes & Dusters"
+15,Dust Pans,"Brooms, Brushes & Dusters"
+16,Dusters,"Brooms, Brushes & Dusters"
+17,Caddies,Cleaning
+18,Microfiber Cloths,Cleaning
+24,Floor & Carpet Care,Cleaning
+25,Carpet Bonnets,Floor & Carpet Care
+26,Sweepers,Floor & Carpet Care
+27,Vacuum  Accessories,Floor & Carpet Care
+28,Vacuums,Floor & Carpet Care
+29,Laundry Products,Cleaning
+30,Hamper & Laundry Bags,Laundry Products
+31,Mops & Equipment,Cleaning
+32,Buckets & Wringers,Mops & Equipment
+33,Finish Mops & Applicators,Mops & Equipment
+34,Floor Dusters & Accessories,Mops & Equipment
+35,Mop Handles,Mops & Equipment
+36,Mop Heads,Mops & Equipment
+37,Mops,Mops & Equipment
+38,Odor Control,Cleaning
+39,Personal Hygiene Products,Cleaning
+40,Feminine Care Dispenser Liners,Personal Hygiene Products
+41,Feminine Care Dispensers & Receptacles,Personal Hygiene Products
+42,Restroom Cleaners & Accessories,Cleaning
+43,Storage Containers,Cleaning
+44,Beverages & Beverage Dispensers,Food Service
+45,Beverage Dispensers,Beverages & Beverage Dispensers
+46,Breakroom Supplies,Food Service
+47,Condiment Organizers,Breakroom Supplies
+48,Decanters & Pitchers,Breakroom Supplies
+49,High Chairs,Food Service
+50,Ingredient Bins,Food Service
+51,Kitchen Supplies,Food Service
+52,Cold & Hot Food Pans,Kitchen Supplies
+53,Cooking & Serving Utensils,Kitchen Supplies
+54,Food Storage Containers & Lids,Kitchen Supplies
+55,Ice Containers,Kitchen Supplies
+56,Measuring Cups ,Kitchen Supplies
+57,Racks & Carts,Kitchen Supplies
+58,Scoops,Kitchen Supplies
+59,Towels & Wipes,Kitchen Supplies
+60,Pizza Supplies,Kitchen Supplies
+61,Warewashing,Kitchen Supplies
+62,Bus & Utility Boxes & Covers,Warewashing
+63,"Dish, Flatware, Glass Racks & Dollies",Warewashing
+64,Audio-Visual Carts,Material Handling
+65,Cart Accessories,Material Handling
+66,Cube Trucks,Material Handling
+67,Housekeeping Carts,Material Handling
+68,Janitor Carts,Material Handling
+69,Platform Trucks,Material Handling
+70,Service Carts ,Material Handling
+71,Tilt Trucks,Material Handling
+72,Tractor & Big Wheel Carts,Material Handling
+73,TradeMaster Carts,Material Handling
+74,Triple Trolley Carts,Material Handling
+75,Utility Carts,Material Handling
+76,Baby Changing Stations,Safety
+77,Matting,Safety
+78,Indoor 39,Matting
+79,Safety Signs,Safety
+80,Pads,Safety Signs
+81,Dollies,Waste
+82,Indoor Waste Receptacles,Waste
+83,Brute Containers,Indoor Waste Receptacles
+84,Confidential Document Containers,Indoor Waste Receptacles
+85,Medical Waste ,Indoor Waste Receptacles
+86,Metal Receptacles,Indoor Waste Receptacles
+87,Slim Jim Containers,Indoor Waste Receptacles
+88,Step-on Containers,Indoor Waste Receptacles
+89,Waste Receptacles,Indoor Waste Receptacles
+90,Wastebaskets,Indoor Waste Receptacles
+91,Labels,Waste
+92,Outdoor Waste Receptacles,Waste
+93,Brute Containers,Outdoor Waste Receptacles
+94,Landmark,Outdoor Waste Receptacles
+95,Livestock Tanks,Outdoor Waste Receptacles
+96,Metal Receptacles,Outdoor Waste Receptacles
+97,Plaza Containers,Outdoor Waste Receptacles
+98,Ranger Containers,Outdoor Waste Receptacles
+99,Waste Receptacles,Outdoor Waste Receptacles
+100,Recycling Containers,Waste
+101,Rigid Liners,Waste
+102,Smoking Receptacles,Waste
+103,Trash Bags,Waste
+104,Can Liners,Trash Bags
+105,Waste Receptacle Accessories,Waste
+106,Waste Receptacles Lids,Waste
+107,"Microfiber Mops, Pads & Handles",Mops & Equipment
+108,Accessories,Cleaning
+111,Pizza Supplies,Food Service
+113,Storage Sheds,Cleaning
