@@ -1,0 +1,29 @@
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vuolputate nec augue sed loborties. Sed hendrerit mauris ex, ut fringilla nisi egestas val. Mauris eleifend,ante accumsan rutrum tempus, augue massa ultrices purus, vel imperdiet erat turpis quis diam. Fusce convallis metus a ante aliquam, vel bibendum massa mattis. Na
+
+#phantom {
+	background-color: #050c53;
+}
+.rippleWrap
+{
+background-color: #050c53;
+}
+.testimonial-item testimonial-item-slider
+{
+backgroud:#050c53;
+color:white;
+
+}
+.wf-float-left{
+display:none;
+}
+.mini-nav wf-float-right
+{
+display:none;
+}
+.wf-td bottom-text-block
+{
+text-align:center;
+}
+
+#f4f4f4
+#050c53

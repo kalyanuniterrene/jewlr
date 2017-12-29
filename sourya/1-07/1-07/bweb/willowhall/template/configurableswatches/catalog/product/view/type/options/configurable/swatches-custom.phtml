@@ -1,0 +1,378 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$_product    = $this->getProduct();
+
+$_attribute = $this->getAttributeObj();
+
+$_jsonConfig = $this->getJsonConfig();
+$_config = json_decode($_jsonConfig);
+
+$_swatchInnerWidth = $this->getSwatchInnerWidth();
+$_swatchInnerHeight = $this->getSwatchInnerHeight();
+$_swatchOuterWidth = $this->getSwatchOuterWidth();
+$_swatchOuterHeight = $this->getSwatchOuterHeight();
+
+$_attr = $_attribute->getProductAttribute();
+$_attrCode = $_attr->getAttributeCode();
+$_id = $_attribute->getAttributeId();
+
+//Load the admin labels for the attribute
+$attributeId = $_attribute->getAttributeId();
+                $collection =Mage::getResourceModel('eav/entity_attribute_option_collection')
+                ->setPositionOrder('asc')
+                ->setAttributeFilter($attributeId)
+                ->setStoreFilter(0)
+                ->load();
+                
+$collection = $collection->toOptionArray();
+
+$_fabricTypes = array();
+$_patterns = array();
+$_pallettes = array();
+
+        
+foreach ($collection as $_option) {   
+    $labels = explode(" - ", $_option["label"]);
+    $_fabricTypes[$labels[0]] = "1";
+    $_patterns[$labels[1]] = "1";
+    $_pallettes[$labels[2]] = "1";
+}
+
+$_currentFabric = "";
+
+$_swatchArray = $_config->attributes->$_id;
+
+?>
+
+<dt class="swatch-attr">
+    <span class="<?php echo $_attrCode ?> enum"></span>
+    <label id="<?php echo $_attrCode ?>_label" class="required">
+        <em>*</em><a href="/fabric-guide" target="_blank">Choose your <?php echo strtolower($_attribute->getLabel()); ?></a>
+        
+    </label>
+    <span id="select_label_<?php echo $_attrCode ?>" class="select-label">Please select...</span>
+</dt>
+<select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select no-display swatch-select">
+            <option><?php echo $this->__('Choose an Option...') ?></option>
+</select>
+<dd class="clearfix swatch-attr<?php if ($_attribute->decoratedIsLast) echo ' last'; ?>">
+    <div class="fabric-filters">
+        <div class="filters">
+        <h3>Refine By: <span class="clearall">Clear all</span></h3>
+            <div class="filter">
+                <h3>Colour Palette</h3>
+                <ul>
+                    <?php
+                        foreach ($_pallettes as $_pallette=>$val) :                            
+                    ?>
+                    <li>
+                        <input class="pallette" name="pallette-<?php echo strtolower(str_replace(array(" & ", ",", " "), array( "-","","-"), $_pallette));?>" type="checkbox"/>
+                        <label for="pallette-<?php echo strtolower(str_replace(array(" & ", ",", " "), array( "-","","-"), $_pallette));?>"><?php echo $_pallette;?></label>
+                    </li>
+                    <?php 
+                        endforeach;
+                    ?>
+                </ul>
+                <h3>Fabric Type</h3>
+                <ul>
+                    <?php //0007909: WH: Remove extra Fabric Type and set Fabric order for Accessories, Beds & Mattresses	
+			$request_uri = $_SERVER['REQUEST_URI'];
+			if(substr_count($request_uri, "storage-beds") 
+				|| substr_count($request_uri, "storage-bed")
+				|| substr_count($request_uri, "oxenwood-ottoman")
+				|| substr_count($request_uri, "durrington-divan")){
+			$empty_fabric_type = array('Crushed Velvet','Matt Velvet','Leather','Striped Linen');
+			}
+			else if(substr_count($request_uri, "dauntsey-footstool")
+				|| substr_count($request_uri, "foxley-footstool")
+				|| substr_count($request_uri, "burcombe-footstool")
+				|| substr_count($request_uri, "winsley-ottoman")
+				|| substr_count($request_uri, "bentham-blanket")
+				|| substr_count($request_uri, "winterslow-bed")
+				|| substr_count($request_uri, "neston-bed")
+				|| substr_count($request_uri, "marlborough-bed")
+				|| substr_count($request_uri, "compton-headboard")
+				){
+			$empty_fabric_type = array('Leather','Striped Linen');
+			}
+			//0007909: WH: Remove extra Fabric Type and set Fabric order for Accessories, Beds & Mattresses
+                        foreach ($_fabricTypes as $_fabricType=>$val) :  
+				if(substr_count($request_uri, "storage-beds") 
+				|| substr_count($request_uri, "storage-bed")
+				||substr_count($request_uri, "dauntsey-footstool")
+				|| substr_count($request_uri, "foxley-footstool")
+				|| substr_count($request_uri, "burcombe-footstool")
+				|| substr_count($request_uri, "winsley-ottoman")
+				|| substr_count($request_uri, "bentham-blanket")
+				|| substr_count($request_uri, "winterslow-bed")
+				|| substr_count($request_uri, "neston-bed")
+				|| substr_count($request_uri, "marlborough-bed")
+				|| substr_count($request_uri, "compton-headboard")
+				|| substr_count($request_uri, "oxenwood-ottoman")
+				|| substr_count($request_uri, "durrington-divan")){
+				if(in_array($_fabricType,$empty_fabric_type))continue;{
+			}    }                      
+                    ?>
+                    <li>
+                        <input class="fabric" name="fabric-<?php echo strtolower(str_replace(" ", "-", $_fabricType));?>" type="checkbox"/>
+                        <label for="fabric-<?php echo strtolower(str_replace(" ", "-", $_fabricType));?>"><?php echo $_fabricType;?></label>
+                    </li>
+                    <?php 
+                        endforeach;
+                    ?>
+                </ul>
+                <h3>Pattern</h3>
+                <ul>
+                    <?php	//0007909: WH: Remove extra Fabric Type and set Fabric order for Accessories, Beds & Mattresses
+				$empty_pattern_type = array('Striped');
+                        foreach ($_patterns as $_pattern=>$val) :  
+				if(substr_count($_SERVER['REQUEST_URI'], "storage-beds") 
+				|| substr_count($_SERVER['REQUEST_URI'], "storage-bed")
+				|| substr_count($_SERVER['REQUEST_URI'], "dauntsey-footstool")
+				|| substr_count($_SERVER['REQUEST_URI'], "foxley-footstool")
+				|| substr_count($_SERVER['REQUEST_URI'], "burcombe-footstool")
+				|| substr_count($_SERVER['REQUEST_URI'], "winsley-ottoman")
+				|| substr_count($_SERVER['REQUEST_URI'], "bentham-blanket")
+				|| substr_count($_SERVER['REQUEST_URI'], "winterslow-bed")
+				|| substr_count($_SERVER['REQUEST_URI'], "neston-bed")
+				|| substr_count($_SERVER['REQUEST_URI'], "marlborough-bed")
+				|| substr_count($_SERVER['REQUEST_URI'], "compton-headboard")
+				|| substr_count($_SERVER['REQUEST_URI'], "oxenwood-ottoman")
+				|| substr_count($_SERVER['REQUEST_URI'], "durrington-divan")
+				){
+				if(in_array($_pattern,$empty_pattern_type))continue;{
+			}    }                          
+                    ?>
+                    <li>
+                        <input class="pattern" name="pattern-<?php echo strtolower(str_replace(" ", "-", $_pattern));?>" type="checkbox"/>
+                        <label for="pattern-<?php echo strtolower(str_replace(" ", "-", $_pattern));?>"><?php echo $_pattern;?></label>
+                    </li>
+                    <?php 
+                        endforeach;
+                    ?>
+                </ul>
+            </div>
+        </div>
+        <div class="perfect-fabric">
+            <a class="fancybox"  href="#inline-chat">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('perfect_fabric')->toHtml();?>
+                </a>
+        </div>
+    </div>
+    <div class="input-box grid" id="grid">
+        
+        <div class="grid-sizer"></div>
+        <?php
+            // Group swatches by fabric type  
+        
+        foreach ($_fabricTypes as $_fabric=>$_val) :
+            ?>
+        <div class="grid-item" id="fabric-<?php echo strtolower(str_replace(" ", "-", $_fabric));?>">
+            
+                <?php //Below array helps to arranges all swatches in its regular order, as in another products.
+//if(substr_count($_SERVER['REQUEST_URI'], "storage-beds") || substr_count($_SERVER['REQUEST_URI'], "storage-bed")){
+	$custome_array = array("oyster","ice-blue","biscuit","vintage-grey","argent","laurel","rose","vintage-dusk","vintage-blue","scarlett-red","peppercorn","steel-grey","","stone","sky","nordic-blue","sand","dove","barley","pistachio","camel","chilli","raspberry","kingfisher","french-navy","pewter","aubergine","","snow","natural","oatmeal","pale-grey","mineral","straw","wheatgrass","french-blue","pigeon","sorbet","mocha","shadow","quartz","cherry","midnight-blue","","jute","toast","hessian","zinc","","ivory","buff","magnesium","birch","smoke-blue","clay","azure","pebble","","eggshell","mohair","pavilion-grey","beige","duck-egg","wheat","peat","slate","","chalk","oat","flint","rye","ash","granite","ink");
+/*}
+else if(substr_count($_SERVER['REQUEST_URI'], "alderton") || substr_count($_SERVER['REQUEST_URI'], "shalbourne") || substr_count($_SERVER['REQUEST_URI'], "bisford"))
+{
+	$custome_array = array("oyster","ice-blue","biscuit","vintage-grey","argent","laurel","rose","vintage-dusk","vintage-blue","scarlett-red","peppercorn","steel-grey","stone","sky","nordic-blue","sand","dove","barley","pistachio","camel","chilli","raspberry","kingfisher","french-navy","pewter","aubergine","snow","natural","oatmeal","pale-grey","mineral","straw","wheatgrass","french-blue","pigeon","sorbet","mocha","shadow","quartz","cherry","midnight-blue","jute","toast","hessian","zinc","ivory","buff","magnesium","birch","smoke-blue","clay","azure","pebble","duck-stripes","coffee-stripes","grey-stripes","pavilion-grey","duck-egg","slate","eggshell","mohair","beige","wheat","peat","chalk","oat","flint","rye","ash","granite","ink","egret","wicker","smoke","sable","lagoon-grey","wine","grape","steel","aluminium","feather-grey","calico","stonewash","truffle","iron","delft-blue","violet","battleship","shell","cream","taupe","mist","fudge","lunar","chestnut","espresso");
+}*/
+		 $first = true;
+		?>
+                <?php 
+		   /* if(substr_count($_SERVER['REQUEST_URI'], "storage-beds") || substr_count($_SERVER['REQUEST_URI'], "storage-bed") || substr_count($_SERVER['REQUEST_URI'], "alderton") || substr_count($_SERVER['REQUEST_URI'], "shalbourne") || substr_count($_SERVER['REQUEST_URI'], "bisford"))*/
+			if(substr_count($_SERVER['REQUEST_URI'], "storage-beds") || substr_count($_SERVER['REQUEST_URI'], "storage-bed"))
+		    {foreach($custome_array as $key=>$val){
+			
+			    foreach ($_swatchArray->options as $_option): ?>
+		            <?php
+		            $_optionCode = Mage::helper('configurableswatches')->getHyphenatedString($_option->label);
+				if($val != $_optionCode) continue;
+		            // Get the admin label for the option
+		            $_option_id = $_option->id;                                            
+		            foreach ($collection as $option) {
+		                if ($option['value'] == $_option_id) {
+		                    $adminLabel = $option["label"];
+		                    $labels = explode(" - ", $adminLabel);
+		                    $_fabricType = $labels[0];
+		                    $_pattern = strtolower(str_replace(" ", "-", $labels[1]));
+		                    $_pallette = strtolower(str_replace(array(" & ", ",", " "), array( "-","","-"), $labels[2]));
+		                    break;
+		                }
+		            }                
+
+		            // Include if in current fabric group
+		            if ($_fabric != $_fabricType) {
+		                continue;
+		            }
+		            
+		            if ($first):
+		                $_priceIncludingTax = number_format($this->helper('tax')->getPrice($_product, $_product->getFinalPrice()) + $_option->price, 0, ".", ",");
+	?>
+		    <h3 class="<?php echo strtolower(str_replace(" ", "-", $_fabric)); ?>">
+		        <span class="info-icon">i
+		            <div style="display: none;" class="pin-arrow"></div>
+		            <span class="info-block">
+		                <?php 
+		                    $blockid = "fabric_info_".strtolower(str_replace(" ", "_", $_fabric));
+		                    echo Mage::app()->getLayout()->createBlock('cms/block')->setBlockId($blockid)->toHtml();
+		                ?>
+		            </span>                        
+		        </span>
+		        <?php echo "$_fabric, from £$_priceIncludingTax" ; ?>
+		        
+		    </h3>
+		    <ul id="configurable_swatch_<?php echo $_attrCode ?>" class="configurable-swatch-list clearfix">
+		        <?php   $first=false;?>
+		        <?php endif;
+		            
+		            $_optionCode = Mage::helper('configurableswatches')->getHyphenatedString($_option->label);
+		            $_swatchUrl = Mage::helper('configurableswatches/productimg')->getSwatchUrl($_product, $_option->label, $_swatchInnerWidth, $_swatchInnerHeight, $_swatchType);
+		            $_largeSwatchUrl = $_swatchUrl = Mage::helper('configurableswatches/productimg')->getSwatchUrl($_product, $_option->label, 100, 100, $_swatchType);
+		            $_hasImage = !empty($_swatchUrl);
+		            $_liClass = ' pattern-'.$_pattern.' pallette-'.$_pallette.' show-pallette show-pattern ';
+		            $_aClass = 'swatch-link swatch-link-' . $_attribute->getAttributeId();
+		            if ($_hasImage) {
+		                $_liClass .= $_swatchType == 'media' ? ' is-media' : '';
+		                $_aClass .= ' has-image';
+		            } elseif (strlen($_option->label) > 3) {
+		                $_liClass .= ' wide-swatch';
+		            }
+		            ?>
+		            <li class="option-<?php echo $_optionCode; ?><?php echo $_liClass; ?>" id="option<?php echo $_option->id; ?>">
+		                <a href="javascript:void(0)" name="<?php echo $_optionCode; ?>" id="swatch<?php echo $_option->id; ?>" class="<?php echo $_aClass ?>" title="<?php echo $_option->label; ?>">
+		            <span class="swatch-label">
+		            <?php if ($_hasImage): ?>
+		                <img id='<?php echo strtolower(str_replace(" ", "-", $_option->label)); ?>' data-fabric="<?php echo $_fabric;?>"  src="<?php echo $_swatchUrl; ?>" alt="<?php echo $_option->label; ?>" title="<?php echo $_option->label; ?>" />
+		                <div class="swatchname"><?php echo $_option->label; ?></div>
+		                <div class="pin-arrow"></div>
+		            <?php else: ?>
+		                <?php echo $_option->label; ?>
+		            <?php endif; ?>
+		             </span>
+		                    
+		                </a>
+		                <div class="swatch-expand">
+		                    <img src="<?php echo $_swatchUrl; ?>" alt="<?php echo $_option->label; ?>"  />
+		                    <div class="info">
+		                        <?php echo $_fabric." - ". $_option->label;?>
+		                        <button>Select fabric for my order</button>
+		                        <div class="addlink"><a class="fancybox cosy" href="#cosy-pack">Add sample to my cosy pack</a><span class="sample-info"></span></div>
+		                        
+		                    </div>
+		                </div>    
+		            </li>
+		        <?php endforeach; 
+		    }
+		} 
+else{foreach ($_swatchArray->options as $_option): ?>
+		            <?php 	//if($_SERVER['REMOTE_ADDR'] == "123.237.8.112"){print_r($_swatchArray->options);}
+		            
+		            // Get the admin label for the option
+		            $_option_id = $_option->id;                                            
+		            foreach ($collection as $option) {
+		                if ($option['value'] == $_option_id) {
+		                    $adminLabel = $option["label"];
+		                    $labels = explode(" - ", $adminLabel);
+		                    $_fabricType = $labels[0];
+		                    $_pattern = strtolower(str_replace(" ", "-", $labels[1]));
+		                    $_pallette = strtolower(str_replace(array(" & ", ",", " "), array( "-","","-"), $labels[2]));
+		                    break;
+		                }
+		            }                
+
+		            // Include if in current fabric group
+		            if ($_fabric != $_fabricType) {
+		                continue;
+		            }
+		            
+		            if ($first):
+		                $_priceIncludingTax = number_format($this->helper('tax')->getPrice($_product, $_product->getFinalPrice()) + $_option->price, 0, ".", ",");
+	?>
+		    <h3 class="<?php echo strtolower(str_replace(" ", "-", $_fabric)); ?>">
+		        <span class="info-icon">i
+		            <div style="display: none;" class="pin-arrow"></div>
+		            <span class="info-block">
+		                <?php 
+		                    $blockid = "fabric_info_".strtolower(str_replace(" ", "_", $_fabric));
+		                    echo Mage::app()->getLayout()->createBlock('cms/block')->setBlockId($blockid)->toHtml();
+		                ?>
+		            </span>                        
+		        </span>
+		        <?php echo "$_fabric, from £$_priceIncludingTax" ; ?>
+		        
+		    </h3>
+		    <ul id="configurable_swatch_<?php echo $_attrCode ?>" class="configurable-swatch-list clearfix">
+		        <?php   $first=false;?>
+		        <?php endif;
+		            
+		            $_optionCode = Mage::helper('configurableswatches')->getHyphenatedString($_option->label);
+		            $_swatchUrl = Mage::helper('configurableswatches/productimg')->getSwatchUrl($_product, $_option->label, $_swatchInnerWidth, $_swatchInnerHeight, $_swatchType);
+		            $_largeSwatchUrl = $_swatchUrl = Mage::helper('configurableswatches/productimg')->getSwatchUrl($_product, $_option->label, 100, 100, $_swatchType);
+		            $_hasImage = !empty($_swatchUrl);
+		            $_liClass = ' pattern-'.$_pattern.' pallette-'.$_pallette.' show-pallette show-pattern ';
+		            $_aClass = 'swatch-link swatch-link-' . $_attribute->getAttributeId();
+		            if ($_hasImage) {
+		                $_liClass .= $_swatchType == 'media' ? ' is-media' : '';
+		                $_aClass .= ' has-image';
+		            } elseif (strlen($_option->label) > 3) {
+		                $_liClass .= ' wide-swatch';
+		            }
+		            ?>
+		            <li class="option-<?php echo $_optionCode; ?><?php echo $_liClass; ?>" id="option<?php echo $_option->id; ?>">
+		                <a href="javascript:void(0)" name="<?php echo $_optionCode; ?>" id="swatch<?php echo $_option->id; ?>" class="<?php echo $_aClass ?>" title="<?php echo $_option->label; ?>">
+		            <span class="swatch-label">
+		            <?php if ($_hasImage): ?>
+		                <img id='<?php echo strtolower(str_replace(" ", "-", $_option->label)); ?>' data-fabric="<?php echo $_fabric;?>"  src="<?php echo $_swatchUrl; ?>" alt="<?php echo $_option->label; ?>" title="<?php echo $_option->label; ?>" />
+		                <div class="swatchname"><?php echo $_option->label; ?></div>
+		                <div class="pin-arrow"></div>
+		            <?php else: ?>
+		                <?php echo $_option->label; ?>
+		            <?php endif; ?>
+		             </span>
+		                    
+		                </a>
+		                <div class="swatch-expand">
+		                    <img src="<?php echo $_swatchUrl; ?>" alt="<?php echo $_option->label; ?>"  />
+		                    <div class="info">
+		                        <?php echo $_fabric." - ". $_option->label;?>
+		                        <button>Select fabric for my order</button>
+		                        <div class="addlink"><a class="fancybox cosy" href="#cosy-pack">Add sample to my cosy pack</a><span class="sample-info"></span></div>
+		                        
+		                    </div>
+		                </div>    
+		            </li>
+		        <?php endforeach;
+}?>
+            </ul>
+        </div>    
+        <?php
+        endforeach;
+        ?>
+    </div>
+</dd>

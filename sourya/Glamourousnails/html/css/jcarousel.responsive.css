@@ -1,0 +1,144 @@
+.jcarousel-wrapper {
+    margin: 0px auto;
+    position: relative;
+   /* border: 10px solid #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 2px #999;
+    -moz-box-shadow: 0 0 2px #999;
+    box-shadow: 0 0 2px #999;*/
+}
+
+/** Carousel **/
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+	/*padding-top:20px;*/
+	/*padding-bottom:20px*/
+}
+
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel li {
+  
+    float: left !important;
+   /* border: 1px solid #fff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;*/
+	margin:0 -2px
+}
+
+.jcarousel img {
+   /* display: block;
+    max-width: 100%;*/
+   /* height: 30vh !important;*/
+}
+
+/** Carousel Controls **/
+
+.jcarousel-control-prev,
+.jcarousel-control-next {
+  /*  position: absolute;*/
+    top: 105%;
+   
+    width: 50px;
+    height: 100px;
+    text-align: center;
+    background: ;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    /*font: 24px/27px Arial, sans-serif;*/
+    /*-webkit-border-radius:50%;
+    -moz-border-radius: 50%;*/
+   /* border-radius: 50%;*/
+    float:left;
+	margin:2px 5px
+}
+/*.jcarousel-control-prev:after,
+.jcarousel-control-next:after
+{
+	width: 22px;
+height: 22px;
+border-radius: 50%;
+position: absolute;
+margin: 0px auto;
+border: 2px solid #ffe400;
+content: "";
+top: -4px;
+left: -4px;
+}*/
+.jcarousel-control-prev span{
+	margin-top:-4px;
+	display:block
+}
+.jcarousel-control-next span{
+	margin-top:-4px;
+	display:block
+}
+
+
+/*.jcarousel-control-prev{
+	left:45%;
+}
+.jcarousel-control-next{
+	right:46%;
+}*/
+.jcarousel-control-prev:hover{
+	background:;
+}
+.jcarousel-control-next:hover{
+	background:;
+}
+
+
+
+/** Carousel Pagination **/
+
+.jcarousel-pagination {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    margin: 0;
+}
+
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 11px;
+    height: 16px;
+    width: 19px;
+    line-height: 10px;
+
+    background: url(../images/pagination.png);
+    color: #4E443C;
+    border-radius: 2px;
+    text-indent: -9999px;
+
+    margin-right: 7px;
+
+}
+
+.jcarousel-pagination a.active {
+    background:url(../images/pagination_active.png);
+    color: #fff;
+    opacity: 1;
+
+    -webkit-box-shadow: 0 0 2px #F0EFE7;
+    -moz-box-shadow: 0 0 2px #F0EFE7;
+    box-shadow: 0 0 2px #F0EFE7;
+}

@@ -1,0 +1,3 @@
+wordspress:
+ user name:admin
+password:wDDJ8VIOrWMx3fVq(9

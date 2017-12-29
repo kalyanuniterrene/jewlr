@@ -1,0 +1,57 @@
+/* CSS Document */
+
+
+@media (max-width:767px) {
+.container {
+	width: 85%
+}
+}
+
+@media (min-width:768px) {
+.container {
+	width: 750px
+}
+
+}
+
+
+@media (min-width:991px) {
+.container {
+	width: 950px;
+	
+}
+			
+}
+
+
+@media (min-width:1200px) {
+.container {
+	width: 1180px;
+}
+}
+
+@media (min-width:1350px) {
+.container {
+	width: 1280px;
+}		
+}
+
+@media (min-width:1280px) {
+.container {
+	width: 1120px;
+	
+}
+
+		
+}	
+@media (min-width:1366px) {
+.container {
+	/*width: 1280px;*/
+	width: 1171px;
+	
+}
+ 
+
+}
+
+
