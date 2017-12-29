@@ -1,0 +1,75 @@
+<?php
+    $attributeName = strtolower($this->getLastAddedAttributeName());
+    $content = $this->getLayout()->createBlock('cms/block')->setBlockId('also_like_'.$attributeName)->toHtml();
+           
+    $hasRanges = array("sofa","sofa-bed","armchairs","storagebeds","mattress","bedbases","bedsteads", "headboards");
+    $ignoreRanges = array("sofa bed range", "sofa range", "armchairs range", "bedsteads range","bedbases range","mattress range","headboards range","blanketbox range","ottomans range","footstools range");
+    if ( in_array($attributeName, $hasRanges) && $content == "") {
+        // Check if it has a range
+        $_product = Mage::getModel('catalog/product')->load($this->_lastAdded);
+        if ($_product) {
+            $cats = $_product->getCategoryIds();
+            $_rangename = '';
+            foreach ($cats as $category_id) {
+                $_cat = Mage::getModel('catalog/category')->load($category_id) ;
+                if ($_cat->getIsActive()):
+                    $_catname = $_cat->getName();
+                    if (in_array(strtolower($_catname), $ignoreRanges)) continue;
+                    if (strpos(strtolower($_catname), " range") > 0) {
+                        
+                        $_rangeid = $_cat->getId();
+                        $_rangename = $_catname;
+                        break;
+                    }
+                endif;
+            }
+            
+            if ($_rangename != "") {
+                $content = "<h2>".$_product->getName()." has been added to your basket</h2>";
+                $content .= '<h3 class="section-header"><span>Also available in this range</span></h3>';
+                
+                $content .= "<p>".Mage::app()->getLayout()
+        ->createBlock('cartpopup/product_list')
+        ->setCategoryId($_rangeid)
+        ->setTemplate('cartpopup/product/list.phtml')
+        ->toHtml()."</p>";
+            }
+        }
+    }
+    
+    
+    if ($attributeName != '' && $content != ''):
+        ?>
+<a href="#alsolike" class="fancybox alsolikelink">alsolike</a>
+<div id="alsolike" class="popupWindow">
+    <div class="popupTopLeft"></div>
+	<div class="popupTopRight"></div>
+	<div class="popupBottomLeft"></div>
+	<div class="popupBottomRight"></div>
+	<div class="popupTop"></div>
+	<div class="popupLeft"></div>
+	<div class="popupBottom"></div>
+	<div class="popupRight"></div>
+
+	<div class="popupBackground">
+		<div class="popupContent">
+    <?php
+        echo $content;
+    ?>
+                    <div class="clear dashed-rule"></div>
+                    <div class="actionForm">
+                        <button class="button action lightBlue georgia left" onclick="$j.fancybox.close();"><span><span>Continue Shopping</span></span></button>
+                    <button type="button" title="View Basket" class="right button action pink autoWidth georgia btn-proceed-checkout btn-checkout" onclick="window.location='/checkout/cart/';"><span><span>View Basket</span></span></button>
+                    </div>
+                       <div class="clear"></div>
+                </div>
+        </div>
+</div>
+<script type="text/javascript">
+    $j(function(){
+       $j(".alsolikelink").click();
+    });
+</script>
+
+<?php
+    endif;
